@@ -1,7 +1,7 @@
 {
-  "name": "static-server",
+  "name": "cvdlab.org",
   "version": "0.0.0",
-  "description": "Express.js based static file server",
+  "description": "CVDLab websote",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.2.0"
+    "body-parser": "^1.2.2",
+    "express": "^4.2.0",
+    "method-override": "^1.0.2",
+    "morgan": "^1.1.1"
   }
 }
