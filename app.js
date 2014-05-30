@@ -4,8 +4,6 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var logger = require('morgan');
 var favicon = require('serve-favicon');
-var app = express();
-app.use(favicon(__dirname + '/public/favicon.ico'));
 var express = require('express');
 var app = express();
 
