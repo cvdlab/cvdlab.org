@@ -15,6 +15,7 @@
     "method-override": "^1.0.2",
     "mongojs": "^0.13.0",
     "morgan": "^1.1.1",
-    "multiparty": "^3.2.7"
+    "multiparty": "^3.2.7",
+    "serve-favicon": "^2.0.0"
   }
 }
