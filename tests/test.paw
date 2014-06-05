@@ -79,7 +79,7 @@
     </object>
     <object type="LMREQUEST" id="z104">
         <attribute name="uuid" type="string">36E5EBD2-1AD6-4220-8C3B-13C6E5F38D8B</attribute>
-        <attribute name="url" type="string">http://cvdlab.org/alumni/240917/picture</attribute>
+        <attribute name="url" type="string">http://localhost:9011/alumni</attribute>
         <attribute name="timeoutinterval" type="float">30</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
         <attribute name="redirectauthorization" type="bool">0</attribute>
