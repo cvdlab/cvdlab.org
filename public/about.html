@@ -6,15 +6,21 @@
   <title>Polymer WebApp</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="styles/main.css">
   <script src="bower_components/platform/platform.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
   <link rel="import" href="elements/navbar.html">
+  <link rel="stylesheet" href="styles/main.css">
   <link rel="import" href="elements/jumbotron.html">
+  <link rel="import" href="elements/founders.html">
   <link rel="import" href="elements/footer.html">
+  <link rel="import" href="elements/google-maps.html">
 </head>
 <body unresolved>  
   <polymer-navbar></polymer-navbar>
-  <polymer-jumbotron h1="Computational Visual Design Lab" h2="Learn, teach and make the next gen Web"></polymer-jumbotron>
+  <polymer-jumbotron h1="About" h2="A lab for the next gen web"></polymer-jumbotron>
+  <polymer-description></polymer-description>
+  <polymer-founders></polymer-founders>
+  <google-maps class="google-maps" latitude="41.855464" longitude="12.467707" zoom="15"></google-maps>
   <polymer-footer></polymer-footer>
   <!-- <script src="scripts/bootstrap.min.js"></script> -->
 </body>

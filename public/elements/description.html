@@ -1,0 +1,27 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="polymer-jumbotron" attribute="markdown">
+  <template>
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <style>
+      /* styles for the custom element itself - lowest specificity */
+      :host { display: block; }
+      /* 
+      style if an ancestor has the different class
+      :host(.different) { } 
+      */
+    </style>
+    <content>
+      <div class="container">
+        <p>{{ markdown }}</p>
+      </div>
+    </content>
+  </template>
+  <script>
+    Polymer('polymer-jumbotron', {
+      ready: function () {
+        
+      }
+    });
+  </script>
+</polymer-element>

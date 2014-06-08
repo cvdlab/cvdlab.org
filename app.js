@@ -16,8 +16,6 @@ app.use(function (err, req, res, next) {
   // logic
 });
 
-
-
 app.listen(PORT, function () {
   console.log('Server is listening on ' + PORT);
 });

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Polymer WebApp</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="bower_components/platform/platform.js"></script>
+  <link rel="import" href="elements/navbar.html">
+  <link rel="import" href="elements/jumbotron.html">
+  <link rel="import" href="elements/course.html">
+  <link rel="import" href="elements/footer.html">
+  <script src="data/courses.js"></script>
+</head>
+<body unresolved>  
+  <polymer-navbar></polymer-navbar>
+  <polymer-jumbotron h1="Courses" h2="We love to teach and to keep learning"></polymer-jumbotron>
+  <polymer-course course="three"></polymer-course>
+  <polymer-course course="javascript"></polymer-course>
+  <polymer-description></polymer-description>
+  <polymer-footer></polymer-footer>
+  
+  <script>
+  document.addEventListener('WebComponentsReady', function() {
+    var element;
+
+    element = document.querySelector('[course="three"]');
+    element.course = courses.three;
+
+    element = document.querySelector('[course="javascript"]');
+    element.course = courses.javascript;
+  });
+  </script>
+</body>
+</html>

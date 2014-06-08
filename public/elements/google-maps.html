@@ -1,0 +1,80 @@
+<polymer-element name="google-maps" attributes="latitude longitude tilt type zoom">
+  <template>
+    <style>
+      @host {
+        google-maps {
+          display: block;
+        }
+      }
+
+      #container {
+        width: 100%;
+        height: 400px;
+      }
+    </style>
+    <div id="container"></div>
+  </template>
+  <script>
+    Polymer('google-maps', {
+
+      type: google.maps.MapTypeId.ROADMAP,
+
+      disableDefaultUI: true,
+      
+      ready: function() {
+
+        this.map = new google.maps.Map(this.$.container, {
+          center: new google.maps.LatLng(+this.latitude, +this.longitude),
+          mapTypeId: this.type,
+          // tilt: this.tilt,
+          zoom: +this.zoom,
+          disableDefaultUI: this.disableDefaultUI,
+          scrollwheel: false,
+          zoomControl: true,
+          zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.SMALL
+          }
+        });
+      },
+
+      enteredDocument: function() {
+        this.resize();
+      },
+
+      resize: function() {
+        google.maps.event.trigger(this.map, 'resize');
+        this.updateCenter();
+      },
+
+      latitudeChanged: function() {
+        this.updateCenter();
+      },
+
+      longitudeChanged: function() {
+        this.updateCenter();
+      },
+
+      tiltChanged: function() {
+        var tilt = this.getAttribute('tilt');
+        this.map.setTilt(+tilt);
+      },
+
+      typeChanged: function() {
+        var type = this.getAttribute('type');
+        this.map.setMapTypeId(type);
+      },
+
+      updateCenter: function() {
+        var latitude = this.getAttribute('latitude');
+        var longitude = this.getAttribute('longitude');
+        var center = new google.maps.LatLng(+latitude, +longitude);
+        this.map.setCenter(center);
+      },
+
+      zoomChanged: function() {
+        var zoom = this.getAttribute('zoom');
+        this.map.setZoom(+zoom);
+      }
+    });
+  </script>
+</polymer-element>

@@ -1,0 +1,35 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<polymer-element name="polymer-footer"  attributes="">
+  <template>
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <style>
+      /* styles for the custom element itself - lowest specificity */
+      :host { display: block; }
+      /* 
+      style if an ancestor has the different class
+      :host(.different) { } 
+      */
+
+      .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        /* Set the fixed height of the footer here */
+        height: 60px;
+        background-color: #f5f5f5;
+        padding-top: 22px;
+      }
+
+    </style>
+    <!-- <content> -->
+    <div class="footer">
+      <div class="container">
+        <p>CVDLab.org</p>
+      </div>
+    </div>
+    <!-- </content> -->
+  </template>
+  <script>
+    Polymer('polymer-footer', {});
+  </script>
+</polymer-element>

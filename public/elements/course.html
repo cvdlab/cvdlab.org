@@ -1,0 +1,32 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<polymer-element name="polymer-course"  attributes="course">
+  <template>
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <style>
+      /* styles for the custom element itself - lowest specificity */
+      :host { display: block; }
+      /* 
+      style if an ancestor has the different class
+      :host(.different) { } 
+      */
+    </style>
+    <content>
+      <div class="container course">
+        <h2>{{ course.title }}</h2>
+        <template repeat="{{ topic in course.topics }}">
+          <div>
+            <h4>{{ topic.title }}</h4>
+            <template repeat="{{ section in topic.sections }}">
+              <p>{{ section }}</p> 
+            </template>
+          </div>
+        </template>
+      </div>
+    </content>
+  </template>
+  <script>
+    Polymer('polymer-course', {
+
+    });
+  </script>
+</polymer-element>
