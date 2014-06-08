@@ -1,8 +1,8 @@
 {
   "name": "cvdlab.org",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "CVDLab website",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +11,11 @@
   "dependencies": {
     "body-parser": "^1.2.2",
     "express": "^4.2.0",
+    "gm": "^1.16.0",
     "method-override": "^1.0.2",
-    "morgan": "^1.1.1"
+    "mongojs": "^0.13.0",
+    "morgan": "^1.1.1",
+    "multiparty": "^3.2.7",
+    "serve-favicon": "^2.0.0"
   }
 }
