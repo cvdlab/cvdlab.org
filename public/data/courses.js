@@ -6,17 +6,17 @@ var courses = {
         "title": "Introduction",
         "sections": [
           "THREE.js app boilerplate",
-          "Basic concepts: scene, camera, light, mesh, geometry, material, renderer",
+          "Basic concepts",
         ]
       }, 
       {
         "title": "Geometries",
         "sections": [
-          "Affine transformations: translate, rotate, scale objects",
-          "Basic geometries: box, cylinder, circle, sphere, torus, icosahedron, octahedron",
+          "Affine transformations",
+          "Basic geometries",
           "Parametric geometries",
           "Custom shapes with holes",
-          "Shape transformations: extrusion"
+          "Shape transformations"
         ]
       }, 
       {
@@ -29,7 +29,7 @@ var courses = {
       {
         "title": "Graphic debug techniques",
         "sections": [
-          "Helpers for objects 3D, lights, camera, shadows",
+          "Helpers objects",
           "dat.GUI",
           "Trackball camera"
         ]

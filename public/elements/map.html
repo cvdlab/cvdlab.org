@@ -1,4 +1,4 @@
-<polymer-element name="google-maps" attributes="latitude longitude tilt type zoom">
+<polymer-element name="polymer-map" attributes="latitude longitude tilt type zoom">
   <template>
     <style>
       @host {
@@ -15,7 +15,7 @@
     <div id="container"></div>
   </template>
   <script>
-    Polymer('google-maps', {
+    Polymer('polymer-map', {
 
       type: google.maps.MapTypeId.ROADMAP,
 
