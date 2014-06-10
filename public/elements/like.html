@@ -1,0 +1,23 @@
+<polymer-element name="polymer-like" attributes="url layout action faces share appid">
+
+  <template>
+    <style>
+    </style>
+    <div class="fb-like" 
+      data-href="{{ url }}" 
+      data-layout="{{ layout }}" 
+      data-action="{{ action }}" 
+      data-show-faces="{{ faces }}" 
+      data-share="{{ share }}">
+    </div>
+  </template>
+
+  <script>
+    Polymer('polymer-like', {
+      action: 'like',
+      faces: 'true',
+      share: 'true'
+    });
+  </script>
+
+</polymer-element>

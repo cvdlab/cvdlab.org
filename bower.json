@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "dependencies": {
     "platform": "Polymer/platform#master",
-    "polymer": "Polymer/polymer#master"
+    "polymer": "Polymer/polymer#master",
+    "superagent": "visionmedia/superagent#master"
   },
   "devDependencies": {}
 }

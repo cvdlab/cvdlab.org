@@ -4,6 +4,17 @@ var app = module.exports = express();
 var mongojs = require('mongojs');
 var db = mongojs('cvdlaborg', ['alumni']);
 
+var alumni = [
+  {
+    full_name: 'aaa',
+    github_user: 'github_aaa'
+  },
+  {
+    full_name: 'bbb',
+    github_user: 'github_bbb'
+  }
+];
+
 app.get('/alumni', function (req, res) {
   var id = req.params.id;
   var year = req.query.year;
@@ -12,6 +23,9 @@ app.get('/alumni', function (req, res) {
   if (year) {
     query.year = year;
   }
+
+  res.send(alumni);
+  return;
   
   db.alumni.find(query, function (err, alumnus) {
     if (err) {

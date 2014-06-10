@@ -170,4 +170,4 @@ scrolling.remove = function (el, listener) {
 /**
  * Expose scrolling
  */
-exports = module.exports = scrolling;
+exports = scrolling;
