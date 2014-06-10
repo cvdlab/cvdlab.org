@@ -31,9 +31,19 @@
       </div>
     </content>
   </template>
+  <script src="../bower_components/superagent/superagent.js"></script>
   <script>
     Polymer('polymer-alumni', {
-      ready: function() {}
+      ready: function() {
+
+        var request = superagent;
+        var self = this;
+
+        request.get('/alumni', function (res) {
+          self.alumni = res.body;
+        })
+
+      }
     });
   </script>
 </polymer-element>
