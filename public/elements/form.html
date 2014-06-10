@@ -1,0 +1,65 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="polymer-form"  attributes="">
+  <template>
+    <link rel="stylesheet" href="../styles/bootstrap.min.css">
+    <style>
+      :host { 
+        display: block;
+      }
+
+      /* 
+      style if an ancestor has the different class
+      :host(.different) { } 
+      */
+    </style>
+    <content>
+      <div class="container">
+        <form role="form">
+          <div class="form-group">
+            <label for="full_name">Name Surname</label>
+            <input type="text" class="form-control input-lg" id="full_name" placeholder="Enter your name and surname" value="{{ full_name }}">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control input-lg" id="email" placeholder="Enter your email address" value="{{ email }}" value="{{ email }}">
+          </div>
+          <div class="form-group">
+            <label for="website">Personal website address [optional]</label>
+            <input type="url" class="form-control input-lg" id="website" placeholder="Enter your personal website address, if any" value="{{ website }}">
+          </div>
+          <div class="form-group">
+            <label for="github_username">GitHub username</label>
+            <input type="text" class="form-control input-lg" id="github_username" placeholder="Enter your GitHub username" value="{{ github_username }}" value="{{ github_username }}">
+          </div>
+          <div class="form-group">
+            <label for="year">Year</label>
+            <select class="form-control input-lg" id="year">
+              <option>2011/2012</option>
+              <option>2012/2013</option>
+              <option>2013/2014</option>
+              <option>2014/2015</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-lg btn-default">Submit</button>
+        </form>
+      </content>
+    </div>
+  </template>
+  <script>
+    Polymer('polymer-form', {
+      
+      // ready: function () {
+      //   var el = this;
+      //   scrolling(function (event) {
+      //     if (this.scrollY >= 70) {
+      //       console.log(this.scrollY, el);
+      //       el.classList.add('hidden');
+      //     } else {
+      //       el.classList.remove('hidden');
+      //     }
+      //   });
+      // }
+    });
+  </script>
+</polymer-element>

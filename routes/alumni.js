@@ -50,6 +50,7 @@ app.post('/alumni/:id', function (req, res) {
     
     var new_alumnus = {
       full_name: body.full_name || alumnus.full_name,
+      email: body.email || alumnus.email,
       website: body.website || alumnus.website,
       gihub_user: body.github_user || alumnus.github_user,
       year: body.year || alumnus.year,
