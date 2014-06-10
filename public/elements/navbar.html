@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<polymer-element name="polymer-navbar"  attributes="">
+<polymer-element name="polymer-navbar">
   <template>
     <link rel="stylesheet" href="../styles/bootstrap.min.css">
     <style>
@@ -66,10 +66,15 @@
       </div>
     </content>
   </template>
+  <script src="../data/navbar.js"></script>
   <script src="../scripts/scrolling.js"></script>
   <script>
     Polymer('polymer-navbar', {
       
+      created: function () {
+        this.data = navbar;
+      },
+
       ready: function () {
         var el = this;
         scrolling(function (event) {
@@ -79,28 +84,6 @@
             el.classList.remove('hidden');
           }
         });
-      },
-
-      data: {
-        title: 'CVDLAB',
-        links: [
-          {
-            url: 'about.html',
-            label: 'About'
-          },
-          {
-            url: 'people.html',
-            label: 'People'
-          },
-          {
-            url: 'courses.html',
-            label: 'Courses'
-          },
-          {
-            url: 'projects.html',
-            label: 'Projects'
-          }
-        ]
       }
     });
   </script>
