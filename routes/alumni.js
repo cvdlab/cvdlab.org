@@ -40,7 +40,7 @@ app.get('/alumni', function (req, res) {
 app.get('/alumni/:id', function (req, res) {
   var id = req.params.id;
   
-  db.alumni.find({_id: id}, function (err, alumnus) {
+  db.alumni.findOne({_id: id}, function (err, alumnus) {
     if (err) {
       res.status(500).send(err);
       return;
@@ -66,7 +66,7 @@ app.post('/alumni/:id', function (req, res) {
       full_name: body.full_name || alumnus.full_name,
       email: body.email || alumnus.email,
       website: body.website || alumnus.website,
-      gihub_user: body.github_user || alumnus.github_user,
+      github_username: body.github_username || alumnus.github_username,
       year: body.year || alumnus.year,
       has_picture: alumnus.has_picture || body.has_picture || false
     };

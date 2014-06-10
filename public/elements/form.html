@@ -13,7 +13,7 @@
       :host(.different) { } 
       */
     </style>
-    <content>
+    <template bind="{{ alumnus }}">
       <div class="container">
         <form role="form">
           <div class="form-group">
@@ -35,31 +35,40 @@
           <div class="form-group">
             <label for="year">Year</label>
             <select class="form-control input-lg" id="year">
-              <option>2011/2012</option>
-              <option>2012/2013</option>
-              <option>2013/2014</option>
-              <option>2014/2015</option>
+              <option value="">Select academic year</option>
+              <option value="2011" selected?="{{ year==2011 }}">2011</option>
+              <option value="2012" selected?="{{ year==2012 }}">2012</option>
+              <option value="2013" selected?="{{ year==2013 }}">2013</option>
+              <option value="2014" selected?="{{ year==2014 }}">2014</option>
             </select>
           </div>
           <button type="submit" class="btn btn-lg btn-default">Submit</button>
         </form>
-      </content>
-    </div>
+      </div>
+    </template>
   </template>
+  <script src="../bower_components/superagent/superagent.js"></script>
   <script>
+    var qs = function (key) {  
+      return unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
+    }; 
+
     Polymer('polymer-form', {
-      
-      // ready: function () {
-      //   var el = this;
-      //   scrolling(function (event) {
-      //     if (this.scrollY >= 70) {
-      //       console.log(this.scrollY, el);
-      //       el.classList.add('hidden');
-      //     } else {
-      //       el.classList.remove('hidden');
-      //     }
-      //   });
-      // }
+      ready: function () {
+        
+        var id = +qs('id');
+        var request = superagent;
+        var self = this;
+        var endpoint = '/alumni/';
+        if (id) {
+          endpoint += id
+        }
+
+        request.get('/alumni/' + id, function (res) {
+          self.alumnus = res.body;
+        });
+
+      }
     });
   </script>
 </polymer-element>
