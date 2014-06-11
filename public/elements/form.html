@@ -12,6 +12,11 @@
         margin-top: 36px;
         margin-bottom: 36px;
       };
+
+      :host(.id-label) {
+        margin-bottom: 36px;
+      }
+
       /* 
       style if an ancestor has the different class
       :host(.different) { } 
@@ -19,7 +24,7 @@
     </style>
     <template bind="{{ alumnus as alumnus }}">
       <div class="container">
-        <h1><span class="label label-default">{{ id }}</span></h1>
+        <h1 class="id-label"><span class="label label-default">{{ id }}</span></h1>
         <form role="form">
           <div class="form-group">
             <label for="full_name">Name Surname</label>
