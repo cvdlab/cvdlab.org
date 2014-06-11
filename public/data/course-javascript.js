@@ -1,93 +1,99 @@
 var courses = courses || {};
 
-courses.threejs = {
-  "title": 'THREE.js crumbs',
+courses.javascript = {
+  "title": 'JavaScript crumbs',
   "topics": [
     {
       "title": "Introduction",
       "sections": [
-        "THREE.js app boilerplate",
-        "Basic concepts",
+        "JavaScript introduction",
+        "JavaScript history",
+        "JavaScript in the browser",
+        "JavaScript in the server"
       ]
     }, 
     {
-      "title": "Geometries",
+      "title": "Syntax",
       "sections": [
-        "Affine transformations",
-        "Basic geometries",
-        "Parametric geometries",
-        "Custom shapes with holes",
-        "Shape transformations"
+        "Identifiers", 
+        "Comments", 
+        "Statements", 
+        "Key words", 
+        "Reserved words"
       ]
     }, 
     {
-      "title": "Modelling techniques",
+      "title": "Types",
       "sections": [
-        "Mesh definition",
-        "Scene graph definition",
+        "Primitive types",
+        "Number",
+        "String",
+        "Boolean",
+        "Null",
+        "Undefined",
+        "Complex Types",
+        "Object"
       ]
     }, 
     {
-      "title": "Graphic debug techniques",
+      "title": "Operators",
       "sections": [
-        "Helpers objects",
-        "dat.GUI",
-        "Trackball camera"
+        "Unary operators", 
+        "Logical operators",
+        "Basic operators",
+        "Relational operators",
+        "Equality operators",
+        "Conditional operator",
+        "Assignment operators" 
       ]
     }, 
     {
-      "title": "Lights",
+      "title": "Statements",
       "sections": [
-        "Ambient light",
-        "Point light",
-        "Spot light",
-        "Directional light",
-        "Shadow mapping"
+        "if statement",
+        "switch statement",
+        "do-while statement",
+        "while statement",
+        "for statement",
+        "for in statement"
       ]
     }, 
     {
-      "title": "Materials",
+      "title": "Functions",
       "sections": [
-        "Basic material",
-        "Normal material",
-        "Face material",
-        "Depth material",
-        "Lambert material",
-        "Phong material"
+        "function definition",
+        "function invocation",
+        "function parameters",
+        "function arguments",
+        "function as values",
+        "function scope",
+        "closures"
       ]
     }, 
     {
-      "title": "Animation",
+      "title": "Objects",
       "sections": [
-        "Configurations space",
-        "Tween.js"
+        "object definition",
+        "object accessors"
       ]
     }, 
     {
-      "title": "Texturing techniques",
+      "title": "Built-in objects",
       "sections": [
-        "Basic textures",
-        "Bump maps",
-        "UV mapping",
-        "Repeat wrapping",
-        "Normal maps"
+        "Function",
+        "Array",
+        "Math",
+        "RegExp",
+        "String",
+        "Date"
       ]
     }, 
     {
-      "title": "Advanced texturing techniques",
+      "title": "Object-Oriented programming",
       "sections": [
-        "HTML5 canvas texture",
-        "HTML5 canvas texture bumpmap",
-        "HTML5 video texture"
-      ]
-    }, 
-    {
-      "title": "Advanced camera controls",
-      "sections": [
-        "Trackball controls",
-        "Fly controls",
-        "First person camera",
-        "Path controls"
+        "Constructor functions",
+        "Function prototype",
+        "Prototype chain"
       ]
     }
   ]

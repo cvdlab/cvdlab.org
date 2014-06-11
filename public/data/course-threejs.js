@@ -1,47 +1,94 @@
-var courses = {
-  "title": 'JavaScript crumbs',
+var courses = courses || {};
+
+courses.threejs = {
+  "title": 'THREE.js crumbs',
   "topics": [
     {
       "title": "Introduction",
       "sections": [
-        "Browser environment"
+        "THREE.js app boilerplate",
+        "Basic concepts",
       ]
     }, 
     {
-      "title": "Syntax",
-      "sections": []
+      "title": "Geometries",
+      "sections": [
+        "Affine transformations",
+        "Basic geometries",
+        "Parametric geometries",
+        "Custom shapes with holes",
+        "Shape transformations"
+      ]
     }, 
     {
-      "title": "Types",
-      "sections": []
+      "title": "Modelling techniques",
+      "sections": [
+        "Mesh definition",
+        "Scene graph definition",
+      ]
     }, 
     {
-      "title": "Operators",
-      "sections": []
+      "title": "Graphic debug techniques",
+      "sections": [
+        "Helpers objects",
+        "dat.GUI",
+        "Trackball camera"
+      ]
     }, 
     {
-      "title": "Statements",
-      "sections": []
+      "title": "Lights",
+      "sections": [
+        "Ambient light",
+        "Point light",
+        "Spot light",
+        "Directional light",
+        "Shadow mapping"
+      ]
     }, 
     {
-      "title": "Functions",
-      "sections": []
+      "title": "Materials",
+      "sections": [
+        "Basic material",
+        "Normal material",
+        "Face material",
+        "Depth material",
+        "Lambert material",
+        "Phong material"
+      ]
     }, 
     {
-      "title": "Objects",
-      "sections": []
+      "title": "Animation",
+      "sections": [
+        "Configurations space",
+        "Tween.js"
+      ]
     }, 
     {
-      "title": "Built-in objects",
-      "sections": []
+      "title": "Texturing techniques",
+      "sections": [
+        "Basic textures",
+        "Bump maps",
+        "UV mapping",
+        "Repeat wrapping",
+        "Normal maps"
+      ]
     }, 
     {
-      "title": "Prototype",
-      "sections": []
+      "title": "Advanced texturing techniques",
+      "sections": [
+        "HTML5 canvas texture",
+        "HTML5 canvas texture bumpmap",
+        "HTML5 video texture"
+      ]
     }, 
     {
-      "title": "Inheritance",
-      "sections": []
+      "title": "Advanced camera controls",
+      "sections": [
+        "Trackball controls",
+        "Fly controls",
+        "First person camera",
+        "Path controls"
+      ]
     }
   ]
 };
