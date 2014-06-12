@@ -6,7 +6,7 @@ var express = require('express');
 var app = module.exports = express();
 
 var mongojs = require('mongojs');
-var db = mongojs('cvdlab.org', ['alumni']);
+var db = mongojs('cvdlaborg', ['alumni']);
 
 var side = 200;
 
@@ -36,12 +36,12 @@ app.post('/alumni/:id/picture', function (req, res) {
       //   return;
       // }
 
-      gm.resize(side, side);
+      gm.resize(side);
       gm.compress('jpeg');
       gm.quality(80);
       
       fs.mkdir(dirpath, function (err) {
-        if (err) {
+        if (err && err.errno !== 47 && err.code !== 'EEXIST') {
           console.log(err);
           console.log('ERROR: can\'t create directory on disk');
         }
@@ -51,12 +51,13 @@ app.post('/alumni/:id/picture', function (req, res) {
             console.log(err);
             console.log('ERROR: can\'t write file on disk');
           }
-        
-          res.send('ok');
+          
+          db.alumni.update({_id: req.params.id}, {$set: {has_picture: true}}, function (err) {
+            // handle error
+            res.send('ok');
+          });
         });  
       });
-      
-      
     });
   });
 

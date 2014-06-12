@@ -11,10 +11,26 @@
       #submit {
         margin-top: 36px;
         margin-bottom: 36px;
-      };
+      }
 
-      :host(.id-label) {
-        margin-bottom: 36px;
+      h1 {
+        margin-bottom: 18px;
+      }
+
+      #picture {
+        background-size: cover;
+        position: relative;
+        width: 200px;
+        height: 200px;
+      }
+
+      #file {
+        display: none;
+      }
+
+      #change_picture {
+        margin-top: 18px;
+        margin-bottom: 18px;
       }
 
       /* 
@@ -22,40 +38,49 @@
       :host(.different) { } 
       */
     </style>
-    <template bind="{{ alumnus as alumnus }}">
-      <div class="container">
-        <h1 class="id-label"><span class="label label-default">{{ id }}</span></h1>
-        <form role="form">
-          <div class="form-group">
-            <label for="full_name">Name Surname</label>
-            <input type="text" class="form-control input-lg" id="full_name" name="full_name" placeholder="Enter your name and surname" value="{{ alumnus.full_name }}">
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control input-lg" id="email" name="email" placeholder="Enter your email address" value="{{ alumnus.email }}">
-          </div>
-          <div class="form-group">
-            <label for="website">Personal website address [optional]</label>
-            <input type="url" class="form-control input-lg" id="website" name="website" placeholder="Enter your personal website address, if any" value="{{ alumnus.website }}">
-          </div>
-          <div class="form-group">
-            <label for="github_username">GitHub username</label>
-            <input type="text" class="form-control input-lg" id="github_username" name="github_username" placeholder="Enter your GitHub username" value="{{ alumnus.github_username }}">
-          </div>
-          <div class="form-group">
-            <label for="year">Year</label>
-            <select class="form-control input-lg" id="year" name="year" value="{{ alumnus.year }}">
-              <option value="">Select the year in which you take the course</option>
-              <option value="2011" selected?="{{ alumnus.year == 2011 }}">2011</option>
-              <option value="2012" selected?="{{ alumnus.year == 2012 }}">2012</option>
-              <option value="2013" selected?="{{ alumnus.year == 2013 }}">2013</option>
-              <option value="2014" selected?="{{ alumnus.year == 2014 }}">2014</option>
-            </select>
-          </div>
-        </form>
-        <button id="submit" on-click="{{ submit }}" class="btn btn-lg {{submit_button_type}} btn-block">{{ submit_text }}</button>
-      </div>
-    </template>
+
+    <div class="container">
+      <h1 id="id-label"><span class="label label-default">{{ id }}</span></h1>
+      <div>
+        <template if="{{ alumnus.has_picture }}">
+          <div id="picture" style="background-image: url('{{ get_picture_url() }}')" class="img-rounded"></div>
+        </template>
+        <template if="{{ !alumnus.has_picture }}">
+          <div id="picture" style="background-image: url('images/default_profile.jpg')" class="img-rounded"></div>
+        </template>
+      <input id="file" type="file" on-change="{{ change_file }}" files="{{ input_files }}" class="btn btn-primary">
+      <button id="change_picture" on-click="{{ change_picture }}" class="btn btn-primary">Change picture</button>
+      <div>
+      <form role="form">
+        <div class="form-group">
+          <label for="full_name">Name Surname</label>
+          <input type="text" class="form-control input-lg" id="full_name" name="full_name" placeholder="Enter your name and surname" value="{{ alumnus.full_name }}">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control input-lg" id="email" name="email" placeholder="Enter your email address" value="{{ alumnus.email }}">
+        </div>
+        <div class="form-group">
+          <label for="website">Personal website address [optional]</label>
+          <input type="url" class="form-control input-lg" id="website" name="website" placeholder="Enter your personal website address, if any" value="{{ alumnus.website }}">
+        </div>
+        <div class="form-group">
+          <label for="github_username">GitHub username</label>
+          <input type="text" class="form-control input-lg" id="github_username" name="github_username" placeholder="Enter your GitHub username" value="{{ alumnus.github_username }}">
+        </div>
+        <div class="form-group">
+          <label for="year">Year</label>
+          <select class="form-control input-lg" id="year" name="year" value="{{ alumnus.year }}">
+            <option value="">Select the year in which you take the course</option>
+            <option value="2011" selected?="{{ alumnus.year == 2011 }}">2011</option>
+            <option value="2012" selected?="{{ alumnus.year == 2012 }}">2012</option>
+            <option value="2013" selected?="{{ alumnus.year == 2013 }}">2013</option>
+            <option value="2014" selected?="{{ alumnus.year == 2014 }}">2014</option>
+          </select>
+        </div>
+      </form>
+      <button id="submit" on-click="{{ submit }}" class="btn btn-lg {{submit_button_type}} btn-block">{{ submit_text }}</button>
+    </div>
   </template>
   <script src="../bower_components/superagent/superagent.js"></script>
   <script>
@@ -68,17 +93,21 @@
 
     Polymer('polymer-form', {
       submit_text: 'Submit',
+
       submit_button_type: 'btn-primary',
+
       ready: function () {
         var id = +qs('id');
         var self = this;
+
+        self.alumnus = {};
         
         if (id) {
           endpoint += id;
         }
 
         request.get(endpoint, function (res) {
-          self.alumnus = res.body;
+          self.alumnus = res.body || {};
         });
 
         this.id = id;
@@ -104,8 +133,37 @@
             self.submit_text = "Submitted :P thank you!";
             self.submit_button_type = "btn-success";
           });
-        
+      },
+
+      get_picture_url: function () {
+        return 'images/' + this.id + '/thumb.jpg';
+      },
+
+      change_picture: function (e) {
+        var evt = document.createEvent("MouseEvents");
+        evt.initMouseEvent("click", true, true, window, 1, 0, 0, 0, 0,
+        false, false, false, false, 0, null);
+        this.$.file.dispatchEvent(evt);
+      },
+
+      change_file: function (e) {
+        var self = this;
+
+        var file_input = this.$.file;
+        var file = file_input.files[0];
+        var form_data = new FormData();
+        form_data.append('file', file);
+
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function (e) {
+          if(xhr.status == 200) {
+            self.alumnus.has_picture = true;
+          }
+        }
+        xhr.open('POST', endpoint + '/picture', true);
+        xhr.send(form_data);
       }
+
     });
   </script>
 </polymer-element>
