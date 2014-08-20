@@ -232,6 +232,7 @@ describe('request', function(){
       request
       .post('http://localhost:5000/echo')
       .type('json')
+      .send('{"a": 1}')
       .end(function(res){
         res.should.be.json;
         done();
@@ -423,6 +424,36 @@ describe('request', function(){
           done();
         });
       });
+    })
+  })
+
+  describe('.agent()', function(){
+    it('should return the defaut agent', function(done){
+      var req = request.post('http://localhost:5000/echo');
+      req.agent().should.equal(false);
+      done();
+    })
+  })
+
+  describe('.agent(undefined)', function(){
+    it('should set an agent to undefined and ensure it is chainable', function(done){
+      var req = request.get();
+      var ret = req.agent(undefined);
+      ret.should.equal(req);
+      assert(req.agent() === undefined);
+      done();
+    })
+  })
+
+  describe('.agent(new http.Agent())', function(){
+    it('should set passed agent', function(done){
+      var http = require('http');
+      var req = request.get();
+      var agent = new http.Agent();
+      var ret = req.agent(agent);
+      ret.should.equal(req);
+      req.agent().should.equal(agent)
+      done();
     })
   })
 

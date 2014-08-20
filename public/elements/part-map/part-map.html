@@ -1,0 +1,74 @@
+<link rel="import" href="../../bower_components/google-apis/google-apis.html">
+<polymer-element name="part-map" attributes="latitude longitude tilt type zoom">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <google-maps-api id="api"></google-maps-api>
+    <div id="map" class="map"></div>
+
+  </template>
+  <script>
+    Polymer('part-map', {
+
+      disableDefaultUI: true,
+      
+      ready: function() {
+        this.$.api.addEventListener('api-load', this.on_load_api.bind(this));
+      },
+
+      on_load_api: function () {
+        this.map = new google.maps.Map(this.$.map, {
+          center: new google.maps.LatLng(+this.latitude, +this.longitude),
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          zoom: +this.zoom,
+          disableDefaultUI: this.disableDefaultUI,
+          scrollwheel: false,
+          zoomControl: true,
+          zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.SMALL
+          }
+        });
+        this.resize();
+      },
+
+      resize: function() {
+        google.maps.event.trigger(this.map, 'resize');
+        this.updateCenter();
+      },
+
+      // latitudeChanged: function() {
+      //   this.updateCenter();
+      // },
+
+      // longitudeChanged: function() {
+      //   this.updateCenter();
+      // },
+
+      // tiltChanged: function() {
+      //   var tilt = this.getAttribute('tilt');
+      //   this.map.setTilt(+tilt);
+      // },
+
+      // typeChanged: function() {
+      //   var type = this.getAttribute('type');
+      //   this.map.setMapTypeId(type);
+      // },
+
+      updateCenter: function() {
+        var latitude = this.getAttribute('latitude');
+        var longitude = this.getAttribute('longitude');
+        var center = new google.maps.LatLng(+latitude, +longitude);
+        this.map.setCenter(center);
+      },
+
+      // zoomChanged: function() {
+      //   var zoom = this.getAttribute('zoom');
+      //   this.map.setZoom(+zoom);
+      // }
+    });
+  </script>
+</polymer-element>

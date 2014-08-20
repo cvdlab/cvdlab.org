@@ -1,0 +1,39 @@
+<polymer-element name="part-description" attribute="markdown">
+  <template>
+    <link rel="stylesheet" href="../../styles/bootstrap.min.css">
+    <style>
+      :host { 
+        display: block; 
+      }
+      
+      content[select="h3"]::content h3 {
+        text-align: center;
+        font-size: 24px;
+        font-weight: 200;
+        letter-spacing: 1px;
+        color: #555;
+        margin-bottom: 20px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      content[select="p"]::content p {
+        font-weight: 200;
+        font-size: 14px;
+        letter-spacing: 1px;
+        line-height: 1.5;
+      }
+    </style>
+
+    <div class="container">
+      <content select="h3"></content>
+      <content select="p"></content>
+    </div>
+  </template>
+  <script>
+    Polymer('part-description', {
+      ready: function () {
+          
+      }
+    });
+  </script>
+</polymer-element>

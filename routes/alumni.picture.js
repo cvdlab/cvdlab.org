@@ -10,7 +10,9 @@ var db = mongojs('cvdlaborg', ['alumni']);
 
 var side = 200;
 
-app.post('/alumni/:id/picture', function (req, res) {
+var root = '/api/v0/';
+
+app.post(root + 'alumni/:id/picture', function (req, res) {
   var id = req.params.id;
   var dirpath = './public/images/' + id;
   var filepath =  dirpath + '/thumb.jpg';

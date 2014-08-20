@@ -1,0 +1,39 @@
+<link rel="import" href="../part-header/part-header.html">
+<link rel="import" href="../part-footer/part-footer.html">
+<link rel="import" href="../part-jumbotron/part-jumbotron.html">
+<link rel="import" href="part-form.html">
+<polymer-element name="page-membership">
+  <template>
+    <link rel="stylesheet" href="../../styles/bootstrap.min.css">
+    <style>
+      :host { 
+        display: block;
+      }
+      part-header::shadow .navbar {
+        background-color: coral;
+        /*background-color: lightskyblue;*/
+      }
+      part-jumbotron::shadow .jumbotron {
+        background-color: coral;
+        /*background-color: lightskyblue;*/
+      }
+    </style>
+
+    <part-header></part-header>
+    <part-jumbotron>
+      <h1>Membership</h1>
+      <h2>You are the real star</h2>
+    </part-jumbotron>
+    <part-form></part-form>
+    <part-footer></part-footer>
+
+  </template>
+  <script>
+    Polymer('page-membership', {
+
+      ready: function () {}
+
+    });
+  </script>
+</polymer-element>
+

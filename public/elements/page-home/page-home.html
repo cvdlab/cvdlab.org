@@ -1,0 +1,42 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../part-header/part-header.html">
+<link rel="import" href="../part-jumbotron/part-jumbotron.html">
+<link rel="import" href="../part-footer/part-footer.html">
+<link rel="import" href="part-video.html">
+<polymer-element name="page-home">
+  <template>
+    <link rel="stylesheet" href="../../styles/bootstrap.min.css">
+    <style>
+      :host { 
+        display: block;
+      }
+    </style>
+
+    <part-header></part-header>
+<!-- 
+    <part-video playbackRate="0.75">
+      <h1>Computational Visual Design Lab</h1>
+      <h2>Play today with the Web of tomorrow</h2>
+      <source src="../../videos/preview.mp4" type="video/mp4">
+    </part-video>
+ -->
+ 
+    <part-jumbotron>
+      <h1>Computational Visual Design Lab</h1>
+      <h2>Play today with the Web of tomorrow</h2>
+    </part-jumbotron>
+ 
+    <part-footer></part-footer>
+
+  </template>
+  <script>
+    Polymer('page-home', {
+
+      ready: function () {
+        console.log('HOME');
+      }
+
+    });
+  </script>
+</polymer-element>
+

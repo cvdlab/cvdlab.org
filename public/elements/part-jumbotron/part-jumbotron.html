@@ -1,0 +1,38 @@
+<polymer-element name="part-jumbotron">
+  <template>
+    <link rel="stylesheet" href="../../styles/bootstrap.min.css">
+    <style>
+      :host { 
+        display: block; 
+        height: 400px;
+        padding-top: 130px;
+        color: white;
+        background-color: coral;
+      }
+      content[select="h1"]::content h1 {
+        font-weight: 200;
+        letter-spacing: 1px;
+      }
+      content[select="h2"]::content h2 {
+        font-weight: 100;
+        letter-spacing: 1px;
+        font-size: 24px;
+      }
+    </style>
+
+    <div class="container">
+      <content select="h1"></content>
+      <content select="h2"></content>
+    </div>
+
+  </template>
+  <script>
+    Polymer('part-jumbotron', {
+
+      ready: function () {
+        
+      }
+
+    });
+  </script>
+</polymer-element>

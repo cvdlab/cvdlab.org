@@ -1,0 +1,76 @@
+<polymer-element name="part-courses">
+  <template>
+    <link rel="stylesheet" href="../../styles/bootstrap.min.css">
+    <style>
+      :host { 
+        display: block; 
+      }
+
+      .title {
+        text-transform: uppercase;
+        font-size: 14px;
+      }
+
+      .course {
+        margin-bottom: 30px;
+      }
+
+      .course:nth-child(4n+2) {
+        clear: left;
+      }
+
+      .summary {
+        margin: 0 0 10px;
+        font-weight: 200;
+        letter-spacing: 0.5px;
+        font-size: 15px;
+      }
+
+      x-link::shadow a {
+        text-decoration: none;
+        font-weight: 200;
+        letter-spacing: 0px;
+        font-size: 15px;
+        color: #888;
+      }
+      x-link::shadow a:hover {
+        color: #333;
+      }
+    </style>
+
+    <div class="container">
+      <template repeat="{{ course in courses }}">
+        <div class="col-md-3 course">
+          <h3 class="title">{{ course.title }}</h3>
+          <p class="summary">{{ course.summary }}</p>
+          <p>
+            <x-link href="{{ course.link }}" label="go to course"></x-link>
+          </p>
+        </div>
+      </template>
+    </div>
+
+  </template>
+  <script>
+    Polymer('part-courses', {
+
+      ready: function () {
+
+      },
+
+      courses: [
+        {
+          "title": "JavaScript crumbs",
+          "link": "/courses/javascript",
+          "summary": "JavaScript from novice to professional"
+        },
+        {
+          "title": "Three.js crumbs", 
+          "link": "courses/threejs",
+          "summary": "Three.js from novice to professional"
+        }
+      ]
+
+    });
+  </script>
+</polymer-element>

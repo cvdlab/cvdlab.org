@@ -1,0 +1,29 @@
+<link rel="import" href="/bower_components/core-shared-lib/core-shared-lib.html">
+<polymer-element name="fb-like" attributes="url layout action faces share app_id">
+  <template>    
+    <!-- <core-shared-lib on-core-shared-lib-load="{{ on_load }}" url="http://connect.facebook.net/en_US/sdk.js#xfbml=1&appId={{ app_id }}&version=v2.0&onload=%%callback%%"> -->
+
+    <!-- <div id="like" class="fb-like" data-href="{{ url }}" data-layout="{{ layout }}" data-action="like" data-show-faces="{{ faces }}" data-share="{{ share }}"></div> -->
+
+    <iframe src="//www.facebook.com/plugins/like.php?href={{ href }}&amp;width&amp;layout={{ layout }}&amp;action=like&amp;show_faces={{ faces }}&amp;share={{ share }}&amp;height={{ height }}&amp;appId={{ app_id }}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:{{ height }}px;" allowTransparency="true"></iframe>
+
+  </template>
+
+  <script>
+    Polymer('fb-like', {
+
+      app_id: '1425724317705719',
+
+      href: 'http://cvdlab.org',
+
+      faces: 'true',
+
+      share: 'true',
+
+      layout: 'standard',
+
+      height: 80
+
+    });
+  </script>
+</polymer-element>

@@ -1,0 +1,117 @@
+<polymer-element name="part-projects">
+  <template>
+    <link rel="stylesheet" href="../../styles/bootstrap.min.css">
+    <style>
+      :host { 
+        display: block; 
+      }
+
+      .title {
+        text-transform: uppercase;
+        font-size: 14px;
+      }
+
+      .project {
+        margin-bottom: 30px;
+      }
+
+      .project:nth-child(4n+2) {
+        clear: left;
+      }
+
+      .summary {
+        margin: 0 0 10px;
+        font-weight: 200;
+        letter-spacing: 0px;
+        font-size: 15px;
+      }
+
+      x-link::shadow a {
+        text-decoration: none;
+        font-weight: 200;
+        letter-spacing: 0.5px;
+        font-size: 15px;
+        color: #888;
+      }
+      x-link::shadow a:hover {
+        color: #333;
+      }
+    </style>
+
+    <div class="container">
+      <template repeat="{{ project, index in projects }}">
+        <div class="col-md-3 project">
+          <h3 class="title">{{ project.title }}</h3>
+          <p class="summary">{{ project.summary }}</p>
+          <p>
+            <x-link href="https://github.com/cvdlab/{{ project.repository }}" target="_blank" label="{{ 'http://github.com/cvdlab/' + project.repository }}"></x-link>
+          </p>
+        </div>
+      </template>
+    </div>
+
+  </template>
+  <script>
+    Polymer('part-projects', {
+
+      ready: function () {
+
+      },
+
+      projects: [
+        {
+          "title": "plasm.js",
+          "repository": "plasm.js",
+          "summary": "Programming Language for Solid Modeling based on JavaScript"
+        },
+        {
+          "title": "lar", 
+          "repository": "lar",
+          "summary": "Geometric kernel based on linear algebra representation"
+        },
+        {
+          "title": "vector2",
+          "repository": "vector2",
+          "summary": "Vector 2d library"
+        },
+        {
+          "title": "vector3",
+          "repository": "vector3",
+          "summary": "Vector 3d library"
+        },
+        {
+          "title": "vector4",
+          "repository": "vector4",
+          "summary": "Vector 4d library"
+        },
+        {
+          "title": "vectorn",
+          "repository": "vectorn",
+          "summary": "Vector n-d library"
+        },
+        {
+          "title": "matrix2",
+          "repository": "matrix2",
+          "summary": "Matrix 2d library"
+        },
+        {
+          "title": "matrix3",
+          "repository": "matrix3",
+          "summary": "Matrix 3d library"
+        },
+        {
+          "title": "matrix4",
+          "repository": "matrix4",
+          "summary": "Matrix 4d library"
+        },
+        {
+          "title": "matrixn",
+          "repository": "matrixn",
+          "summary": "Matrix n-d library"
+        }
+
+      ]
+
+    });
+  </script>
+</polymer-element>

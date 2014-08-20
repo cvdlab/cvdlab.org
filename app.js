@@ -14,11 +14,13 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser());
 app.use(methodOverride());
-app.use(function (err, req, res, next) {
-  // logic
-});
+// app.use(function (err, req, res, next) {});
 app.use(require('./routes/alumni.js'));
 app.use(require('./routes/alumni.picture.js'));
+
+app.use('*', function (req, res, next) {
+  res.sendfile(__dirname + '/public/index.html');
+});
 
 app.listen(PORT, function () {
   console.log('Server is listening on ' + PORT);

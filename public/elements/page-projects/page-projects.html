@@ -1,0 +1,44 @@
+<link rel="import" href="../part-header/part-header.html">
+<link rel="import" href="../part-footer/part-footer.html">
+<link rel="import" href="../part-jumbotron/part-jumbotron.html">
+<link rel="import" href="part-projects.html">
+<polymer-element name="page-projects">
+  <template>
+    <link rel="stylesheet" href="../../styles/bootstrap.min.css">
+    <style>
+      :host { 
+        display: block;
+      }
+      part-header::shadow .navbar {
+        background-color: coral;
+        /*background-color: gold;*/
+      }
+      part-jumbotron::shadow .jumbotron {
+        background-color: coral;
+        /*background-color: gold;*/
+      }
+      .separator {
+        margin: 20px;
+        border: 1px solid rgba(0,0,0,0);
+      }
+    </style>
+
+    <part-header></part-header>
+    <part-jumbotron>
+      <h1>Projects</h1>
+      <h2>Our passion to keep experiment</h2>
+    </part-jumbotron>
+    <div class="separator"></div>
+    <part-projects></part-projects>
+    <part-footer></part-footer>
+
+  </template>
+  <script>
+    Polymer('page-projects', {
+
+      ready: function () {}
+
+    });
+  </script>
+</polymer-element>
+

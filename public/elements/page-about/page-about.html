@@ -1,0 +1,65 @@
+<link rel="import" href="../part-header/part-header.html">
+<link rel="import" href="../part-footer/part-footer.html">
+<link rel="import" href="../part-jumbotron/part-jumbotron.html">
+<link rel="import" href="../part-description/part-description.html">
+<link rel="import" href="../part-map/part-map.html">
+<link rel="import" href="../fb-like/fb-like.html">
+<link rel="import" href="part-founders.html">
+<polymer-element name="page-about">
+  <template>
+    <link rel="stylesheet" href="../../styles/bootstrap.min.css">
+    <style>
+      :host { 
+        display: block;
+      }
+      part-header::shadow .navbar {
+        background-color: coral;
+      }
+      part-jumbotron::shadow .jumbotron {
+        background-color: coral;
+      }
+      part-map::shadow .map {
+        width: 100%;
+        height: 300px;
+      }
+      .separator {
+        margin: 20px;
+        border: 1px solid rgba(0,0,0,0);
+      }
+      .container.like {
+        text-align: right;
+        padding-top: 10px;
+      }
+    </style>
+
+    <part-header></part-header>
+    <part-jumbotron>
+      <h1>About us</h1>
+      <h2>We love to teach and to keep learning</h2>
+    </part-jumbotron>
+    <div class="container like">
+      <fb-like url="http://cvdlab.org" action="like" faces="true"></fb-like>
+    </div>
+    <div class="separator"></div>
+    <part-description>
+      <h3>The Lab for the Next gen Web</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </part-description>
+    <div class="separator"></div>
+    <part-map latitude="41.855464" longitude="12.467707" zoom="15"></part-map>
+    <div class="separator"></div>
+    <part-founders></part-founders>
+    <part-footer></part-footer>
+
+  </template>
+  <script>
+    Polymer('page-about', {
+
+    });
+  </script>
+</polymer-element>

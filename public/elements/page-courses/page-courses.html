@@ -1,0 +1,47 @@
+<link rel="import" href="../part-header/part-header.html">
+<link rel="import" href="../part-footer/part-footer.html">
+<link rel="import" href="../part-jumbotron/part-jumbotron.html">
+<link rel="import" href="../part-description/part-description.html">
+<link rel="import" href="part-courses.html">
+<polymer-element name="page-courses">
+  <template>
+    <link rel="stylesheet" href="../../styles/bootstrap.min.css">
+    <style>
+      :host { 
+        display: block;
+      }
+
+      part-header::shadow .navbar {
+        background-color: coral;
+        /*background-color: lightskyblue;*/
+      }
+      part-jumbotron::shadow .jumbotron {
+        background-color: coral;
+        /*background-color: lightskyblue;*/
+      }
+      .separator {
+        margin: 20px;
+        border: 1px solid rgba(0,0,0,0);
+      }
+    </style>
+
+    <part-header></part-header>
+    <part-jumbotron>
+      <h1>Courses</h1>
+      <h2>We love to teach and to keep learning</h2>
+    </part-jumbotron>
+    <div class="separator"></div>
+    <part-courses></part-courses>
+    <part-footer></part-footer>
+
+  </template>
+  <script>
+    Polymer('page-courses', {
+
+      ready: function () {
+        
+      }
+
+    });
+  </script>
+</polymer-element>

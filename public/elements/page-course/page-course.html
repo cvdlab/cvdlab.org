@@ -1,0 +1,91 @@
+<link rel="import" href="../part-header/part-header.html">
+<link rel="import" href="../part-footer/part-footer.html">
+<link rel="import" href="../part-jumbotron/part-jumbotron.html">
+<link rel="import" href="../x-link/x-link.html">
+<polymer-element name="page-course">
+  <template>
+    <link rel="stylesheet" href="../../styles/bootstrap.min.css">
+    <style>
+      :host { 
+        display: block;
+      }
+
+      part-header::shadow .navbar {
+        background-color: coral;
+        /*background-color: lightskyblue;*/
+      }
+      part-jumbotron::shadow .jumbotron {
+        background-color: coral;
+        /*background-color: lightskyblue;*/
+      }
+
+      h3 {
+        text-align: center;
+        font-size: 24px;
+        font-weight: 400;
+        letter-spacing: 1px;
+        color: #555;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .topic {
+        margin-bottom: 30px;
+      }
+      .topic h4 {
+        text-transform: uppercase;
+        font-size: 14px;
+      }
+      .topic p {
+        line-height: 1.9em;
+      }
+
+      .label {
+        font-weight: 200;
+        border-radius: 2px;
+        letter-spacing: 0.5px;
+        font-size: 15px;
+        color: #555;
+        background-color: #eee;
+      }
+    </style>
+
+    <part-header></part-header>
+    <part-jumbotron>
+      <h1>Course</h1>
+      <h2>{{ data.title }}</h2>
+    </part-jumbotron>
+    <div class="container">
+      <x-link href="/courses" label="back to courses"></x-link>
+    </div>
+    <div class="container course">
+      <h3>Program</h3>
+      <div class="col-lg-8 col-lg-push-2">
+        <template repeat="{{ topic in data.topics }}">
+          <div class="topic">
+            <h4>{{ topic.title }}</h4>
+            <p>
+              <template repeat="{{ section in topic.sections }}">
+                <label class="label label-default">{{ section }}</label> 
+              </template>
+            </p>
+          </div>
+        </template>
+      </div>
+    </div>
+    <part-footer></part-footer>
+  
+  </template>
+  <script src="course-javascript.js"></script>
+  <script src="course-threejs.js"></script>
+  <script>
+    Polymer('page-course', {
+
+      details: {},
+
+      detailsChanged: function () {
+        this.data = courses[this.details.course];
+      }
+
+    });
+  </script>
+</polymer-element>

@@ -1,0 +1,84 @@
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="../x-link/x-link.html">
+<polymer-element name="polymer-alumni"  attributes="year">
+  <template>
+    <link rel="stylesheet" href="../../styles/bootstrap.min.css">
+    <style>
+      :host { 
+        display: block; 
+      }
+
+      h3 {
+        font-size: 24px;
+        font-weight: 200;
+        letter-spacing: 1px;
+        color: #555;
+        text-align: center;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .alumnus {
+        padding: 0px;
+      }
+
+      .image {
+        width: 100%;
+        padding-top: 75%;
+        /*background-color: #eee; */
+        background-image: url("../../images/pattern.jpg");
+        background-size: contain;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+
+      .caption {
+        text-align: center;
+        padding: 4px;
+      }
+
+      .fullname {
+        text-transform: uppercase;
+        font-size: 14px;
+        margin: 0px;
+      }
+
+      x-link::shadow a {
+        text-decoration: none;
+        color: #333;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 12px;
+      }
+    </style>
+
+    <core-ajax auto url="/api/v0/alumni" params='{"year": {{year}}}' handleAs="json" on-core-response="{{on_response}}">
+    </core-ajax>
+
+    <div class="container">
+      <h3 class="year">{{ year }}</h3>
+      <!-- <div class="row"> -->
+        <template repeat="{{ alumnus in alumni }}">
+          <div class="col-sm-3 col-md-2 alumnus">
+            <div class="image">
+            </div>
+            <div class="caption">
+              <h4 class="fullname">{{ alumnus.full_name }}</h4>
+              <x-link href="https://github.com/{{ alumnus.github_user }}" target="_blank" label="{{ alumnus.github_user }}"></x-link>
+            </div>
+          </div>
+        </template>
+      <!-- </div> -->
+    </div>
+  </template>
+  <script>
+    Polymer('polymer-alumni', {
+
+      ready: function() {},
+
+      on_response: function (event, detail, sender) {
+        var response = detail.response;
+        this.alumni = response;
+      }
+    });
+  </script>
+</polymer-element>
