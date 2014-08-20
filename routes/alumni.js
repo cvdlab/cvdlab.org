@@ -8,23 +8,20 @@ var root = '/api/v0/';
 
 app.get(root + 'alumni', function (req, res) {
   var id = req.params.id;
-  var year = req.query.year;
+  var year = +req.query.year;
   var query = {};
   
-  if (year) {
+  if (year !== undefined) {
     query.year = year;
   }
-
-  // res.send(alumni);
-  // return;
   
-  db.alumni.find(query, function (err, alumnus) {
+  db.alumni.find(query, function (err, alumni) {
     if (err) {
       res.status(500).send(err);
       return;
     }
     
-    res.send(alumnus);
+    res.send(alumni);
   });
 });
 
