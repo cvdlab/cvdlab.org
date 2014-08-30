@@ -13,6 +13,8 @@ var options = {
 graph.setOptions(options);
 graph.setAppSecret(FB_APP_SECRET);
 
+var util = require('util');
+
 var mongojs = require('mongojs');
 var db = mongojs('cvdlaborg', ['alumni']);
 
