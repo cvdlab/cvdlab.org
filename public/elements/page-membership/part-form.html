@@ -1,9 +1,9 @@
 <link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
-<polymer-element name="part-form">
+<polymer-element name="part-form" attributes="alumnus">
   <template>
     <link rel="stylesheet" href="../../styles/bootstrap.min.css">
     <style>
-      :host { 
+      :host {
         display: block;
       }
 
@@ -16,7 +16,7 @@
         margin-bottom: 18px;
       }
 
-      .form-group input, 
+      .form-group input,
       .form-group select {
         border-radius: 2px;
         box-shadow: none;
@@ -28,41 +28,30 @@
         position: relative;
         width: 200px;
         height: 200px;
+        padding-bottom: 30px;
       }
 
       #file {
         display: none;
       }
-
-      #change_picture {
-        margin-top: 18px;
-        margin-bottom: 18px;
-      }
     </style>
 
-    <core-ajax auto url="/api/v0/alumni/{{ id }}" handleAs="json" on-core-response="{{on_get_data}}">
-    </core-ajax>
-    <core-ajax id="send_data" method="POST" url="/api/v0/alumni/{{ id }}" handleAs="json" on-core-response="{{on_send_data}}">
-    </core-ajax>
-    <core-ajax id="send_picture" url="/api/v0/alumni/{{ id }}" handleAs="json" on-core-response="{{on_send_picture}}">
-    </core-ajax>
+    <!-- <core-ajax id="get_data" method="GET" url="/api/v0/alumni/{{ id }}" handleAs="json" on-core-response="{{on_get_data}}"></core-ajax> -->
+    <core-ajax id="send_data" method="POST" url="/api/v0/alumni/{{ alumnus._id }}" handleAs="json" on-core-response="{{on_send_data}}"></core-ajax>
 
     <div class="container">
-      <h1 id="id-label"><span class="label label-default">{{ id }}</span></h1>
+      <h1 id="id-label"><span class="label label-default">{{ student_id }}</span></h1>
       <div>
-        <template if="{{ alumnus.has_picture }}">
-          <div id="picture" style="background-image: url({{ 'images/' + id + '/thumb.jpg' }})"></div>
-        </template>
-        <template if="{{ !alumnus.has_picture }}">
-          <div id="picture" style="background-image: url('../../images/profile.jpg')"></div>
-        </template>
-        <input id="file" type="file" on-change="{{ change_file }}" files="{{ input_files }}" class="btn btn-primary">
-        <button id="change_picture" on-click="{{ change_picture }}" class="btn btn-primary">Change picture</button>
+        <div id="picture" style="background-image: url('{{ alumnus.picture }}')"></div>
       </div>
       <form role="form">
         <div class="form-group">
-          <label for="full_name">Full name</label>
-          <input type="text" class="form-control input-lg" id="full_name" name="full_name" placeholder="Enter your name and surname" value="{{ alumnus.full_name }}">
+          <label for="first_name">First name</label>
+          <input type="text" class="form-control input-lg" id="first_name" name="first_name" placeholder="Enter your first name" value="{{ alumnus.first_name }}">
+        </div>
+        <div class="form-group">
+          <label for="last_name">Last name</label>
+          <input type="text" class="form-control input-lg" id="last_name" name="last_name" placeholder="Enter your last name" value="{{ alumnus.last_name }}">
         </div>
         <div class="form-group">
           <label for="email">Email</label>
@@ -80,6 +69,7 @@
           <label for="year">Year</label>
           <select class="form-control input-lg" id="year" name="year" value="{{ alumnus.year }}">
             <option value="">Select the year in which you take the course</option>
+            <option value="2012" selected?="{{ alumnus.year == 2011 }}">2011</option>
             <option value="2012" selected?="{{ alumnus.year == 2012 }}">2012</option>
             <option value="2013" selected?="{{ alumnus.year == 2013 }}">2013</option>
             <option value="2014" selected?="{{ alumnus.year == 2014 }}">2014</option>
@@ -101,53 +91,28 @@
         this.alumnus = response;
       },
 
+      on_send_data: function () {
+        console.log(arguments);
+      },
+
       submit: function (e) {
         e.preventDefault();
         var self = this;
-        var $ = this.$;
+        var send_data = this.$.send_data;
 
         var data = {
-          full_name: this.alumnus.full_name,
+          student_id: this.alumnus.student_id,
+          first_name: this.alumnus.first_name,
+          last_name: this.alumnus.last_name,
           email: this.alumnus.email,
           website: this.alumnus.website,
           github_username: this.alumnus.github_username,
           year: +this.alumnus.year
         };
 
-        request
-          .post(endpoint)
-          .send(data)
-          .end(function (res) {
-            self.submit_text = "Submitted :P thank you!";
-            self.submit_button_type = "btn-success";
-          });
+        send_data.params = JSON.stringify(data);
+        send_data.go();
       },
-
-      get_picture_url: function () {
-        return 'images/' + this.id + '/thumb.jpg';
-      },
-
-      change_picture: function (e) {
-        this.$.file.click();
-      },
-
-      change_file: function (e) {
-        var self = this;
-
-        var file_input = this.$.file;
-        var file = file_input.files[0];
-        var form_data = new FormData();
-        form_data.append('file', file);
-
-        var xhr = new XMLHttpRequest();
-        xhr.onload = function (e) {
-          if(xhr.status == 200) {
-            self.alumnus.has_picture = true;
-          }
-        }
-        xhr.open('POST', endpoint + '/picture', true);
-        xhr.send(form_data);
-      }
 
     });
   </script>

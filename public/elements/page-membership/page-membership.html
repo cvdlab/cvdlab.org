@@ -2,38 +2,114 @@
 <link rel="import" href="../part-footer/part-footer.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
 <link rel="import" href="part-form.html">
+ <link rel="import" href="/bower_components/facebook-login/facebook-login.html">
+ <link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
 <polymer-element name="page-membership">
   <template>
     <link rel="stylesheet" href="../../styles/bootstrap.min.css">
     <style>
-      :host { 
+      :host {
         display: block;
       }
       part-header::shadow .navbar {
         background-color: coral;
-        /*background-color: lightskyblue;*/
       }
       part-jumbotron::shadow .jumbotron {
         background-color: coral;
-        /*background-color: lightskyblue;*/
+      }
+
+      #instructions-container {
+        background-color: lightsteelblue;
+        padding-top: 40px;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+      }
+
+      #instructions {
+        margin-bottom: 20px;
       }
     </style>
 
+    <core-ajax id="ajax" url="/auth/fblogin" method="POST" handleAs="json" on-core-response="{{on_get_data}}"></core-ajax>
     <part-header></part-header>
     <part-jumbotron>
       <h1>Membership</h1>
       <h2>You are the real star</h2>
     </part-jumbotron>
-    <part-form></part-form>
+    <div id="instructions-container">
+      <div class="container">
+        <template if="{{ !connected }}">
+          <div id="instructions">
+            Please login with the same Facebook account you are member of the CVDLab facebook group and provide required information.
+          </div>
+        </template>
+        <!--
+        // cvdlab - Test 1
+        appID = '1460272620917555';
+        // cvdlab - real app
+        appID = '1425724317705719'
+       -->
+        <facebook-login id="fblogin"
+          appID="1425724317705719"
+          version="v2.1"
+          cookie="true"
+          scopes="public_profile email user_groups"
+          size="xlarge"
+          showFaces="true"
+          maRows="1"
+
+          on-facebook-signin-success="{{ on_facebook_signin_success }}"
+          on-facebook-signin-not-authorized="{{ on_facebook_signin_not_authorized }}"
+          on-graph-api-response="{{ on_graph_api_response }}"
+          on-facebook-user-not-logged="{{ on_facebook_user_not_logged }}"></facebook-login>
+      </div>
+    </div>
+    <template if="{{ connected }}">
+      <part-form alumnus="{{ alumnus }}"></part-form>
+    </template>
     <part-footer></part-footer>
 
   </template>
   <script>
     Polymer('page-membership', {
 
-      ready: function () {}
+      connected: false,
+
+      ready: function () {},
+
+      on_facebook_signin_success: function (event, data) {
+        var ajax = this.$.ajax;
+        console.log("on_facebook_signin_success");
+
+        var params = {
+          access_token: data.response.authResponse.accessToken,
+          user_id: data.response.authResponse.userID
+        };
+
+        ajax.params = JSON.stringify(params);
+        ajax.go();
+      },
+
+      on_facebook_signin_not_authorized: function (event, response) {
+        console.log("on_facebook_signin_success");
+      },
+
+      on_graph_api_response: function (event, response) {
+        console.log("on_graph_api_response");
+      },
+
+      on_facebook_user_not_logged: function (event, response) {
+        console.log("on_facebook-user-not-logged");
+        this.connected = false;
+      },
+
+      on_get_data: function (event, data) {
+        if (data.response.ok) {
+          this.alumnus = data.response.alumnus;
+          this.connected = true;
+        }
+      }
 
     });
   </script>
 </polymer-element>
-

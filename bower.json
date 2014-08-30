@@ -7,7 +7,8 @@
     "superagent": "visionmedia/superagent#master",
     "page": "visionmedia/page.js#master",
     "core-ajax": "Polymer/core-ajax#master",
-    "google-apis": "PolymerLabs/google-apis#master"
+    "google-apis": "PolymerLabs/google-apis#master",
+    "facebook-login": "davidwittenbrink/facebook-login"
   },
   "devDependencies": {}
 }
