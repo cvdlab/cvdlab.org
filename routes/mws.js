@@ -1,3 +1,18 @@
+// cvdlab - Test 1
+// const FB_APP_ID = '1460272620917555';
+// const FB_APP_SECRET = '34ca9c8e819a3471e68f759851857c6e';
+// cvdlab - real app
+const FB_APP_ID = '1425724317705719'
+const FB_APP_SECRET = '07e8fb0348011714caf06a5a0cfa1506';
+var graph = require('fbgraph');
+var options = {
+  timeout:  3000,
+  pool:     { maxSockets:  Infinity },
+  headers:  { connection:  "keep-alive" }
+};
+graph.setOptions(options);
+graph.setAppSecret(FB_APP_SECRET);
+
 var mongojs = require('mongojs');
 var db = mongojs('cvdlaborg', ['alumni']);
 
@@ -270,8 +285,6 @@ var post_alumnus = mws.post_alumnus = function (req, res) {
       year: +body.year || alumnus.year,
       has_picture: alumnus.has_picture || body.has_picture || false
     };
-
-    console.log(new_alumnus);
 
     db.alumni.update({_id: id}, {$set: new_alumnus}, {upsert: true}, function (err) {
       if (err) {
