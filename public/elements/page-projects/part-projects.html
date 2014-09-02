@@ -44,7 +44,7 @@
           <h3 class="title">{{ project.title }}</h3>
           <p class="summary">{{ project.summary }}</p>
           <p>
-            <x-link href="https://github.com/cvdlab/{{ project.repository }}" target="_blank" label="{{ 'http://github.com/cvdlab/' + project.repository }}"></x-link>
+            <x-link href="https://github.com/{{ project.repository }}" target="_blank" label="{{ 'http://github.com/cvdlab' + project.title }}"></x-link>
           </p>
         </div>
       </template>
@@ -61,52 +61,52 @@
       projects: [
         {
           "title": "plasm.js",
-          "repository": "plasm.js",
+          "repository": "cvdlab/plasm.js",
           "summary": "Programming Language for Solid Modeling based on JavaScript"
         },
         {
           "title": "lar",
-          "repository": "lar",
+          "repository": "cvdlab/lar",
           "summary": "Geometric kernel based on linear algebra representation"
         },
         {
           "title": "vector2",
-          "repository": "vector2",
+          "repository": "enricomarino/vector2",
           "summary": "Vector 2d library"
         },
         {
           "title": "vector3",
-          "repository": "vector3",
+          "repository": "enricomarino/vector3",
           "summary": "Vector 3d library"
         },
         {
           "title": "vector4",
-          "repository": "vector4",
+          "repository": "enricomarino/vector4",
           "summary": "Vector 4d library"
         },
         {
           "title": "vectorn",
-          "repository": "vectorn",
+          "repository": "cvdlab/vectorn",
           "summary": "Vector n-d library"
         },
         {
           "title": "matrix2",
-          "repository": "matrix2",
+          "repository": "enricomarino/matrix2",
           "summary": "Matrix 2d library"
         },
         {
           "title": "matrix3",
-          "repository": "matrix3",
+          "repository": "enricomarino/matrix3",
           "summary": "Matrix 3d library"
         },
         {
           "title": "matrix4",
-          "repository": "matrix4",
+          "repository": "enricomarino/matrix4",
           "summary": "Matrix 4d library"
         },
         {
           "title": "matrixn",
-          "repository": "matrixn",
+          "repository": "cvdlab/matrixn",
           "summary": "Matrix n-d library"
         }
 

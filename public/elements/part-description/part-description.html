@@ -9,24 +9,26 @@
       content[select="h3"]::content h3 {
         text-align: center;
         font-size: 24px;
-        font-weight: 200;
-        letter-spacing: 1px;
-        color: #555;
+        font-weight: 400;
+        /*letter-spacing: 1px;*/
+        color: #333;
         margin-bottom: 20px;
         -webkit-font-smoothing: antialiased;
       }
 
       content[select="p"]::content p {
         font-weight: 200;
-        font-size: 14px;
+        font-size: 16px;
         letter-spacing: 1px;
-        line-height: 1.5;
+        line-height: 2;
       }
     </style>
 
     <div class="container">
-      <content select="h3"></content>
-      <content select="p"></content>
+      <div class="col-md-10 col-md-push-1">
+        <content select="h3"></content>
+        <content select="p"></content>
+      </div>
     </div>
   </template>
   <script>
