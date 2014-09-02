@@ -1,13 +1,14 @@
 /*@import url(http://fonts.googleapis.com/css?family=Raleway:300,500,700);*/
 
 html {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: relative;
   min-height: 100%;
 }
 
 body {
   background: #fcfcfc;
-  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
   margin: 0px;
   margin-bottom: 80px;

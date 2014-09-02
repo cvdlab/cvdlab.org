@@ -4,7 +4,7 @@
     <style>
       :host {
         display: block;
-        height: {{ height }}px;
+        height: 400px;
         /*background-image: url('/images/bg.png');*/
         background-repeat: no-repeat;
         background-size: cover;
@@ -12,9 +12,9 @@
       }
       #jumbotron {
         width: 100%;
-        height: {{ height }}px;
+        height: 400px;
         color: white;
-        background-color: rgba({{ r }},{{ g }},{{ b }},0.4);
+        /*background-color: rgba({{ r }},{{ g }},{{ b }},0.4);*/
       }
       #layer {
         position: absolute;
@@ -24,11 +24,13 @@
       #container {
         padding-top: 150px;
       }
+      polyfill-next-selector { content: 'h1'; }
       content[select="h1"]::content h1 {
         font-weight: 100;
         letter-spacing: 2px;
         font-size: 38px;
       }
+      polyfill-next-selector { content: 'h2'; }
       content[select="h2"]::content h2 {
         font-weight: 100;
         letter-spacing: 2px;
@@ -54,14 +56,17 @@
       b: 0,
 
       on_mousemove: function (event) {
+        console.log(event.clientX, event.clientY);
         var width = window.innerWidth;
         var height = this.height;
-        var x = event.x / width;
-        var y = event.y / height;
+        var x = event.clientX / width;
+        var y = event.clientY / height;
         var z = 1 - x - y;
         this.r = Math.floor(x * 255);
         this.g = Math.floor(y * 255);
         this.b = Math.floor(z * 255);
+        this.$.jumbotron.style.backgroundColor = 
+          'rgba(' + this.r + ',' + this.g + ',' + this.b + ',0.4)'; 
       }
 
     });
