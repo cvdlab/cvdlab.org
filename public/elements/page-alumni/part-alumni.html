@@ -1,6 +1,6 @@
 <link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
 <link rel="import" href="../x-link/x-link.html">
-<polymer-element name="polymer-alumni"  attributes="year">
+<polymer-element name="polymer-alumni"  attributes="year label">
   <template>
     <!-- <link rel="stylesheet" href="../../styles/bootstrap.min.css"> -->
     <style>
@@ -24,8 +24,6 @@
       .image {
         width: 100%;
         padding-top: 100%;
-        /*background-color: #eee; */
-/*        background-image: url("../../images/pattern.jpg");*/
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -55,7 +53,7 @@
     </core-ajax>
 
     <div class="container">
-      <h3 class="year">{{ year }}</h3>
+      <h3 class="year">{{ label }}</h3>
       <!-- <div class="row"> -->
         <template repeat="{{ alumnus in alumni }}">
           <div class="col-sm-3 col-md-2 alumnus">
