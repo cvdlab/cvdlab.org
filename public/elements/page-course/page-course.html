@@ -5,9 +5,9 @@
 <link rel="import" href="../x-link/x-link.html">
 <polymer-element name="page-course">
   <template>
-    <link rel="stylesheet" href="../../styles/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="../../styles/bootstrap.min.css"> -->
     <style>
-      :host { 
+      :host {
         display: block;
       }
 
@@ -71,7 +71,7 @@
             <h4>{{ topic.title }}</h4>
             <p>
               <template repeat="{{ section in topic.sections }}">
-                <label class="label label-default">{{ section }}</label> 
+                <label class="label label-default">{{ section }}</label>
               </template>
             </p>
           </div>
@@ -79,7 +79,7 @@
       </div>
     </div>
     <part-footer></part-footer>
-  
+
   </template>
   <script src="course-javascript.js"></script>
   <script src="course-threejs.js"></script>

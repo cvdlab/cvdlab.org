@@ -1,7 +1,7 @@
 <link rel="import" href="../x-link/x-link.html">
 <polymer-element name="part-header">
   <template>
-    <link rel="stylesheet" href="../../styles/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="../../styles/bootstrap.min.css"> -->
     <style>
       :host {
         display: block;
@@ -14,6 +14,13 @@
         position: fixed;
         width: 100%;
         z-index: 10;
+
+        background-image: none;
+        background-repeat: no-repeat;
+        border-radius: 0px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border: none;
       }
 
       #brand {
@@ -66,7 +73,7 @@
       }
     </style>
 
-    <div id="navbar" class="navbar navbar-default -navbar-fixed-top" on-scroll="{{ on_scroll }}" role="navigation">
+    <div id="navbar" class="navbar navbar-default" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button id="button" on-click="{{ on_click_button }}" type="button" class="navbar-toggle">
@@ -89,6 +96,8 @@
     </div>
 
   </template>
+  <script src="../../scripts/jquery.min.js"></script>
+  <script src="../../scripts/bootstrap.js"></script>
   <script>
     Polymer('part-header', {
 
@@ -113,10 +122,6 @@
 
       on_click_button: function (event) {
         this.$.collapse.classList.toggle('in');
-      },
-
-      on_scroll: function (event) {
-        console.log(event);
       }
 
     });
