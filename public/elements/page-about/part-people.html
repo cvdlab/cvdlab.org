@@ -1,5 +1,5 @@
 <link rel="import" href="../x-link/x-link.html">
-<polymer-element name="part-founders">
+<polymer-element name="part-people">
   <template>
     <!-- <link rel="stylesheet" href="../../styles/bootstrap.min.css"> -->
     <style>
@@ -21,7 +21,7 @@
         -webkit-font-smoothing: antialiased;
       }
 
-      .founder {
+      .people {
         padding: 0px;
       }
 
@@ -59,12 +59,12 @@
     </style>
 
     <div class="container">
-      <h3>Founders</h3>
-      <template repeat="{{ founder in founders }}">
-        <div class="col-md-push-3 col-md-3">
-          <div class="image" style="background-image: url('../../images/{{ founder.picture }}')"></div>
+      <h3>People</h3>
+      <template repeat="{{ person in people }}">
+        <div class="col-md-4">
+          <div class="image" style="background-image: url('../../images/{{ person.picture }}')"></div>
           <div class="caption">
-            <x-link href="https://github.com/{{ founder.github }}" target="_blank" label="{{ founder.fullname }}"></x-link>
+            <x-link href="https://github.com/{{ person.github }}" target="_blank" label="{{ person.fullname }}"></x-link>
           </div>
         </div>
       </template>
@@ -72,25 +72,28 @@
 
   </template>
   <script>
-    Polymer('part-founders', {
+    Polymer('part-people', {
 
-      founders: [
+      people: [
         {
           fullname: 'Enrico Marino',
           github: 'enricomarino',
           description: 'next gen web *-er',
-          picture: 'founders/en.jpg'
+          picture: 'people/en.jpg'
+        },
+        {
+          fullname: 'Alberto Paoluzzi',
+          github: 'apaoluzzi',
+          description: 'the elder geek',
+          picture: 'people/paoluzzi.gif'
         },
         {
           fullname: 'Federico Spini',
           github: 'federicospini',
           description: 'code chef',
-          picture: 'founders/fe.jpg'
+          picture: 'people/fe.jpg'
         }
-      ],
-
-      ready: function() {
-      }
+      ]
 
     });
   </script>
