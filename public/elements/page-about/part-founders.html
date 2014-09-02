@@ -29,7 +29,7 @@
         width: 100%;
         padding-top: 75%;
         /*background-color: #eee; */
-        background-image: url("../../images/pattern.jpg");
+/*        background-image: url("../../images/pattern.jpg");*/
         background-size: contain;
         background-position: center center;
         background-repeat: no-repeat;
@@ -62,7 +62,7 @@
       <h3>Founders</h3>
       <template repeat="{{ founder in founders }}">
         <div class="col-md-push-3 col-md-3">
-          <div class="image"></div>
+          <div class="image" style="background-image: url('../../images/{{ founder.picture }}')"></div>
           <div class="caption">
             <x-link href="https://github.com/{{ founder.github }}" target="_blank" label="{{ founder.fullname }}"></x-link>
           </div>
@@ -78,12 +78,14 @@
         {
           fullname: 'Enrico Marino',
           github: 'enricomarino',
-          description: 'next gen web *-er'
+          description: 'next gen web *-er',
+          picture: 'founders/en.jpg'
         },
         {
           fullname: 'Federico Spini',
-          github: 'spini',
-          description: 'code chef'
+          github: 'federicospini',
+          description: 'code chef',
+          picture: 'founders/fe.jpg'
         }
       ],
 

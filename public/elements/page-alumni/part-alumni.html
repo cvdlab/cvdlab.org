@@ -18,15 +18,15 @@
       }
 
       .alumnus {
-        padding: 0px;
+        padding: 2px;
       }
 
       .image {
         width: 100%;
-        padding-top: 75%;
+        padding-top: 100%;
         /*background-color: #eee; */
-        background-image: url("../../images/pattern.jpg");
-        background-size: contain;
+/*        background-image: url("../../images/pattern.jpg");*/
+        background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
       }
@@ -38,7 +38,7 @@
 
       .fullname {
         text-transform: uppercase;
-        font-size: 14px;
+        font-size: 11px;
         margin: 0px;
       }
 
@@ -59,8 +59,15 @@
       <!-- <div class="row"> -->
         <template repeat="{{ alumnus in alumni }}">
           <div class="col-sm-3 col-md-2 alumnus">
-            <div class="image">
-            </div>
+            
+            <template if="{{ alumnus.has_picture }}">
+              <div class="image" style="background-image: url('../../images/{{ alumnus._id }}/thumb.jpg');"></div>
+            </template>
+            
+            <template if="{{ !alumnus.has_picture}}">
+              <div class="image" style="background-image: url('../../images/pattern.jpg');"></div>
+            </template>
+            
             <div class="caption">
               <h4 class="fullname">{{ alumnus.full_name }}</h4>
               <x-link href="https://github.com/{{ alumnus.github_user }}" target="_blank" label="{{ alumnus.github_user }}"></x-link>
