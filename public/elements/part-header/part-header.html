@@ -7,39 +7,81 @@
         display: block;
       }
 
-      .navbar {
-        background-color: rgba(0,0,0,0);
+      #navbar {
+        background-color: #fcfcfc;
         border: none;
+        margin-bottom: -50px;
+        position: fixed;
+        width: 100%;
+        z-index: 10;
       }
 
-      ul li {
+      #brand {
+        text-transform: uppercase;
+        font-weight: 500;
+        color: #333;
+        letter-spacing: 1px;
+      }
+
+      #collapse {
+        border: none;
+        box-shadow: none;
+        background-color: #fcfcfc;
+      }
+      #links {
+        float: left;
+      }
+      #links .link {
         padding: 15px;
       }
 
       x-link::shadow a {
-        color: white;
+        color: #333;
         text-transform: uppercase;
         text-decoration: none;
         letter-spacing: 1px;
         font-size: 12px;
+        font-weight: 500;
+      }
+      @media (min-width: 768px) {
+        #navbar {
+          background-color: rgba(0,0,0,0);
+          position: relative;
+        }
+        #brand {
+          color: white;
+        }
+        #collapse {
+          background-color: rgba(0,0,0,0);
+        }
+        x-link::shadow a {
+          color: white;
+        }
+        #button {
+          display: none;
+        }
+        #links {
+          float: right;
+        }
       }
     </style>
 
-    <div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div id="navbar" class="navbar navbar-default -navbar-fixed-top" on-scroll="{{ on_scroll }}" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <button id="button" on-click="{{ on_click_button }}" type="button" class="navbar-toggle">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <x-link class="navbar-brand" href="/" label="CVDLAB"></x-link>
+          <div id="brand" class="navbar-brand">CVDLab</div>
+          <!-- <x-link class="navbar-brand" href="/" label="CVDLAB"></x-link> -->
         </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav pull-right">
+        <div id="collapse" class="collapse navbar-collapse">
+          <ul id="links" class="nav navbar-nav">
           <template repeat="{{ link in links }}">
-            <li><x-link href="{{ link.url }}" label="{{ link.label }}"></x-link></li>
+            <li class="link"><x-link href="{{ link.url }}" label="{{ link.label }}"></x-link></li>
           </template>
           </ul>
         </div>
@@ -67,7 +109,15 @@
           "label": "Projects",
           "url": "/projects"
         }
-      ]
+      ],
+
+      on_click_button: function (event) {
+        this.$.collapse.classList.toggle('in');
+      },
+
+      on_scroll: function (event) {
+        console.log(event);
+      }
 
     });
   </script>
