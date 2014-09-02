@@ -2,6 +2,7 @@
 <link rel="import" href="../part-footer/part-footer.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
 <link rel="import" href="../part-description/part-description.html">
+<link rel="import" href="../fb-like/fb-like.html">
 <link rel="import" href="part-alumni.html">
 <polymer-element name="page-alumni">
   <template>
@@ -11,7 +12,6 @@
         display: block;
       }
       part-header::shadow .navbar {
-        background-color: coral;
         /*background-color: lightgreen;*/
       }
       part-jumbotron::shadow .jumbotron {
@@ -22,6 +22,9 @@
         margin: 20px;
         border: 1px solid rgba(0,0,0,0);
       }
+      .container.social {
+        padding-top: 10px;
+      }
     </style>
 
     <part-header></part-header>
@@ -29,6 +32,9 @@
       <h1>Alumni</h1>
       <h2>Our students are the future</h2>
     </part-jumbotron>
+    <div class="container social text-right">
+      <fb-like url="http://cvdlab.org" action="like" faces="true"></fb-like>
+    </div>
     <div class="separator"></div>
     <polymer-alumni year="2014"></polymer-alumni>  
     <div class="separator"></div>

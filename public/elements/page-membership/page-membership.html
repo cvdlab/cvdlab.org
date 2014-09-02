@@ -10,12 +10,14 @@
         display: block;
       }
       part-header::shadow .navbar {
-        background-color: coral;
         /*background-color: lightskyblue;*/
       }
       part-jumbotron::shadow .jumbotron {
         background-color: coral;
         /*background-color: lightskyblue;*/
+      }
+      .container.social {
+        padding-top: 10px;
       }
     </style>
 
@@ -24,6 +26,9 @@
       <h1>Membership</h1>
       <h2>You are the real star</h2>
     </part-jumbotron>
+    <div class="container social text-right">
+      <fb-like url="http://cvdlab.org" action="like" faces="true"></fb-like>
+    </div>
     <part-form></part-form>
     <part-footer></part-footer>
 

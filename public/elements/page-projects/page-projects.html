@@ -10,7 +10,6 @@
         display: block;
       }
       part-header::shadow .navbar {
-        background-color: coral;
         /*background-color: gold;*/
       }
       part-jumbotron::shadow .jumbotron {
@@ -21,6 +20,9 @@
         margin: 20px;
         border: 1px solid rgba(0,0,0,0);
       }
+      .container.social {
+        padding-top: 10px;
+      }
     </style>
 
     <part-header></part-header>
@@ -28,6 +30,9 @@
       <h1>Projects</h1>
       <h2>Our passion to keep experiment</h2>
     </part-jumbotron>
+    <div class="container social text-right">
+      <fb-like url="http://cvdlab.org" action="like" faces="true"></fb-like>
+    </div>
     <div class="separator"></div>
     <part-projects></part-projects>
     <part-footer></part-footer>

@@ -1,6 +1,7 @@
 <link rel="import" href="../part-header/part-header.html">
 <link rel="import" href="../part-footer/part-footer.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
+<link rel="import" href="../fb-like/fb-like.html">
 <link rel="import" href="../x-link/x-link.html">
 <polymer-element name="page-course">
   <template>
@@ -11,7 +12,6 @@
       }
 
       part-header::shadow .navbar {
-        background-color: coral;
         /*background-color: lightskyblue;*/
       }
       part-jumbotron::shadow .jumbotron {
@@ -47,6 +47,9 @@
         color: #555;
         background-color: #eee;
       }
+      .container.social {
+        padding-top: 10px;
+      }
     </style>
 
     <part-header></part-header>
@@ -54,6 +57,9 @@
       <h1>Course</h1>
       <h2>{{ data.title }}</h2>
     </part-jumbotron>
+    <div class="container social text-right">
+      <fb-like url="http://cvdlab.org" action="like" faces="true"></fb-like>
+    </div>
     <div class="container">
       <x-link href="/courses" label="back to courses"></x-link>
     </div>
