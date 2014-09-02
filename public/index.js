@@ -13,7 +13,7 @@ var open = function (page_name, details) {
 };
 
 var start = function () {
-  page('/', open('page-home'));
+  page('/', open('page-about'));
   page('/about', open('page-about'));
   page('/alumni', open('page-alumni'));
   page('/courses/javascript', open('page-course', { course: 'javascript' }));
@@ -22,7 +22,7 @@ var start = function () {
   page('/home', open('page-home'));
   page('/membership', open('page-membership'));
   page('/projects', open('page-projects'));
-  page('*', open('page-home'));
+  page('*', open('page-about'));
   page();
 
   page.show(location.pathname);
