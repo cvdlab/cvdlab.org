@@ -1,5 +1,12 @@
+var mongojs = require('mongojs');
+var db = mongojs('cvdlaborg', ['alumni']);
 
-var PORT = 9011;
+var util = require('util');
+function inspect (o) {
+  console.log(util.inspect(o, { showHidden: true, depth: null }));
+}
+
+const PORT = 9011;
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var logger = require('morgan');
@@ -14,11 +21,10 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser());
 app.use(methodOverride());
-// app.use(function (err, req, res, next) {});
 app.use(require('./routes/alumni.js'));
-app.use(require('./routes/alumni.picture.js'));
+app.use(require('./routes/fblogin.js'));
 
-app.use('*', function (req, res, next) {
+app.use('*', function (req, res) {
   res.sendfile(__dirname + '/public/index.html');
 });
 

@@ -2,12 +2,11 @@
   "name": "cvdlab",
   "version": "0.0.1",
   "dependencies": {
-    "platform": "Polymer/platform#master",
-    "polymer": "Polymer/polymer#master",
-    "superagent": "visionmedia/superagent#master",
     "page": "visionmedia/page.js#master",
     "core-ajax": "Polymer/core-ajax#master",
-    "google-apis": "PolymerLabs/google-apis#master"
+    "google-apis": "PolymerLabs/google-apis#master",
+    "facebook-login": "federicospini/facebook-login",
+    "polymer": "Polymer/polymer#~0.4.0"
   },
   "devDependencies": {}
 }
