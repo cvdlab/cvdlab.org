@@ -22,6 +22,7 @@ var start = function () {
   page('/home', open('page-home'));
   page('/membership', open('page-membership'));
   page('/projects', open('page-projects'));
+  page('/policy', open('page-policy'));
   page('*', open('page-about'));
   page();
 
