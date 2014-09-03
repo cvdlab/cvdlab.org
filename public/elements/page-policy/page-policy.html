@@ -2,18 +2,22 @@
 <link rel="import" href="../part-footer/part-footer.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
 <link rel="import" href="../part-description/part-description.html">
+<link rel="import" href="../fb-like/fb-like.html">
 <polymer-element name="page-policy">
   <template>
     <style>
       :host {
         display: block;
       }
+      .container.social {
+        padding-top: 10px;
+      }
     </style>
 
     <part-header></part-header>
     <part-jumbotron>
       <h1>Privacy Policy</h1>
-      <!-- <h2>Play today with the Web of tomorrow</h2> -->
+      <h2>Play today with the Web of tomorrow</h2>
     </part-jumbotron>
     <div class="container social text-right">
       <fb-like url="http://cvdlab.org" action="like" faces="true"></fb-like>
