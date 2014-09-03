@@ -50,13 +50,18 @@
     Polymer('part-jumbotron', {
 
       height: 400,
-
       r: 0,
       g: 0,
       b: 0,
 
+      ready: function () {
+        this.on_mousemove({
+          clientX: window.innerWidth/2,
+          clientY: 200
+        });
+      },
+
       on_mousemove: function (event) {
-        console.log(event.clientX, event.clientY);
         var width = window.innerWidth;
         var height = this.height;
         var x = event.clientX / width;

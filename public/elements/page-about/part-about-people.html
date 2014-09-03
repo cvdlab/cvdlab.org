@@ -10,16 +10,6 @@
         width: 100%;
       }
 
-      h3 {
-        font-size: 24px;
-        font-weight: 400;
-        letter-spacing: 1px;
-        color: #333;
-        text-align: center;
-        margin-bottom: 20px;
-        -webkit-font-smoothing: antialiased;
-      }
-
       .people {
         padding: 0px;
       }
@@ -56,7 +46,6 @@
     </style>
 
     <div class="container">
-      <h3>People</h3>
       <template repeat="{{ person in people }}">
         <div class="col-md-4">
           <div class="image" style="background-image: url('../../images/{{ person.picture }}')"></div>
