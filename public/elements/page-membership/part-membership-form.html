@@ -1,7 +1,6 @@
 <link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
-<polymer-element name="part-form" attributes="alumnus">
+<polymer-element name="part-membership-form" attributes="alumnus">
   <template>
-    <!-- <link rel="stylesheet" href="../../styles/bootstrap.min.css"> -->
     <style>
       :host {
         display: block;
@@ -36,7 +35,6 @@
       }
     </style>
 
-    <!-- <core-ajax id="get_data" method="GET" url="/api/v0/alumni/{{ id }}" handleAs="json" on-core-response="{{on_get_data}}"></core-ajax> -->
     <core-ajax id="send_data" method="POST" url="/api/v0/alumni/{{ alumnus._id }}" handleAs="json" on-core-response="{{on_send_data}}"></core-ajax>
 
     <div class="container">
@@ -80,7 +78,7 @@
     </div>
   </template>
   <script>
-    Polymer('part-form', {
+    Polymer('part-membership-form', {
 
       submit_text: 'Submit',
 
@@ -112,7 +110,7 @@
 
         send_data.params = JSON.stringify(data);
         send_data.go();
-      },
+      }
 
     });
   </script>

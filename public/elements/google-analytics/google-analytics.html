@@ -1,0 +1,24 @@
+<link rel="import" href="../../bower_components/core-shared-lib/core-shared-lib.html">
+<polymer-element name="google-analytics">
+  <template>
+    <core-shared-lib on-core-shared-lib-load="{{ on_load }}" url="http://www.google-analytics.com/analytics.js?callback=%%callback%%">
+  </template>
+
+  <script>
+    Polymer('google-analytics', {
+
+      app_id: 'UA-54437653-1',
+
+      ready: function (){
+        console.log('analytics');
+        window['GoogleAnalyticsObject'] = 'ga';
+        window['ga'] = window['ga'] || function() {
+          (window['ga'].q = window['ga'].q || []).push(arguments)
+        };
+        ga('create', this.app_id, 'auto');
+        ga('send', 'pageview');
+      }
+
+    });
+  </script>
+</polymer-element>
