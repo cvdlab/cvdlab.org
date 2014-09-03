@@ -1,23 +1,12 @@
 <link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
 <polymer-element name="part-fb-login">
   <template>
-    <core-ajax id="" method="" url="" handleAs="" on-core-response=""></core-ajax>
-
     <div id="fb-root"></div>
-
-
-  <div class="container">
-    <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="true" data-auto-logout-link="false"></div>
-    <div id="status"></div>
-  </div>
-
-
-
-
-
-
+    <div class="container">
+      <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="true" data-auto-logout-link="false"></div>
+      <div id="status"></div>
+    </div>
   </template>
-
   <script>
     Polymer('part-fb-login', {
       ready: function () {

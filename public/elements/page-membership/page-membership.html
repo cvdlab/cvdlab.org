@@ -1,9 +1,10 @@
+<link rel="import" href="../../bower_components/facebook-login/facebook-login.html">
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
 <link rel="import" href="../part-header/part-header.html">
 <link rel="import" href="../part-footer/part-footer.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
-<link rel="import" href="part-form.html">
- <link rel="import" href="/bower_components/facebook-login/facebook-login.html">
- <link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="../google-analytics/google-analytics.html">
+<link rel="import" href="part-membership-form.html">
 <polymer-element name="page-membership">
   <template>
     <!-- <link rel="stylesheet" href="../../styles/bootstrap.min.css"> -->
@@ -46,12 +47,6 @@
             Please login with the same Facebook account you are member of the CVDLab facebook group and provide required information.
           </div>
         </template>
-        <!--
-        // cvdlab - Test 1
-        appID = '1460272620917555';
-        // cvdlab - real app
-        appID = '1425724317705719'
-       -->
         <facebook-login id="fblogin"
           appID="1425724317705719"
           version="v2.1"
@@ -60,7 +55,6 @@
           size="xlarge"
           showFaces="true"
           maRows="1"
-
           on-facebook-signin-success="{{ on_facebook_signin_success }}"
           on-facebook-signin-not-authorized="{{ on_facebook_signin_not_authorized }}"
           on-graph-api-response="{{ on_graph_api_response }}"
@@ -68,9 +62,10 @@
       </div>
     </div>
     <template if="{{ connected }}">
-      <part-form alumnus="{{ alumnus }}"></part-form>
+      <part-membership-form alumnus="{{ alumnus }}"></part-membership-form>
     </template>
     <part-footer></part-footer>
+    <google-analytics></google-analytics>
 
   </template>
   <script>
