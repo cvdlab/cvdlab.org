@@ -22,6 +22,12 @@
       .container.social {
         padding-top: 10px;
       }
+      x-link::shadow #a{
+        color: #555;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 500;
+      }
     </style>
 
     <part-header></part-header>
@@ -31,6 +37,9 @@
     </part-jumbotron>
     <div class="container social text-right">
       <fb-like url="http://cvdlab.org" action="like" faces="true"></fb-like>
+    </div>
+    <div class="container">
+      <x-link href="/membership" label="go to membership"></x-link>
     </div>
     <polymer-alumni year="2014" label="2014"></polymer-alumni>
     <div class="separator"></div>
