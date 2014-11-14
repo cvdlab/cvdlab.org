@@ -1,3 +1,4 @@
+<link rel="import" href="../../bower_components/x-link/x-link.html">
 <polymer-element name="part-projects">
   <template>
     <!-- <link rel="stylesheet" href="../../styles/bootstrap.min.css"> -->
@@ -26,14 +27,14 @@
         font-size: 15px;
       }
 
-      x-link::shadow a {
+      a {
         text-decoration: none;
         font-weight: 200;
         letter-spacing: 0.5px;
         font-size: 15px;
         color: #888;
       }
-      x-link::shadow a:hover {
+      a:hover {
         color: #333;
       }
     </style>
@@ -44,7 +45,7 @@
           <h3 class="title">{{ project.title }}</h3>
           <p class="summary">{{ project.summary }}</p>
           <p>
-            <x-link href="https://github.com/{{ project.repository }}" target="_blank" label="{{ 'http://github.com/cvdlab/' + project.title }}"></x-link>
+            <a is="x-link" href="https://github.com/{{ project.repository }}" target="_blank">{{ 'http://github.com/cvdlab/' + project.title }}</a>
           </p>
         </div>
       </template>

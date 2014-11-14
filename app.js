@@ -26,7 +26,7 @@ app.use(require('./routes/alumni.js'));
 app.use(require('./routes/fblogin.js'));
 
 app.use('*', function (req, res) {
-  res.sendfile(__dirname + '/public/index.html');
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 app.listen(PORT, function () {

@@ -1,5 +1,6 @@
-<link rel="import" href="../x-link/x-link.html">
-<polymer-element name="part-about-people">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/x-link/x-link.html">
+<polymer-element name="part-people">
   <template>
     <style>
       :host {
@@ -27,16 +28,19 @@
         padding: 4px;
       }
 
-      x-link::shadow a {
-        text-decoration: none;
+      .caption a {
         color: #333;
         text-transform: uppercase;
-        font-weight: 300;
-        letter-spacing: 0.5px;
-        font-size: 14px;
-        font-weight: 700;
+        text-decoration: none;
+        letter-spacing: 1px;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
       }
-
+      .caption a:hover {
+        text-decoration: none;
+        color: gold;
+      }
       p {
         font-weight: 200;
         font-size: 14px;
@@ -50,7 +54,7 @@
         <div class="col-md-4">
           <div class="image" style="background-image: url('../../images/{{ person.picture }}')"></div>
           <div class="caption">
-            <x-link href="https://github.com/{{ person.github }}" target="_blank" label="{{ person.fullname }}"></x-link>
+            <a is"x-link" href="https://github.com/{{ person.github }}" target="_blank">{{ person.fullname }}</a>
           </div>
         </div>
       </template>
@@ -58,7 +62,7 @@
 
   </template>
   <script>
-    Polymer('part-about-people', {
+    Polymer('part-people', {
 
       people: [
         {
@@ -76,7 +80,7 @@
         {
           fullname: 'Federico Spini',
           github: 'federicospini',
-          description: 'code chef',
+          description: 'the code chef',
           picture: 'people/fe.jpg'
         }
       ]

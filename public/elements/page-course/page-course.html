@@ -2,9 +2,9 @@
 <link rel="import" href="../part-footer/part-footer.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
 <link rel="import" href="../fb-like/fb-like.html">
-<link rel="import" href="../x-link/x-link.html">
+<link rel="import" href="../../bower_components/x-link/x-link.html">
 <link rel="import" href="../google-analytics/google-analytics.html">
-<polymer-element name="page-course">
+<polymer-element name="page-course" attributes="course">
   <template>
     <!-- <link rel="stylesheet" href="../../styles/bootstrap.min.css"> -->
     <style>
@@ -56,7 +56,7 @@
       <fb-like url="http://cvdlab.org" action="like" faces="true"></fb-like>
     </div>
     <div class="container">
-      <x-link href="/courses" label="back to courses"></x-link>
+      <a is="x-link" href="/courses">back to courses</a>
     </div>
     <div class="container course">
       <h3>Program</h3>
@@ -84,8 +84,13 @@
 
       details: {},
 
+      course: '',
+
+      ready: function () {
+        this.data = courses[this.course];
+      },
+
       detailsChanged: function () {
-        this.data = courses[this.details.course];
       }
 
     });

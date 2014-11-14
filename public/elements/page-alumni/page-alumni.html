@@ -3,7 +3,7 @@
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
 <link rel="import" href="../part-description/part-description.html">
 <link rel="import" href="../fb-like/fb-like.html">
-<link rel="import" href="../google-analytics/google-analytics.html">
+<link rel="import" href="../../bower_components/x-link/x-link.html">
 <link rel="import" href="part-alumni.html">
 <polymer-element name="page-alumni">
   <template>
@@ -22,7 +22,7 @@
       .container.social {
         padding-top: 10px;
       }
-      x-link::shadow #a{
+      a {
         color: #555;
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -39,7 +39,7 @@
       <fb-like url="http://cvdlab.org" action="like" faces="true"></fb-like>
     </div>
     <div class="container">
-      <x-link href="/membership" label="go to membership"></x-link>
+      <a is="x-link" href="/membership" label="go to membership"></a>
     </div>
     <polymer-alumni year="2014" label="2014"></polymer-alumni>
     <div class="separator"></div>

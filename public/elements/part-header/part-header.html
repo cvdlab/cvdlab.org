@@ -1,4 +1,5 @@
-<link rel="import" href="../x-link/x-link.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/x-link/x-link.html">
 <polymer-element name="part-header">
   <template>
     <!-- <link rel="stylesheet" href="../../styles/bootstrap.min.css"> -->
@@ -38,17 +39,18 @@
       #links {
         float: left;
       }
-      #links .link {
-        padding: 15px;
-      }
-
-      x-link::shadow a {
-        color: #333;
+      #links .link a {
+        color: white;
         text-transform: uppercase;
         text-decoration: none;
         letter-spacing: 1px;
         font-size: 12px;
         font-weight: 500;
+        cursor: pointer;
+      }
+      #links .link a:hover {
+        text-decoration: none;
+        color: gold;
       }
       @media (min-width: 768px) {
         #navbar {
@@ -61,7 +63,7 @@
         #collapse {
           background-color: rgba(0,0,0,0);
         }
-        x-link::shadow a {
+        a {
           color: white;
         }
         #button {
@@ -83,12 +85,12 @@
             <span class="icon-bar"></span>
           </button>
           <div id="brand" class="navbar-brand">CVDLab</div>
-          <!-- <x-link class="navbar-brand" href="/" label="CVDLAB"></x-link> -->
+          <!-- <a is="x-link" class="navbar-brand" href="/">CVDLAB</a> -->
         </div>
         <div id="collapse" class="collapse navbar-collapse">
           <ul id="links" class="nav navbar-nav">
           <template repeat="{{ link in links }}">
-            <li class="link"><x-link href="{{ link.url }}" label="{{ link.label }}"></x-link></li>
+            <li class="link"><a is="x-link" href="{{ link.url }}">{{ link.label }}</a></li>
           </template>
           </ul>
         </div>

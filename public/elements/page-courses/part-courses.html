@@ -1,3 +1,4 @@
+<link rel="import" href="../../bower_components/x-link/x-link.html">
 <polymer-element name="part-courses">
   <template>
     <!-- <link rel="stylesheet" href="../../styles/bootstrap.min.css"> -->
@@ -26,14 +27,14 @@
         font-size: 15px;
       }
 
-      x-link::shadow a {
+      a {
         text-decoration: none;
         font-weight: 200;
         letter-spacing: 0px;
         font-size: 15px;
         color: #888;
       }
-      x-link::shadow a:hover {
+      a:hover {
         color: #333;
       }
     </style>
@@ -44,7 +45,7 @@
           <h3 class="title">{{ course.title }}</h3>
           <p class="summary">{{ course.summary }}</p>
           <p>
-            <x-link href="{{ course.link }}" label="go to course"></x-link>
+            <a is="x-link" href="{{ course.link }}">go to course</a>
           </p>
         </div>
       </template>

@@ -6,13 +6,13 @@
     "core-ajax": "Polymer/core-ajax#master",
     "google-apis": "PolymerLabs/google-apis#master",
     "facebook-login": "federicospini/facebook-login",
-    "polymer": "~0.4.0"
+    "webcomponentsjs": "Polymer/webcomponentsjs#master",
+    "x-link": "x-element/x-link#master"
   },
   "devDependencies": {},
   "resolutions": {
     "polymer": "^0.5.0",
-    "platform": "^0.4.0",
-    "core-component-page": "^0.5.0",
-    "webcomponentsjs": "^0.5.0"
+    "webcomponentsjs": "^0.5.0",
+    "core-component-page": "^0.5.0"
   }
 }
