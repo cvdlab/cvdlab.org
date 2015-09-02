@@ -2,8 +2,9 @@
 // const FB_APP_ID = '1460272620917555';
 // const FB_APP_SECRET = '34ca9c8e819a3471e68f759851857c6e';
 // cvdlab - real app
-const FB_APP_ID = '1425724317705719'
-const FB_APP_SECRET = '07e8fb0348011714caf06a5a0cfa1506';
+require('dotenv').load();
+var FB_APP_ID = process.env.FB_APP_ID;
+var FB_APP_SECRET = process.env.FB_APP_SECRET;
 var graph = require('fbgraph');
 var options = {
   timeout:  3000,
