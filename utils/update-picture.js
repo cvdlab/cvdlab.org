@@ -1,12 +1,17 @@
-var mongojs = require('mongojs');
-var db = mongojs('cvdlaborg', ['alumni']);
-var request = require('request');
-var async = request('async');
-var curry = require('curry');
+require('dotenv').load({path: '../.env'});
+var env = process.env;
+var FB_APP_ID = env.FB_APP_ID;
+var FB_APP_SECRET = env.FB_APP_SECRET;
+var MONGO_USER = env.MONGO_USER;
+var MONGO_PASS = env.MONGO_PASS;
 
-require('dotenv').load();
-var FB_APP_ID = process.env.FB_APP_ID;
-var FB_APP_SECRET = process.env.FB_APP_SECRET;
+var mongojs = require('mongojs');
+var db = mongojs(MONGO_USER + ':' + MONGO_PASS + '@localhost:27017/cvdlaborg', ['alumni']);
+var request = require('request');
+var async = require('async');
+var util = require('util');
+// var curry = require('curry');
+
 var graph = require('fbgraph');
 var options = {
   timeout:  3000,
@@ -19,77 +24,87 @@ graph.setAppSecret(FB_APP_SECRET);
 var WIDTH = 200;
 var HEIGHT = 200;
 
-var get_alumnus = function (id) {
+var get_alumnus = function (alumnus_id) {
   // logging
-  console.log('- updating picture for alumnus ', id);
-  return curry(db.alumni.findOne)({_id: id}, {picture: 1});
+  console.log('- updating picture for alumnus ', alumnus_id);
+  return function (done) {
+    db.alumni.findOne({_id: alumnus_id}, {_id: 1, picture: 1}, done);
+  };
 };
 
-var head_picture = function (alumnus, done) {
-  request.head(alumnus.picture, function (err, response) {
-    setImmediate(done, null, {
-      alumnus: alumnus,
-      statusCode: response.statusCode
-    });
-  });
-};
-
-var if_get_picture = function (data, done) {
-  if (data.statusCode === 200) {
-    setImmediate(done);
+var get_picture = function (alumnus, done) {
+  if (alumnus === null) {
+    console.log('* Found null alumnus');
+    setImmediate(done, null);
     return;
   }
 
-  var tokenized = util.format('me/picture?width=%s&height=%s&type=square&access_token=%s', WIDTH, HEIGHT, access_token);
+  var data = { alumnus: alumnus };
+  // https://graph.facebook.com/10152709785324445/picture?width=200&height=200&type=square&access_token=1425724317705719|07e8fb0348011714caf06a5a0cfa1506
+  var user_id = alumnus._id;
+  var tokenized = util.format('/%s/picture?width=%s&height=%s&type=square&access_token=%s|%s', user_id, WIDTH, HEIGHT, FB_APP_ID, FB_APP_SECRET);
   graph.get(tokenized, function (err, res) {
-    if (err) {
-      console.log(err);
-      res.send({
-        error: true,
-        message: 'An error has occurred while getting user picture from Facebook. Please Try again.'
-      });
-      return;
-    }
-
     if (res.image = true) {
       data.picture = res.location;
     }
 
-    setImmediate(done, null, data);
+    setImmediate(done, err, data);
+  });
 };
 
-var if_update_alumnus = function (data, done) {
+var update_alumnus = function (data, done) {
   if (!data.picture) {
     setImmediate(done);
-    // logging
-    console.log('- DONE updating picture for alumnus ', data.alumnus._id);
     return;
   }
 
-  setImmediate(done);
+  db.alumni.update({_id: data.alumnus._id}, {$set: { picture: data.picture }}, done);
 };
 
-db.alumni.find({}, {_id: 1}).forEach(function (err, alumnus) {
-  if (err) {
-    console.error('Error occurred');
-    process.exit(1);
+
+var iterator = function (alumnus, next) {
+  if (alumnus === null) {
+    console.log('* Found a `null` alumnus');
+    setImmediate(next);
+    return;
   }
 
   async.waterfall([
     get_alumnus(alumnus._id),
-    head_picture,
-    if_get_picture
-    if_update_alumnus
-  ], function (err, result) {
-    if (err) {
-      console.error('An error occurred', err);
-      process.exit(2);
-    }
+    get_picture,
+    update_alumnus
+  ], next);
 
-    console.log('\n\n\tDONE :)\n\n');
-    process.exit(0);
-  });
+};
 
+var end = function (err) {
+  if (err) {
+    console.error('An error occurred', err);
+    process.exit(2);
+  }
 
+  console.log('\n\n\tDONE :)\n\n');
+  process.exit(0);
+};
 
+// main
+
+db.alumni.find({}, {_id: 1}, function (err, alumni) {
+  if (err) {
+    console.error('An error occurred during alumni ids retrival', err);
+    process.exit(1);
+  }
+  async.eachSeries(alumni, iterator, end);
 });
+
+
+/*****
+
+TODO:
+
+remove curry from node_modules
+remove curry from pakage.json
+
+
+
+***/

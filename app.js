@@ -1,5 +1,5 @@
-var mongojs = require('mongojs');
-var db = mongojs('cvdlaborg', ['alumni']);
+// var mongojs = require('mongojs');
+// var db = mongojs('cvdlaborg', ['alumni']);
 
 var util = require('util');
 function inspect (o) {
