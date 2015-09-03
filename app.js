@@ -1,5 +1,4 @@
-// var mongojs = require('mongojs');
-// var db = mongojs('cvdlaborg', ['alumni']);
+require('./utils/cron-pictures.js').start();
 
 var util = require('util');
 function inspect (o) {

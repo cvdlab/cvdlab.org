@@ -1,4 +1,7 @@
-require('dotenv').load({path: '../.env'});
+var is_module = module.parent !== undefined;
+var env_path = is_module ? '.env' : '../.env';
+
+require('dotenv').load({path: env_path});
 var env = process.env;
 var FB_APP_ID = env.FB_APP_ID;
 var FB_APP_SECRET = env.FB_APP_SECRET;
@@ -10,7 +13,6 @@ var db = mongojs(MONGO_USER + ':' + MONGO_PASS + '@localhost:27017/cvdlaborg', [
 var request = require('request');
 var async = require('async');
 var util = require('util');
-// var curry = require('curry');
 
 var graph = require('fbgraph');
 var options = {
@@ -87,24 +89,24 @@ var end = function (err) {
   process.exit(0);
 };
 
-// main
+/** export **/
 
-db.alumni.find({}, {_id: 1}, function (err, alumni) {
-  if (err) {
-    console.error('An error occurred during alumni ids retrival', err);
-    process.exit(1);
-  }
-  async.eachSeries(alumni, iterator, end);
-});
+var update_pictures = function () {
+  db.alumni.find({}, {_id: 1}, function (err, alumni) {
+    if (err) {
+      console.error('An error occurred during alumni ids retrival', err);
+      process.exit(1);
+    }
+    async.eachSeries(alumni, iterator, end);
+  });
+};
 
+module.exports = update_pictures;
 
-/*****
-
-TODO:
-
-remove curry from node_modules
-remove curry from pakage.json
+/**  main **/
 
 
+if (!is_module) {
+  update_pictures();
+}
 
-***/
