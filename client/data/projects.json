@@ -1,0 +1,12 @@
+[
+  {
+    "title": "plasm.js",
+    "repository": "http://github.com/cvdlab/plasm.js",
+    "description": "Programming Language for Solid Modeling based on JavaScript"
+  },
+  {
+    "title": "lar",
+    "repository": "http://github.com/cvdlab/lar",
+    "description": "Geometric kernel based on linear algebra representation"
+  }
+]

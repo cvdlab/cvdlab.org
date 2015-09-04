@@ -7,6 +7,10 @@
   <template>
     <style include="style-page"></style>
 
+    <iron-ajax id="ajax" auto url="/data/projects.json"
+      handle-as="json" last-response="{{projects}}">
+    </iron-ajax>
+
     <div class="page">
       <part-header class="header"></part-header>
       <div class="main">
@@ -30,21 +34,7 @@
 
     properties: {
       projects: {
-        type: Array,
-        value: function () {
-          return [
-            {
-              "title": "plasm.js",
-              "repository": "http://github.com/cvdlab/plasm.js",
-              "description": "Programming Language for Solid Modeling based on JavaScript"
-            },
-            {
-              "title": "lar",
-              "repository": "http://github.com/cvdlab/lar",
-              "description": "Geometric kernel based on linear algebra representation"
-            }
-          ];
-        }
+        type: Array
       }
     }
 

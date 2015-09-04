@@ -8,6 +8,10 @@
   <template>
     <style include="style-page"></style>
 
+    <iron-ajax id="ajax" auto url="/data/courses.json"
+      handle-as="json" last-response="{{courses}}">
+    </iron-ajax>
+
     <div class="page">
       <part-header class="header"></part-header>
       <div class="main">
@@ -31,21 +35,7 @@
 
     properties: {
       courses: {
-        type: Array,
-        value: function () {
-          return  [
-            {
-              "title": "JavaScript crumbs",
-              "link": "/courses/javascript",
-              "summary": "JavaScript from novice to professional"
-            },
-            {
-              "title": "Three.js crumbs",
-              "link": "courses/threejs",
-              "summary": "Three.js from zero to hero"
-            }
-          ];
-        }
+        type: Array
       }
     }
 

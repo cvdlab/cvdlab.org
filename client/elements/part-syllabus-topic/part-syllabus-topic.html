@@ -10,7 +10,7 @@
     <div class="topic">
       <h4>{{topic.title}}</h4>
       <p>
-        <template is="dom-repeat" items="{{sections}}" as="section">
+        <template is="dom-repeat" items="{{topic.sections}}" as="section">
           <label class="label">{{section}}</label>
         </template>
       </p>

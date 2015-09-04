@@ -43,11 +43,13 @@
     is: 'app-boot',
 
     get courses () {
-      return ['javascript', 'html5', 'css3', 'git', 'webgl'];
+      return ['javascript', 'threejs', 'html5', 'css3', 'git', 'webgl'];
     },
 
     '/courses/:course': function (event) {
-      console.log(event.detail);
+      if (this.courses.indexOf(event.detail.params.course) < 0) {
+        event.detail.page_name = 'page-404';
+      }
     }
 
   });

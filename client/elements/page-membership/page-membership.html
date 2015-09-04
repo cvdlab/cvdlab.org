@@ -7,11 +7,11 @@
   <template>
     <style include="style-page"></style>
 
-    <iron-ajax id="ajax" url="/auth/fblogin" method="POST" handleAs="json"
+    <iron-ajax id="ajax" url="/api/auth/facebook" method="POST" handleAs="json"
       on-response="on_get_data">
     </iron-ajax>
 
-    <iron-ajax id="send_data" method="POST" url="/api/v0/alumni/{{alumnus._id}}"
+    <iron-ajax id="send_data" method="POST" url="/api/alumni/{{alumnus._id}}"
       handleAs="json" on-response="on_send_data">
     </iron-ajax>
 
@@ -42,13 +42,11 @@
             </div>
           </template>
           <template is="dom-if" if="{{connected}}">
-              <div class="container">
-      <h1 id="id-label"><span class="label class="label" label-default">{{student_id}}</span></h1>
-      <div>
-        <div id="picture" style="background-image: url('{{alumnus.picture}}')"></div>
-      </div>
-
-            <form-membership alumnus="{{alumnus}}"></form-membership>
+            <div class="container">
+              <h1 id="id-label"><span class="label class="label" label-default">{{student_id}}</span></h1>
+              <div id="picture" style="background-image: url('{{alumnus.picture}}')"></div>
+              <form-membership alumnus="{{alumnus}}"></form-membership>
+            </div>
           </template>
         </div>
       </div>

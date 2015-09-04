@@ -2,13 +2,15 @@
 <link rel="import" href="../part-footer/part-footer.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
 <link rel="import" href="../part-header/part-header.html">
+<link rel="import" href="../part-syllabus/part-syllabus.html">
 <link rel="import" href="../style-page/style-page.html">
 <dom-module id="page-course">
   <template>
     <style include="style-page"></style>
 
-    <iron-ajax id="ajax" auto url="{{_compute_url()}}"
-      handle-as="json" last-response="{{course}}">
+    <iron-ajax id="ajax" auto url="{{url}}"
+      handle-as="json" last-response="{{course}}"
+      on-response="on_response">
     </iron-ajax>
 
     <div class="page">
@@ -40,8 +42,8 @@
       }
     },
 
-    _compute_url: function () {
-      return '/data/javascript.json';
+    attached: function () {
+      this.url = '/data/' + this.route.params.course + '.json';
     }
 
   });
