@@ -1,7 +1,7 @@
 var util = require('util');
 var mongojs = require('mongojs');
 var db = mongojs('cvdlab', ['alumni']);
-var cron = require('server/cron/cron-pictures.js');
+var cron = require('./server/cron/cron-pictures.js');
 
 cron.start();
 
