@@ -8,9 +8,13 @@
 <dom-module id="page-alumni">
   <template>
     <style include="style-page"></style>
-
+<!--
+    <iron-ajax auto method="GET" url="/data/alumni.json"
+      handle-as="json" last-response="{{alumni}}">
+    </iron-ajax>
+-->
     <iron-ajax auto method="GET" url="/api/alumni"
-      handle-as="json" on-response="on_response">
+      handle-as="json" last-response="{{alumni}}">
     </iron-ajax>
 
     <div class="page">
@@ -20,7 +24,7 @@
           <h1 class="title">Alumni</h1>
         </part-jumbotron>
         <div class="container">
-          <a is="app-link" class="button" href="/membership">request membership</a>
+          <!-- <a is="app-link" class="button" href="/membership">request membership</a> -->
         </div>
         <div class="container">
           <deck-alumni alumni="{{alumni}}"></deck-alumni>
@@ -45,10 +49,6 @@
       alumni: {
         type: Array
       }
-    },
-
-    on_response: function (event) {
-      console.log(event.detail.response);
     }
 
   });

@@ -1,8 +1,16 @@
+<link rel="import" href="/components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../card-alumnus/card-alumnus.html">
 <dom-module id="deck-alumni">
   <template>
     <style>
       :host {
         display: block;
+      }
+
+      .deck {
+        @apply(--layout-horizontal);
+        @apply(--layout-wrap);
+        @apply(--layout-center-justified);
       }
     </style>
 
