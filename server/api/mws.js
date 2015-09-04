@@ -1,8 +1,3 @@
-// cvdlab - Test 1
-// const FB_APP_ID = '1460272620917555';
-// const FB_APP_SECRET = '34ca9c8e819a3471e68f759851857c6e';
-// cvdlab - real app
-
 require('dotenv').load({path: '.env'});
 var env = process.env;
 var FB_APP_ID = env.FB_APP_ID;
@@ -23,8 +18,6 @@ var util = require('util');
 
 var mongojs = require('mongojs');
 var db = mongojs(MONGO_USER + ':' + MONGO_PASS + '@localhost:27017/cvdlaborg', ['alumni']);
-
-var db = mongojs('cvdlab', ['alumni']);
 
 /**
  * Expose middlewares
@@ -233,11 +226,10 @@ var create_alumnus = mws.create_alumnus = function (req, res) {
  */
 
 var retrieve_alumni = mws.retrieve_alumni = function (req, res) {
-  var id = req.params.id;
   var year = +req.query.year;
   var query = {};
 
-  if (year !== undefined) {
+  if (year) {
     query.year = year;
   }
 
