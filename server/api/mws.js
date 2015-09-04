@@ -24,6 +24,8 @@ var util = require('util');
 var mongojs = require('mongojs');
 var db = mongojs(MONGO_USER + ':' + MONGO_PASS + '@localhost:27017/cvdlaborg', ['alumni']);
 
+var db = mongojs('cvdlab', ['alumni']);
+
 /**
  * Expose middlewares
  *
@@ -241,6 +243,7 @@ var retrieve_alumni = mws.retrieve_alumni = function (req, res) {
 
   db.alumni.find(query, function (err, alumni) {
     if (err) {
+      console.log(err);
       res.status(500).send(err);
       return;
     }

@@ -28,6 +28,7 @@
 
       .header .links {
         @apply(--layout-horizontal);
+        @apply(--layout-wrap);
         list-style: none;
         margin: 0;
         padding: 0;
@@ -48,6 +49,11 @@
         padding-left: 0px;
       }
       .header .links li:last-child .link {
+        padding-right: 0px;
+      }
+
+      .header .brand .link {
+        padding-left: 0px;
         padding-right: 0px;
       }
     </style>

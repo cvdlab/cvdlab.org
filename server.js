@@ -1,7 +1,7 @@
 var util = require('util');
 var mongojs = require('mongojs');
 var db = mongojs('cvdlab', ['alumni']);
-var cron = require('./cron/cron-pictures.js');
+var cron = require('server/cron/cron-pictures.js');
 
 cron.start();
 
@@ -20,13 +20,13 @@ var app = express();
 app.enable('trust proxy');
 
 app.use(logger('dev'));
-// app.use(favicon(__dirname + '/../client/favicon.ico'));
+// app.use(favicon(__dirname + '/../client/images/favicon.ico'));
 app.use(express.static(__dirname + '/client'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(require('server/api/alumni.js'));
-app.use(require('server/api/fblogin.js'));
+app.use(require('server/api/facebook.js'));
 
 app.get('*', function (req, res) {
   res.sendFile(__dirname + '/client/index.html');
