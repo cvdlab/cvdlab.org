@@ -1,8 +1,8 @@
 {
   "name": "cvdlab.org",
   "version": "0.0.1",
-  "description": "CVDLab website",
-  "main": "app.js",
+  "description": "CVDLAB",
+  "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,18 +1,8 @@
 {
-  "name": "cvdlab",
+  "name": "cvdlab.org",
   "version": "0.0.1",
+  "description": "cvdlab.org",
   "dependencies": {
-    "page": "visionmedia/page.js#master",
-    "core-ajax": "Polymer/core-ajax#master",
-    "google-apis": "PolymerLabs/google-apis#master",
-    "facebook-login": "federicospini/facebook-login",
-    "webcomponentsjs": "Polymer/webcomponentsjs#master",
-    "x-link": "x-element/x-link#master"
-  },
-  "devDependencies": {},
-  "resolutions": {
-    "polymer": "^0.5.0",
-    "webcomponentsjs": "^0.5.0",
-    "core-component-page": "^0.5.0"
+    "x-element": "x-element/x-element"
   }
 }
