@@ -1,20 +1,24 @@
 {
   "name": "cvdlab.org",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "CVDLAB",
   "main": "server/server.js",
+  "description": "CVDLAB website",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
   "license": "MIT",
   "dependencies": {
+    "async": "^1.4.2",
     "body-parser": "^1.2.2",
+    "cron": "^1.0.9",
+    "dotenv": "^1.2.0",
     "express": "^4.2.0",
     "fbgraph": "^0.2.11",
     "method-override": "^1.0.2",
     "mongojs": "^0.13.1",
     "morgan": "^1.1.1",
+    "request": "^2.61.0",
     "serve-favicon": "^2.0.0"
   }
 }

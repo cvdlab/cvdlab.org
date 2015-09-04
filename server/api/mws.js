@@ -2,8 +2,14 @@
 // const FB_APP_ID = '1460272620917555';
 // const FB_APP_SECRET = '34ca9c8e819a3471e68f759851857c6e';
 // cvdlab - real app
-const FB_APP_ID = '1425724317705719'
-const FB_APP_SECRET = '07e8fb0348011714caf06a5a0cfa1506';
+
+require('dotenv').load({path: '.env'});
+var env = process.env;
+var FB_APP_ID = env.FB_APP_ID;
+var FB_APP_SECRET = env.FB_APP_SECRET;
+var MONGO_USER = env.MONGO_USER;
+var MONGO_PASS = env.MONGO_PASS;
+
 var graph = require('fbgraph');
 var options = {
   timeout:  3000,
@@ -16,7 +22,7 @@ graph.setAppSecret(FB_APP_SECRET);
 var util = require('util');
 
 var mongojs = require('mongojs');
-var db = mongojs('cvdlaborg', ['alumni']);
+var db = mongojs(MONGO_USER + ':' + MONGO_PASS + '@localhost:27017/cvdlaborg', ['alumni']);
 
 /**
  * Expose middlewares

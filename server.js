@@ -1,7 +1,10 @@
+var util = require('util');
 var mongojs = require('mongojs');
 var db = mongojs('cvdlab', ['alumni']);
+var cron = require('./cron/cron-pictures.js');
 
-var util = require('util');
+cron.start();
+
 function inspect (o) {
   console.log(util.inspect(o, { showHidden: true, depth: null }));
 }
