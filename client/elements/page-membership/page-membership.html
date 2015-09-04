@@ -1,0 +1,104 @@
+<link rel="import" href="../form-membership/form-membership.html">
+<link rel="import" href="../part-jumbotron/part-jumbotron.html">
+<link rel="import" href="../part-header/part-header.html">
+<link rel="import" href="../part-footer/part-footer.html">
+<link rel="import" href="../style-page/style-page.html">
+<dom-module name="page-membership">
+  <template>
+    <style include="style-page"></style>
+
+    <iron-ajax id="ajax" url="/auth/fblogin" method="POST" handleAs="json"
+      on-response="on_get_data">
+    </iron-ajax>
+
+    <iron-ajax id="send_data" method="POST" url="/api/v0/alumni/{{alumnus._id}}"
+      handleAs="json" on-response="on_send_data">
+    </iron-ajax>
+
+    <div class="page">
+      <part-header class="header"></part-header>
+      <div class="main">
+        <part-jumbotron class="jumbotron">
+            <h1>Membership</h1>
+          </header>
+        </part-jumbotron>
+        <div class="container">
+          <template is="dom-if" if="{{!connected}}">
+            <facebook-login id="fblogin"
+              appID="1425724317705719"
+              version="v2.1"
+              cookie="true"
+              scopes="public_profile email user_groups"
+              size="xlarge"
+              showFaces="true"
+              maRows="1"
+              on-facebook-signin-success="on_facebook_signin_success"
+              on-facebook-signin-not-authorized="on_facebook_signin_not_authorized"
+              on-graph-api-response="on_graph_api_response"
+              on-facebook-user-not-logged="on_facebook_user_not_logged">
+            </facebook-login>
+            <div id="instructions">
+              Login using the same Facebook account you just used as a member of the CVDLAB Facebook group.
+            </div>
+          </template>
+          <template is="dom-if" if="{{connected}}">
+              <div class="container">
+      <h1 id="id-label"><span class="label class="label" label-default">{{student_id}}</span></h1>
+      <div>
+        <div id="picture" style="background-image: url('{{alumnus.picture}}')"></div>
+      </div>
+
+            <form-membership alumnus="{{alumnus}}"></form-membership>
+          </template>
+        </div>
+      </div>
+      <div class="space"></div>
+      <part-footer class="footer"></part-footer>
+    </div>
+
+  </template>
+</dom-module>
+<script>
+  Polymer({
+
+    is: 'page-membership',
+
+    connected: false,
+
+    ready: function () {},
+
+    on_facebook_signin_success: function (event, data) {
+      var ajax = this.$.ajax;
+      console.log("on_facebook_signin_success");
+
+      var params = {
+        access_token: data.response.authResponse.accessToken,
+        user_id: data.response.authResponse.userID
+      };
+
+      ajax.params = JSON.stringify(params);
+      ajax.go();
+    },
+
+    on_facebook_signin_not_authorized: function (event, response) {
+      console.log("on_facebook_signin_success");
+    },
+
+    on_graph_api_response: function (event, response) {
+      console.log("on_graph_api_response");
+    },
+
+    on_facebook_user_not_logged: function (event, response) {
+      console.log("on_facebook-user-not-logged");
+      this.connected = false;
+    },
+
+    on_get_data: function (event, data) {
+      if (data.response.ok) {
+        this.alumnus = data.response.alumnus;
+        this.connected = true;
+      }
+    }
+
+  });
+</script>

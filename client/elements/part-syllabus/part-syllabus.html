@@ -1,0 +1,32 @@
+<link rel="import" href="/components/app-link/app-link.html">
+<link rel="import" href="/components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../part-syllabus-topic/part-syllabus-topic.html">
+<dom-module id="part-syllabus">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <div class="topics">
+      <template is="dom-repeat" items="{{topics}}" as="topic">
+        <part-syllabus-topic topic="{{topic}}"></part-syllabus-topic>
+      </template>
+    </div>
+
+  </template>
+</dom-module>
+<script>
+  Polymer({
+
+    is: 'part-syllabus',
+
+    properties: {
+      topics: {
+        type: Object
+      }
+    }
+
+  });
+</script>

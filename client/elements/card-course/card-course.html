@@ -1,0 +1,33 @@
+<link rel="import" href="/components/app-link/app-link.html">
+<dom-module id="card-course">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <div class="card">
+      <h3>{{course.title}}</h3>
+      <p>{{course.summary}}</p>
+      <p>
+        <a is="app-link" href="{{course.link}}">go to course</a>
+      </p>
+    </div>
+
+  </template>
+</dom-module>
+<script>
+  Polymer({
+
+    is: 'card-course',
+
+    properties: {
+      course: {
+        type: Object,
+        value: function () { return {}; }
+      }
+    }
+
+  });
+</script>

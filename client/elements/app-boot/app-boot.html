@@ -1,0 +1,53 @@
+<script src="/components/webcomponentsjs/webcomponents.js"></script>
+<link rel="import" href="/components/polymer/polymer.html">
+<link rel="import" href="/components/app-routes/app-routes.html">
+<link rel="import" href="/components/app-route/app-route.html">
+<link rel="import" href="/components/app-container/app-container.html">
+<link rel="import" href="/elements/app-theme/app-theme.html">
+<link rel="import" href="/elements/page-about/page-about.html">
+<link rel="import" href="/elements/page-alumni/page-alumni.html">
+<link rel="import" href="/elements/page-home/page-home.html">
+<link rel="import" href="/elements/page-courses/page-courses.html">
+<link rel="import" href="/elements/page-course/page-course.html">
+<link rel="import" href="/elements/page-membership/page-membership.html">
+<link rel="import" href="/elements/page-projects/page-projects.html">
+<link rel="import" href="/elements/page-404/page-404.html">
+<dom-module id="app-boot">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+
+    <app-container id="container"></app-container>
+
+    <app-routes id="routes">
+      <app-route path="/" page="page-home"></app-route>
+      <app-route path="/about" page="page-about"></app-route>
+      <app-route path="/alumni" page="page-alumni"></app-route>
+      <app-route path="/courses" page="page-courses"></app-route>
+      <app-route path="/courses/:course" page="page-course" on-route="/courses/:course"></app-route>
+      <app-route path="/membership" page="page-membership"></app-route>
+      <app-route path="/privacy" page="page-privacy"></app-route>
+      <app-route path="/projects" page="page-projects"></app-route>
+      <app-route path="*" page="page-404"></app-route>
+    </app-routes>
+
+  </template>
+</dom-module>
+<script>
+  Polymer({
+
+    is: 'app-boot',
+
+    get courses () {
+      return ['javascript', 'html5', 'css3', 'git', 'webgl'];
+    },
+
+    '/courses/:course': function (event) {
+      console.log(event.detail);
+    }
+
+  });
+</script>

@@ -1,0 +1,31 @@
+<link rel="import" href="../card-course/card-course.html">
+<dom-module id="deck-courses">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <div class="deck">
+      <template is="dom-repeat" items="{{courses}}" as="course">
+        <card-course course="{{course}}"></card-course>
+      </template>
+    </div>
+
+  </template>
+</dom-module>
+<script>
+  Polymer({
+
+    is: 'deck-courses',
+
+    properties: {
+      courses: {
+        type: Array,
+        value: function () { return []; }
+      }
+    }
+
+  });
+</script>

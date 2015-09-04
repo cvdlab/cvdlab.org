@@ -1,0 +1,52 @@
+<link rel="import" href="../deck-projects/deck-projects.html">
+<link rel="import" href="../part-jumbotron/part-jumbotron.html">
+<link rel="import" href="../part-header/part-header.html">
+<link rel="import" href="../part-footer/part-footer.html">
+<link rel="import" href="../style-page/style-page.html">
+<dom-module id="page-projects">
+  <template>
+    <style include="style-page"></style>
+
+    <div class="page">
+      <part-header class="header"></part-header>
+      <div class="main">
+        <part-jumbotron class="jumbotron">
+          <h1>Projects</h1>
+        </part-jumbotron>
+        <div class="container">
+          <deck-projects projects="{{projects}}"></deck-projects>
+        </div>
+      </div>
+      <div class="space"></div>
+      <part-footer class="footer"></part-footer>
+    </div>
+
+  </template>
+</dom-module>
+<script>
+  Polymer({
+
+    is: 'page-projects',
+
+    properties: {
+      projects: {
+        type: Array,
+        value: function () {
+          return [
+            {
+              "title": "plasm.js",
+              "repository": "http://github.com/cvdlab/plasm.js",
+              "description": "Programming Language for Solid Modeling based on JavaScript"
+            },
+            {
+              "title": "lar",
+              "repository": "http://github.com/cvdlab/lar",
+              "description": "Geometric kernel based on linear algebra representation"
+            }
+          ];
+        }
+      }
+    }
+
+  });
+</script>

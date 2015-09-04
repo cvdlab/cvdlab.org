@@ -1,0 +1,48 @@
+<link rel="import" href="/components/app-link/app-link.html">
+<link rel="import" href="../part-footer/part-footer.html">
+<link rel="import" href="../part-jumbotron/part-jumbotron.html">
+<link rel="import" href="../part-header/part-header.html">
+<link rel="import" href="../style-page/style-page.html">
+<dom-module id="page-course">
+  <template>
+    <style include="style-page"></style>
+
+    <iron-ajax id="ajax" auto url="{{_compute_url()}}"
+      handle-as="json" last-response="{{course}}">
+    </iron-ajax>
+
+    <div class="page">
+      <part-header class="header"></part-header>
+      <div class="main">
+        <part-jumbotron class="jumbotron">
+          <h1>Course</h1>
+          <h2>{{course.title}}</h2>
+        </part-jumbotron>
+        <div class="container">
+          <h3>Syllabus</h3>
+          <part-syllabus topics="{{course.topics}}"></part-syllabus>
+        </div>
+      </div>
+      <div class="space"></div>
+      <part-footer class="footer"></part-footer>
+    </div>
+
+  </template>
+</dom-module>
+<script>
+  Polymer({
+
+    is: 'page-course',
+
+    properties: {
+      course: {
+        type: Object
+      }
+    },
+
+    _compute_url: function () {
+      return '/data/javascript.json';
+    }
+
+  });
+</script>

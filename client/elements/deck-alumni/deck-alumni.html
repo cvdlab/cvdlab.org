@@ -1,0 +1,29 @@
+<dom-module id="deck-alumni">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <div class="deck">
+      <template is="dom-repeat" items="{{alumni}}" as="alumnus">
+        <card-alumnus alumnus="{{alumnus}}"></card-alumnus>
+      </template>
+    </div>
+
+  </template>
+</dom-module>
+<script>
+  Polymer({
+
+    is: 'deck-alumni',
+
+    properties: {
+      alumni: {
+        type: Array
+      }
+    }
+
+  });
+</script>

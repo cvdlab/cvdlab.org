@@ -1,0 +1,34 @@
+<link rel="import" href="/components/app-link/app-link.html">
+<dom-module id="card-alumnus">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <div class="card">
+      <div class="image">
+        <img src="{{alumnus.picture}}">
+      </div>
+      <div class="caption">
+        <h4><span>{{alumnus.first_name}}</span> <span>{{alumnus.last_name}}</span></h4>
+        <a is="app-link" href="{{alumnus.github}}" target="_blank">{{alumnus.username}}</a>
+      </div>
+    </div>
+
+  </template>
+</dom-module>
+<script>
+  Polymer({
+
+    is: 'card-alumnus',
+
+    properties: {
+      alumnus: {
+        type: Object
+      }
+    }
+
+  });
+</script>

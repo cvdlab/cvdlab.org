@@ -1,0 +1,33 @@
+<link rel="import" href="/components/polymer/polymer.html">
+<link rel="import" href="../app-page/app-page.html">
+<link rel="import" href="../part-jumbotron/part-jumbotron.html">
+<link rel="import" href="../style-page/style-page.html">
+<dom-module id="page-home">
+  <template>
+    <style include="style-page"></style>
+    <style>
+      part-jumbotron {
+        height: 600px;
+      }
+    </style>
+
+    <div class="page">
+      <part-header class="header"></part-header>
+      <div class="main">
+        <part-jumbotron class="jumbotron">
+          <h1>Computational Visual Design Lab</h1>
+        </part-jumbotron>
+      </div>
+      <div class="space"></div>
+      <part-footer class="footer"></part-footer>
+    </div>
+
+  </template>
+</dom-module>
+<script>
+  Polymer({
+
+    is: 'page-home'
+
+  });
+</script>
