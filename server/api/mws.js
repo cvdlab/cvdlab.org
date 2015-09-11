@@ -17,7 +17,7 @@ graph.setAppSecret(FB_APP_SECRET);
 var util = require('util');
 
 var mongojs = require('mongojs');
-var db = mongojs(MONGO_USER + ':' + MONGO_PASS + '@localhost:27017/cvdlaborg', ['alumni']);
+var db = mongojs(MONGO_USER + ':' + MONGO_PASS + '@localhost:27017/cvdlaborg', ['alumni', 'pings']);
 
 /**
  * Expose middlewares
