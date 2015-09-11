@@ -361,7 +361,7 @@ mws.create_ping = function (req, res) {
 
     res.send({
       ok: true,
-      ping: ping
+      ping: new_ping
     });
   });
 
