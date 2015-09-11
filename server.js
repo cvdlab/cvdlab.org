@@ -26,6 +26,7 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(require('./server/api/alumni.js'));
 app.use(require('./server/api/facebook.js'));
+app.use(require('./server/api/ping.js'));
 
 app.get('*', function (req, res) {
   res.sendFile(__dirname + '/client/index.html');
