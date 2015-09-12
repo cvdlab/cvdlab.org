@@ -17,7 +17,7 @@ graph.setAppSecret(FB_APP_SECRET);
 var util = require('util');
 
 var mongojs = require('mongojs');
-var db = mongojs(MONGO_USER + ':' + MONGO_PASS + '@localhost:27017/cvdlaborg', ['alumni']);
+var db = mongojs(MONGO_USER + ':' + MONGO_PASS + '@localhost:27017/cvdlaborg', ['alumni', 'pings']);
 
 /**
  * Expose middlewares
@@ -212,11 +212,11 @@ var create_alumnus = mws.create_alumnus = function (req, res) {
       });
       return;
     }
-  });
 
-  res.send({
-    ok: true,
-    alumnus: alumnus
+    res.send({
+      ok: true,
+      alumnus: alumnus
+    });
   });
 };
 
@@ -330,4 +330,39 @@ mws.check_group_member = function (req, res, next) {
     return;
   }
   next();
+};
+
+
+mws.create_ping = function (req, res) {
+  var body = req.body;
+  var new_ping = {
+    name: body.name,
+    email: body.email,
+    message: body.message
+  };
+
+  if (!new_ping.name || !new_ping.email || !new_ping.message) {
+    res.status(412).send({
+      ok: false,
+      messages: 'Mandatory field(s) not received.'
+    });
+    return;
+  }
+
+  db.pings.insert(new_ping, function (err) {
+    if (err) {
+      console.log(err);
+      res.status(500).send({
+        error: true,
+        message: 'An error has occurred while saving ping into DB. Please Try again.'
+      });
+      return;
+    }
+
+    res.send({
+      ok: true,
+      ping: new_ping
+    });
+  });
+
 };
