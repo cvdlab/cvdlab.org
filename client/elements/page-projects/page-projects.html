@@ -6,6 +6,13 @@
 <dom-module id="page-projects">
   <template>
     <style include="style-page"></style>
+    <style>
+      .jumbotron {
+        --jumbotron-background: {
+          background-image: url('/images/pattern-3.png');
+        }
+      }
+    </style>
 
     <iron-ajax id="ajax" auto url="/data/projects.json"
       handle-as="json" last-response="{{projects}}">
@@ -15,7 +22,7 @@
       <part-header class="header"></part-header>
       <div class="main">
         <part-jumbotron class="jumbotron">
-          <h1>Projects</h1>
+          <h1 class="title">Projects</h1>
         </part-jumbotron>
         <div class="container">
           <deck-projects projects="{{projects}}"></deck-projects>

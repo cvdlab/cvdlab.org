@@ -5,12 +5,19 @@
 <dom-module id="page-about">
   <template>
     <style include="style-page"></style>
+    <style>
+      .jumbotron {
+        --jumbotron-background: {
+          background-image: url('/images/pattern-1.png');
+        }
+      }
+    </style>
 
     <div class="page">
       <part-header class="header"></part-header>
       <div class="main">
         <part-jumbotron class="jumbotron">
-          <h1>About</h1>
+          <h1 class="title">About</h1>
         </part-jumbotron>
       </div>
       <div class="space"></div>

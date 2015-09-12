@@ -1,4 +1,5 @@
 <link rel="import" href="/components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../part-footer/part-footer.html">
 <link rel="import" href="../part-header/part-header.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
 <link rel="import" href="../style-page/style-page.html">
@@ -6,19 +7,13 @@
   <template>
     <style include="style-page"></style>
     <style>
-      #main {
-        position: relative;
-        width: 100%;
-        height: 100%;
-      }
-
       #jumbotron {
         height: 500px;
+        --jumbotron-background: {
+          background-image: url('/images/pattern.png');
+        }
         --jumbotron-overlay: {
-          /*background-image: -webkit-linear-gradient(290deg,#65d165 10%,#57D39C 80%);*/
-          /*background-image: linear-gradient(160deg,#65d165 10%,#57D39C 80%);*/
-          background-image: url('/images/delunay.png');
-          background-position: center;
+          background-color: rgba(150,150,0,0.25);
         }
         --jumbotron-content: {
           @apply(--layout-vertical);
@@ -26,42 +21,20 @@
           @apply(--layout-center-justified);
         }
       }
-
-      #brand {
-        z-index: 2;
-      }
-
-      #title,
-      #subtitle {
-        font-weight: 100;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-        text-shadow: 0px 2px 1px hsla(0,0%,0%,.1);
-        text-align: center;
-      }
-
-      #title {
-        margin: 0;
-        font-size: 3em;
-      }
-
-      #subtitle {
-        margin: 20px 0;
-        font-size: 2em;
-      }
     </style>
 
-    <div class="page" name="home">
+    <div class="page">
       <part-header class="header"></part-header>
-      <div id="main">
-        <part-jumbotron id="jumbotron" class="jumbotron">
-          <header id="brand">
-            <h1 id="title">Computational Visual Design Lab</h1>
-            <h2 id="subtitle">play today with the web of tomorrow</h2>
-          </header>
+      <div class="main">
+        <part-jumbotron class="jumbotron" id="jumbotron">
+          <div class="brand">
+            <h1 class="title">Computational Visual Design Lab</h1>
+            <h2 class="subtitle">play today with the web of tomorrow</h2>
+          </div>
         </part-jumbotron>
       </div>
       <div class="space"></div>
+      <part-footer class="footer"></part-footer>
     </div>
 
   </template>

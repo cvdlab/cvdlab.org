@@ -5,12 +5,19 @@
 <dom-module id="page-404">
   <template>
     <style include="style-page"></style>
+    <style>
+      .jumbotron {
+        --jumbotron-background: {
+          background-image: url('/images/pattern-0.png');
+        }
+      }
+    </style>
 
     <div class="page">
       <part-header class="header"></part-header>
       <div class="main">
         <part-jumbotron class="jumbotron">
-          <h1>404</h1>
+          <h1 class="title">404</h1>
         </part-jumbotron>
       </div>
       <div class="space"></div>

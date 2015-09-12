@@ -8,6 +8,14 @@
 <dom-module id="page-alumni">
   <template>
     <style include="style-page"></style>
+    <style>
+      .jumbotron {
+        --jumbotron-background: {
+          background-image: url('/images/pattern-2.png');
+        }
+      }
+    </style>
+
 <!--
     <iron-ajax auto method="GET" url="/data/alumni.json"
       handle-as="json" last-response="{{alumni}}">
