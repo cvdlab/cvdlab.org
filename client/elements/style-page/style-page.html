@@ -21,10 +21,14 @@
       }
 
       .page .jumbotron {
-        height: 240px;
+        height: 200px;
         color: white;
         --jumbotron-background: {
-          background-image: url('/images/pattern-3.png');
+          /*background-image: url('/images/pattern-3.png');*/
+          background-color: #efefef;
+        }
+        --jumbotron-overlay: {
+          background-color: rgba(0,0,0,0.1);
         }
         --jumbotron-content: {
           @apply(--layout-col-10);
@@ -40,19 +44,23 @@
         line-height: 1.75em;
       }
 
-      .page .title,
-      .page .subtitle {
-        font-weight: 100;
+      .jumbotron .title {
+        font-weight: 600;
+        text-transform: uppercase;
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
-        text-shadow: 0px 2px 1px hsla(0,0%,0%,.1);
-        text-align: center;
       }
-      .page .brand .title {
+
+      .brand .title,
+      .brand .subtitle {
+        text-align: center;
+        text-shadow: 0px 3px 5px hsla(0,0%,0%,.1);
+      }
+      .brand .title {
         font-size: 3em;
         margin: 10px;
       }
-      .page .brand .subtitle {
+      .brand .subtitle {
         font-size: 2em;
         margin: 10px;
       }
