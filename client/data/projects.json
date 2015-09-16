@@ -1,12 +1,68 @@
 [
   {
-    "title": "plasm.js",
-    "repository": "http://github.com/cvdlab/plasm.js",
-    "description": "Programming Language for Solid Modeling based on JavaScript"
+    "title": "Simplexn.js",
+    "repository": "http://github.com/cvdlab/simplex.js",
+    "description": "Simplex...",
+    "thumbnail": ""
   },
   {
-    "title": "lar",
+    "title": "PLaSM.js",
+    "repository": "http://github.com/cvdlab/plasm.js",
+    "description": "Programming Language for Solid Modeling based on JavaScript",
+    "thumbnail": ""
+  },
+  {
+    "title": "LAR",
     "repository": "http://github.com/cvdlab/lar",
-    "description": "Geometric kernel based on linear algebra representation"
+    "description": "Geometric kernel based on linear algebra representation",
+    "thumbnail": ""
+  },
+  {
+    "title": "C3D",
+    "repository": "http://github.com/cvdlab/c3d",
+    "description": "...",
+    "thumbnail": ""
+  },
+  {
+    "title": "Bak3ditor",
+    "repository": "http://github.com/cvdlab",
+    "description": "...",
+    "thumbnail": ""
+  },
+  {
+    "title": "DMA.js",
+    "repository": "http://github.com/cvdlab",
+    "description": "...",
+    "thumbnail": ""
+  },
+  {
+    "title": "VisPro",
+    "repository": "http://github.com/cvdlab",
+    "description": "...",
+    "thumbnail": ""
+  },
+  {
+    "title": "ServiceLink",
+    "repository": "http://github.com/cvdlab",
+    "description": "...",
+    "thumbnail": "/images/service-link.png"
+  },
+  {
+    "title": "x-project",
+    "repository": "http://github.com/cvdlab",
+    "description": "...",
+    "thumbnail": "/images/x-project.jpg"
+  },
+  {
+    "title": "x-commerce",
+    "repository": "http://github.com/cvdlab",
+    "description": "...",
+    "thumbnail": ""
+  },
+  {
+    "title": "RhOME",
+    "repository": "http://github.com/cvdlab",
+    "description": "...",
+    "thumbnail": ""
   }
 ]

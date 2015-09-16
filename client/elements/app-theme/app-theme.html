@@ -1,6 +1,20 @@
 <link rel="import" href="/components/polymer/polymer.html">
 <link rel="import" href="/components/layout-grid/layout-grid.html">
 <style is="custom-style">
+
+  @font-face {
+    font-family: font-light;
+    src: url('/fonts/font/font-light.woff');
+  }
+  @font-face {
+    font-family: font-regular;
+    src: url('/fonts/font/font-regular.woff');
+  }
+  @font-face {
+    font-family: font-bold;
+    src: url('/fonts/font/font-bold.woff');
+  }
+
   html,
   body {
     width: 100%;
@@ -10,7 +24,14 @@
   }
 
   body {
-    font-family: sans-serif;
+    font-family: font-regular, sans-serif;
+  }
+
+  html /deep/ h1,
+  html /deep/ h2,
+  html /deep/ h3,
+  html /deep/ h4 {
+    font-family: font-bold, sans-serif;
   }
 
   html /deep/ .container {

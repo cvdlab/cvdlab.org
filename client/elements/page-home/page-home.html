@@ -10,16 +10,14 @@
       #jumbotron {
         height: 500px;
         --jumbotron-background: {
-          background-image: url('/images/pattern.png');
+          background-color: #eee;
         }
-        --jumbotron-overlay: {
-          /*background-color: rgba(150,150,0,0.25);*/
-        }
-        --jumbotron-content: {
-          @apply(--layout-vertical);
-          @apply(--layout-center);
-          @apply(--layout-center-justified);
-        }
+      }
+
+      .title.brand {
+        width: 100px;
+        font-size: 60px;
+        line-height: 1em;
       }
     </style>
 
@@ -27,10 +25,7 @@
       <part-header class="header"></part-header>
       <div class="main">
         <part-jumbotron class="jumbotron" id="jumbotron">
-          <div class="brand">
-            <h1 class="title">Computational Visual Design Lab</h1>
-            <h2 class="subtitle">play today with the web of tomorrow</h2>
-          </div>
+          <h1 class="title brand">Computational Visual Design Lab</h1>
         </part-jumbotron>
       </div>
       <div class="space"></div>
