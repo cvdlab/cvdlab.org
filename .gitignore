@@ -20,4 +20,3 @@ node_modules
 client/components
 client/data/alumni.json
 client/video/*
-client/fonts/*
