@@ -1,17 +1,18 @@
 <link rel="import" href="/components/app-link/app-link.html">
+<link rel="import" href="../style-card/style-card.html">
 <dom-module id="card-course">
   <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
+    <style include="style-card"></style>
 
     <div class="card">
       <h3>{{course.title}}</h3>
       <p>{{course.summary}}</p>
       <p>
-        <a is="app-link" href="{{course.link}}">go to course</a>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur.
       </p>
     </div>
 

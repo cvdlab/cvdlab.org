@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "cvdlab.org",
   "dependencies": {
-    "x-element": "x-element/x-element"
+    "x-element": "x-element/x-element",
+    "google-map": "GoogleWebComponents/google-map"
   }
 }

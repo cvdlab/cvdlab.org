@@ -1,16 +1,21 @@
 <link rel="import" href="/components/app-link/app-link.html">
+<link rel="import" href="../style-card/style-card.html">
 <dom-module id="card-project">
   <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
+    <style include="style-card"></style>
 
     <div class="card">
       <h3 class="title">{{project.title}}</h3>
-      <div class="description">{{project.description}}</div>
+      <!-- <div class="description">{{project.description}}</div> -->
       <div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
         <a is="x-link" href="{{project.url}}" target="_blank">{{project.url}}</a>
       </div>
     </div>

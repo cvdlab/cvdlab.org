@@ -1,16 +1,19 @@
 <link rel="import" href="/components/layout-grid/layout-grid.html">
-<dom-module id="style-deck">
+<dom-module id="style-card">
   <template>
     <style>
       :host {
         display: block;
+        @apply(--layout-col-3);
       }
 
-      .deck {
-        margin: 0 -15px;
-        @apply(--layout-horizontal);
-        @apply(--layout-wrap);
-        @apply(--layout-left-justified);
+      .card {
+        padding: 15px;
+      }
+
+      .card .title {
+        font-size: 18px;
+        margin-bottom: 8px;
       }
     </style>
   </template>
@@ -18,7 +21,7 @@
 <script>
   Polymer({
 
-    is: 'style-deck'
+    is: 'style-card'
 
   });
 </script>

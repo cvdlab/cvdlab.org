@@ -1,11 +1,8 @@
 <link rel="import" href="../card-project/card-project.html">
+<link rel="import" href="../style-deck/style-deck.html">
 <dom-module id="deck-projects">
   <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
+    <style include="style-deck"></style>
 
     <div class="deck">
       <template is="dom-repeat" items="{{projects}}" as="project">
