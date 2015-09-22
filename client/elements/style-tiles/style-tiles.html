@@ -1,0 +1,37 @@
+<link rel="import" href="/components/layout-grid/layout-grid.html">
+<dom-module id="style-tiles">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      .tiles {
+        @apply(--layout-horizontal);
+      }
+
+      .tile {
+        @apply(--layout-flex);
+      }
+
+      .tile.description {
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+        @apply(--layout-center-justified);
+        background-color: #eee;
+      }
+
+      .tile.description p {
+        padding: 0 100px;
+        line-height: 2em;
+      }
+    </style>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+
+    is: 'style-tiles'
+
+  });
+</script>
