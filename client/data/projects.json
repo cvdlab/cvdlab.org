@@ -1,20 +1,21 @@
 [
   {
     "title": "Simplexn.js",
-    "repository": "http://github.com/cvdlab/simplex.js",
-    "description": "Simplex...",
+    "repository": "http://github.com/cvdlab/simplexn.js",
+    "description": "Simplexn.js is a pure JavaScript geometric kernel based on simplicial complexes. The kernel is dimension-independent (i.e. it works seamlessly in dimension one, two, three and even higher dimensions) and offers an extensive object-oriented API. Performance issues, critical in a geometric kernel, are addressed using flat data-structures, explicit unrolled loops and JavaScript Typed Arrays.",
     "thumbnail": ""
   },
   {
-    "title": "PLaSM.js",
-    "repository": "http://github.com/cvdlab/plasm.js",
-    "description": "Programming Language for Solid Modeling based on JavaScript",
-    "thumbnail": ""
+    "title": "Plasm.js",
+    "repository": "https://github.com/cvdlab/plasm.js",
+    "description": "Plasm.js is the JavaScript declination of PLaSM, the Programming LAnguage for Solid Modeling. It is a \"design language\" for geometric and solid parametric design, initially developed by the CAD Group at the Universities \"La Sapienza\" and \"Roma Tre\". The language is strongly influenced by FL. Its JavaScript version is based on Simplexn.js and WebGL, using Three.js.",
+    "thumbnail": "/images/projects/plasm.png",
+    "url": "http://cvdlab.github.io/plasm.js/"
   },
   {
-    "title": "LAR",
-    "repository": "http://github.com/cvdlab/lar",
-    "description": "Geometric kernel based on linear algebra representation",
+    "title": "LAR-CC",
+    "repository": "https://github.com/cvdlab/lar-cc",
+    "description": "Linear Algebraic Representation to Compute with Cellular (Co)Chains. It is a representation scheme for mod 2 (co)chain complexes using compressed sparse matrices. It supports variety of topological computations using standard matrix algebra, without any overhead in space or running time.",
     "thumbnail": ""
   },
   {
