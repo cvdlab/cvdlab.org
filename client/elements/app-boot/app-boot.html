@@ -4,13 +4,15 @@
 <link rel="import" href="../app-theme/app-theme.html">
 <link rel="import" href="../page-404/page-404.html">
 <link rel="import" href="../page-about/page-about.html">
-<link rel="import" href="../page-alumni/page-alumni.html">
+<!-- <link rel="import" href="../page-alumni/page-alumni.html"> -->
+<link rel="import" href="../page-people/page-people.html">
 <link rel="import" href="../page-course/page-course.html">
 <link rel="import" href="../page-courses/page-courses.html">
 <link rel="import" href="../page-home/page-home.html">
 <link rel="import" href="../page-membership/page-membership.html">
 <link rel="import" href="../page-privacy/page-privacy.html">
 <link rel="import" href="../page-projects/page-projects.html">
+<link rel="import" href="../page-theses/page-theses.html">
 <dom-module id="app-boot">
   <style>
     :host {
@@ -24,12 +26,13 @@
     <app-routes id="routes">
       <app-route path="/" page="page-home"></app-route>
       <app-route path="/about" page="page-about"></app-route>
-      <app-route path="/alumni" page="page-alumni"></app-route>
+      <app-route path="/people" page="page-people"></app-route>
       <app-route path="/courses" page="page-courses"></app-route>
       <app-route path="/courses/:course" page="page-course" on-route="/courses/:course"></app-route>
       <app-route path="/membership" page="page-membership"></app-route>
       <app-route path="/privacy" page="page-privacy"></app-route>
       <app-route path="/projects" page="page-projects"></app-route>
+      <app-route path="/theses" page="page-theses"></app-route>
       <app-route path="*" page="page-404"></app-route>
     </app-routes>
 

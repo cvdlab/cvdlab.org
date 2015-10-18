@@ -1,0 +1,60 @@
+[
+  {
+    "title": "Parallel implementation of the Catmull-Clark subdivision algorithm in a Web environment",
+    "author": 1,
+    "description": ""
+  },
+  {
+    "title": "Accelerazione HPC degli operatori topologici nella rappresentazione algebrica lineare",
+    "author": 3,
+    "description": ""
+  },
+  {
+    "title": "RhOME digital mirror: un modello WebGL interattivo per il monitoraggio real-time di un ambiente abitativo automatizzato",
+    "repository": "",
+    "author": 4,
+    "description": ""
+  },
+  {
+    "title": "FIVE - Framework per il mapping virtuale di ambienti indoor interattivi su web: Navigazione e Calcolo dei Percorsi",
+    "repository": "",
+    "author": 7,
+    "description": ""
+  },
+  {
+    "title": "FIVE - Framework per il mapping virtuale di ambienti indoor interattivi su web: Architettura di supporto all’Internet of Things",
+    "repository": "",
+    "author": 8,
+    "description": ""
+  },
+  {
+    "title": "X-Project - Document-Oriented HTML5 Application Toolkit Based on Web Components: Amazon S3 Storage Component",
+    "repository": "",
+    "author": 5,
+    "description": "..."
+  },
+  {
+    "title": "X-Project - Document-Oriented HTML5 Application Toolkit Based on Web Components: User Management Component",
+    "repository": "",
+    "author": 6,
+    "description": "..."
+  },
+  {
+    "title": "Tesi di Baljinder Jit",
+    "repository": "",
+    "author": 9,
+    "description": "..."
+  },
+  {
+    "title": "Tesi di Edoardo Carra",
+    "repository": "",
+    "author": 10,
+    "description": "..."
+  },
+  {
+    "title": "Tesi di Michele D'Antimi",
+    "repository": "",
+    "author": 11,
+    "description": "..."
+  }
+]

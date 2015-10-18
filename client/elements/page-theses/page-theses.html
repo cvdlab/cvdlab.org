@@ -1,0 +1,72 @@
+<link rel="import" href="../stripes-theses/stripes-theses.html">
+<link rel="import" href="../part-jumbotron/part-jumbotron.html">
+<link rel="import" href="../part-header/part-header.html">
+<link rel="import" href="../part-footer/part-footer.html">
+<link rel="import" href="../style-page/style-page.html">
+<dom-module id="page-theses">
+  <template>
+    <style include="style-page"></style>
+    <style>
+      .jumbotron {
+        --jumbotron-background: {
+          /*background-image: url('/images/projects.jpg');*/
+        }
+      }
+    </style>
+
+    <iron-ajax id="ajax" auto url="/data/people.json"
+      handle-as="json" last-response="{{people}}" on-response="on_response">
+    </iron-ajax>
+
+    <iron-ajax id="ajax" auto url="/data/theses.json"
+      handle-as="json" last-response="{{theses}}" on-response="on_response">
+    </iron-ajax>
+
+    <div class="page">
+      <part-header class="header"></part-header>
+      <div class="main">
+        <part-jumbotron class="jumbotron">
+          <h1 class="title">Theses</h1>
+        </part-jumbotron>
+        <div class="fluid-container">
+          <stripes-theses theses="{{theses}}"></stripes-theses>
+        </div>
+      </div>
+      <div class="space"></div>
+      <part-footer class="footer"></part-footer>
+    </div>
+
+  </template>
+</dom-module>
+<script>
+  Polymer({
+
+    is: 'page-theses',
+
+    properties: {
+      theses: {
+        type: Array
+      },
+      people: {
+        type: Array
+      }
+    },
+
+    on_response: function () {
+      if (!this.once) {
+        this.once = true;
+        return;
+      }
+
+      var authors = this.people.collaborators;
+
+      this.theses.forEach(function (thesis) {
+        thesis.author = authors.filter(function (person) {
+          return person.id === thesis.author;
+        })[0];
+      });
+
+    }
+
+  });
+</script>

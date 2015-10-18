@@ -3,21 +3,44 @@
 <dom-module id="card-project">
   <template>
     <style include="style-card"></style>
+    <style>
+    .thumbnail {
+      width: 98%;
+      /*height: auto;*/
+      /*border: 1% solid #E6E6E6;*/
+      border-radius: 3px;
+    }
+
+    .desaturate {
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+    }
+
+    .card:hover .desaturate {
+      -webkit-filter: grayscale(0%);
+      filter: grayscale(0%);
+    }
+    </style>
 
     <div class="card">
-      <h3 class="title"><a href="{{project.repository}}">{{project.title}}</a></h3>
-      <!-- <div class="description"></div> -->
+      <h3 class="title">
+        <template is="dom-if" if="{{project.repository}}">
+          <a href="{{project.repository}}">{{project.title}}</a>
+        </template>
+        <template is="dom-if" if="{{!project.repository}}">{{project.title}}</template>
+      </h3>
+
+      <template is="dom-if" if="{{project.url}}">
+        <a is="x-link" href="{{project.url}}" target="_blank">
+          <img class="thumbnail desaturate" src="{{project.thumbnail}}">
+        </a>
+      </template>
+      <template is="dom-if" if="{{!project.url}}">
+        <img class="thumbnail desaturate" src="{{project.thumbnail}}">
+      </template>
+
       <div>
-       <!--  <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p> -->
         <p>{{project.description}}</p>
-        <a is="x-link" href="{{project.url}}" target="_blank">{{project.url}}</a>
       </div>
     </div>
 

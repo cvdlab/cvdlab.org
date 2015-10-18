@@ -1,0 +1,30 @@
+<link rel="import" href="../stripe-thesis/stripe-thesis.html">
+<dom-module id="stripes-theses">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <div class="stripes">
+      <template is="dom-repeat" items="{{theses}}" as="thesis">
+        <stripe-thesis thesis="{{thesis}}"></stripe-thesis>
+      </template>
+    </div>
+
+  </template>
+</dom-module>
+<script>
+  Polymer({
+
+    is: 'stripes-theses',
+
+    properties: {
+      theses: {
+        type: Array
+      }
+    }
+
+  });
+</script>
