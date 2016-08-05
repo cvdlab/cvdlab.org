@@ -1,54 +1,49 @@
-<link rel="import" href="/components/polymer/polymer.html">
-<link rel="import" href="/components/iron-flex-layout/iron-flex-layout.html">
-<dom-module id="part-jumbotron">
-  <template>
-    <style>
-      :host {
-        display: block;
-        width: 100%;
-        height: 400px;
-        position: relative;
-      }
 
-      #background {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
-        @apply(--jumbotron-background);
-      }
+<template is="part-jumbotron">
+  <style>
+    :host {
+      display: block;
+    }
 
-      #overlay {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        @apply(--jumbotron-overlay);
-      }
+    #background {
+      /*position: absolute;*/
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      @apply(--jumbotron-background);
+    }
 
-      #content {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        @apply(--jumbotron-content);
-      }
-    </style>
+    #overlay {
+      /*position: absolute;*/
+      width: 100%;
+      height: 100%;
+      @apply(--jumbotron-overlay);
+    }
 
-    <div id="background">
-      <div id="overlay">
-        <div id="content">
-          <content></content>
-        </div>
+    #content {
+      /*position: absolute;*/
+      width: 100%;
+      height: 100%;
+      @apply(--jumbotron-content);
+    }
+  </style>
+
+  <div id="background">
+    <div id="overlay">
+      <div id="content">
+        <content></content>
       </div>
     </div>
+  </div>
 
-  </template>
-</dom-module>
+</template>
+
 <script>
-  Polymer({
+  Pantarei({
 
     is: 'part-jumbotron'
 
-  });
+  })
 </script>

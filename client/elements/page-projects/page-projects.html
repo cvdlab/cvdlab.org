@@ -1,49 +1,34 @@
-<link rel="import" href="../deck-projects/deck-projects.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
 <link rel="import" href="../part-header/part-header.html">
 <link rel="import" href="../part-footer/part-footer.html">
-<link rel="import" href="../style-page/style-page.html">
-<dom-module id="page-projects">
-  <template>
-    <style include="style-page"></style>
-    <style>
-      .jumbotron {
-        --jumbotron-background: {
-          /*background-image: url('/images/projects.jpg');*/
-        }
-      }
-    </style>
+<link rel="import" href="../deck-projects/deck-projects.html">
 
-    <iron-ajax id="ajax" auto url="/data/projects.json"
-      handle-as="json" last-response="{{projects}}">
-    </iron-ajax>
-
-    <div class="page">
-      <part-header class="header"></part-header>
-      <div class="main">
-        <part-jumbotron class="jumbotron">
-          <h1 class="title">Projects</h1>
-        </part-jumbotron>
-        <div class="container">
-          <deck-projects projects="{{projects}}"></deck-projects>
-        </div>
-      </div>
-      <div class="space"></div>
-      <part-footer class="footer"></part-footer>
-    </div>
-
-  </template>
-</dom-module>
-<script>
-  Polymer({
-
-    is: 'page-projects',
-
-    properties: {
-      projects: {
-        type: Array
-      }
+<template is="page-projects">
+  <style>
+    :host {
+      display: block;
     }
+  </style>
 
-  });
+  <div class="page">
+    <part-header class="header"></part-header>
+    <div class="main">
+      <part-jumbotron class="jumbotron">
+        <h1 class="title">Projects</h1>
+      </part-jumbotron>
+      <div class="container">
+        <deck-projects projects="{{projects}}"></deck-projects>
+      </div>
+    </div>
+    <div class="space"></div>
+    <part-footer class="footer"></part-footer>
+  </div>
+</template>
+
+<script>
+  Pantarei({
+
+    is: 'page-projects'
+
+  })
 </script>

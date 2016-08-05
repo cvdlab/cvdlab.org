@@ -1,50 +1,46 @@
-<link rel="import" href="/components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../part-footer/part-footer.html">
 <link rel="import" href="../part-header/part-header.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
-<link rel="import" href="../style-page/style-page.html">
 <link rel="import" href="part-home-alumni.html">
 <link rel="import" href="part-home-courses.html">
 <link rel="import" href="part-home-description.html">
 <link rel="import" href="part-home-map.html">
 <link rel="import" href="part-home-projects.html">
-<dom-module id="page-home">
-  <template>
-    <style include="style-page"></style>
-    <style>
-      #jumbotron {
-        height: 500px;
-      }
 
-      #jumbotron .title {
-        width: 100px;
-        font-size: 60px;
-        line-height: 1em;
-      }
-    </style>
+<template is="page-home">
+  <style>
+    #jumbotron {
+      height: 500px;
+    }
 
-    <div class="page">
-      <part-header class="header"></part-header>
-      <div class="main">
-        <part-jumbotron class="jumbotron" id="jumbotron">
-          <h1 class="title">Computational Visual Design Lab</h1>
-        </part-jumbotron>
-        <part-home-description></part-home-description>
-        <part-home-alumni></part-home-alumni>
-        <part-home-courses></part-home-courses>
-        <part-home-projects></part-home-projects>
-        <part-home-map></part-home-map>
-      </div>
-      <div class="space"></div>
-      <part-footer class="footer"></part-footer>
+    #jumbotron .title {
+      width: 100px;
+      font-size: 60px;
+      line-height: 1em;
+    }
+  </style>
+
+  <div class="page">
+    <part-header class="header"></part-header>
+    <div class="main">
+      <part-jumbotron class="jumbotron" id="jumbotron">
+        <h1 class="title">Computational Visual Design Lab</h1>
+      </part-jumbotron>
+      <part-home-description></part-home-description>
+      <part-home-alumni></part-home-alumni>
+      <part-home-courses></part-home-courses>
+      <part-home-projects></part-home-projects>
+      <part-home-map></part-home-map>
     </div>
+    <div class="space"></div>
+    <part-footer class="footer"></part-footer>
+  </div>
+</template>
 
-  </template>
-</dom-module>
 <script>
-  Polymer({
+  Pantarei({
 
     is: 'page-home'
 
-  });
+  })
 </script>

@@ -1,27 +1,29 @@
-<link rel="import" href="../card-project/card-project.html">
-<link rel="import" href="../style-deck/style-deck.html">
-<dom-module id="deck-projects">
-  <template>
-    <style include="style-deck"></style>
 
-    <div class="deck">
-      <template is="dom-repeat" items="{{projects}}" as="project">
-        <card-project project="{{project}}"></card-project>
-      </template>
-    </div>
+<template is="deck-projects">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
 
-  </template>
-</dom-module>
+  <div class="deck">
+    <template is="repeat" items="{{projects}}" item="project">
+      <card-project project="{{project}}"></card-project>
+    </template>
+  </div>
+</template>
+
 <script>
-  Polymer({
+  Pantarei({
 
     is: 'deck-projects',
 
     properties: {
       projects: {
-        type: Array
+        type: Array,
+        value: []
       }
     }
 
-  });
+  })
 </script>

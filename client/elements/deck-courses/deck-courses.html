@@ -1,17 +1,19 @@
 <link rel="import" href="../card-course/card-course.html">
-<link rel="import" href="../style-deck/style-deck.html">
-<dom-module id="deck-courses">
-  <template>
-    <style include="style-deck"></style>
 
-    <div class="deck">
-      <template is="dom-repeat" items="{{courses}}" as="course">
-        <card-course course="{{course}}"></card-course>
-      </template>
-    </div>
+<template is="deck-courses">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
 
-  </template>
-</dom-module>
+  <div class="deck">
+    <template is="dom-repeat" items="{{courses}}" as="course">
+      <card-course course="{{course}}"></card-course>
+    </template>
+  </div>
+</template>
+
 <script>
   Polymer({
 
@@ -20,9 +22,9 @@
     properties: {
       courses: {
         type: Array,
-        value: function () { return []; }
+        value: []
       }
     }
 
-  });
+  })
 </script>

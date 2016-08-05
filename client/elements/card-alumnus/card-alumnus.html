@@ -1,53 +1,44 @@
-<link rel="import" href="/components/app-link/app-link.html">
-<link rel="import" href="../style-card/style-card.html">
-<dom-module id="card-alumnus">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
 
-      .card {
-        margin-bottom: 30px;
-      }
-
-      .card .image img {
-        width: 120px;
-        border-radius: 120px;
-        margin: 10px 20px;
-      }
-
-      .card .caption h4 {
-        margin-top: 0px;
-        text-align: center;
-        font-weight: 400;
-        font-size: 14px;
-        letter-spacing: .05em;
-      }
-    </style>
-
-    <div class="card">
-      <div class="image">
-        <img src="{{alumnus.picture}}">
-      </div>
-      <div class="caption">
-        <h4><span>{{alumnus.first_name}}</span> <span>{{alumnus.last_name}}</span></h4>
-        <a is="app-link" href="{{alumnus.github}}" target="_blank">{{alumnus.username}}</a>
-      </div>
-    </div>
-
-  </template>
-</dom-module>
-<script>
-  Polymer({
-
-    is: 'card-alumnus',
-
-    properties: {
-      alumnus: {
-        type: Object
-      }
+<template is="card-alumnus">
+  <style>
+    :host {
+      display: block;
     }
 
-  });
+    .card {
+      margin-bottom: 30px;
+    }
+
+    .card .image img {
+      width: 120px;
+      border-radius: 120px;
+      margin: 10px 20px;
+    }
+
+    .card .caption h4 {
+      margin-top: 0px;
+      text-align: center;
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: .05em;
+    }
+  </style>
+
+  <div class="card">
+    <div class="image">
+      <img _src="{{alumnus.picture}}">
+    </div>
+    <div class="caption">
+      <h4><span>{{alumnus.first_name}}</span> <span>{{alumnus.last_name}}</span></h4>
+      <a is="app-link" _href="{{alumnus.github}}" target="_blank">{{alumnus.username}}</a>
+    </div>
+  </div>
+</template>
+
+<script>
+  Pantarei({
+
+    is: 'card-alumnus'
+
+  })
 </script>

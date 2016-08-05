@@ -1,69 +1,59 @@
-<link rel="import" href="../form-membership/form-membership.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
 <link rel="import" href="../part-header/part-header.html">
 <link rel="import" href="../part-footer/part-footer.html">
-<link rel="import" href="../style-page/style-page.html">
-<dom-module name="page-membership">
-  <template>
-    <style include="style-page"></style>
+<link rel="import" href="form-membership.html">
 
-    <iron-ajax id="ajax" url="/api/auth/facebook" method="POST" handleAs="json"
-      on-response="on_get_data">
-    </iron-ajax>
+<template is="page-membership">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
 
-    <iron-ajax id="send_data" method="POST" url="/api/alumni/{{alumnus._id}}"
-      handleAs="json" on-response="on_send_data">
-    </iron-ajax>
-
-    <div class="page">
-      <part-header class="header"></part-header>
-      <div class="main">
-        <part-jumbotron class="jumbotron">
-            <h1 class="title">Membership</h1>
-          </header>
-        </part-jumbotron>
-        <div class="container">
-          <template is="dom-if" if="{{!connected}}">
-            <facebook-login id="fblogin"
-              appID="1425724317705719"
-              version="v2.1"
-              cookie="true"
-              scopes="public_profile email user_groups"
-              size="xlarge"
-              showFaces="true"
-              maRows="1"
-              on-facebook-signin-success="on_facebook_signin_success"
-              on-facebook-signin-not-authorized="on_facebook_signin_not_authorized"
-              on-graph-api-response="on_graph_api_response"
-              on-facebook-user-not-logged="on_facebook_user_not_logged">
-            </facebook-login>
-            <div id="instructions">
-              Login using the same Facebook account you just used as a member of the CVDLAB Facebook group.
-            </div>
-          </template>
-          <template is="dom-if" if="{{connected}}">
-            <div class="container">
-              <h1 id="id-label"><span class="label class="label" label-default">{{student_id}}</span></h1>
-              <div id="picture" style="background-image: url('{{alumnus.picture}}')"></div>
-              <form-membership alumnus="{{alumnus}}"></form-membership>
-            </div>
-          </template>
-        </div>
+  <div class="page">
+    <part-header class="header"></part-header>
+    <div class="main">
+      <part-jumbotron class="jumbotron">
+          <h1 class="title">Membership</h1>
+        </header>
+      </part-jumbotron>
+      <div class="container">
+        <template is="dom-if" if="{{!connected}}">
+          <facebook-login id="fblogin"
+            appID="1425724317705719"
+            version="v2.1"
+            cookie="true"
+            scopes="public_profile email user_groups"
+            size="xlarge"
+            showFaces="true"
+            maRows="1"
+            on-facebook-signin-success="on_facebook_signin_success"
+            on-facebook-signin-not-authorized="on_facebook_signin_not_authorized"
+            on-graph-api-response="on_graph_api_response"
+            on-facebook-user-not-logged="on_facebook_user_not_logged">
+          </facebook-login>
+          <div id="instructions">
+            Login using the same Facebook account you just used as a member of the CVDLAB Facebook group.
+          </div>
+        </template>
+        <template is="dom-if" if="{{connected}}">
+          <div class="container">
+            <h1 id="id-label"><span class="label class="label" label-default">{{student_id}}</span></h1>
+            <div id="picture" style="background-image: url('{{alumnus.picture}}')"></div>
+          </div>
+        </template>
+        <form-membership alumnus="{{alumnus}}"></form-membership>
       </div>
-      <div class="space"></div>
-      <part-footer class="footer"></part-footer>
     </div>
+    <div class="space"></div>
+    <part-footer class="footer"></part-footer>
+  </div>
+</template>
 
-  </template>
-</dom-module>
 <script>
-  Polymer({
+  Pantarei({
 
     is: 'page-membership',
-
-    connected: false,
-
-    ready: function () {},
 
     on_facebook_signin_success: function (event, data) {
       var ajax = this.$.ajax;
@@ -98,5 +88,5 @@
       }
     }
 
-  });
+  })
 </script>

@@ -1,0 +1,30 @@
+<link rel="import" href="../card-thesis/card-thesis.html">
+
+<template is="deck-theses">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+
+  <div class="stripes">
+    <template is="dom-repeat" items="{{theses}}" as="thesis">
+      <card-thesis thesis="{{thesis}}"></card-thesis>
+    </template>
+  </div>
+</template>
+
+<script>
+  Pantarei({
+
+    is: 'deck-theses',
+
+    properties: {
+      theses: {
+        type: Array,
+        value: []
+      }
+    }
+
+  })
+</script>

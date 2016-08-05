@@ -1,34 +1,33 @@
-<link rel="import" href="/components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../card-alumnus/card-alumnus.html">
-<dom-module id="deck-alumni">
-  <template>
-    <style>
-      .deck {
-        padding: 0 40px;
-        @apply(--layout-horizontal);
-        @apply(--layout-wrap);
-        @apply(--layout-center-justified);
-      }
-    </style>
 
-    <div class="deck">
-      <template is="dom-repeat" items="{{alumni}}" as="alumnus">
-        <card-alumnus alumnus="{{alumnus}}"></card-alumnus>
-      </template>
-    </div>
+<template is="deck-alumni">
+  <style>
+    .deck {
+      padding: 0 40px;
+      @apply(--layout-horizontal);
+      @apply(--layout-wrap);
+      @apply(--layout-center-justified);
+    }
+  </style>
 
-  </template>
-</dom-module>
+  <div class="deck">
+    <template is="repeat" items="{{alumni}}" item="alumnus">
+      <card-alumnus alumnus="{{alumnus}}"></card-alumnus>
+    </template>
+  </div>
+</template>
+
 <script>
-  Polymer({
+  Pantarei({
 
     is: 'deck-alumni',
 
     properties: {
       alumni: {
-        type: Array
+        type: Array,
+        value: []
       }
     }
 
-  });
+  })
 </script>

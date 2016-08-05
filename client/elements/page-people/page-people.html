@@ -1,136 +1,38 @@
-<link rel="import" href="/components/iron-ajax/iron-ajax.html">
-<link rel="import" href="/components/app-link/app-link.html">
-<link rel="import" href="../deck-people/deck-people.html">
 <link rel="import" href="../deck-alumni/deck-alumni.html">
 <link rel="import" href="../part-footer/part-footer.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
 <link rel="import" href="../part-header/part-header.html">
-<link rel="import" href="../style-page/style-page.html">
-<dom-module id="page-people">
-  <template>
-    <style include="style-page"></style>
-    <style>
-      .jumbotron {
-        --jumbotron-background: {
-          /*background-image: url('/images/pattern-2.png');*/
-        }
-      }
 
-      .strip {
-        margin-bottom: 80px;
-      }
+<template is="page-people">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
 
-      h3 {
-        text-align: center;
-      }
-    </style>
-
-<!--
-    <iron-ajax auto method="GET" url="/data/alumni.json"
-      handle-as="json" last-response="{{alumni}}">
-    </iron-ajax>
--->
-
-    <iron-ajax id="ajax_people" auto method="GET" url="/data/people.json"
-      handle-as="json" last-response="{{people}}" on-response="on_response">
-    </iron-ajax>
-
-    <iron-ajax auto method="GET" url="/api/alumni"
-      handle-as="json" last-response="{{alumni}}">
-    </iron-ajax>
-
-    <div class="page">
-      <part-header class="header"></part-header>
-      <div class="main">
-        <part-jumbotron class="jumbotron">
-          <h1 class="title">People</h1>
-        </part-jumbotron>
-        <div class="container">
-          <!-- <a is="app-link" class="button" href="/membership">request membership</a> -->
-        </div>
-        <div class="container">
-          <div class="strip">
-            <h3>Founders</h3>
-            <deck-people people="{{founders}}"></deck-people>
-          </div>
-          <div class="strip">
-            <h3>Collaborators</h3>
-            <deck-people people="{{collaborators}}"></deck-people>
-          </div>
-          <div class="strip">
-            <h3>Guests</h3>
-            <deck-people people="{{guests}}"></deck-people>
-          </div>
-
-          <!-- <deck-alumni alumni="{{alumni}}"></deck-alumni> -->
-          <!-- <h3>2015</h3> -->
-          <!-- <deck-alumni alumni="{{filter(alumni,2015)}}"></deck-alumni> -->
-
-          <div class="strip">
-            <h3>Alumni 2014</h3>
-            <deck-alumni alumni="{{filter(alumni,2014)}}"></deck-alumni>
-          </div>
-          <div class="strip">
-            <h3>Alumni 2013</h3>
-            <deck-alumni alumni="{{filter(alumni,2013)}}"></deck-alumni>
-          </div>
-          <div class="strip">
-            <h3>Alumni 2012</h3>
-            <deck-alumni alumni="{{filter(alumni,2012)}}"></deck-alumni>
-          </div>
+  <div class="page">
+    <part-header class="header"></part-header>
+    <div class="main">
+      <part-jumbotron class="jumbotron">
+        <h1 class="title">People</h1>
+      </part-jumbotron>
+      <div class="container">
+        <div class="strip">
+          <h3>Alumni</h3>
+          <deck-alumni></deck-alumni>
         </div>
       </div>
-      <div class="space"></div>
-      <part-footer class="footer"></part-footer>
     </div>
+    <div class="space"></div>
+    <part-footer class="footer"></part-footer>
+  </div>
 
-  </template>
-</dom-module>
+</template>
+
 <script>
-  Polymer({
+  Pantarei({
 
-    is: 'page-people',
-
-    properties: {
-      people: {
-        type: Object,
-        value: function () { return {}; },
-        notify: true
-      },
-      founders: {
-        type: Array,
-        value: function () { return []; },
-        notify: true
-      },
-      collaborators : {
-        type: Array,
-        value: function () { return []; },
-        notify: true
-      },
-      geusts: {
-        type: Array,
-        value: function () { return []; },
-        notify: true
-      },
-      alumni: {
-        type: Array,
-        value: function () { return []; },
-        notify: true
-      }
-    },
-
-    filter: function (alumni, year) {
-      return alumni.filter(function (alumnus) {
-        return alumnus.year == year;
-      });
-    },
-
-    on_response: function () {
-      this.set('founders', this.people.founders);
-      this.set('collaborators', this.people.collaborators);
-      this.set('guests', this.people.guests);
-      console.log(this.founders, this.collaborators, this.guests);
-    }
+    is: 'page-people'
 
   });
 </script>

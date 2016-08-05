@@ -1,73 +1,30 @@
-<link rel="import" href="/components/app-link/app-link.html">
-<link rel="import" href="/components/iron-flex-layout/iron-flex-layout.html">
-<dom-module id="part-footer">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
+<template is="part-footer">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
 
-      .footer {
-        margin-top: 40px;
-        @apply(--footer-background);
-      }
-
-      .footer .container {
-        @apply(--layout-horizontal);
-        @apply(--layout-justified);
-      }
-
-      .footer .container .nav {
-        @apply(--layout-start-justified);
-      }
-
-      .footer .links {
-        @apply(--layout-horizontal);
-        @apply(--layout-wrap);
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-
-      .footer .links .link {
-        text-decoration: none;
-        display: block;
-        padding: 1.2em 1em;
-        color: black;
-      }
-
-      .footer .links li:first-child .link {
-        padding-left: 0px;
-      }
-      .footer .links li:last-child .link {
-        padding-right: 0px;
-      }
-
-      .footer .made {
-        padding: 1.2em 0em;
-      }
-    </style>
-
-    <footer class="footer">
-      <div class="container">
-        <nav class="nav">
-          <ul class="links">
-            <li><a is="app-link" class="link" href="/about">about</a></li>
-            <li><a is="app-link" class="link" href="/privacy">privacy</a></li>
-          </ul>
-        </nav>
-        <div class="made">
-          made with <span class="love">&hearts;</span> in Rome
-        </div>
+  <footer class="footer">
+    <div class="container">
+      <nav class="nav">
+        <ul class="links">
+          <li><a is="app-link" class="link" href="/about">about</a></li>
+          <li><a is="app-link" class="link" href="/privacy">privacy</a></li>
+        </ul>
+      </nav>
+      <div class="made">
+        made with <span class="love">&hearts;</span> in Rome
       </div>
-    </footer>
+    </div>
+  </footer>
 
-  </template>
-</dom-module>
+</template>
+
 <script>
-  Polymer({
+  Pantarei({
 
     is: 'part-footer'
 
-  });
+  })
 </script>

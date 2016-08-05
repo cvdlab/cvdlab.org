@@ -1,88 +1,34 @@
-<link rel="import" href="/components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="/components/app-link/app-link.html">
-<dom-module id="part-header">
-  <template>
-    <style>
-      :host {
-        display: block;
-        z-index: 100;
-      }
 
-      .header {
-        width: 100%;
-        z-index: 100;
-      }
+<template is="part-header">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
 
-      .header .container {
-        @apply(--layout-horizontal);
-        @apply(--layout-justified);
-      }
-
-      .header .container .brand {
-        @apply(--layout-start-justified);
-      }
-
-      .header .container .nav {
-        @apply(--layout-end-justified);
-      }
-
-      .header .links {
-        @apply(--layout-horizontal);
-        @apply(--layout-wrap);
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-
-      .header .link {
-        text-decoration: none;
-        display: block;
-        padding: 2em 1em;
-        color: white;
-        text-transform: uppercase;
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        -webkit-font-smoothing: antialiased;
-        /*opacity: 0.8;*/
-      }
-
-      .header .links li:first-child .link {
-        padding-left: 0px;
-      }
-      .header .links li:last-child .link {
-        padding-right: 0px;
-      }
-
-      .header .brand .link {
-        padding-left: 0px;
-        padding-right: 0px;
-      }
-    </style>
-
-    <div class="header">
-      <div class="container">
-        <div class="brand">
-          <a is="app-link" class="link" href="/">cvdlab</a>
-        </div>
-        <nav class="nav">
-          <ul class="links">
-            <!-- <li><a is="app-link" class="link" href="/about">about</a></li> -->
-            <li><a is="app-link" class="link" href="/people">people</a></li>
-            <li><a is="app-link" class="link" href="/projects">projects</a></li>
-            <li><a is="app-link" class="link" href="/theses">theses</a></li>
-            <li><a is="app-link" class="link" href="/courses">courses</a></li>
-          </ul>
-        </nav>
+  <div class="header">
+    <div class="container">
+      <div class="brand">
+        <a is="app-link" class="link" href="/">cvdlab</a>
       </div>
+      <nav class="nav">
+        <ul class="links">
+          <li><a is="app-link" class="link" href="/about">about</a></li>
+          <li><a is="app-link" class="link" href="/people">people</a></li>
+          <li><a is="app-link" class="link" href="/projects">projects</a></li>
+          <li><a is="app-link" class="link" href="/theses">theses</a></li>
+          <li><a is="app-link" class="link" href="/courses">courses</a></li>
+        </ul>
+      </nav>
     </div>
+  </div>
 
-  </template>
-</dom-module>
+</template>
+
 <script>
-  Polymer({
+  Pantarei({
 
     is: 'part-header'
 
-  });
+  })
 </script>

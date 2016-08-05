@@ -1,13 +1,8 @@
-<link rel="import" href="/components/app-link/app-link.html">
-<link rel="import" href="../style-card/style-card.html">
-<dom-module id="card-project">
-  <template>
-    <style include="style-card"></style>
-    <style>
+
+<template is="card-project">
+  <style>
     .thumbnail {
       width: 98%;
-      /*height: auto;*/
-      /*border: 1% solid #E6E6E6;*/
       border-radius: 3px;
     }
 
@@ -20,16 +15,18 @@
       -webkit-filter: grayscale(0%);
       filter: grayscale(0%);
     }
-    </style>
+  </style>
 
-    <div class="card">
-      <h3 class="title">
-        <template is="dom-if" if="{{project.repository}}">
-          <a href="{{project.repository}}">{{project.title}}</a>
-        </template>
-        <template is="dom-if" if="{{!project.repository}}">{{project.title}}</template>
-      </h3>
-
+  <div class="card">
+    <h3 class="title">
+      <template is="if" if="{{project.repository}}">
+        <a href="{{project.repository}}">{{project.title}}</a>
+      </template>
+      <template is="dom-if" if="{{!project.repository}}">
+        <span>{{project.title}}</span>
+      </template>
+    </h3>
+    <div>
       <template is="dom-if" if="{{project.url}}">
         <a is="x-link" href="{{project.url}}" target="_blank">
           <img class="thumbnail desaturate" src="{{project.thumbnail}}">
@@ -38,25 +35,24 @@
       <template is="dom-if" if="{{!project.url}}">
         <img class="thumbnail desaturate" src="{{project.thumbnail}}">
       </template>
-
-      <div>
-        <p>{{project.description}}</p>
-      </div>
     </div>
+    <div>
+      <p>{{project.description}}</p>
+    </div>
+  </div>
+</template>
 
-  </template>
-</dom-module>
 <script>
-  Polymer({
+  Pantarei({
 
     is: 'card-project',
 
     properties: {
       project: {
         type: Object,
-        value: function () { return {}; }
+        value: {}
       }
     }
 
-  });
+  })
 </script>

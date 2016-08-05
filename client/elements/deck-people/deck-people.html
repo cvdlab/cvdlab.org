@@ -1,36 +1,33 @@
-<link rel="import" href="/components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../card-person/card-person.html">
-<dom-module id="deck-people">
-  <template>
-    <style>
-      .deck {
-        padding: 0 40px;
-        @apply(--layout-horizontal);
-        @apply(--layout-wrap);
-        @apply(--layout-center-justified);
-      }
-    </style>
 
-    <div class="deck">
-      <template is="dom-repeat" items="{{people}}" as="person">
-        <card-person person="{{person}}"></card-person>
-      </template>
-    </div>
+<template is="deck-people">
+  <style>
+    .deck {
+      padding: 0 40px;
+      @apply(--layout-horizontal);
+      @apply(--layout-wrap);
+      @apply(--layout-center-justified);
+    }
+  </style>
 
-  </template>
-</dom-module>
+  <div class="deck">
+    <template is="repeat" items="{{people}}" item="person">
+      <card-person person="{{person}}"></card-person>
+    </template>
+  </div>
+</template>
+
 <script>
-  Polymer({
+  Pantarei({
 
     is: 'deck-people',
 
     properties: {
       people: {
         type: Array,
-        value: function () { return []; },
-        notify: true
+        value: []
       }
     }
 
-  });
+  })
 </script>

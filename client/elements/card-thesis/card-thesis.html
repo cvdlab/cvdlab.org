@@ -1,0 +1,99 @@
+<template is="card-thesis">
+  <style>
+    :host {
+      display: block;
+    }
+
+    :host:nth-child(odd) {
+      float: left;
+    }
+
+    :host:nth-child(even) {
+      float: right;
+    }
+
+    :host:nth-child(odd) .stripe {
+      float: left;
+      margin: 10px 10px 10px 0;
+    }
+
+    :host:nth-child(even) .stripe {
+      float: right;
+      margin: 10px 0 10px 10px;
+      text-align: right;
+    }
+
+    :host:first-child {
+      margin-top: 60px;
+    }
+
+    :host:nth-child(odd) .stripe img {
+      float: left;
+    }
+
+    :host:nth-child(even) .stripe img {
+      float: right;
+    }
+
+    .stripe {
+      padding: 10px 10px 10px 10px;
+      background-color: #E6E6E6;
+      width: 60vw;
+      /*color: black;*/
+      /*color: white;*/
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .title::before,
+    .title::after {
+      font-size: 36px;
+      /*padding: 5px;*/
+    }
+
+    .title::before {
+      content: "“";
+    }
+
+    .title::after {
+      content: "”";
+    }
+
+    .stripe img {
+      width: 80px;
+      border-radius: 80px;
+      border: 4px solid #E6E6E6;
+      margin-top: -44px;
+    }
+
+    .desaturate {
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+    }
+
+    .desaturate:hover {
+      -webkit-filter: grayscale(0%);
+      filter: grayscale(0%);
+    }
+  </style>
+
+  <div class="stripe">
+    <img class="desaturate" src="{{thesis.author.picture}}">
+    <span class="title">{{thesis.title}}</span>
+  </div>
+</template>
+
+<script>
+  Pantarei({
+
+    is: 'card-thesis',
+
+    properties: {
+      thesis: {
+        type: Object,
+        value: {}
+      }
+    }
+
+  })
+</script>

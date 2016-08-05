@@ -1,55 +1,48 @@
+<!--
 <link rel="import" href="/components/google-map/google-map.html">
-<link rel="import" href="../part-footer/part-footer.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
+-->
+<link rel="import" href="../part-footer/part-footer.html">
 <link rel="import" href="../part-header/part-header.html">
-<link rel="import" href="../style-page/style-page.html">
-<dom-module id="page-about">
-  <template>
-    <style include="style-page"></style>
-    <style>
-      #jumbotron {
-        --jumbotron-background: {
-          /*background-image: url('/images/about.jpg');*/
-        }
-      }
 
-      #map {
-        height: 400px;
-      }
-    </style>
+<template is="page-about">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
 
-    <div class="page">
-      <part-header class="header"></part-header>
-      <div class="main">
-        <part-jumbotron class="jumbotron" id="jumbotron">
-          <h1 class="title">About</h1>
-        </part-jumbotron>
-        <div class="container">
-          <h3>Lorem ipsum</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <google-map id="map" latitude="41.8554605" longitude="12.4718962"
-            zoom="15" disable-default-ui>
-            <google-map-marker latitude="41.8554605" longitude="12.4718962"></google-map-marker>
-          </google-map>
-        </div>
+  <div class="page">
+    <part-header class="header"></part-header>
+    <div class="main">
+      <part-jumbotron class="jumbotron" id="jumbotron">
+        <h1 class="title">About</h1>
+      </part-jumbotron>
+      <div class="container">
+        <h3>Lorem ipsum</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <google-map id="map" latitude="41.8554605" longitude="12.4718962" zoom="15" disable-default-ui>
+          <google-map-marker latitude="41.8554605" longitude="12.4718962"></google-map-marker>
+        </google-map>
       </div>
-      <div class="space"></div>
-      <part-footer class="footer"></part-footer>
     </div>
+    <div class="space"></div>
+    <part-footer class="footer"></part-footer>
+  </div>
 
-  </template>
-</dom-module>
+</template>
+
 <script>
-  Polymer({
+  Pantarei({
 
     is: 'page-about'
 
-  });
+  })
 </script>

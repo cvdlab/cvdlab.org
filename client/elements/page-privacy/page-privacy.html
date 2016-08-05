@@ -1,28 +1,31 @@
-<link rel="import" href="../part-jumbotron/part-jumbotron.html">
+<!-- <link rel="import" href="../part-jumbotron/part-jumbotron.html"> -->
 <link rel="import" href="../part-header/part-header.html">
 <link rel="import" href="../part-footer/part-footer.html">
-<link rel="import" href="../style-page/style-page.html">
-<dom-module id="page-privacy">
-  <template>
-    <style include="style-page"></style>
 
-    <div class="page">
-      <part-header class="header"></part-header>
-      <div class="main">
-        <part-jumbotron class="jumbotron">
-          <h1 class="title">Privacy policy</h1>
-        </part-jumbotron>
-      </div>
-      <div class="space"></div>
-      <part-footer class="footer"></part-footer>
+<template is="page-privacy">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+
+  <div class="page">
+    <part-header class="header"></part-header>
+    <div class="main">
+      <part-jumbotron class="jumbotron">
+        <h1 class="title">Privacy policy</h1>
+      </part-jumbotron>
     </div>
+    <div class="space"></div>
+    <part-footer class="footer"></part-footer>
+  </div>
 
-  </template>
-</dom-module>
+</template>
+
 <script>
-  Polymer({
+  Pantarei({
 
     is: 'page-privacy'
 
-  });
+  })
 </script>
