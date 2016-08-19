@@ -1,34 +1,52 @@
 <link rel="import" href="../deck-theses/deck-theses.html">
-<link rel="import" href="../part-footer/part-footer.html">
+<link rel="import" href="../layout-page/layout-page.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
-<link rel="import" href="../part-header/part-header.html">
 
 <template is="page-theses">
   <style>
+    @import url('elements/style-grid/style-grid.css');
+
     :host {
       display: block;
     }
   </style>
 
-  <div class="page">
-    <part-header class="header"></part-header>
-    <div class="main">
-      <part-jumbotron class="jumbotron">
+  <layout-page>
+    <part-jumbotron class="jumbotron">
+      <div class="container">
         <h1 class="title">Theses</h1>
-      </part-jumbotron>
-      <div class="fluid-container">
-        <deck-theses theses="{{theses}}"></deck-theses>
       </div>
+    </part-jumbotron>
+    <div class="container">
+      <deck-theses theses="{{theses}}"></deck-theses>
     </div>
-    <div class="space"></div>
-    <part-footer class="footer"></part-footer>
-  </div>
+  </layout-page>
+
 </template>
 
 <script>
   Pantarei({
 
-    is: 'page-theses'
+    is: 'page-theses',
+
+    before_attach: function () {
+      fetch('data/theses.json', {
+        method: 'get',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(function (response) {
+        if (response.ok) {
+          return response.json()
+        }
+      })
+      .then(function (data) {
+        this.theses = data
+        this.update()
+      }.bind(this))
+    }
 
   })
 </script>

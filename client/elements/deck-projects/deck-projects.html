@@ -1,14 +1,18 @@
+<link rel="import" href="../card-project/card-project.html">
 
 <template is="deck-projects">
   <style>
     :host {
       display: block;
     }
+    .card {
+      margin-bottom: 32px;
+    }
   </style>
 
   <div class="deck">
     <template is="repeat" items="{{projects}}" item="project">
-      <card-project project="{{project}}"></card-project>
+      <card-project class="card" project="{{project}}"></card-project>
     </template>
   </div>
 </template>

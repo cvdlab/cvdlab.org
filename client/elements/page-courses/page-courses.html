@@ -1,37 +1,73 @@
-<!--
-<link rel="import" href="../deck-courses/deck-courses.html">
-<link rel="import" href="../part-footer/part-footer.html">
+<link rel="import" href="../layout-page/layout-page.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
-<link rel="import" href="../part-header/part-header.html">
-<link rel="import" href="../style-page/style-page.html">
--->
+<link rel="import" href="../deck-courses/deck-courses.html">
 
 <template is="page-courses">
   <style>
+    @import url('elements/style-grid/style-grid.css');
+
     :host {
       display: block;
     }
   </style>
 
-  <div class="page">
-    <part-header class="header"></part-header>
-    <div class="main">
-      <part-jumbotron class="jumbotron" id="jumbotron">
-        <h1 class="title">Courses</h1>
-      </part-jumbotron>
+  <layout-page>
+    <part-jumbotron class="jumbotron" id="jumbotron">
       <div class="container">
-        <deck-courses courses="{{courses}}"></deck-courses>
+        <h1 class="title">Courses</h1>
       </div>
+    </part-jumbotron>
+    <div class="container">
+      <deck-courses courses="{{courses}}"></deck-courses>
     </div>
-    <div class="space"></div>
-    <part-footer class="footer"></part-footer>
-  </div>
+    <div class="container">
+      <h2>Modules</h2>
+      <deck-courses courses="{{crumbs}}"></deck-courses>
+    </div>
+  </layout-page>
+
 </template>
 
 <script>
   Pantarei({
 
-    is: 'page-courses'
+    is: 'page-courses',
+
+    before_attach: function () {
+      fetch('data/courses.json', {
+        method: 'get',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(function (response) {
+        if (response.ok) {
+          return response.json()
+        }
+      })
+      .then(function (data) {
+        this.courses = data
+        this.update()
+      }.bind(this))
+
+      fetch('data/crumbs.json', {
+        method: 'get',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(function (response) {
+        if (response.ok) {
+          return response.json()
+        }
+      })
+      .then(function (data) {
+        this.crumbs = data
+        this.update()
+      }.bind(this))
+    }
 
   })
 </script>

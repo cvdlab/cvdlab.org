@@ -1,38 +1,60 @@
 <link rel="import" href="../deck-alumni/deck-alumni.html">
-<link rel="import" href="../part-footer/part-footer.html">
+<link rel="import" href="../layout-page/layout-page.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
-<link rel="import" href="../part-header/part-header.html">
 
 <template is="page-people">
   <style>
+    @import url('elements/style-flex/style-flex.css');
+    @import url('elements/style-grid/style-grid.css');
+    @import url('elements/style-flex-alignment/style-flex-alignment.css');
+
     :host {
       display: block;
     }
   </style>
 
-  <div class="page">
-    <part-header class="header"></part-header>
-    <div class="main">
-      <part-jumbotron class="jumbotron">
-        <h1 class="title">People</h1>
-      </part-jumbotron>
+  <layout-page>
+    <part-jumbotron class="jumbotron">
       <div class="container">
-        <div class="strip">
-          <h3>Alumni</h3>
-          <deck-alumni></deck-alumni>
-        </div>
+        <h1 class="title">People</h1>
+      </div>
+    </part-jumbotron>
+    <div class="container">
+      <div class="strip">
+        <h3>Alumni</h3>
+        <deck-alumni alumni="{{alumni}}"></deck-alumni>
       </div>
     </div>
-    <div class="space"></div>
-    <part-footer class="footer"></part-footer>
-  </div>
+  </layout-page>
 
 </template>
 
 <script>
   Pantarei({
 
-    is: 'page-people'
+    is: 'page-people',
+
+    before_attach: function () {
+      fetch('data/alumni.json', {
+        method: 'get',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(function (response) {
+        if (response.ok) {
+          return response.json()
+        }
+      })
+      .then(function (data) {
+        data.sort(function (a, b) {
+          return a.last_name.localeCompare(b.last_name)
+        })
+        this.alumni = data
+        this.update()
+      }.bind(this))
+    }
 
   });
 </script>

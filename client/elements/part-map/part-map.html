@@ -1,0 +1,61 @@
+
+<template is="part-map">
+  <style>
+    :host {
+      display: block;
+    }
+
+    [ref="container"] {
+      height: 400px;
+    }
+  </style>
+
+  <div>
+    <div ref="container"></div>
+  </div>
+
+</template>
+
+<script>
+  Pantarei({
+
+    is: 'part-map',
+
+    properties: {
+      latitude: {
+        value: -34.397
+      },
+      longitude: {
+        value: 150.644
+      },
+      zoom: {
+        value: 8
+      }
+    },
+
+    after_attach: function () {
+      this.load_api()
+    },
+
+    load_api: function () {
+      var callback_name = '__google_maps_callback'
+      if (window[callback_name]) {
+        this.on_load_api()
+        return
+      }
+      window[callback_name] = this.on_load_api.bind(this)
+      var script = document.createElement('script')
+      script.async = true
+      script.defer = true
+      script.src = 'https://maps.googleapis.com/maps/api/js?callback=' + callback_name
+      document.body.appendChild(script)
+    },
+
+    on_load_api: function () {
+      this.latlng = { lat: 41.85546049999999, lng: 12.471896199999936 }
+      this.map = new google.maps.Map(this.refs.container, { center: this.latlng, zoom: 15 })
+      this.marker = new google.maps.Marker({ position: this.latlng, map: this.map })
+    }
+
+  })
+</script>

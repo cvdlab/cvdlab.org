@@ -1,23 +1,23 @@
 <template is="part-footer">
   <style>
+    @import url('elements/style-grid/style-grid.css');
+
     :host {
       display: block;
     }
+
+    .made {
+      text-align: right;
+    }
   </style>
 
-  <footer class="footer">
+  <div class="footer">
     <div class="container">
-      <nav class="nav">
-        <ul class="links">
-          <li><a is="app-link" class="link" href="/about">about</a></li>
-          <li><a is="app-link" class="link" href="/privacy">privacy</a></li>
-        </ul>
-      </nav>
       <div class="made">
         made with <span class="love">&hearts;</span> in Rome
       </div>
     </div>
-  </footer>
+  </div>
 
 </template>
 

@@ -5,17 +5,21 @@
     :host {
       display: block;
     }
+
+    .card {
+      margin-bottom: 32px;
+    }
   </style>
 
   <div class="deck">
-    <template is="dom-repeat" items="{{courses}}" as="course">
-      <card-course course="{{course}}"></card-course>
+    <template is="repeat" items="{{courses}}" item="course">
+      <card-course class="card" course="{{course}}"></card-course>
     </template>
   </div>
 </template>
 
 <script>
-  Polymer({
+  Pantarei({
 
     is: 'deck-courses',
 

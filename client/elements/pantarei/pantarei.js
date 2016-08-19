@@ -384,8 +384,8 @@ var Pantarei
   }
 
   function create_node (config) {
-    var doc = document.currentScript.ownerDocument
-    var template = config.template || doc.querySelector('template')
+    var doc = document._currentScript.ownerDocument
+    var template = doc.querySelector('template')
     var name = template.getAttribute('is')
     var content = template.content
 
@@ -405,9 +405,13 @@ var Pantarei
     prototype.before_update = function () {}
     prototype.after_update = function () {}
 
-    prototype.props = {}
+    // prototype.properties = {}
 
-    Object.assign(prototype, config)
+    // Object.assign(prototype, config)
+    for (let p in config) {
+      prototype[p] = config[p]
+    }
+
 
     prototype.createdCallback = function () {
       this.before_create()
@@ -424,7 +428,7 @@ var Pantarei
     }
 
     prototype._init_props = function () {
-      let properties = this.properties
+      let properties = this.properties || {}
       for (let name in properties) {
         let property = properties[name]
         let value = property.value
@@ -439,7 +443,7 @@ var Pantarei
 
     prototype._init_refs = function () {
       let refs = {}
-      let nodes = this.node.querySelectorAll('[ref]')
+      let nodes = this.shadowRoot.querySelectorAll('[ref]')
       for (let i = 0, n = nodes.length; i < n; i++) {
         let node = nodes[i]
         let ref = node.getAttribute('ref')

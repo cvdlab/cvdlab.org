@@ -1,0 +1,31 @@
+<link rel="import" href="../part-footer/part-footer.html">
+<link rel="import" href="../part-header/part-header.html">
+
+<template is="layout-page">
+  <style>
+    @import url('elements/style-flex/style-flex.css');
+    @import url('elements/style-grid/style-grid.css');
+    @import url('elements/style-flex-alignment/style-flex-alignment.css');
+
+    .page {
+      height: 100vh;
+    }
+  </style>
+
+  <div class="page layout vertical">
+    <part-header class="header"></part-header>
+    <div class="main">
+      <content select="*"></content>
+    </div>
+    <div class="layout flex"></div>
+    <part-footer class="footer"></part-footer>
+  </div>
+</template>
+
+<script>
+  Pantarei({
+
+    is: 'layout-page'
+
+  })
+</script>

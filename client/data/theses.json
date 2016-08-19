@@ -1,60 +1,119 @@
 [
   {
     "title": "Parallel implementation of the Catmull-Clark subdivision algorithm in a Web environment",
-    "author": 1,
-    "description": ""
+    "description": "",
+    "author": {
+      "fullname": "Iacopo Breschi",
+      "picture": "/images/people/breschi.jpg",
+      "date": "2012-01-01"
+    }
   },
   {
     "title": "Accelerazione HPC degli operatori topologici nella rappresentazione algebrica lineare",
-    "author": 3,
-    "description": ""
+    "description": "",
+    "author": {
+      "fullname": "Francesco Furiani",
+      "picture": "/images/people/furiani.jpg",
+      "date": "2012-06-01"
+    }
   },
   {
     "title": "RhOME digital mirror: un modello WebGL interattivo per il monitoraggio real-time di un ambiente abitativo automatizzato",
-    "repository": "",
-    "author": 4,
-    "description": ""
+    "description": "",
+    "author": {
+      "fullname": "Matteo Pisani",
+      "picture": "/images/people/pisani.jpg",
+      "date": "2013-04-01"
+    }
   },
   {
     "title": "FIVE - Framework per il mapping virtuale di ambienti indoor interattivi su web: Navigazione e Calcolo dei Percorsi",
-    "repository": "",
-    "author": 7,
-    "description": ""
+    "description": "",
+    "author": {
+      "fullname": "Marco Virgadamo",
+      "picture": "/images/people/virgadamo.jpg",
+      "date": "2014-10-01"
+    }
   },
   {
     "title": "FIVE - Framework per il mapping virtuale di ambienti indoor interattivi su web: Architettura di supporto all’Internet of Things",
-    "repository": "",
-    "author": 8,
-    "description": ""
+    "description": "",
+    "author": {
+      "fullname": "Marco Sportillo",
+      "picture": "/images/people/sportillo.jpg",
+      "date": "2014-10-01"
+    }
   },
   {
     "title": "X-Project - Document-Oriented HTML5 Application Toolkit Based on Web Components: Amazon S3 Storage Component",
-    "repository": "",
-    "author": 5,
-    "description": "..."
+    "description": "",
+    "author": {
+      "fullname": "Andrea D'Amelio",
+      "picture": "/images/people/damelio.jpg",
+      "date": "2014-09-01"
+    }
   },
   {
     "title": "X-Project - Document-Oriented HTML5 Application Toolkit Based on Web Components: User Management Component",
-    "repository": "",
-    "author": 6,
-    "description": "..."
+    "description": "",
+    "author": {
+      "fullname": "Tiziano Sperati",
+      "picture": "/images/people/sperati.jpg",
+      "date": "2014-09-01"
+    }
   },
   {
-    "title": "Tesi di Baljinder Jit",
-    "repository": "",
-    "author": 9,
-    "description": "..."
+    "title": "Tecniques and tools based on HTML5 Web Components to build an e-commerce platform",
+    "description": "",
+    "author": {
+      "fullname": "Baljinder Jit",
+      "picture": "/images/people/jit.jpg",
+      "date": "2015-06-01"
+    }
   },
   {
-    "title": "Tesi di Edoardo Carra",
-    "repository": "",
-    "author": 10,
-    "description": "..."
+    "title": "Tecniques and tools based on HTML5 Web Components to build an e-learning platform",
+    "description": "",
+    "author": {
+      "fullname": "Alessandro Rastelli",
+      "picture": "",
+      "date": "2015-06-01"
+    }
   },
   {
-    "title": "Tesi di Michele D'Antimi",
-    "repository": "",
-    "author": 11,
-    "description": "..."
+    "title": "Tecniche di realizzazione e strumenti di costruzione di scene fotorealistiche in ambiente Web",
+    "description": "",
+    "author": {
+      "fullname": "Edoardo Carra",
+      "picture": "",
+      "date": "2016-03-01"
+    }
+  },
+  {
+    "title": "Tecniche di realizzazione e strumenti di costruzione di scene fotorealistiche in ambiente Web",
+    "description": "",
+    "author": {
+      "fullname": "Michele D'Antimi",
+      "picture": "",
+      "date": "2016-03-01"
+    }
+  },
+  {
+    "title": "Models from massive biomedical images via parallel computational topology",
+    "description": "",
+    "author": {
+      "fullname": "Danilo Salvati",
+      "picture": "",
+      "date": "2016-03-01"
+    }
+  },
+  {
+    "title": "Studio e sperimentazione del paradigma async/await di ES7 per la realizzazione di un REST API framework in NodeJS",
+    "description": "",
+    "author": {
+      "fullname": "Christian Vadala",
+      "picture": "",
+      "date": "2016-07-01"
+    }
   }
 ]

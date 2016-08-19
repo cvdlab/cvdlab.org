@@ -2,15 +2,15 @@
 
 <template is="deck-alumni">
   <style>
+    @import url('elements/style-flex/style-flex.css');
+    @import url('elements/style-flex-alignment/style-flex-alignment.css');
+
     .deck {
       padding: 0 40px;
-      @apply(--layout-horizontal);
-      @apply(--layout-wrap);
-      @apply(--layout-center-justified);
     }
   </style>
 
-  <div class="deck">
+  <div class="deck layout horizontal wrap center-justified">
     <template is="repeat" items="{{alumni}}" item="alumnus">
       <card-alumnus alumnus="{{alumnus}}"></card-alumnus>
     </template>

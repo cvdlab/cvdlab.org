@@ -1,42 +1,23 @@
 
 <template is="card-project">
   <style>
-    .thumbnail {
-      width: 98%;
-      border-radius: 3px;
+    :host {
+      display: block;
     }
 
-    .desaturate {
-      -webkit-filter: grayscale(100%);
-      filter: grayscale(100%);
+    .title {
+      font-size: 16px;
     }
 
-    .card:hover .desaturate {
-      -webkit-filter: grayscale(0%);
-      filter: grayscale(0%);
+    .description {
+      line-height: 1.75em;
+      font-size: 14px;
     }
   </style>
 
   <div class="card">
-    <h3 class="title">
-      <template is="if" if="{{project.repository}}">
-        <a href="{{project.repository}}">{{project.title}}</a>
-      </template>
-      <template is="dom-if" if="{{!project.repository}}">
-        <span>{{project.title}}</span>
-      </template>
-    </h3>
-    <div>
-      <template is="dom-if" if="{{project.url}}">
-        <a is="x-link" href="{{project.url}}" target="_blank">
-          <img class="thumbnail desaturate" src="{{project.thumbnail}}">
-        </a>
-      </template>
-      <template is="dom-if" if="{{!project.url}}">
-        <img class="thumbnail desaturate" src="{{project.thumbnail}}">
-      </template>
-    </div>
-    <div>
+    <h3 class="title">{{project.title}}</h3>
+    <div class="description">
       <p>{{project.description}}</p>
     </div>
   </div>

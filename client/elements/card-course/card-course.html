@@ -1,16 +1,26 @@
-<link rel="import" href="../style-card/style-card.html">
 
 <template is="card-course">
+  <style>
+    :host {
+      display: block;
+    }
+
+    .title {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .description {
+      line-height: 1.75em;
+      font-size: 14px;
+    }
+  </style>
+
   <div class="card">
-    <h3>{{course.title}}</h3>
-    <p>{{course.summary}}</p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      cillum dolore eu fugiat nulla pariatur.
-    </p>
+    <h3 class="title">{{course.title}}</h3>
+    <div class="description">
+      <p>{{course.description}}</p>
+    </div>
   </div>
 </template>
 

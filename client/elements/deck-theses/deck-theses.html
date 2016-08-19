@@ -5,11 +5,15 @@
     :host {
       display: block;
     }
+
+    .card {
+      margin-bottom: 32px;
+    }
   </style>
 
-  <div class="stripes">
-    <template is="dom-repeat" items="{{theses}}" as="thesis">
-      <card-thesis thesis="{{thesis}}"></card-thesis>
+  <div class="deck">
+    <template is="repeat" items="{{theses}}" item="thesis">
+      <card-thesis class="card" thesis="{{thesis}}"></card-thesis>
     </template>
   </div>
 </template>
@@ -19,7 +23,7 @@
 
     is: 'deck-theses',
 
-    properties: {
+    props: {
       theses: {
         type: Array,
         value: []

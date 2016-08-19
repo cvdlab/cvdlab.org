@@ -1,22 +1,7 @@
 [
   {
-    "title": "JavaScript crumbs",
-    "link": "/courses/javascript"
-  },
-  {
-    "title": "Three.js crumbs",
-    "link": "/courses/threejs"
-  },
-  {
-    "title": "WebGL crumbs",
-    "link": "/courses/webgl"
-  },
-  {
-    "title": "git crumbs",
-    "link": "/courses/git"
-  },
-  {
-    "title": "HTML5 crumbs",
-    "link": "/courses/html5"
+    "title": "GGPL",
+    "description": "Geometric and Graphics Programming Laboratory",
+    "repository": "http://github.com/cvdlab-courses/ggpl"
   }
 ]

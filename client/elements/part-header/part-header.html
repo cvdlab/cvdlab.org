@@ -1,18 +1,51 @@
-
 <template is="part-header">
   <style>
+    @import url('elements/style-flex/style-flex.css');
+    @import url('elements/style-grid/style-grid.css');
+    @import url('elements/style-flex-alignment/style-flex-alignment.css');
+
     :host {
       display: block;
+    }
+
+    .links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header .link {
+      text-decoration: none;
+      display: block;
+      padding: 2em 1em;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .75px;
+      -webkit-font-smoothing: antialiased;
+      color: #333;
+    }
+
+    .header .links li:first-child .link {
+      padding-left: 0px;
+    }
+    .header .links li:last-child .link {
+      padding-right: 0px;
+    }
+
+    .header .brand .link {
+      padding-left: 0px;
+      padding-right: 0px;
     }
   </style>
 
   <div class="header">
-    <div class="container">
-      <div class="brand">
+    <div class="container flex layout horizontal">
+      <div class="brand flex layout start-justified">
         <a is="app-link" class="link" href="/">cvdlab</a>
       </div>
-      <nav class="nav">
-        <ul class="links">
+      <nav class="nav flex layout">
+        <ul class="links layout horizontal end-justified">
           <li><a is="app-link" class="link" href="/about">about</a></li>
           <li><a is="app-link" class="link" href="/people">people</a></li>
           <li><a is="app-link" class="link" href="/projects">projects</a></li>
