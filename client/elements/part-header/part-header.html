@@ -1,67 +1,134 @@
-<template is="part-header">
-  <style>
-    @import url('elements/style-flex/style-flex.css');
-    @import url('elements/style-grid/style-grid.css');
-    @import url('elements/style-flex-alignment/style-flex-alignment.css');
+<template-element id="part-header">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
 
-    :host {
-      display: block;
-    }
+      .header {
+        position: fixed;
+        z-index: 100;
+        box-sizing: border-box;
+        width: 100%;
+        height: 60px;
+        padding: 0 3%;
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: rgba(255, 255, 255, 0.2);
+        background-color: white;
+        transition-property: background-color;
+        transition-duration: 0.5s;
+      }
+      .header.transparent {
+        background-color: rgba(49, 51, 59, 0.1);
+      }
 
-    .links {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
+      .header .brand {
+        display: flex;
+        align-items: stretch;
+        @apply --my-mixin;
+      }
 
-    .header .link {
-      text-decoration: none;
-      display: block;
-      padding: 2em 1em;
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: .75px;
-      -webkit-font-smoothing: antialiased;
-      color: #333;
-    }
+      .header .space {
+        flex: 1;
+      }
 
-    .header .links li:first-child .link {
-      padding-left: 0px;
-    }
-    .header .links li:last-child .link {
-      padding-right: 0px;
-    }
+      .header .links {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        flex-wrap: nowrap;
+      }
 
-    .header .brand .link {
-      padding-left: 0px;
-      padding-right: 0px;
-    }
-  </style>
+      .header .brand .link,
+      .header .links .link {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: .75px;
+        text-decoration: none;
+        text-transform: uppercase;
+        padding: 0 20px;
+        color: #333;
+        transition-property: color;
+        transition-duration: .5s;
+      }
+      .header.transparent .brand .link,
+      .header.transparent .links .link {
+        color: white;
+      }
 
-  <div class="header">
-    <div class="container flex layout horizontal">
-      <div class="brand flex layout start-justified">
-        <a is="app-link" class="link" href="/">cvdlab</a>
+      .header .brand .link,
+      .header .links .link:first-child {
+        padding-left: 0;
+      }
+      .header .brand .link,
+      .header .links .link:last-child {
+        padding-right: 0;
+      }
+    </style>
+
+    <div ref="header" class="header">
+      <div class="brand">
+        <a class="link" href="/">
+          <span class="brand">CVDLAB</span>
+        </a>
       </div>
-      <nav class="nav flex layout">
-        <ul class="links layout horizontal end-justified">
-          <li><a is="app-link" class="link" href="/about">about</a></li>
-          <li><a is="app-link" class="link" href="/people">people</a></li>
-          <li><a is="app-link" class="link" href="/projects">projects</a></li>
-          <li><a is="app-link" class="link" href="/theses">theses</a></li>
-          <li><a is="app-link" class="link" href="/courses">courses</a></li>
-        </ul>
-      </nav>
+      <div class="space"></div>
+      <div class="links">
+        <a class="link" href="/about">
+          <span class="label">about</span>
+        </a>
+        <a class="link" href="/people">
+          <span class="label">people</span>
+        </a>
+        <a class="link" href="/projects">
+          <span class="label">projects</span>
+        </a>
+        <a class="link" href="/theses">
+          <span class="label">theses</span>
+        </a>
+        <a class="link" href="/courses">
+          <span class="label">courses</span>
+        </a>
+      </div>
     </div>
-  </div>
 
-</template>
+  </template>
+</template-element>
 
 <script>
-  Pantarei({
+  class PartHeader extends Pantarei.Element {
 
-    is: 'part-header'
+    static get is() { return 'part-header' }
 
-  })
+    should_update () {
+      return false
+    }
+
+    after_create () {
+      this.on_scroll = this.on_scroll.bind(this)
+    }
+
+    after_connect () {
+      window.addEventListener('scroll', this.on_scroll)
+      this.on_scroll()
+    }
+
+    after_disconnect () {
+      window.removeEventListener('scroll', this.on_scroll)
+    }
+
+    on_scroll (event) {
+      let transparent = window.scrollY < 45
+      this.refs.header.classList.toggle('transparent', transparent)
+    }
+
+  }
+
+  document.registerElement('part-header', PartHeader)
 </script>

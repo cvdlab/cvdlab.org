@@ -1,30 +1,32 @@
-<template is="part-footer">
-  <style>
-    @import url('elements/style-grid/style-grid.css');
+<template-element id="part-footer">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
 
-    :host {
-      display: block;
-    }
+      .made {
+        text-align: right;
+      }
+    </style>
 
-    .made {
-      text-align: right;
-    }
-  </style>
-
-  <div class="footer">
-    <div class="container">
-      <div class="made">
-        made with <span class="love">&hearts;</span> in Rome
+    <div class="footer">
+      <div class="container">
+        <div class="made">
+          made with <span class="love">&hearts;</span> in Rome
+        </div>
       </div>
     </div>
-  </div>
 
-</template>
+  </template>
+</template-element>
 
 <script>
-  Pantarei({
+  class PartFooter extends Pantarei.Element {
 
-    is: 'part-footer'
+    static get is () { return 'part-footer' }
 
-  })
+  }
+
+  document.registerElement('part-footer', PartFooter)
 </script>

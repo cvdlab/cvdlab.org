@@ -2,14 +2,25 @@ var Pantarei
 
 (function () {
 
-  function setup_node (node) {
-    setup_node_event(node)
-    parse_node(node, node)
+  const TAG_TEMPLATE = 'TEMPLATE'
+
+  function setup_node (node, root, listeners) {
+    root = root || node
+    listeners = listeners || root
+
+    root.listeners = listeners
+
+    setup_node_event(node, root, listeners)
+    parse_node(node, root)
   }
 
   function parse_node (node, root) {
     if (node.nodeType === node.TEXT_NODE) {
       parse_node_text(node, root)
+      return
+    }
+    if (node.nodeType === node.DOCUMENT_FRAGMENT_NODE) {
+      parse_node_fragment(node, root)
       return
     }
     if (node.nodeType !== node.ELEMENT_NODE) {
@@ -22,10 +33,21 @@ var Pantarei
     parse_node_element(node, root)
   }
 
+  function parse_node_fragment (node, root) {
+    node.pantarei = {}
+    node.pantarei.root = root
+
+    let child = node.firstChild;
+    while (child) {
+      parse_node(child, root);
+      child = child.nextSibling;
+    }
+  }
+
   function parse_node_element (node, root) {
-    node.p = {}
-    node.p.root = root
-    node.p.directives = []
+    node.pantarei = {}
+    node.pantarei.directives = []
+    node.pantarei.root = root
 
     parse_attributes(node, node.attributes)
 
@@ -58,12 +80,12 @@ var Pantarei
         value: attribute.value,
         handler: handler
       }
-      node.p.directives.push(directive)
+      node.pantarei.directives.push(directive)
       return
     }
 
     if (is_event(name)) {
-      let root = node.p.root
+      let root = node.pantarei.root
       let event_name = parse_event(name)
       if (!root.listeners.hasOwnProperty(event_name)) {
         root.listeners[event_name] = true
@@ -126,11 +148,11 @@ var Pantarei
       node.parentNode.insertBefore(template, node)
       template.setAttribute('is', 'text')
       template.setAttribute('content', content)
-      template.p = {}
+      template.pantarei = {}
       let handler = function (data) {
         node.textContent = getter(data)
       }
-      template.p.directive = {
+      template.pantarei.directive = {
         type: 'text',
         content: content,
         handler: handler
@@ -141,10 +163,6 @@ var Pantarei
   function parse_node_template (template, root) {
     let is = template.getAttribute('is')
 
-    if (is === 'text') {
-      parse_node_template_text(template, root)
-      return
-    }
     if (is === 'if') {
       parse_node_template_if(template, root)
       return
@@ -158,42 +176,41 @@ var Pantarei
   var stage = document.createDocumentFragment()
 
   function parse_node_template_if (template, root) {
-    template.p = {}
-    template.p.root = root
+    template.pantarei = {}
+    template.pantarei.root = root
 
     let content = template.content
     let node = content.children[0]
     stage.appendChild(node);
-    template.p.node = node.cloneNode(true);
+    template.pantarei.node = node.cloneNode(true)
     content.appendChild(node);
 
-    template.p.test_path = template.getAttribute('if')
-    template.p.test_func = parse_expression(template.p.test_path)
-    template.p.clone = null;
+    template.pantarei.test_path = template.getAttribute('if')
+    template.pantarei.test_func = parse_expression(template.pantarei.test_path)
+    template.pantarei.clone = null;
   }
 
   function parse_node_template_repeat (template, root) {
-    template.p = {}
-    template.p.root = root
+    template.pantarei = {}
+    template.pantarei.root = root
 
     let content = template.content
     let node = content.children[0]
-    stage.appendChild(node);
-    template.p.node = node.cloneNode(true);
-    content.appendChild(node);
+    stage.appendChild(node)
+    template.pantarei.node = node.cloneNode(true)
+    content.appendChild(node)
 
-    template.p.item_name = template.getAttribute('item') || 'item'
-    template.p.index_name = template.getAttribute('index') || 'index'
-    template.p.items_path = template.getAttribute('items')
-    template.p.items_func = parse_expression(template.p.items_path)
-    template.p.items = []
-    template.p.clones = []
+    template.pantarei.item_name = template.getAttribute('item') || 'item'
+    template.pantarei.index_name = template.getAttribute('index') || 'index'
+    template.pantarei.items_path = template.getAttribute('items')
+    template.pantarei.items_func = parse_expression(template.pantarei.items_path)
+    template.pantarei.items = []
+    template.pantarei.clones = []
   }
 
-  function setup_node_event (root) {
+  function setup_node_event (node, root, listeners) {
 
     function listener (event) {
-      var handlers = root.handlers || root
       var event_type = event.type
       var event_name = PREFIX_EVENT + event_type
       var target = event.target
@@ -209,22 +226,34 @@ var Pantarei
         if (target === root) {
           bubble = false
         }
-        let handler_name = target.getAttribute(event_name)
-        if (handler_name) {
-          let handler = handlers[handler_name]
-          handler.call(handlers, event, event.detail)
+
+        let listener_name = target.getAttribute(event_name)
+        if (listener_name) {
+          let listener = listeners[listener_name]
+          listener.call(listeners, event, event.detail)
+        }
+
+        if (!bubble) {
+          break
         }
         target = target.parentNode
+        if (!target) {
+          break
+        }
+        if (target.nodeType === target.DOCUMENT_FRAGMENT_NODE) {
+          break
+        }
       }
     }
 
     root.listener = listener
-    root.listeners = {}
   }
 
-  var TAG_TEMPLATE = 'TEMPLATE'
-
   function render_node (node, data) {
+    if (node.nodeType === node.DOCUMENT_FRAGMENT_NODE) {
+      render_node_fragment(node, data)
+      return
+    }
     if (node.nodeType !== node.ELEMENT_NODE) {
       return
     }
@@ -235,13 +264,21 @@ var Pantarei
     render_node_element(node, data)
   }
 
+  function render_node_fragment (node, data) {
+    let child = node.firstElementChild;
+    while (child) {
+      render_node(child, data);
+      child = child.nextElementSibling;
+    }
+  }
+
   function render_node_element (node, data) {
-    let p = node.p
-    if (!p) {
+    let pantarei = node.pantarei
+    if (!pantarei) {
       return
     }
 
-    let directives = p.directives
+    let directives = pantarei.directives
     if (!directives) {
       return
     }
@@ -280,8 +317,8 @@ var Pantarei
   }
 
   function render_node_template_text (node, data) {
-    let p = node.p
-    let directive = p.directive
+    let pantarei = node.pantarei
+    let directive = pantarei.directive
     let handler = directive.handler
     handler(data)
   }
@@ -289,27 +326,26 @@ var Pantarei
   function render_node_template_if (template, data) {
 
     function create_clone () {
-      let root = template.p.root
-      let node = template.p.node
+      let root = template.pantarei.root
+      let node = template.pantarei.node
       let clone = node.cloneNode(true)
       parse_node(clone, root)
-      console.log(clone)
       template.parentNode.insertBefore(clone, template);
-      template.p.clone = clone
+      template.pantarei.clone = clone
     }
 
     function render_clone () {
-      render_node(template.p.clone, data)
+      render_node(template.pantarei.clone, data)
     }
 
     function remove_clone () {
-      template.p.clone.remove();
-      template.p.clone = null
+      template.pantarei.clone.remove();
+      template.pantarei.clone = null
     }
 
-    let old_test = template.p.test
-    let new_test = template.p.test_func(data);
-    template.p.test = new_test
+    let old_test = template.pantarei.test
+    let new_test = template.pantarei.test_func(data);
+    template.pantarei.test = new_test
 
     if (new_test) {
       if (old_test) {
@@ -329,37 +365,37 @@ var Pantarei
   function render_node_template_repeat (template, data) {
 
     function create_clone (index) {
-      let root = template.p.root
-      let node = template.p.node
+      let root = template.pantarei.root
+      let node = template.pantarei.node
       let clone = node.cloneNode(true)
       parse_node(clone, root)
       template.parentNode.insertBefore(clone, template)
-      template.p.clones[index] = clone
+      template.pantarei.clones[index] = clone
     }
 
     function render_clone (index) {
-      let clone = template.p.clones[index]
+      let clone = template.pantarei.clones[index]
       let clone_data = Object.assign({}, data)
-      let item = template.p.items[index]
-      clone_data[template.p.item_name] = item
-      clone_data[template.p.index_name] = index
+      let item = template.pantarei.items[index]
+      clone_data[template.pantarei.item_name] = item
+      clone_data[template.pantarei.index_name] = index
       render_node(clone, clone_data)
     }
 
     function remove_clone (index) {
-      let clone = template.p.clones[index]
+      let clone = template.pantarei.clones[index]
       clone.remove()
-      template.p.clones[index] = null
+      template.pantarei.clones[index] = null
     }
 
-    let old_items = template.p.items
-    let new_items = template.p.items_func(data)
+    let old_items = template.pantarei.items
+    let new_items = template.pantarei.items_func(data)
 
     if (!Array.isArray(new_items)) {
       new_items = []
     }
 
-    template.p.items = new_items.slice()
+    template.pantarei.items = new_items.slice()
 
     let old_items_count = old_items.length
     let new_items_count = new_items.length
@@ -383,55 +419,27 @@ var Pantarei
     }
   }
 
-  function create_node (config) {
-    var doc = document._currentScript.ownerDocument
-    var template = doc.querySelector('template')
-    var name = template.getAttribute('is')
-    var content = template.content
+  class PantareiElement extends HTMLElement {
 
-    var prototype = Object.create(HTMLElement.prototype)
-
-    prototype.before_create = function () {}
-    prototype.after_create = function () {}
-
-    prototype.before_attach = function () {}
-    prototype.after_attach = function () {}
-
-    prototype.before_detach = function () {}
-    prototype.after_detach = function () {}
-
-    prototype.should_update = function () { return true }
-
-    prototype.before_update = function () {}
-    prototype.after_update = function () {}
-
-    // prototype.properties = {}
-
-    // Object.assign(prototype, config)
-    for (let p in config) {
-      prototype[p] = config[p]
-    }
-
-
-    prototype.createdCallback = function () {
+    constructor () {
+      super()
       this.before_create()
-      var root = this.createShadowRoot()
-      var imported = document.importNode(content, true)
-      root.appendChild(imported)
-      var node = root.children[root.children.length === 1 ? 0 : 1]
-      this.node = node
-      this.node.handlers = this
-      this._init_props()
-      Pantarei.setup(node)
-      this._init_refs()
-      this.after_create()
     }
 
-    prototype._init_props = function () {
-      let properties = this.properties || {}
-      for (let name in properties) {
-        let property = properties[name]
-        let value = property.value
+    get mode () { return 'open' }
+
+    get props () { return {} }
+
+    setup () {
+      this.before_setup()
+      Pantarei.setup(this.shadowRoot, this.shadowRoot, this)
+      this.after_setup()
+    }
+
+    set_props (props) {
+      for (let name in props) {
+        let prop = props[name]
+        let value = prop.value
         if (this.hasAttribute(name)) {
           value = this.getAttribute(name)
         }
@@ -441,7 +449,7 @@ var Pantarei
       }
     }
 
-    prototype._init_refs = function () {
+    _init_refs () {
       let refs = {}
       let nodes = this.shadowRoot.querySelectorAll('[ref]')
       for (let i = 0, n = nodes.length; i < n; i++) {
@@ -453,56 +461,122 @@ var Pantarei
       this.refs = refs
     }
 
-    prototype.attachedCallback = function () {
-      this.before_attach()
-      Pantarei.update(this.node, this)
-      this._attached = true
-      this.after_attach()
-    }
-
-    prototype.detachedCallback = function () {
-      this.before_detach()
-      this._attached = false
-      this.after_detach()
-    }
-
-    prototype.update = function () {
-      var pass = this.should_update()
+    update () {
+      let pass = this.should_update()
       if (!pass) {
         return
       }
       this.before_update()
-      Pantarei.update(this.node, this)
+      Pantarei.update(this.shadowRoot, this)
       this.after_update()
-    };
+    }
 
-    prototype.fire = function (type, detail) {
-      let self = this
+    fire (type, detail) {
       let event = new CustomEvent(type, { bubbles: true, cancelable: true, detail: detail })
-      requestAnimationFrame(function () {
-        self.dispatchEvent(event)
-      })
+      requestAnimationFrame(() => { this.dispatchEvent(event) })
       return event
     }
 
-    prototype.action = function (name, data) {
+    action (name, data) {
       this.fire('action', { name: name, data: data })
       return this
     }
 
-    prototype.async = function (f) {
+    async (f) {
       requestAnimationFrame(f.bind(this))
     }
 
-    let Element = document.registerElement(name, { prototype: prototype })
+    connectedCallback () {
+      console.log(this)
+    }
 
-    return Element;
+    createdCallback () {
+      this.createShadowRoot()
+
+      let name = this.localName
+      let template = Pantarei.templates[name]
+      let content = template.content
+
+      let node = document.importNode(content, true)
+      this.shadowRoot.appendChild(node)
+
+      this.set_props(this.props)
+      this.setup()
+      this._init_refs()
+      this.after_create()
+
+      ShadyCSS.applyStyle(this, this.shadowRoot)
+    }
+
+    attachedCallback () {
+      this.before_connect()
+      Pantarei.update(this.shadowRoot, this)
+      this.after_connect()
+    }
+
+    disconnectedCallback () {
+      this.after_disconnect()
+    }
+
+    attributeChangedCallback () {}
+
+    before_create () {}
+
+    after_create () {}
+
+    should_update () { return true }
+
+    before_update () {}
+
+    after_update () {}
+
+    before_connect () {}
+
+    after_connect () {}
+
+    after_disconnect () {}
+
+    before_setup () {}
+
+    after_setup () {}
+
   }
 
-  Pantarei = create_node
+  class TemplateElement extends HTMLElement {
+
+    createdCallback () {
+      let name = this.id
+      let template = this.querySelector('template')
+      template = document.importNode(template, true)
+      Pantarei.templates[name] = template
+      ShadyCSS.prepareTemplate(template, name)
+      console.log('created', name)
+    }
+
+  }
+
+  document.registerElement('template-element', TemplateElement)
+
+  class TemplateRepeat extends HTMLElement {
+
+  }
+
+  document.registerElement('template-repeat', TemplateRepeat)
+
+  class TemplateIf extends HTMLElement {
+
+  }
+
+  document.registerElement('template-if', TemplateIf)
+
+  Pantarei = {}
+
+  Pantarei.templates = {}
 
   Pantarei.setup = setup_node
 
   Pantarei.update = render_node
+
+  Pantarei.Element = PantareiElement
 
 }())

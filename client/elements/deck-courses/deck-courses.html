@@ -1,34 +1,43 @@
-<link rel="import" href="../card-course/card-course.html">
+<template-element id="deck-courses">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
 
-<template is="deck-courses">
-  <style>
-    :host {
-      display: block;
-    }
+      .card {
+        margin-bottom: 32px;
+      }
+    </style>
 
-    .card {
-      margin-bottom: 32px;
-    }
-  </style>
-
-  <div class="deck">
-    <template is="repeat" items="{{courses}}" item="course">
-      <card-course class="card" course="{{course}}"></card-course>
-    </template>
-  </div>
-</template>
+    <div class="deck">
+      <template is="repeat" items="{{courses}}" item="course">
+        <div class="card">
+          <h3 class="title">{{course.title}}</h3>
+          <div class="description">
+            <p>{{course.description}}</p>
+          </div>
+        </div>
+      </template>
+    </div>
+  </template>
+</template-element>
 
 <script>
-  Pantarei({
+  class DeckCourses extends Pantarei.Element {
 
-    is: 'deck-courses',
+    static get is () { return 'deck-courses' }
 
-    properties: {
-      courses: {
-        type: Array,
-        value: []
+    get properties () {
+      return {
+        courses: {
+          type: Array,
+          value: []
+        }
       }
     }
 
-  })
+  }
+
+  document.registerElement('deck-courses', DeckCourses)
 </script>

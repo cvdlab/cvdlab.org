@@ -2,38 +2,40 @@
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
 <link rel="import" href="../deck-courses/deck-courses.html">
 
-<template is="page-courses">
-  <style>
-    @import url('elements/style-grid/style-grid.css');
+<template-element id="page-courses">
+  <template>
+    <style>
+      @import url('elements/style-grid/style-grid.css');
 
-    :host {
-      display: block;
-    }
-  </style>
+      :host {
+        display: block;
+      }
+    </style>
 
-  <layout-page>
-    <part-jumbotron class="jumbotron" id="jumbotron">
+    <layout-page>
+      <part-jumbotron class="jumbotron" id="jumbotron">
+        <div class="container">
+          <h1 class="title">Courses</h1>
+        </div>
+      </part-jumbotron>
       <div class="container">
-        <h1 class="title">Courses</h1>
+        <deck-courses courses="{{courses}}"></deck-courses>
       </div>
-    </part-jumbotron>
-    <div class="container">
-      <deck-courses courses="{{courses}}"></deck-courses>
-    </div>
-    <div class="container">
-      <h2>Modules</h2>
-      <deck-courses courses="{{crumbs}}"></deck-courses>
-    </div>
-  </layout-page>
+      <div class="container">
+        <h2>Modules</h2>
+        <deck-courses courses="{{crumbs}}"></deck-courses>
+      </div>
+    </layout-page>
 
-</template>
+  </template>
+</template-element>
 
 <script>
-  Pantarei({
+  class PageCourses extends Pantarei.Element {
 
-    is: 'page-courses',
+    static get is () { return 'page-courses' }
 
-    before_attach: function () {
+    before_attach () {
       fetch('data/courses.json', {
         method: 'get',
         headers: {
@@ -69,5 +71,7 @@
       }.bind(this))
     }
 
-  })
+  }
+
+  document.registerElement('page-courses', PageCourses)
 </script>

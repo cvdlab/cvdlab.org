@@ -1,31 +1,49 @@
 <link rel="import" href="../part-footer/part-footer.html">
 <link rel="import" href="../part-header/part-header.html">
 
-<template is="layout-page">
-  <style>
-    @import url('elements/style-flex/style-flex.css');
-    @import url('elements/style-grid/style-grid.css');
-    @import url('elements/style-flex-alignment/style-flex-alignment.css');
+<template-element id="layout-page">
+  <template>
+    <style>
+      #layout {
+        @apply --layout-vertical;
+        @apply --layout-fullbleed;
+      }
 
-    .page {
-      height: 100vh;
-    }
-  </style>
+      #header {
+        @apply --layout-block;
+        @apply --layout-over;
+      }
 
-  <div class="page layout vertical">
-    <part-header class="header"></part-header>
-    <div class="main">
-      <content select="*"></content>
+      #main {
+        @apply --layout-block;
+      }
+
+      #space {
+        @apply --layout-flex;
+      }
+
+      #footer {
+        @apply --layout-block;
+      }
+    </style>
+
+    <div id="layout">
+      <part-header id="header"></part-header>
+      <div id="main">
+        <content select="*"></content>
+      </div>
+      <div id="space"></div>
+      <part-footer id="footer"></part-footer>
     </div>
-    <div class="layout flex"></div>
-    <part-footer class="footer"></part-footer>
-  </div>
-</template>
+  </template>
+</template-element>
 
 <script>
-  Pantarei({
+  class LayoutPage extends Pantarei.Element {
 
-    is: 'layout-page'
+    static get is() { return 'layout-page' }
 
-  })
+  }
+
+  document.registerElement('layout-page', LayoutPage)
 </script>

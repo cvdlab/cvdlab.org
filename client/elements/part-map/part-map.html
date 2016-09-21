@@ -1,43 +1,46 @@
 
-<template is="part-map">
-  <style>
-    :host {
-      display: block;
-    }
+<template-element id="part-map">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
 
-    [ref="container"] {
-      height: 400px;
-    }
-  </style>
+      [ref="container"] {
+        height: 400px;
+      }
+    </style>
 
-  <div>
-    <div ref="container"></div>
-  </div>
-
-</template>
+    <div>
+      <div ref="container"></div>
+    </div>
+  </template>
+</template-element>
 
 <script>
-  Pantarei({
+  class PartMap extends Pantarei.Element {
 
-    is: 'part-map',
+    static get is () { return 'part-map' }
 
-    properties: {
-      latitude: {
-        value: -34.397
-      },
-      longitude: {
-        value: 150.644
-      },
-      zoom: {
-        value: 8
+    get properties () {
+      return {
+        latitude: {
+          value: -34.397
+        },
+        longitude: {
+          value: 150.644
+        },
+        zoom: {
+          value: 8
+        }
       }
-    },
+    }
 
-    after_attach: function () {
+    after_attach () {
       this.load_api()
-    },
+    }
 
-    load_api: function () {
+    load_api () {
       var callback_name = '__google_maps_callback'
       if (window[callback_name]) {
         this.on_load_api()
@@ -49,13 +52,15 @@
       script.defer = true
       script.src = 'https://maps.googleapis.com/maps/api/js?callback=' + callback_name
       document.body.appendChild(script)
-    },
+    }
 
-    on_load_api: function () {
+    on_load_api () {
       this.latlng = { lat: 41.85546049999999, lng: 12.471896199999936 }
       this.map = new google.maps.Map(this.refs.container, { center: this.latlng, zoom: 15 })
       this.marker = new google.maps.Marker({ position: this.latlng, map: this.map })
     }
 
-  })
+  }
+
+  document.registerElement('part-map', PartMap)
 </script>

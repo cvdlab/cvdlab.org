@@ -1,33 +1,45 @@
-<link rel="import" href="../card-person/card-person.html">
 
-<template is="deck-people">
-  <style>
-    .deck {
-      padding: 0 40px;
-      @apply(--layout-horizontal);
-      @apply(--layout-wrap);
-      @apply(--layout-center-justified);
-    }
-  </style>
+<template-element id="deck-people">
+  <template>
+    <style>
+      .deck {
+        padding: 0 40px;
+        @apply --layout-horizontal;
+        @apply --layout-wrap;
+        @apply --layout-center-justified;
+      }
+    </style>
 
-  <div class="deck">
-    <template is="repeat" items="{{people}}" item="person">
-      <card-person person="{{person}}"></card-person>
-    </template>
-  </div>
-</template>
+    <div class="deck">
+      <template is="repeat" items="{{people}}" item="person">
+        <div class="card">
+          <div class="image">
+            <img class="desaturate" src="{{person.picture}}">
+          </div>
+          <div class="caption">
+            <h4><span>{{person.fullname}}</span></h4>
+          </div>
+        </div>
+      </template>
+    </div>
+  </template>
+</template-element>
 
 <script>
-  Pantarei({
+  class DeckPeople extends Pantarei.Element {
 
-    is: 'deck-people',
+    static get is () { return 'deck-people' }
 
-    properties: {
-      people: {
-        type: Array,
-        value: []
+    get props () {
+      return {
+        people: {
+          type: Array,
+          value: []
+        }
       }
     }
 
-  })
+  }
+
+  document.registerElement('deck-people', DeckPeople)
 </script>

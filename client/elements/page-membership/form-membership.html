@@ -1,40 +1,42 @@
-<template is="form-membership">
-  <style>
-    :host {
-      display: block;
-    }
-  </style>
+<template-element id="form-membership">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
 
-  <form role="form">
-    <div class="field">
-      <label class="label" for="first_name">First name</label>
-      <input type="text" class="input" ref="first_name" name="first_name"
-        placeholder="Enter your first name" value="{{alumnus.first_name}}">
-    </div>
-    <div class="field">
-      <label class="label" for="last_name">Last name</label>
-      <input type="text" class="input" ref="last_name" name="last_name"
-        placeholder="Enter your last name" value="{{alumnus.last_name}}">
-    </div>
-    <div class="field">
-      <label class="label" for="email">Email</label>
-      <input type="email" class="input" ref="email" name="email"
-        placeholder="Enter your email address" value="{{alumnus.email}}">
-    </div>
-    <div class="field">
-      <label class="label" for="github_username">GitHub username</label>
-      <input type="text" class="input" ref="github_username" name="github_username"
-        placeholder="Enter your GitHub username" value="{{alumnus.github_username}}">
-    </div>
-    <button ref="submit" class="button">Submit</button>
-  </form>
+    <form role="form">
+      <div class="field">
+        <label class="label" for="first_name">First name</label>
+        <input type="text" class="input" ref="first_name" name="first_name"
+          placeholder="Enter your first name" value="{{alumnus.first_name}}">
+      </div>
+      <div class="field">
+        <label class="label" for="last_name">Last name</label>
+        <input type="text" class="input" ref="last_name" name="last_name"
+          placeholder="Enter your last name" value="{{alumnus.last_name}}">
+      </div>
+      <div class="field">
+        <label class="label" for="email">Email</label>
+        <input type="email" class="input" ref="email" name="email"
+          placeholder="Enter your email address" value="{{alumnus.email}}">
+      </div>
+      <div class="field">
+        <label class="label" for="github_username">GitHub username</label>
+        <input type="text" class="input" ref="github_username" name="github_username"
+          placeholder="Enter your GitHub username" value="{{alumnus.github_username}}">
+      </div>
+      <button ref="submit" class="button">Submit</button>
+    </form>
 
-</template>
+  </template>
+</template-element>
 
 <script>
-  Pantarei({
+  class FormMembership extends Pantarei.Element {
 
-    is: 'form-membership'
+    static get is () { return 'form-membership' }
 
-  })
+  }
 </script>

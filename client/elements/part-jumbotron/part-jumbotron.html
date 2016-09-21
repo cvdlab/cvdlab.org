@@ -1,25 +1,28 @@
+<template-element id="part-jumbotron">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
 
-<template is="part-jumbotron">
-  <style>
-    :host {
-      display: block;
-    }
+      .jumbotron {
+        /*height: 300px;*/
+      }
+    </style>
 
-    .jumbotron {
-      /*height: 300px;*/
-    }
-  </style>
+    <div class="jumbotron">
+      <content></content>
+    </div>
 
-  <div class="jumbotron">
-    <content></content>
-  </div>
-
-</template>
+  </template>
+</template-element>
 
 <script>
-  Pantarei({
+  class PartJumbotron extends Pantarei.Element {
 
-    is: 'part-jumbotron'
+    static get is () { return 'part-jumbotron' }
 
-  })
+  }
+
+  document.registerElement('part-jumbotron', PartJumbotron)
 </script>

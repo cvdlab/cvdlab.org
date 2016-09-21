@@ -2,34 +2,34 @@
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
 <link rel="import" href="../deck-projects/deck-projects.html">
 
-<template is="page-projects">
-  <style>
-    @import url('elements/style-grid/style-grid.css');
+<template-element id="page-projects">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
 
-    :host {
-      display: block;
-    }
-  </style>
-
-  <layout-page>
-    <part-jumbotron class="jumbotron">
+    <layout-page>
+      <part-jumbotron class="jumbotron">
+        <div class="container">
+          <h1 class="title">Projects</h1>
+        </div>
+      </part-jumbotron>
       <div class="container">
-        <h1 class="title">Projects</h1>
+        <deck-projects projects="{{projects}}"></deck-projects>
       </div>
-    </part-jumbotron>
-    <div class="container">
-      <deck-projects projects="{{projects}}"></deck-projects>
-    </div>
-  </layput-page>
+    </layput-page>
 
-</template>
+  </template>
+</layout-page>
 
 <script>
-  Pantarei({
+  class PageProjects extends Pantarei.Element {
 
-    is: 'page-projects',
+    static get is () { return 'page-projects' }
 
-    before_attach: function () {
+    before_attach () {
       fetch('data/projects.json', {
         method: 'get',
         headers: {
@@ -48,5 +48,7 @@
       }.bind(this))
     }
 
-  })
+  }
+
+  document.registerElement('page-projects', PageProjects)
 </script>

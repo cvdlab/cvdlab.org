@@ -1,34 +1,41 @@
-<link rel="import" href="../card-thesis/card-thesis.html">
+<template-element id="deck-theses">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
 
-<template is="deck-theses">
-  <style>
-    :host {
-      display: block;
-    }
+      .card {
+        margin-bottom: 32px;
+      }
+    </style>
 
-    .card {
-      margin-bottom: 32px;
-    }
-  </style>
-
-  <div class="deck">
-    <template is="repeat" items="{{theses}}" item="thesis">
-      <card-thesis class="card" thesis="{{thesis}}"></card-thesis>
-    </template>
-  </div>
-</template>
+    <div class="deck">
+      <template is="repeat" items="{{theses}}" item="thesis">
+        <div class="thesis">
+          <h3 class="title">{{thesis.title}}</h3>
+          <div class="author">{{thesis.author.fullname}}</div>
+        </div>
+      </template>
+    </div>
+  </template>
+</template-element>
 
 <script>
-  Pantarei({
+  class DeckTheses extends Pantarei.Element {
 
-    is: 'deck-theses',
+    static get is () { return 'deck-theses' }
 
-    props: {
-      theses: {
-        type: Array,
-        value: []
+    get props () {
+      return {
+        theses: {
+          type: Array,
+          value: []
+        }
       }
     }
 
-  })
+  }
+
+  document.registerElement('deck-theses', DeckTheses)
 </script>

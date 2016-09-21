@@ -3,30 +3,33 @@
 <link rel="import" href="../part-header/part-header.html">
 <link rel="import" href="../style-page/style-page.html">
 -->
+<template-element>
+  <template is="page-404">
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
 
-<template is="page-404">
-  <style>
-    :host {
-      display: block;
-    }
-  </style>
-
-  <div class="page">
-    <part-header class="header"></part-header>
-    <div class="main">
-      <part-jumbotron class="jumbotron">
-        <h1 class="title">404</h1>
-      </part-jumbotron>
+    <div class="page">
+      <part-header class="header"></part-header>
+      <div class="main">
+        <part-jumbotron class="jumbotron">
+          <h1 class="title">404</h1>
+        </part-jumbotron>
+      </div>
+      <div class="space"></div>
+      <part-footer class="footer"></part-footer>
     </div>
-    <div class="space"></div>
-    <part-footer class="footer"></part-footer>
-  </div>
-</template>
+  </template>
+</template-element>
 
 <script>
-  Pantarei({
+  class TemplateElement extends Pantarei.Element {
 
-    is: 'page-404'
+    static get is () { return 'page-404' }
 
-  })
+  }
+
+  document.registerElement('page-404', TemplateElement)
 </script>

@@ -2,41 +2,44 @@
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
 <link rel="import" href="../part-map/part-map.html">
 
-<template is="page-about">
-  <style>
-    @import url('elements/style-grid/style-grid.css');
+<template-element id="page-about">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
 
-    :host {
-      display: block;
-    }
+      .description {
+        font-size: 14px;
+        line-height: 1.75;
+      }
+    </style>
 
-    .description {
-      font-size: 14px;
-      line-height: 1.75;
-    }
-  </style>
-
-  <layout-page>
-    <part-jumbotron class="jumbotron" id="jumbotron">
+    <layout-page>
+      <part-jumbotron class="jumbotron" id="jumbotron">
+        <div class="container">
+          <h1 class="title">About</h1>
+        </div>
+      </part-jumbotron>
       <div class="container">
-        <h1 class="title">About</h1>
+        <h3 class="title">Computational Visual Design Lab</h3>
+        <p class="description">
+          The Computational Visual Design Lab is a Web Graphics Design Lab <br>
+          located in the Roma Tre University in Rome, Italy.
+        </p>
+        <part-map id="map" latitude="41.8554605" longitude="12.4718962" zoom="15"></part-map>
       </div>
-    </part-jumbotron>
-    <div class="container">
-      <h3 class="title">Computational Visual Design Lab</h3>
-      <p class="description">
-        The Computational Visual Design Lab is a Web Graphics Design Lab <br>
-        located in the Roma Tre University in Rome, Italy.
-      </p>
-      <part-map id="map" latitude="41.8554605" longitude="12.4718962" zoom="15"></part-map>
-    </div>
-  </layout-page>
+    </layout-page>
 
-</template>
+  </template>
+</template-element>
+
 <script>
-  Pantarei({
+  class PageAbout extends Pantarei.Element {
 
-    is: 'page-about'
+    static get is () { return 'page-about' }
 
-  })
+  }
+
+  document.registerElement('page-about', PageAbout)
 </script>

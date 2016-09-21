@@ -2,39 +2,37 @@
 <link rel="import" href="../layout-page/layout-page.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
 
-<template is="page-people">
-  <style>
-    @import url('elements/style-flex/style-flex.css');
-    @import url('elements/style-grid/style-grid.css');
-    @import url('elements/style-flex-alignment/style-flex-alignment.css');
+<template-element id="page-people">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
 
-    :host {
-      display: block;
-    }
-  </style>
-
-  <layout-page>
-    <part-jumbotron class="jumbotron">
+    <layout-page>
+      <part-jumbotron class="jumbotron">
+        <div class="container">
+          <h1 class="title">People</h1>
+        </div>
+      </part-jumbotron>
       <div class="container">
-        <h1 class="title">People</h1>
+        <div class="strip">
+          <h3>Alumni</h3>
+          <deck-alumni alumni="{{alumni}}"></deck-alumni>
+        </div>
       </div>
-    </part-jumbotron>
-    <div class="container">
-      <div class="strip">
-        <h3>Alumni</h3>
-        <deck-alumni alumni="{{alumni}}"></deck-alumni>
-      </div>
-    </div>
-  </layout-page>
+    </layout-page>
 
-</template>
+  </template>
+</template-element>
 
 <script>
-  Pantarei({
+  class PagePeople extends Pantarei.Element {
 
-    is: 'page-people',
+    static get is () { return 'page-people' }
 
-    before_attach: function () {
+    before_attach () {
       fetch('data/alumni.json', {
         method: 'get',
         headers: {
@@ -56,5 +54,7 @@
       }.bind(this))
     }
 
-  });
+  }
+
+  document.registerElement('page-people', PagePeople)
 </script>

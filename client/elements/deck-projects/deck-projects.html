@@ -1,33 +1,38 @@
-<link rel="import" href="../card-project/card-project.html">
 
-<template is="deck-projects">
-  <style>
-    :host {
-      display: block;
-    }
-    .card {
-      margin-bottom: 32px;
-    }
-  </style>
+<template-element id="deck-projects">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .card {
+        margin-bottom: 32px;
+      }
+    </style>
 
-  <div class="deck">
-    <template is="repeat" items="{{projects}}" item="project">
-      <card-project class="card" project="{{project}}"></card-project>
-    </template>
-  </div>
-</template>
+    <div class="deck">
+      <template is="repeat" items="{{projects}}" item="project">
+        <card-project class="card" project="{{project}}"></card-project>
+      </template>
+    </div>
+  </template>
+</template-element>
 
 <script>
-  Pantarei({
+  class DeckProjects extends Pantarei.Element {
 
-    is: 'deck-projects',
+    static get is () { return 'deck-projects' }
 
-    properties: {
-      projects: {
-        type: Array,
-        value: []
+    get props () {
+      return {
+        projects: {
+          type: Array,
+          value: []
+        }
       }
     }
 
-  })
+  }
+
+  document.registerElement('deck-projects', DeckProjects)
 </script>

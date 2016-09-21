@@ -2,33 +2,33 @@
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
 <link rel="import" href="form-membership.html">
 
-<template is="page-membership">
-  <style>
-    @import url('elements/style-grid/style-grid.css');
+<template-element id="page-membership">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
 
-    :host {
-      display: block;
-    }
-  </style>
-
-  <layout-page>
-    <part-jumbotron class="jumbotron">
+    <layout-page>
+      <part-jumbotron class="jumbotron">
+        <div class="container">
+          <h1 class="title">Membership</h1>
+        </div>
+        </header>
+      </part-jumbotron>
       <div class="container">
-        <h1 class="title">Membership</h1>
+        <form-membership alumnus="{{alumnus}}"></form-membership>
       </div>
-      </header>
-    </part-jumbotron>
-    <div class="container">
-      <form-membership alumnus="{{alumnus}}"></form-membership>
-    </div>
-  </layout-page>
+    </layout-page>
 
-</template>
+  </template>
+</template-element>
 
 <script>
-  Pantarei({
+  class PageMembership extends Pantarei.Element {
 
-    is: 'page-membership'
+    static get is () { return 'page-membership' }
 
-  })
+  }
 </script>
