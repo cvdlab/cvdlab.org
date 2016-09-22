@@ -5,14 +5,22 @@
       :host {
         display: block;
       }
+
       .card {
-        margin-bottom: 32px;
+        margin-top: 60px;
+      }
+
+      .description {
+        @apply --text;
       }
     </style>
 
     <div class="deck">
       <template is="repeat" items="{{projects}}" item="project">
-        <card-project class="card" project="{{project}}"></card-project>
+        <div class="card">
+          <h4>{{project.title}}</h4>
+          <p class="description">{{project.description}}</p>
+        </div>
       </template>
     </div>
   </template>

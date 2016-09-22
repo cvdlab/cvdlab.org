@@ -1,26 +1,30 @@
-<!-- <link rel="import" href="../part-footer/part-footer.html">
+<link rel="import" href="../layout-page/layout-page.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
-<link rel="import" href="../part-header/part-header.html">
-<link rel="import" href="../style-page/style-page.html">
--->
-<template-element>
-  <template is="page-404">
+
+<template-element id="page-404">
+  <template>
     <style>
       :host {
         display: block;
       }
+
+      .jumbotron {
+        height: 300px;
+      }
+
+      .container {
+        @apply --container;
+      }
     </style>
 
-    <div class="page">
-      <part-header class="header"></part-header>
-      <div class="main">
-        <part-jumbotron class="jumbotron">
+    <layout-page>
+      <part-jumbotron class="jumbotron">
+        <div class="container">
           <h1 class="title">404</h1>
-        </part-jumbotron>
-      </div>
-      <div class="space"></div>
-      <part-footer class="footer"></part-footer>
-    </div>
+        </div>
+      </part-jumbotron>
+    </layout-page>
+
   </template>
 </template-element>
 

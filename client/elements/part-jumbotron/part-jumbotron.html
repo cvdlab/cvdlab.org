@@ -6,12 +6,45 @@
       }
 
       .jumbotron {
-        /*height: 300px;*/
+        display: block;
+        position: relative;
+        box-sizing: border-box;
+        height: 100%;
+        background-size: cover;
+        background-position: center center;
+        /*background-image: url('/images/b1.jpg');*/
+      }
+
+      .jumbotron .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(25, 25, 25, .25);
+      }
+
+      .jumbotron .main {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        display: flex;
+        color: white;
+
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
       }
     </style>
 
     <div class="jumbotron">
-      <content></content>
+      <div class="overlay"></div>
+      <div class="main">
+        <content select="*"></content>
+      </div>
     </div>
 
   </template>
@@ -20,7 +53,7 @@
 <script>
   class PartJumbotron extends Pantarei.Element {
 
-    static get is () { return 'part-jumbotron' }
+    static get is() { return 'part-jumbotron' }
 
   }
 

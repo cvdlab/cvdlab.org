@@ -9,14 +9,21 @@
         display: block;
       }
 
+      .jumbotron {
+        height: 300px;
+      }
+
+      .container {
+        @apply --container;
+      }
+
       .description {
-        font-size: 14px;
-        line-height: 1.75;
+        @apply --text;
       }
     </style>
 
     <layout-page>
-      <part-jumbotron class="jumbotron" id="jumbotron">
+      <part-jumbotron class="jumbotron">
         <div class="container">
           <h1 class="title">About</h1>
         </div>

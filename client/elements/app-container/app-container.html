@@ -2,7 +2,6 @@
 <link rel="import" href="../page-about/page-about.html">
 <link rel="import" href="../page-courses/page-courses.html">
 <link rel="import" href="../page-home/page-home.html">
-<link rel="import" href="../page-membership/page-membership.html">
 <link rel="import" href="../page-people/page-people.html">
 <link rel="import" href="../page-projects/page-projects.html">
 <link rel="import" href="../page-theses/page-theses.html">
@@ -308,6 +307,7 @@
 
         --text: {
           @apply --text-antialiased;
+          font-size: 14px;
           line-height: 2;
         };
 
@@ -338,7 +338,7 @@
       }
     </style>
 
-    <div ref="container"></div>
+    <div ref="container" on-action="on_action"></div>
 
   </template>
 </template-element>
@@ -355,8 +355,6 @@
         '/about': 'page-about',
         '/courses': 'page-courses',
         '/home': 'page-home',
-        '/membership': 'page-membership',
-        '/privacy': 'page-privacy',
         '/people': 'page-people',
         '/projects': 'page-projects',
         '/theses': 'page-theses',
@@ -386,6 +384,54 @@
       }
       let page = document.createElement(page_name)
       container.appendChild(page)
+      this.page = page
+    }
+
+    on_action (event, detail) {
+      let action = this['do_' + detail.name]
+      if (!action) {
+        return
+      }
+      action.call(this, detail.data)
+    }
+
+    fetch_data (name) {
+      fetch(`data/${name}.json`, {
+        method: 'get',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(function (response) {
+        if (response.ok) {
+          return response.json()
+        }
+      })
+      .then(function (data) {
+        this.page[name] = data
+        this.page.update()
+      }.bind(this))
+    }
+
+    do_fetch_alumni (data) {
+      fetch_data('alumni')
+    }
+
+    do_fetch_projects (data) {
+      fetch_data('projects')
+    }
+
+    do_fetch_theses (data) {
+      fetch_data('theses')
+    }
+
+    do_fetch_courses (data) {
+      fetch_data('courses')
+    }
+
+    do_fetch_crumbs (data) {
+      fetch_data('crumbs')
     }
 
   }

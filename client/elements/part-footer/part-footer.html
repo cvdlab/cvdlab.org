@@ -5,16 +5,19 @@
         display: block;
       }
 
-      .made {
-        text-align: right;
+      .container {
+        @apply --container;
+        @apply --layout-horizontal;
+      }
+      .space {
+        @apply --layout-flex;
       }
     </style>
 
     <div class="footer">
       <div class="container">
-        <div class="made">
-          made with <span class="love">&hearts;</span> in Rome
-        </div>
+        <div class="space"></div>
+        <div class="made">made with <span class="love">&hearts;</span> in Rome</div>
       </div>
     </div>
 

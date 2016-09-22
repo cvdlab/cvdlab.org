@@ -3,10 +3,13 @@
   <template>
     <style>
       .deck {
-        padding: 0 40px;
+        @apply --layout-horizontal;
+        @apply --layout-wrap;
+        @apply --layout-center-justified;
       }
 
       .card {
+        @apply --box;
         margin-bottom: 30px;
       }
 
@@ -19,9 +22,8 @@
       .card .caption h4 {
         margin-top: 0px;
         text-align: center;
-        font-weight: 400;
+        font-weight: 600;
         font-size: 14px;
-        letter-spacing: .05em;
       }
     </style>
 

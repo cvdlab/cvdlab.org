@@ -1,12 +1,20 @@
+<link rel="import" href="../deck-projects/deck-projects.html">
 <link rel="import" href="../layout-page/layout-page.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
-<link rel="import" href="../deck-projects/deck-projects.html">
 
 <template-element id="page-projects">
   <template>
     <style>
       :host {
         display: block;
+      }
+
+      .jumbotron {
+        height: 300px;
+      }
+
+      .container {
+        @apply --container;
       }
     </style>
 
@@ -17,6 +25,7 @@
         </div>
       </part-jumbotron>
       <div class="container">
+        <h3>Projects</h3>
         <deck-projects projects="{{projects}}"></deck-projects>
       </div>
     </layput-page>
@@ -29,23 +38,8 @@
 
     static get is () { return 'page-projects' }
 
-    before_attach () {
-      fetch('data/projects.json', {
-        method: 'get',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(function (response) {
-        if (response.ok) {
-          return response.json()
-        }
-      })
-      .then(function (data) {
-        this.projects = data
-        this.update()
-      }.bind(this))
+    before_connect () {
+      this.action('fetch_projects')
     }
 
   }

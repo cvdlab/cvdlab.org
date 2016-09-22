@@ -5,10 +5,16 @@
 <template-element id="page-theses">
   <template>
     <style>
-      @import url('elements/style-grid/style-grid.css');
-
       :host {
         display: block;
+      }
+
+      .jumbotron {
+        height: 300px;
+      }
+
+      .container {
+        @apply --container;
       }
     </style>
 
@@ -19,6 +25,7 @@
         </div>
       </part-jumbotron>
       <div class="container">
+        <h3>Theses</h3>
         <deck-theses theses="{{theses}}"></deck-theses>
       </div>
     </layout-page>
@@ -31,23 +38,8 @@
 
     static get is () { return 'page-theses' }
 
-    before_attach () {
-      fetch('data/theses.json', {
-        method: 'get',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(function (response) {
-        if (response.ok) {
-          return response.json()
-        }
-      })
-      .then(function (data) {
-        this.theses = data
-        this.update()
-      }.bind(this))
+    before_connect () {
+      this.action('fetch_theses')
     }
 
   }

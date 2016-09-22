@@ -6,15 +6,19 @@
       }
 
       .card {
-        margin-bottom: 32px;
+        margin-top: 60px;
+      }
+
+      .description {
+        @apply --text;
       }
     </style>
 
     <div class="deck">
       <template is="repeat" items="{{theses}}" item="thesis">
-        <div class="thesis">
-          <h3 class="title">{{thesis.title}}</h3>
-          <div class="author">{{thesis.author.fullname}}</div>
+        <div class="card">
+          <h4 class="title">{{thesis.title}}</h4>
+          <div class="description">{{thesis.author.fullname}}</div>
         </div>
       </template>
     </div>

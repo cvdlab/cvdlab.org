@@ -6,7 +6,11 @@
       }
 
       .card {
-        margin-bottom: 32px;
+        margin-bottom: 60px;
+      }
+
+      .description {
+        @apply --text;
       }
     </style>
 
@@ -14,9 +18,8 @@
       <template is="repeat" items="{{courses}}" item="course">
         <div class="card">
           <h3 class="title">{{course.title}}</h3>
-          <div class="description">
-            <p>{{course.description}}</p>
-          </div>
+          <p class="description">{{course.description}}</p>
+          <a target="_blank" href="{{course.repository}}">view more</a>
         </div>
       </template>
     </div>

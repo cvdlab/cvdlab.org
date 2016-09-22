@@ -8,6 +8,15 @@
       :host {
         display: block;
       }
+
+
+      .jumbotron {
+        height: 300px;
+      }
+
+      .container {
+        @apply --container;
+      }
     </style>
 
     <layout-page>
@@ -17,10 +26,8 @@
         </div>
       </part-jumbotron>
       <div class="container">
-        <div class="strip">
-          <h3>Alumni</h3>
-          <deck-alumni alumni="{{alumni}}"></deck-alumni>
-        </div>
+        <h3>Alumni</h3>
+        <deck-alumni alumni="{{alumni}}"></deck-alumni>
       </div>
     </layout-page>
 
@@ -32,26 +39,8 @@
 
     static get is () { return 'page-people' }
 
-    before_attach () {
-      fetch('data/alumni.json', {
-        method: 'get',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(function (response) {
-        if (response.ok) {
-          return response.json()
-        }
-      })
-      .then(function (data) {
-        data.sort(function (a, b) {
-          return a.last_name.localeCompare(b.last_name)
-        })
-        this.alumni = data
-        this.update()
-      }.bind(this))
+    before_connect () {
+      this.action('fetch_alumni')
     }
 
   }
