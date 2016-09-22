@@ -5,29 +5,37 @@
   <template>
     <style>
       :host {
-        display: block;
+        @apply --layout-block;
       }
 
-      .jumbotron {
+      #jumbotron {
+        @apply --layout-block;
         @apply --layout-fullbleed;
       }
 
-      .container {
+      #heading {
         @apply --container;
       }
 
-      .title {
+      #heading .title {
         width: 100px;
-        margin: 0;
+        margin-top: 0;
         font-size: 60px;
         line-height: 1em;
         text-transform: uppercase;
       }
+
+      @media (max-width: 768px) {
+        #heading .title {
+          font-size: 50px;
+        }
+      }
+
     </style>
 
     <layout-page>
-      <part-jumbotron class="jumbotron">
-        <div class="container">
+      <part-jumbotron id="jumbotron">
+        <div id="heading">
           <h1 class="title">Computational Visual Design Lab</h1>
         </div>
       </part-jumbotron>

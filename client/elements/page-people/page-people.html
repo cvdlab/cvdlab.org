@@ -6,12 +6,12 @@
   <template>
     <style>
       :host {
-        display: block;
+        @apply --layout-block;
       }
 
-
-      .jumbotron {
-        height: 300px;
+      #jumbotron {
+        @apply --layout-block;
+        height: 200px;
       }
 
       .container {
@@ -20,7 +20,7 @@
     </style>
 
     <layout-page>
-      <part-jumbotron class="jumbotron">
+      <part-jumbotron id="jumbotron">
         <div class="container">
           <h1 class="title">People</h1>
         </div>

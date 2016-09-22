@@ -18,8 +18,10 @@
       <template is="repeat" items="{{courses}}" item="course">
         <div class="card">
           <h3 class="title">{{course.title}}</h3>
-          <p class="description">{{course.description}}</p>
-          <a target="_blank" href="{{course.repository}}">view more</a>
+          <div class="description">
+            <p>{{course.description}}</p>
+            <a target="_blank" href="{{course.repository}}">view more</a>
+          </div>
         </div>
       </template>
     </div>

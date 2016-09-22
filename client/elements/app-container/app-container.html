@@ -343,6 +343,7 @@
   </template>
 </template-element>
 
+<script src="fetch.js"></script>
 <script src="page.js"></script>
 <script>
   class AppContainer extends Pantarei.Element {
@@ -383,6 +384,7 @@
         container.firstChild.remove()
       }
       let page = document.createElement(page_name)
+      page.classList.add('page')
       container.appendChild(page)
       this.page = page
     }

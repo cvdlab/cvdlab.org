@@ -5,8 +5,9 @@
         display: block;
       }
 
-      .jumbotron {
-        display: block;
+      #part-jumbotron {
+        @apply --layout-block;
+
         position: relative;
         box-sizing: border-box;
         height: 100%;
@@ -15,32 +16,22 @@
         /*background-image: url('/images/b1.jpg');*/
       }
 
-      .jumbotron .overlay {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
+      #part-jumbotron .overlay {
+        @apply --layout-fit;
+
         background-color: rgba(25, 25, 25, .25);
       }
 
-      .jumbotron .main {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
+      #part-jumbotron .main {
+        @apply --layout-fit;
+        @apply --layout-horizontal;
+        @apply --layout-end;
 
-        display: flex;
         color: white;
-
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
       }
     </style>
 
-    <div class="jumbotron">
+    <div id="part-jumbotron">
       <div class="overlay"></div>
       <div class="main">
         <content select="*"></content>
