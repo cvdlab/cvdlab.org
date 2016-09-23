@@ -86,6 +86,7 @@
         background-color: white;
       }
       #part-header .menu .item {
+        @apply --layout-flex;
         font-size: 12px;
         font-weight: 600;
         -webkit-font-smoothing: antialiased;
@@ -96,23 +97,30 @@
         color: #333;
       }
 
-      #part-header .menu,
-      #part-header .toggle {
-        visibility: hidden;
+      #part-header .links .link.toggle {
+        display: none;
       }
       #part-header .menu {
-        visibility: hidden;
-      }
-      #part-header.open .menu {
-        visibility: visible;
+        display: none;
       }
 
       @media (max-width: 768px) {
-        #part-header .links {
-          visibility: hidden;
+        #part-header.transparent {
+          background-color: white;
         }
-        #part-header .links.collapse {
-          visibility: visible;
+        #part-header.transparent .brand .link,
+        #part-header.transparent .links .link {
+          color: #333;
+        }
+
+        #part-header .links .link {
+          display: none;
+        }
+        #part-header .links .link.toggle {
+          display: flex;
+        }
+        #part-header.open .menu {
+          display: flex;
         }
       }
     </style>
@@ -128,8 +136,8 @@
         <a class="link" href="/projects">projects</a>
         <a class="link" href="/theses">theses</a>
         <a class="link" href="/courses">courses</a>
+        <a class="link toggle" href="./" on-click="on_click_toggle">☰</a>
       </div>
-      <div class="toggle" on-click="on_click_toggle">☰</div>
       <div class="menu">
         <a class="item" href="/about">about</a>
         <a class="item" href="/people">people</a>
