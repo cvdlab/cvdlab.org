@@ -1,0 +1,75 @@
+
+<template-element id="part-alumni">
+  <template>
+    <style>
+      .deck {
+        @apply --layout-horizontal;
+        @apply --layout-wrap;
+        @apply --layout-center-justified;
+      }
+
+      .card {
+        @apply --box;
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      .card .image img {
+        width: 140px;
+        border-radius: 100%;
+        margin: 8px 16px;
+      }
+/*
+      .card .caption {
+        position: absolute;
+        top: 70px;
+        width: 100%;
+        display: none;
+        color: white;
+      }
+
+      .card:hover .caption {
+        display: block;
+      }
+*/
+      .card .caption h4 {
+        margin-top: 0px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 14px;
+      }
+    </style>
+
+    <div class="deck layout horizontal wrap center-justified">
+      <template is="repeat" items="{{alumni}}" item="alumnus">
+        <div class="card">
+          <div class="image">
+            <img src="{{alumnus.picture}}">
+          </div>
+          <div class="caption">
+            <h4><span>{{alumnus.first_name}}</span> <span>{{alumnus.last_name}}</span></h4>
+          </div>
+        </div>
+      </template>
+    </div>
+  </template>
+</template-element>
+
+<script>
+  class PartAlumni extends Pantarei.Element {
+
+    static get is () { return 'part-alumni' }
+
+    get props () {
+      return {
+        alumni: {
+          type: Array,
+          value: []
+        }
+      }
+    }
+
+  }
+
+  document.registerElement('part-alumni', PartAlumni)
+</script>
