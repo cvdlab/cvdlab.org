@@ -391,6 +391,8 @@
       page.classList.add('page')
       container.appendChild(page)
       this.page = page
+      window.ga && ga('send', 'pageview', '/' + page_name)
+      console.log('/' + page_name)
     }
 
     on_action (event, detail) {
