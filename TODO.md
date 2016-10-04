@@ -1,7 +1,7 @@
 # misc
 
 - controllare account email, generare alias `hello@cvdlab.org`
-- test mobile
+- (e) [10] test mobile
 - multilinga
 - animazioni
 - stile
@@ -14,26 +14,26 @@
 
 # about
 
-- aggiungere sezioni "founder" e "people" in "who"
-- testi brevi (tweet-like)
-- aggiungere mappa
-- knowhow: web, 3d, blockchain, solidmodeling, cutting edge wen tech
-- [1] aggiungere deck tecnologie con loghi
+- (f) [10] aggiungere sezioni "founder" e "people" in "who"
+- (f) [10] testi brevi (tweet-like)
+- (e) [3] aggiungere mappa
+- (f) [10] knowhow: web, 3d, blockchain, solidmodeling, cutting edge wen tech
+- (e) [1] aggiungere deck tecnologie con loghi
 
 # alumni
 ~~- rinominare da "people" in "alumni"~~
 - [1] algoritmo bolle
 
 # projects
-- [] dividere progetti nelle joint researces:
+- (e) [10] dividere progetti nelle joint researces:
   - sogei: dma, vispro, service link, tourbox, five
   - geoweb: metior
   - policlinico: medical folder
-- progetti interni: x-project, x-learning, x-commerce, panta-rei, bak3d
+- (e) [10] progetti interni: x-project, x-learning, x-commerce, panta-rei, bak3d
 
 # thesis
 
-- traduzione titoli in inglese
+- (f) [9] traduzione titoli in inglese
 
 # courses
 
@@ -42,4 +42,5 @@
 
 # contacts
 
+- (f) [8] generare la pagina e aggiungere link in footer
 
