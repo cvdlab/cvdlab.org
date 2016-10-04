@@ -2,7 +2,7 @@
 <link rel="import" href="../page-about/page-about.html">
 <link rel="import" href="../page-courses/page-courses.html">
 <link rel="import" href="../page-home/page-home.html">
-<link rel="import" href="../page-people/page-people.html">
+<link rel="import" href="../page-alumni/page-alumni.html">
 <link rel="import" href="../page-projects/page-projects.html">
 <link rel="import" href="../page-theses/page-theses.html">
 <link rel="import" href="../page-cookies/page-cookies.html">
@@ -19,6 +19,7 @@
       :root {
 
         --background-color: #2ea3f2;
+        --theme-color: #2ea3f2;
 
         --layout: {
           display: -ms-flexbox;
@@ -311,7 +312,7 @@
         };
 
         --text: {
-          @apply --text-antialiased;
+          font-family: 'Roboto Slab';
           font-size: 14px;
           line-height: 2;
         };
@@ -362,7 +363,7 @@
         '/about': 'page-about',
         '/courses': 'page-courses',
         '/home': 'page-home',
-        '/people': 'page-people',
+        '/alumni': 'page-alumni',
         '/projects': 'page-projects',
         '/theses': 'page-theses',
         '/cookies': 'page-cookies',

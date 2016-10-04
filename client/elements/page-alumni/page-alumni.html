@@ -1,8 +1,8 @@
-<link rel="import" href="../deck-alumni/deck-alumni.html">
 <link rel="import" href="../layout-page/layout-page.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
+<link rel="import" href="part-alumni.html">
 
-<template-element id="page-people">
+<template-element id="page-alumni">
   <template>
     <style>
       :host {
@@ -16,18 +16,18 @@
 
       .container {
         @apply --container;
+        padding-top: 60px;
       }
     </style>
 
     <layout-page>
       <part-jumbotron id="jumbotron">
         <div class="container">
-          <h1 class="title">People</h1>
+          <h1 class="title">Alumni</h1>
         </div>
       </part-jumbotron>
       <div class="container">
-        <h3>Alumni</h3>
-        <deck-alumni alumni="{{alumni}}"></deck-alumni>
+        <part-alumni alumni="{{alumni}}"></part-alumni>
       </div>
     </layout-page>
 
@@ -35,9 +35,9 @@
 </template-element>
 
 <script>
-  class PagePeople extends Pantarei.Element {
+  class PageAlumni extends Pantarei.Element {
 
-    static get is () { return 'page-people' }
+    static get is () { return 'page-alumni' }
 
     before_connect () {
       this.action('fetch_alumni')
@@ -45,5 +45,5 @@
 
   }
 
-  document.registerElement('page-people', PagePeople)
+  document.registerElement('page-alumni', PageAlumni)
 </script>

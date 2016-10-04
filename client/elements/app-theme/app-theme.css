@@ -1,23 +1,9 @@
-@font-face {
-  font-family: 'Raleway';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Raleway'), local('Raleway-Regular'), url(/fonts/raleway/raleway-regular.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-
-@font-face {
-  font-family: 'Raleway';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Raleway Bold'), local('Raleway-Bold'), url(/fonts/raleway/raleway-bold.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
+@import 'https://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Open+Sans:400,800';
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Raleway', Sans-serif;
+  font-family: 'Open+Sans', sans-serif;
   color: #333;
 }
 

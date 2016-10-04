@@ -1,5 +1,5 @@
 
-<template-element id="deck-alumni">
+<template-element id="part-alumni">
   <template>
     <style>
       .deck {
@@ -11,14 +11,27 @@
       .card {
         @apply --box;
         margin-bottom: 30px;
+        position: relative;
       }
 
       .card .image img {
-        width: 120px;
-        border-radius: 120px;
-        margin: 10px 20px;
+        width: 140px;
+        border-radius: 100%;
+        margin: 8px 16px;
+      }
+/*
+      .card .caption {
+        position: absolute;
+        top: 70px;
+        width: 100%;
+        display: none;
+        color: white;
       }
 
+      .card:hover .caption {
+        display: block;
+      }
+*/
       .card .caption h4 {
         margin-top: 0px;
         text-align: center;
@@ -43,9 +56,9 @@
 </template-element>
 
 <script>
-  class DeckAlumni extends Pantarei.Element {
+  class PartAlumni extends Pantarei.Element {
 
-    static get is () { return 'deck-alumni' }
+    static get is () { return 'part-alumni' }
 
     get props () {
       return {
@@ -58,5 +71,5 @@
 
   }
 
-  document.registerElement('deck-alumni', DeckAlumni)
+  document.registerElement('part-alumni', PartAlumni)
 </script>

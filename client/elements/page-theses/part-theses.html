@@ -1,0 +1,68 @@
+<template-element id="part-theses">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      .title {
+        margin: 0;
+      }
+
+      .author {
+        font-weight: 600;
+      }
+
+      .tag {
+        margin-right: 10px;
+        /*color: var(--theme-color);*/
+      }
+      .tag::before {
+        content: '#'
+      }
+
+      .card {
+        margin-bottom: 60px;
+        @apply --text;
+      }
+    </style>
+
+    <div class="deck">
+      <template is="repeat" items="{{theses}}" item="thesis">
+        <div class="card">
+          <h4 class="title">{{thesis.title}}</h4>
+          <div class="info">
+            <span>presented by</span>
+            <span class="author">{{thesis.author}}</span>
+            <span> in </span>
+            <span class="year">{{thesis.year}}</span>
+          </div>
+          <div class="tags">
+            <template is="repeat" items="{{thesis.tags}}" item="tag">
+              <span class="tag">{{tag}}</span>
+            </template>
+          </div>
+        </div>
+      </template>
+    </div>
+  </template>
+</template-element>
+
+<script>
+  class PartTheses extends Pantarei.Element {
+
+    static get is () { return 'part-theses' }
+
+    get props () {
+      return {
+        theses: {
+          type: Array,
+          value: []
+        }
+      }
+    }
+
+  }
+
+  document.registerElement('part-theses', PartTheses)
+</script>
