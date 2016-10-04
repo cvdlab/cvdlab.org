@@ -9,13 +9,27 @@
         @apply --container;
         @apply --layout-horizontal;
       }
+
       #part-footer .space {
         @apply --layout-flex;
+      }
+
+      #part-footer {
+        padding-top: 16px;
+        padding-bottom: 8px;
+        background-color: #3d3d3d;
+        color: #d3d3d3;
+      }
+
+      #part-footer a {
+        color: #d3d3d3;
+        text-decoration: none;
       }
     </style>
 
     <div id="part-footer">
       <div class="container">
+      <div><a href="/cookies">Cookies policy</a></div>
         <div class="space"></div>
         <div class="made">made with <span class="love">&hearts;</span> in Rome</div>
       </div>
