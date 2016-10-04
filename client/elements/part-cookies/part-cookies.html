@@ -1,0 +1,67 @@
+<template-element id="part-cookies">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      #part-cookies .container {
+        @apply --container;
+        @apply --layout-horizontal;
+      }
+
+      #part-cookies .space {
+        @apply --layout-flex;
+      }
+
+      #part-cookies {
+        position: fixed;
+        top: 120px;
+        width: 100%;
+        background-color: rgba(51,51,51,0.6);
+        color: #d3d3d3;
+      }
+
+      #part-cookie .container {
+        padding-top: 16px;
+        padding-bottom: 8px;
+      }
+
+      #part-cookies .close {
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        font-size: 16px;
+      }
+    </style>
+
+    <div id="part-cookies">
+      <template is="if" if="{{not_accepted}}">
+        <div class="container">
+          <div class="close" on-click="on_click_close">x</div>
+          <p>We use cookies to ensure that we give you the best experience on our website. This includes cookies from third party social media websites if you visit a page which contains embedded content from social media. Such third party cookies may track your use of the website. If you continue without changing your settings, we'll assume that you are happy to receive all cookies on the CVDLAB website. However, you can change your cookie settings at any time.</p>
+       </div>
+      </template>
+  </template>
+</template-element>
+
+<script>
+  class PartCookies extends Pantarei.Element {
+
+    static get is () { return 'part-cookies' }
+
+    before_connect () {
+      this.not_accepted = !localStorage.getItem('cvdlab_accepted_cookie_policy')
+    }
+
+    on_click_close (event) {
+      localStorage.setItem('cvdlab_accepted_cookie_policy', true)
+      this.not_accepted = false
+      this.update()
+    }
+
+  }
+
+  document.registerElement('part-cookies', PartCookies)
+</script>

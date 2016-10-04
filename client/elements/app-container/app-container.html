@@ -7,6 +7,8 @@
 <link rel="import" href="../page-theses/page-theses.html">
 <link rel="import" href="../page-cookies/page-cookies.html">
 
+<link rel="import" href="../part-cookies/part-cookies.html">
+
 <template-element id="app-container">
   <template>
     <style>
@@ -342,6 +344,7 @@
     </style>
 
     <div ref="container" on-action="on_action"></div>
+    <part-cookies></part-cookies>
 
   </template>
 </template-element>
@@ -392,7 +395,6 @@
       container.appendChild(page)
       this.page = page
       window.ga && ga('send', 'pageview', '/' + page_name)
-      console.log('/' + page_name)
     }
 
     on_action (event, detail) {
