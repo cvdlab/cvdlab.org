@@ -18,7 +18,16 @@
         @apply --container;
       }
 
-      .description {
+      .section {
+        margin-bottom: 32px;
+      }
+
+      .section .title {
+        margin-bottom: 6px;
+        text-transform: uppercase;
+      }
+
+      .section .description {
         @apply --text;
       }
     </style>
@@ -30,11 +39,33 @@
         </div>
       </part-jumbotron>
       <div class="container">
-        <h3 class="title">Computational Visual Design Lab</h3>
-        <p class="description">
-          The Computational Visual Design Lab is a Web Graphics Design Lab <br>
-          located in the Roma Tre University in Rome, Italy.
-        </p>
+        <div class="section">
+          <h2 class="title">What we do</h2>
+          <div class="description">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua.
+          </div>
+        </div>
+        <div class="section">
+          <h2 class="title">Who we are</h2>
+          <div class="description">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua.
+          </div>
+        </div>
+        <div class="section">
+          <h2 class="title">Why we do what we do</h2>
+          <div class="description">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua.
+          </div>
+        </div>
+        <div class="section">
+          <h2 class="title">Where and When you can find us</h2>
+          <div class="description">
+            We are located in Rome, in the RomaTre University, in the Computer Engineering Department.
+          </div>
+        </div>
         <part-map id="map" latitude="41.8554605" longitude="12.4718962" zoom="15"></part-map>
       </div>
     </layout-page>
