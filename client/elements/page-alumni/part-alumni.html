@@ -6,6 +6,7 @@
         @apply --layout-horizontal;
         @apply --layout-wrap;
         @apply --layout-center-justified;
+        @apply --text;
       }
 
       .card {
@@ -38,6 +39,19 @@
         font-weight: 600;
         font-size: 14px;
       }
+
+      @media (max-width: 992px) {
+        .card .image img {
+          width: 120px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .card .image img {
+          width: 100px;
+        }
+      }
+
     </style>
 
     <div class="deck layout horizontal wrap center-justified">

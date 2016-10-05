@@ -10,5 +10,11 @@
     "title": "Parallel and Distributed Computing",
     "description": "",
     "repository": "http://github.com/cvdlab-courses/pdc"
+  },
+  {
+    "id": "CAT",
+    "title": "Computational Algebraic Topology",
+    "description": "",
+    "repository": "http://github.com/cvdlab-courses/cat"
   }
 ]

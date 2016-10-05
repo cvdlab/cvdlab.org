@@ -7,19 +7,20 @@
 
       .card {
         margin-bottom: 60px;
+        @apply --text;
       }
 
-      .description {
-        @apply --text;
+      .title {
+        margin: 0;
       }
     </style>
 
     <div class="deck">
       <template is="repeat" items="{{courses}}" item="course">
         <div class="card">
-          <h3 class="title">{{course.title}}</h3>
+          <h4 class="title">{{course.title}}</h4>
           <div class="description">
-            <p>{{course.description}}</p>
+            <div>{{course.description}}</div>
             <a target="_blank" href="{{course.repository}}">view more</a>
           </div>
         </div>
