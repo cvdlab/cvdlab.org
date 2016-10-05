@@ -1,0 +1,61 @@
+<link rel="import" href="../layout-page/layout-page.html">
+<link rel="import" href="../part-jumbotron/part-jumbotron.html">
+
+<template-element id="page-contacts">
+  <template>
+    <style>
+      :host {
+        @apply --layout-block;
+      }
+
+      #jumbotron {
+        @apply --layout-block;
+        height: 200px;
+      }
+
+      .container {
+        @apply --container;
+        @apply --text;
+      }
+    </style>
+
+    <layout-page>
+      <part-jumbotron id="jumbotron">
+        <div class="container">
+          <h1 class="title">Contacts</h1>
+        </div>
+      </part-jumbotron>
+      <div class="container">
+
+        <!-- <h3>Contacts</h3> -->
+
+        <div>
+          The CVDLAB is located @ <a href="http://www.ingegneria.uniroma3.it/">DIA</a>, <a href="http://www.uniroma3.it/">Roma Tre University</a>
+        </div>
+        <div>
+          Via della Vasca navale 79, 00146 Rome ITALY
+        </div>
+        <div>
+          E-mail: <a href="mailto:ciao@cvdlab.org">ciao@cvdlab.org</a>
+        </div>
+        <div>
+          Phone: +39 06 57333217
+        </div>
+
+      </div>
+    </layout-page>
+
+  </template>
+</template-element>
+
+<script>
+  class PageContacts extends Pantarei.Element {
+
+    static get is () { return 'page-contacts' }
+
+    before_connect () {}
+
+  }
+
+  document.registerElement('page-contacts', PageContacts)
+</script>
