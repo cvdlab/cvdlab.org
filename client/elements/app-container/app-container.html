@@ -5,6 +5,9 @@
 <link rel="import" href="../page-alumni/page-alumni.html">
 <link rel="import" href="../page-projects/page-projects.html">
 <link rel="import" href="../page-theses/page-theses.html">
+<link rel="import" href="../page-cookies/page-cookies.html">
+
+<link rel="import" href="../part-cookies/part-cookies.html">
 
 <template-element id="app-container">
   <template>
@@ -342,6 +345,7 @@
     </style>
 
     <div ref="container" on-action="on_action"></div>
+    <part-cookies></part-cookies>
 
   </template>
 </template-element>
@@ -362,6 +366,7 @@
         '/alumni': 'page-alumni',
         '/projects': 'page-projects',
         '/theses': 'page-theses',
+        '/cookies': 'page-cookies',
         '*': 'page-home'
       }
     }
@@ -390,6 +395,7 @@
       page.classList.add('page')
       container.appendChild(page)
       this.page = page
+      window.ga && ga('send', 'pageview', '/' + page_name)
     }
 
     on_action (event, detail) {
