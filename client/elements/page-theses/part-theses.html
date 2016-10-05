@@ -9,6 +9,16 @@
         margin: 0;
       }
 
+      .title:before {
+        content: "“";
+        font-size: 22px;
+      }
+
+      .title:after {
+        content: "”";
+        font-size: 22px;
+      }
+
       .author {
         font-weight: 600;
       }
@@ -16,9 +26,15 @@
       .tag {
         margin-right: 10px;
         /*color: var(--theme-color);*/
+        background-color: #c3c3c3;
+        color: white;
+        padding: 4px 16px 4px 16px;
+        border-radius: 12px;
+        font-family: monospace;
       }
+
       .tag::before {
-        content: '#'
+        /*content: '#'*/
       }
 
       .card {
@@ -30,13 +46,18 @@
     <div class="deck">
       <template is="repeat" items="{{theses}}" item="thesis">
         <div class="card">
-          <h4 class="title">{{thesis.title}}</h4>
+          <h3 class="title">{{thesis.title}}</h3>
           <div class="info">
-            <span>presented by</span>
+            <span>by </span>
             <span class="author">{{thesis.author}}</span>
             <span> in </span>
             <span class="year">{{thesis.year}}</span>
           </div>
+          <ul>
+            <template is="repeat" items="{{thesis.notes}}" item="note">
+              <li>{{note}}</li>
+            </template>
+          </ul>
           <div class="tags">
             <template is="repeat" items="{{thesis.tags}}" item="tag">
               <span class="tag">{{tag}}</span>

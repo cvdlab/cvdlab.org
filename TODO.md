@@ -1,18 +1,18 @@
 # misc
 
-- controllare account email, generare alias `hello@cvdlab.org`
+- ~~(f) controllare account email, generare alias `hello@cvdlab.org`~~
 - (e) [10] test mobile
-- multilinga
-- animazioni
-- stile
+- [1] multilingua
+- [5] animazioni
+- [7] stile
 
 
-# home
+# `page-home`
 
-- background grafo, o bella img
-- link e pagina contatti nel footer
+- [5] background grafo, o bella img
+- (f) [5] link e pagina contatti nel footer
 
-# about
+# `page-about`
 
 - (f) [10] aggiungere sezioni "founder" e "people" in "who"
 - (f) [10] testi brevi (tweet-like)
@@ -20,27 +20,28 @@
 - (f) [10] knowhow: web, 3d, blockchain, solidmodeling, cutting edge wen tech
 - (e) [1] aggiungere deck tecnologie con loghi
 
-# alumni
-~~- rinominare da "people" in "alumni"~~
+# `page-alumni`
+- ~~rinominare da "people" in "alumni"~~
 - [1] algoritmo bolle
 
-# projects
+# `page-projects`
 - (e) [10] dividere progetti nelle joint researces:
   - sogei: dma, vispro, service link, tourbox, five
   - geoweb: metior
   - policlinico: medical folder
 - (e) [10] progetti interni: x-project, x-learning, x-commerce, panta-rei, bak3d
 
-# thesis
+# `page-thesis`
 
-- (f) [9] traduzione titoli in inglese
+- ~~(f) [9] traduzione titoli in inglese~~
+- [7] aggiungere markdown parsing alle note
 
-# courses
+# `page-courses`
 
 - verificare repo github
 - stile
 
-# contacts
+# `page-contacts`
 
 - (f) [8] generare la pagina e aggiungere link in footer
 
