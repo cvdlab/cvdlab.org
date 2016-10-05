@@ -1,25 +1,29 @@
 
-<template-element id="deck-projects">
+<template-element id="part-projects">
   <template>
     <style>
       :host {
         display: block;
       }
 
+      .deck {
+        @apply --text;
+      }
+
       .card {
         margin-bottom: 60px;
       }
 
-      .description {
-        @apply --text;
+      .card .title {
+        margin: 0;
       }
     </style>
 
     <div class="deck">
       <template is="repeat" items="{{projects}}" item="project">
         <div class="card">
-          <h4>{{project.title}}</h4>
-          <p class="description">{{project.description}}</p>
+          <h4 class="title">{{project.title}}</h4>
+          <div class="description">{{project.description}}</div>
         </div>
       </template>
     </div>
@@ -27,9 +31,9 @@
 </template-element>
 
 <script>
-  class DeckProjects extends Pantarei.Element {
+  class PartProjects extends Pantarei.Element {
 
-    static get is () { return 'deck-projects' }
+    static get is () { return 'part-projects' }
 
     get props () {
       return {
@@ -42,5 +46,5 @@
 
   }
 
-  document.registerElement('deck-projects', DeckProjects)
+  document.registerElement('part-projects', PartProjects)
 </script>

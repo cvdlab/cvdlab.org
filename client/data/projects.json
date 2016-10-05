@@ -1,55 +1,65 @@
 [
   {
-    "title": "Simplexn.js",
-    "repository": "http://github.com/cvdlab/simplexn.js",
-    "description": "Simplexn.js is a pure JavaScript geometric kernel based on simplicial complexes. The kernel is dimension-independent (i.e. it works seamlessly in dimension one, two, three and even higher dimensions) and offers an extensive object-oriented API. Performance issues, critical in a geometric kernel, are addressed using flat data-structures, explicit unrolled loops and JavaScript Typed Arrays.",
-    "thumbnail": "/images/projects/simplexn.png"
-  },
-  {
     "title": "Plasm.js",
     "repository": "https://github.com/cvdlab/plasm.js",
-    "description": "Plasm.js is the JavaScript declination of PLaSM, the Programming LAnguage for Solid Modeling. It is a \"design language\" for geometric and solid parametric design, initially developed by the CAD Group at the Universities \"La Sapienza\" and \"Roma Tre\". The language is strongly influenced by FL. Its JavaScript version is based on Simplexn.js and WebGL, using Three.js.",
-    "thumbnail": "/images/projects/plasm.png",
-    "url": "http://cvdlab.github.io/plasm.js/"
+    "description": "JavaScript functional programming library for solid modelling based on dimension-independent geometric kernel",
+    "url": "http://cvdlab.github.io/plasm.js/",
+    "tags": ["JavaScript", "FunctionalProgramming", "SolidModelling", "GeometricKernel"]
   },
   {
-    "title": "LAR-CC",
-    "repository": "https://github.com/cvdlab/lar-cc",
-    "description": "LAR (Linear Algebraic Representation) is a modelling scheme to compute with Cellular Chains using compressed sparse matrices, usable for cellular complexes with general topology and shape. Characterized by a very large domain (including architecture, 2D and 3D engineering meshes, non-manifold geometric or solid models and high-resolution 3D images), LAR supports a variety of topological computations using standard matrix algebra.",
-    "thumbnail": "/images/projects/lar-cc.png"
+    "title": "Simplexn.js",
+    "repository": "http://github.com/cvdlab/simplexn.js",
+    "description": "JavaScript multi-dimensional geometric kernel based on simplicial complex for 3D solid modelling",
+    "tags": ["JavaScript", "SolidModelling", "GeometricKernel", "Simplex", "SimplicialComplex"]
+  },
+  {
+    "title": "LAR.js",
+    "description": "JavaScript multi-dimensional geometric kernel based on linear algebraic representation for 3D solid modelling",
+    "tags": ["JavaScript", "SolidModelling", "GeometricKernel", "LinearAlgebraicRepresentation"]
+  },
+  {
+    "title": "VisPro",
+    "description": "Web Platform to create simple Web Applications without writing code",
+    "tags": ["WebPlatform", "VisualProgramming", "HTML5", "widgets"]
+  },
+  {
+    "title": "ServiceLink",
+    "description": "Web Platform to create RESTful API-based services in a Visual Programming manner",
+    "tags": ["WebPlatform", "VisualProgramming", "NodeJS", "HTML5", "Drag&Drop", "RESTful", "services"]
+  },
+  {
+    "title": "DMA",
+    "description": "Web Platform for Decision Makers based on multi-criteria methods",
+    "tags": ["WebPlatform", "MultiCriteriaMethods", "DecisionMaker", "charts", "BigData"]
   },
   {
     "title": "C3D",
     "repository": "http://github.com/cvdlab/c3d",
-    "description": "For environments with massive presence of sensor-equipped (or \"smart\") objects, which realize the IoT (Internet of Things), an Interactive Indoor Mapping (IIM) system represents the ideal interface for integrated IoT monitoring. By supporting continuous outdoor/indoor navigation by means of integration of technologies, it represents also the most natural interface to perform realtime access monitoring and multi-person tracking.",
-    "thumbnail": "/images/projects/c3d.png"
-  },
-  {
-    "title": "Bak3ditor",
-    "repository": "http://github.com/cvdlab",
-    "description": "The \"baking\" of the lightmaps is a technique to speed-up and lightened the render of static scenes, where the high level of detail makes the computation heavy. The project aims to realize a workflow that starts in the browser, with the composition of a scene in a WebGL based simple editor. Once the scene is defined, the lightmaps baking process can be trigged on the serverside, exploiting the power of the Blender Suite. Thanks to the off-line computation, realtime fluid navigation of realistic indoor environments can be performed in the browser, even in mobile devices.",
-    "thumbnail": "/images/projects/bak3ditor.png"
-  },
-  {
-    "title": "DMA.js",
-    "description": "DMA.js (Decision Maker Assistant) is a web platform which implements a decision support system based on multi-criteria methods. Ten methods are bundled, with relative charts package, but the plugin architecture allows for the extension of the supported methods. The service, available as a SAAS, aims to be a \"whisper in the ear of the decider\", providing him with a tool to analyze the problem according to multi-attribute strategies.",
-    "thumbnail": "/images/projects/dma.png"
-  },
-  {
-    "title": "VisPro",
-    "repository": "",
-    "description": "VisPro which stands for \"Visual Programming\" is a web environments designed and realized in collaboration with Sogei S.p.A. (the ICT company of the Italian Ministry of Economy and Finance). The project aims to allow the definition of (skeleton or prototypal) web interfaces by means of a visual programming language. The language is essentially based on basic uman computer interactions like drag and drop, enabling the software development even for not skilled people (senior executives for instance).",
-    "thumbnail": "/images/projects/vispro.png"
-  },
-  {
-    "title": "ServiceLink",
-    "description": "ServiceLink represents the natural continuation of the VisPro project: once the web interface if defined, it is the moment to define the application logic to make it \"live\". This logic can be defined via visual composition of web services, either REST-like, or client-side SDKs. Composition is realized via a drag and drop approach, metaphorically connecting the output of a service with the input of another. The services that can be linked together realizing the execution pipeline, must be described in terms of their inputs and outputs.",
-    "thumbnail": "/images/projects/servicelink.png"
+    "description": "Web Platform to build interactive VR indoor mapping and real-time IoT monitoring",
+    "tags": ["WebPlatform", "VR", "IndoorMapping", "IoT"]
   },
   {
     "title": "x-project",
-    "repository": "http://github.com/x-project",
-    "description": "x-project aims to take the web development to a next level by combining the flexibility of Strongloop Loopback programmable BAAS with the cleanness introduced by Google Polymer project. This project defines a technological stack (MongoDB | Strongloop Loopback | Google Polymer project) and a library of few fundamental elements which allow for the realization of \"vertical widgets\", i.e. web components that can be used as simple as adding a HTML element to a page, while hiding complex logic both on the client side as well as on the server side (as for example, invitation signup widget, media content uploads, etc)",
-    "thumbnail": "/images/x-project.jpg"
+    "repository": "http://github.com/x-project/x-project",
+    "description": "Web Platform to build API-driven WebComponents-based HTML5 SinglePageApplications",
+    "tags": ["WebPlatform", "NodeJS", "MongoDB", "API", "RESTful", "JWT", "HTML5", "WebComponents"]
+  },
+  {
+    "title": "x-commerce",
+    "repository": "http://github.com/x-project/x-commerce",
+    "description": "Web Platform to build API-driven WebComponents-based HTML5 SPA e-commerce Applications",
+    "tags": ["WebPlatform", "NodeJS", "MongoDB", "API", "RESTful", "JWT", "HTML5", "WebComponents", "e-commerce"]
+  },
+  {
+    "title": "x-learning",
+    "repository": "http://github.com/x-project/x-commerce",
+    "description": "Web Platform to build API-driven HTML5 Single Page e-learning Applications",
+    "tags": ["WebPlatform", "NodeJS", "MongoDB", "API", "RESTful", "JWT", "HTML5", "WebComponents", "e-learning", "MOOC"]
+  },
+  {
+    "title": "BAK3D",
+    "repository": "http://github.com/cvdlab",
+    "description": "Web Platform to create quasi-photorealistic 3D indoor scenes based on texture baking techniques",
+    "tags": ["WebPlatform", "Photorealistic", "Indoor", "TextureBaking"]
   }
 ]

@@ -1,12 +1,14 @@
 [
   {
-    "title": "GGPL",
-    "description": "Geometric and Graphics Programming Laboratory",
+    "id": "GGPL",
+    "title": "Geometric and Graphics Programming Laboratory",
+    "description": "",
     "repository": "http://github.com/cvdlab-courses/ggpl"
   },
   {
-    "title": "PDC",
-    "description": "Parallel and Distributed Computing",
+    "id": "PDC",
+    "title": "Parallel and Distributed Computing",
+    "description": "",
     "repository": "http://github.com/cvdlab-courses/pdc"
   }
 ]
