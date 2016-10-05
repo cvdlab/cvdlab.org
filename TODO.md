@@ -43,5 +43,6 @@
 
 # `page-contacts`
 
-- (f) [8] generare la pagina e aggiungere link in footer
+- ~~(f) [8] generare la pagina e aggiungere link in footer~~
+- [10] stile
 
