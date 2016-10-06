@@ -23,6 +23,14 @@
         @apply --layout-fullbleed;
       }
 
+      .section.who .founders {
+        font-size: 20px;
+        margin-bottom: 30px;
+      }
+      .section.who .founders .founder {
+        font-weight: 900;
+      }
+
       .tagline {
         font-size: 90px;
         font-weight: 900;
@@ -48,7 +56,7 @@
 
           <div class="tagline">
             <span>We make<span><br>
-            <span>Web </span><span class="stuff" ref="stuff"></span>
+            <span class="web">Web </span><span class="stuff" ref="stuff"></span>
           </div>
 
           <div class="subsection">
@@ -64,13 +72,13 @@
 
         <div class="section who">
           <h1 class="title">Who we are</h1>
-          <div class="founders">
+          <div class="people">
             <h3>Founders</h3>
-            <ul class="people">
-              <li>Alberto Paoluzzi</li>
-              <li>Enrico Marino</li>
-              <li>Federico Spini</li>
-            </ul>
+            <div class="founders">
+              <span class="founder">Alberto Paoluzzi</span><span>,</span>
+              <span class="founder">Enrico Marino</span><span> &amp; </span>
+              <span class="founder">Federico Spini</span>
+            </div>
             <div>
               <a href="/people">meet the teem</a>
             </div>
@@ -80,25 +88,27 @@
         <div class="section why">
           <h1 class="title">Why we do what we do</h1>
           <div class="description">
-            <p>
-              Love, Love, Love<br>
-              Love studying cutting-edge Web Technologies (that are going to be Web standards) <br>
-              Love experimenting and making Web stuff using what we have studied <br>
-              Love teaching what we have maked, sharing our know-how and our projects <br>
-            </p>
+            <p>Love, Love, Love</p>
+            <p>Love studying cutting-edge Web Technologies (that are going to be Web standards)</p>
+            <p>Love experimenting and making Web stuff using what we have studied</p>
+            <p>Love teaching what we have maked, sharing our know-how and our projects</p>
           </div>
         </div>
 
         <div class="section where">
           <h1 class="title">Where you can find us</h1>
           <div class="description">
-            We are located in Rome, in the RomaTre University, in the Computer Engineering Department.
+            <p>We are in Rome, in the RomaTre University, in the Computer Engineering Department.</p>
+            <p>If you're in the neighborhood, come to visit us, or <a href="/contacts">drop us a line</a>.</p>
+          </div>
+          <div>
+            <a href="/contacts">contact us</a>
           </div>
         </div>
 
         <div class="section when">
           <h1 class="title">When did it all start?</h1>
-          <div>CVDLAB was founded in 2010</div>
+          <div>CVDLAB was founded in 2010.</div>
         </div>
 
       </div>
@@ -113,7 +123,7 @@
     static get is () { return 'page-about' }
 
     after_connect () {
-      let tags = ['Apps', 'Platforms', 'Frameworks', '3D', 'Graphics', 'Experiments', 'Projects', 'Stuff']
+      let tags = ['Apps', 'Platforms', 'Frameworks', '3D', 'Graphics', 'VR', 'Experiments', 'Projects', 'Stuff']
       let tag = this.refs.stuff
       let i = 0
       let n = tags.length
