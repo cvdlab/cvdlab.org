@@ -93,12 +93,12 @@
         "If you are waiting for this to end"
       ]
 
-      let condition = this.refs.condition
+      let node = this.refs.condition
       let n = conditions.length
       let i = 0
 
       function fill () {
-        condition.innerText = conditions[i++ % n]
+        node.innerText = conditions[i++ % n]
       }
       fill()
       window.setInterval(fill, 2500)

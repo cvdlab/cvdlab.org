@@ -22,6 +22,11 @@
       .section {
         @apply --layout-fullbleed;
       }
+
+      .tagline {
+        font-size: 90px;
+        font-weight: 900;
+      }
     </style>
 
     <layout-page>
@@ -40,17 +45,21 @@
 
         <div class="section what">
           <h1 class="title">What we do</h1>
-          <div class="description">
-            <span>We make Web </span>
-            <span ref="stuff"></span>
+
+          <div class="tagline">
+            <span>We make<span><br>
+            <span>Web </span><span class="stuff" ref="stuff"></span>
           </div>
-          <h2>How we work?</h2>
-          <ul>
-            <li>Explore, Make, Share</li>
-            <li>First do it, then do it right, then do it better</li>
-            <li>Keep It Stupid Simple</li>
-            <li>Dividi et Impera</li>
-          </ul>
+
+          <div class="subsection">
+            <h2>How we work?</h2>
+            <ul>
+              <li>Explore, Make, Share</li>
+              <li>First do it, then do it right, then do it better</li>
+              <li>Keep It Stupid Simple</li>
+              <li>Dividi et Impera</li>
+            </ul>
+          </div>
         </div>
 
         <div class="section who">
