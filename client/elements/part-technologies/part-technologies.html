@@ -1,0 +1,58 @@
+<template-element id="part-technologies">
+  <template>
+    <style>
+      :host {
+        display: block;
+      };
+
+      #part-technologies {
+        @apply --layout-horizontal;
+        @apply --layout-wrap;
+      }
+
+      #part-technologies .technology {
+        display: block;
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        filter: grayscale(50%);
+        /*background-color: #efefef;*/
+      }
+
+      #part-technologies .technology:hover {
+        filter: grayscale(0%);
+      }
+    </style>
+
+    <div id="part-technologies">
+      <template is="repeat" items="{{technologies}}" item="technology">
+        <div class="technology" style="{{technology.style}}"></div>
+      </template>
+    </div>
+
+  </template>
+</template-element>
+
+<script>
+  class PartTechnologies extends Pantarei.Element {
+
+    static get is () { return 'part-technologies' }
+
+    before_update () {
+      if (this.technologies) {
+        this.technologies = this.technologies.map(function (technology) {
+          return {
+            name: technology,
+            style: `background-image: url('/images/${technology}.png');`
+          }
+        })
+      }
+    }
+
+  }
+
+  document.registerElement('part-technologies', PartTechnologies)
+</script>

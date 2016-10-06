@@ -251,7 +251,7 @@
 
         --layout-fullbleed: {
           margin: 0;
-          height: 100vh;
+          min-height: 100vh;
         };
 
         --layout-fixed-top: {
@@ -398,15 +398,15 @@
       window.ga && ga('send', 'pageview', '/' + page_name)
     }
 
-    on_action (event, detail) {
-      let action = this['do_' + detail.name]
-      if (!action) {
+    on_action (event, action) {
+      let method = this['do_' + action.name]
+      if (!method) {
         return
       }
-      action.call(this, detail.data)
+      method.call(this, action.data)
     }
 
-    fetch_data (name) {
+    do_fetch (name) {
       fetch(`data/${name}.json`, {
         method: 'get',
         headers: {
@@ -423,26 +423,6 @@
         this.page[name] = data
         this.page.update()
       }.bind(this))
-    }
-
-    do_fetch_alumni (data) {
-      this.fetch_data('alumni')
-    }
-
-    do_fetch_projects (data) {
-      this.fetch_data('projects')
-    }
-
-    do_fetch_theses (data) {
-      this.fetch_data('theses')
-    }
-
-    do_fetch_courses (data) {
-      this.fetch_data('courses')
-    }
-
-    do_fetch_crumbs (data) {
-      this.fetch_data('crumbs')
     }
 
   }

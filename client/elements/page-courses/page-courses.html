@@ -48,8 +48,8 @@
     static get is () { return 'page-courses' }
 
     before_connect () {
-      this.action('fetch_courses')
-      this.action('fetch_crumbs')
+      this.action('fetch', 'courses')
+      this.action('fetch', 'crumbs')
     }
 
   }

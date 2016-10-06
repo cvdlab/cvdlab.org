@@ -1,6 +1,7 @@
 <link rel="import" href="../layout-page/layout-page.html">
 <link rel="import" href="../part-jumbotron/part-jumbotron.html">
 <link rel="import" href="../part-map/part-map.html">
+<link rel="import" href="../part-technologies/part-technologies.html">
 
 <template-element id="page-about">
   <template>
@@ -35,6 +36,10 @@
         font-size: 70px;
         font-weight: 700;
       }
+
+      .section .subsection {
+        margin: 120px 0;
+      }
     </style>
 
     <layout-page>
@@ -61,12 +66,20 @@
 
           <div class="subsection">
             <h2>How we work?</h2>
-            <ul>
-              <li>Explore, Make, Share</li>
-              <li>First do it, then do it right, then do it better</li>
-              <li>Keep It Stupid Simple</li>
-              <li>Dividi et Impera</li>
-            </ul>
+            <div class="principles">
+              <p>Explore, Make, Share</p>
+              <p>First do it, then do it right, then do it better</p>
+              <p>Keep It Stupid Simple</p>
+              <p>Dividi et Impera</p>
+            </div>
+          </div>
+
+          <div class="subsection">
+            <h2>What we use?</h2>
+            <p>Web Technologies, what else?</p>
+            <div class="technologies">
+              <part-technologies technologies="{{technologies}}"></part-technologies>
+            </div>
           </div>
         </div>
 
@@ -129,7 +142,9 @@
       let n = tags.length
       window.setInterval(function () {
         tag.innerText = tags[i++ % n]
-      }, 1000)
+      }, 1500)
+
+      this.action('fetch', 'technologies')
     }
 
   }

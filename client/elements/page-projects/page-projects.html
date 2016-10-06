@@ -33,7 +33,7 @@
     static get is () { return 'page-projects' }
 
     before_connect () {
-      this.action('fetch_projects')
+      this.action('fetch', 'projects')
     }
 
   }
