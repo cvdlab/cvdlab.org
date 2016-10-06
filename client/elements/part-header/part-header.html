@@ -8,23 +8,16 @@
       #part-header {
         @apply --box;
         @apply --layout-horizontal;
+        @apply --layout-wrap;
 
-        position: fixed;
+        position: absolute;
 
         width: 100%;
         height: 60px;
         z-index: 100;
-        padding: 0 3%;
 
-        box-shadow: 0 1px 1px #eee;
-
-        background-color: white;
-        transition-property: background-color;
-        transition-duration: 0.5s;
-      }
-      #part-header.transparent {
-        /*background-color: rgba(49, 51, 59, 0.1);*/
-        background-color: transparent;
+        background-color: rgba(255, 255, 255, .5);
+        /*background-color: transparent;*/
         box-shadow: none;
       }
 
@@ -34,6 +27,7 @@
 
       #part-header .brand,
       #part-header .links {
+        @apply --box;
         @apply --layout-horizontal;
         @apply --layout-no-wrap;
       }
@@ -55,16 +49,10 @@
         transition-property: color;
         transition-duration: .5s;
       }
-      #part-header.transparent .brand .link,
-      #part-header.transparent .links .link {
-        color: white;
-      }
 
-      #part-header .brand .link,
       #part-header .links .link:first-child {
         padding-left: 0;
       }
-      #part-header .brand .link,
       #part-header .links .link:last-child {
         padding-right: 0;
       }
@@ -105,14 +93,6 @@
       }
 
       @media (max-width: 768px) {
-        #part-header.transparent {
-          background-color: white;
-        }
-        #part-header.transparent .brand .link,
-        #part-header.transparent .links .link {
-          color: #333;
-        }
-
         #part-header .links .link {
           display: none;
         }
@@ -125,25 +105,27 @@
       }
     </style>
 
-    <div id="part-header" ref="header" class="transparent">
+    <div id="part-header" ref="header">
       <div class="brand">
         <a class="link" href="/">CVDLAB</a>
       </div>
       <div class="space"></div>
       <div class="links">
         <a class="link" href="/about">about</a>
-        <a class="link" href="/alumni">alumni</a>
+        <a class="link" href="/people">people</a>
         <a class="link" href="/projects">projects</a>
         <a class="link" href="/theses">theses</a>
         <a class="link" href="/courses">courses</a>
+        <a class="link" href="/contacts">contacts</a>
         <a class="link toggle" href="./" on-click="on_click_toggle">☰</a>
       </div>
       <div class="menu">
         <a class="item" href="/about">about</a>
-        <a class="item" href="/alumni">alumni</a>
+        <a class="item" href="/people">people</a>
         <a class="item" href="/projects">projects</a>
         <a class="item" href="/theses">theses</a>
         <a class="item" href="/courses">courses</a>
+        <a class="item" href="/courses">contacts</a>
       </div>
     </div>
 

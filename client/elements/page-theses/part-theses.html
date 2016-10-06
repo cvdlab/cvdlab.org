@@ -9,32 +9,21 @@
         margin: 0;
       }
 
-      .title:before {
-        content: "“";
-        font-size: 22px;
-      }
-
-      .title:after {
-        content: "”";
-        font-size: 22px;
-      }
-
       .author {
         font-weight: 600;
       }
 
       .tag {
         margin-right: 10px;
-        /*color: var(--theme-color);*/
-        background-color: #c3c3c3;
-        color: white;
-        padding: 4px 16px 4px 16px;
-        border-radius: 12px;
-        font-family: monospace;
+        padding-right: 16px;
+        /*font-family: monospace;*/
+        /*border-radius: 12px;*/
+        /*background-color: #c3c3c3;*/
+        /*color: white;*/
       }
 
       .tag::before {
-        /*content: '#'*/
+        content: '#'
       }
 
       .card {
@@ -53,11 +42,11 @@
             <span> in </span>
             <span class="year">{{thesis.year}}</span>
           </div>
-          <ul>
+          <div class="notes">
             <template is="repeat" items="{{thesis.notes}}" item="note">
-              <li>{{note}}</li>
+              <div>{{note}}</div>
             </template>
-          </ul>
+          </div>
           <div class="tags">
             <template is="repeat" items="{{thesis.tags}}" item="tag">
               <span class="tag">{{tag}}</span>

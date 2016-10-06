@@ -1,0 +1,86 @@
+<link rel="import" href="../layout-page/layout-page.html">
+<link rel="import" href="../part-jumbotron/part-jumbotron.html">
+<link rel="import" href="part-alumni.html">
+
+<template-element id="page-people">
+  <template>
+    <style>
+      :host {
+        @apply --layout-block;
+      }
+
+      #jumbotron {
+        @apply --layout-block;
+        height: 200px;
+      }
+
+      .container {
+        @apply --container;
+        padding-top: 60px;
+      }
+
+      .section {
+        @apply --layout-fullbleed;
+      }
+
+    </style>
+
+    <layout-page>
+      <div class="container">
+
+        <div class="section team">
+          <h1>Meet the team</h1>
+          <ul class="people">
+            <li>Enrico Marino</li>
+            <li>Federico Spini</li>
+            <li>Christian Vadalà</li>
+            <li>Danilo Salvati</li>
+            <li>Giulia Clementi</li>
+            <li>Alessio Carrafa</li>
+            <li>Cesare Catavitiello</li>
+            <li>Stefano Perrone</li>
+          </ul>
+        </div>
+
+        <div class="section collaborations">
+          <h1>Proud to have worked with</h1>
+          <ul class="people">
+            <li>Michele D'Antimi</li>
+            <li>Edoardo Carra</li>
+            <li>Jit Baljinder</li>
+            <li>Alessando Rastelli</li>
+            <li>Andrea D'Amelio</li>
+            <li>Tiziano Sperati</li>
+            <li>Marco Sportillo</li>
+            <li>Marco Virgadamo</li>
+            <li>Francesco Furiani</li>
+            <li>Vittorio Cecchetto</li>
+            <li>Matteo Pisani</li>
+            <li>Lapo Breschi</li>
+            <li>Miroslav Jiřík</li>
+          </ul>
+        </div>
+
+        <div class="section alumni">
+          <h1 class="title">our students are the secret ingredient</h1>
+          <part-alumni alumni="{{alumni}}"></part-alumni>
+        </div>
+      </div>
+    </layout-page>
+
+  </template>
+</template-element>
+
+<script>
+  class PagePeople extends Pantarei.Element {
+
+    static get is () { return 'page-alumni' }
+
+    before_connect () {
+      this.action('fetch_alumni')
+    }
+
+  }
+
+  document.registerElement('page-people', PagePeople)
+</script>

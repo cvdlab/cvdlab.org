@@ -16,22 +16,26 @@
 
       .container {
         @apply --container;
+        padding-top: 60px;
+      }
+
+      .section {
+        @apply --layout-fullbleed;
       }
     </style>
 
     <layout-page>
-      <part-jumbotron class="jumbotron" id="jumbotron">
+      <div class="section coursed">
         <div class="container">
           <h1 class="title">Courses</h1>
+          <deck-courses courses="{{courses}}"></deck-courses>
         </div>
-      </part-jumbotron>
-      <div class="container">
-        <h3>Courses</h3>
-        <deck-courses courses="{{courses}}"></deck-courses>
       </div>
       <div class="container">
-        <h3>Learning by doing courses modules</h3>
-        <deck-courses courses="{{crumbs}}"></deck-courses>
+        <div class="container">
+          <h1 class="title">Learning by doing</h1>
+          <deck-courses courses="{{crumbs}}"></deck-courses>
+        </div>
       </div>
     </layout-page>
 

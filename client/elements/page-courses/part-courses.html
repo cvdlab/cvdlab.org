@@ -5,23 +5,27 @@
         display: block;
       }
 
-      .card {
+      .card.course {
         margin-bottom: 60px;
         @apply --text;
       }
 
-      .title {
+      .card.course .title {
         margin: 0;
+      }
+
+      .card.course .link {
+        text-decoration: none;
+        color: inherit;
       }
     </style>
 
     <div class="deck">
       <template is="repeat" items="{{courses}}" item="course">
-        <div class="card">
-          <h4 class="title">{{course.title}}</h4>
+        <div class="card course">
+          <h4 class="title"><a class="link" target="_blank" href="{{course.repository}}">{{course.title}}</a></h4>
           <div class="description">
             <div>{{course.description}}</div>
-            <a target="_blank" href="{{course.repository}}">view more</a>
           </div>
         </div>
       </template>

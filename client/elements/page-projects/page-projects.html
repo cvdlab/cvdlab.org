@@ -9,24 +9,18 @@
         @apply --layout-block;
       }
 
-      .jumbotron {
-        @apply --layout-block;
-        height: 200px;
-      }
-
       .container {
         @apply --container;
+        padding-top: 60px;
       }
     </style>
 
     <layout-page>
-      <part-jumbotron class="jumbotron">
-        <div class="container">
-          <h1 class="title">Projects</h1>
-        </div>
-      </part-jumbotron>
       <div class="container">
-        <part-projects projects="{{projects}}"></part-projects>
+        <div class="section projects">
+          <h1 class="title">Projects</h1>
+          <part-projects projects="{{projects}}"></part-projects>
+        </div>
       </div>
     </layput-page>
 

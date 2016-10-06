@@ -11,33 +11,46 @@
       #layout {
         @apply --layout-vertical;
         @apply --layout-fullbleed;
+        @apply --box;
+        border: 20px solid #efefef;
+        position: relative;
       }
 
-      #header {
+      #layout #frame {
+        @apply --layout-fit;
+      }
+
+      #layout #header {
+        position: absolute;
+        width: 100%;
         @apply --layout-block;
         @apply --layout-over;
       }
 
-      #main {
-        @apply --layout-block;
+      #layout #main {
+        @apply --layout-fit;
+        overflow-y: scroll;
+        padding-top: 60px;
       }
 
-      #space {
+      #layout #space {
         @apply --layout-flex;
       }
 
-      #footer {
+      #layout #footer {
         @apply --layout-block;
       }
     </style>
 
     <div id="layout">
-      <part-header id="header"></part-header>
-      <div id="main">
-        <content select="*"></content>
+      <div id="frame">
+        <part-header id="header"></part-header>
+        <div id="main">
+          <content select="*"></content>
+        </div>
       </div>
-      <div id="space"></div>
-      <part-footer id="footer"></part-footer>
+      <!-- <div id="space"></div> -->
+      <!-- <part-footer id="footer"></part-footer> -->
     </div>
   </template>
 </template-element>

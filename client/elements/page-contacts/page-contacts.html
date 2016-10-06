@@ -8,18 +8,19 @@
         @apply --layout-block;
       }
 
-      #jumbotron {
-        @apply --layout-block;
-        height: 200px;
-      }
-
       .container {
         @apply --container;
+        padding-top: 60px;
       }
 
       .contacts {
         padding-top: 60px;
         @apply --text;
+      }
+
+      .contacts h1 {
+        line-height: 1.5;
+        margin-bottom: 60px;
       }
 
       .contacts .contact {
@@ -37,13 +38,18 @@
     </style>
 
     <layout-page>
-      <part-jumbotron id="jumbotron">
-        <div class="container">
-          <h1 class="title">Contacts</h1>
-        </div>
-      </part-jumbotron>
       <div class="container">
         <div class="contacts">
+          <h1>
+            <span ref="condition"></span>,<br>
+            <span>drop us a line</span>
+          </h1>
+
+          <div class="contact mail">
+            <a class="link value"href="mailto:ciao@cvdlab.org">ciao@cvdlab.org</a><br>
+            <!-- <span class="label">phone</span><span class="value">+39 06 5733 3217</span> -->
+          </div>
+
           <div class="contact address">
             <a class="link" href="http://www.uniroma3.it/" target="_blank">Università degli Studi Roma Tre</a><br>
             <a class="link" href="http://www.ingegneria.uniroma3.it/" target="_blank">Dipartimento di Ingegneria Informatica</a><br>
@@ -51,10 +57,6 @@
           <div class="contact address">
             <span>Via della Vasca navale 79</span><br>
             <span>00146 - Rome, ITALY</span>
-          </div>
-          <div class="contact mail">
-            <span class="label">e-mail</span><a class="link value"href="mailto:ciao@cvdlab.org">ciao@cvdlab.org</a><br>
-            <span class="label">phone</span><span class="value">+39 06 5733 3217</span>
           </div>
         </div>
       </div>
@@ -67,6 +69,40 @@
   class PageContacts extends Pantarei.Element {
 
     static get is () { return 'page-contacts' }
+
+    after_connect () {
+      let conditions = [
+        "If you want to say ciao",
+        "If you like Web Components",
+        "If you like pizza",
+        "If you like animals",
+        "If the cat is on the table",
+        "If you don't know why you're here",
+        "If you don't know why the cat is on the table",
+        "If you know why 42",
+        "If you're aware",
+        "If you run for president",
+        "If you stalk people on facebook",
+        "If you remembered why you're here",
+        "If you're not famous",
+        "If you're just curious",
+        "If you are a superhero at night",
+        "If you're a loser",
+        "If you read all those messages",
+        "If you secretly love us",
+        "If you are waiting for this to end"
+      ]
+
+      let condition = this.refs.condition
+      let n = conditions.length
+      let i = 0
+
+      function fill () {
+        condition.innerText = conditions[i++ % n]
+      }
+      fill()
+      window.setInterval(fill, 2500)
+    }
 
   }
 

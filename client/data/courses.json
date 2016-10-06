@@ -1,20 +1,17 @@
 [
   {
-    "id": "GGPL",
-    "title": "Geometric and Graphics Programming Laboratory",
-    "description": "",
+    "title": "GGPL",
+    "description": "Geometric and Graphics Programming Laboratory",
     "repository": "http://github.com/cvdlab-courses/ggpl"
   },
   {
-    "id": "PDC",
-    "title": "Parallel and Distributed Computing",
-    "description": "",
+    "title": "PDC",
+    "description": "Parallel and Distributed Computing",
     "repository": "http://github.com/cvdlab-courses/pdc"
   },
   {
-    "id": "CAT",
-    "title": "Computational Algebraic Topology",
-    "description": "",
+    "title": "CAT",
+    "description": "Computational Algebraic Topology",
     "repository": "http://github.com/cvdlab-courses/cat"
   }
 ]

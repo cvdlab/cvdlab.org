@@ -16,26 +16,15 @@
 
       .container {
         @apply --container;
+        padding-top: 60px;
       }
 
       .section {
-        margin-bottom: 32px;
-        @apply --text;
-      }
-
-      .section .title {
-        margin-bottom: 6px;
-        text-transform: uppercase;
+        @apply --layout-fullbleed;
       }
     </style>
 
     <layout-page>
-      <part-jumbotron class="jumbotron">
-        <div class="container">
-          <h1 class="title">About us</h1>
-        </div>
-      </part-jumbotron>
-      <div class="container">
 <!--
         <div class="aside">
           <ul>
@@ -47,88 +36,60 @@
           </ul>
         </div>
  -->
-        <div class="main">
-          <div class="section">
-            <h2 class="title">What we do</h2>
-            <div class="description">
-              <p>
-                We make Web <span ref="stuff"></span><br>
-              </p>
-            </div>
-<!--
-            <h3>What are Progressive Web Applications?</h3>
-            <p>
-              Progressive Web Apps are experiences that combine the best of the web and the best of apps. They are useful to users from the very first visit in a browser tab, no install required. As the user progressively builds a relationship with the app over time, it becomes more and more powerful. It loads quickly, even on flaky networks, sends relevant push notifications, has an icon on the home screen, and loads as a top-level, full screen experience.
-            </p>
- -->
-            <h3>How we work?</h3>
-            <ul>
-              <li>Explore, Make, Share</li>
-              <li>First do it, then do it right, then do it better</li>
-              <li>Keep It Stupid Simple</li>
-              <li>Dividi et Impera</li>
+      <div class="container">
+
+        <div class="section what">
+          <h1 class="title">What we do</h1>
+          <div class="description">
+            <span>We make Web </span>
+            <span ref="stuff"></span>
+          </div>
+          <h2>How we work?</h2>
+          <ul>
+            <li>Explore, Make, Share</li>
+            <li>First do it, then do it right, then do it better</li>
+            <li>Keep It Stupid Simple</li>
+            <li>Dividi et Impera</li>
+          </ul>
+        </div>
+
+        <div class="section who">
+          <h1 class="title">Who we are</h1>
+          <div class="founders">
+            <h3>Founders</h3>
+            <ul class="people">
+              <li>Alberto Paoluzzi</li>
+              <li>Enrico Marino</li>
+              <li>Federico Spini</li>
             </ul>
-          </div>
-          <div class="section">
-            <h2 class="title">Who we are</h2>
-            <div class="founders">
-              <h3>Founders</h3>
-              <ul>
-                <li>Alberto Paoluzzi</li>
-                <li>Enrico Marino</li>
-                <li>Federico Spini</li>
-              </ul>
-            </div>
-            <div class="team">
-              <h3>People</h3>
-              <ul>
-                <li>Christian Vadalà</li>
-                <li>Danilo Salvati</li>
-                <li>Giulia Clementi</li>
-                <li>Alessio Carrafa</li>
-                <li>Cesare Catavitiello</li>
-                <li>Stefano Perrone</li>
-              </ul>
-              <h3>Joined us</h3>
-              <ul>
-                <li>Michele D'Antimi</li>
-                <li>Edoardo Carra</li>
-                <li>Jit Baljinder</li>
-                <li>Alessando Rastelli</li>
-                <li>Andrea D'Amelio</li>
-                <li>Tiziano Sperati</li>
-                <li>Marco Sportillo</li>
-                <li>Marco Virgadamo</li>
-                <li>Francesco Furiani</li>
-                <li>Vittorio Cecchetto</li>
-                <li>Matteo Pisani</li>
-                <li>Lapo Breschi</li>
-                <li>Miroslav Jiřík</li>
-              </ul>
+            <div>
+              <a href="/people">meet the teem</a>
             </div>
           </div>
-          <div class="section">
-            <h2 class="title">Why we do what we do</h2>
-            <div class="description">
-              <p>
-                Love, Love, Love<br>
-                Love studying cutting-edge Web Technologies (that are going to be Web standards) <br>
-                Love experimenting and making Web stuff using what we have studied <br>
-                Love teaching what we have maked, sharing our know-how and our projects <br>
-              </p>
-            </div>
+        </div>
+
+        <div class="section why">
+          <h1 class="title">Why we do what we do</h1>
+          <div class="description">
+            <p>
+              Love, Love, Love<br>
+              Love studying cutting-edge Web Technologies (that are going to be Web standards) <br>
+              Love experimenting and making Web stuff using what we have studied <br>
+              Love teaching what we have maked, sharing our know-how and our projects <br>
+            </p>
           </div>
-          <div class="section">
-            <h2 class="title">Where you can find us</h2>
-            <div class="description">
-              We are located in Rome, in the RomaTre University, in the Computer Engineering Department.
-            </div>
+        </div>
+
+        <div class="section where">
+          <h1 class="title">Where you can find us</h1>
+          <div class="description">
+            We are located in Rome, in the RomaTre University, in the Computer Engineering Department.
           </div>
-          <part-map id="map" latitude="41.8554605" longitude="12.4718962" zoom="15"></part-map>
-          <div class="section">
-            <h2 class="title">When did it all start?</h2>
-            <div>CVDLAB was founded in 2010</div>
-          </div>
+        </div>
+
+        <div class="section when">
+          <h1 class="title">When did it all start?</h1>
+          <div>CVDLAB was founded in 2010</div>
         </div>
 
       </div>

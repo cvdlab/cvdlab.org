@@ -10,7 +10,7 @@
 
       #jumbotron {
         @apply --layout-block;
-        @apply --layout-fullbleed;
+        @apply --layout-fit;
       }
 
       #heading {
@@ -18,11 +18,14 @@
       }
 
       #heading .title {
-        width: 100px;
         margin-top: 0;
         font-size: 60px;
         line-height: 1em;
         text-transform: uppercase;
+        text-align: left;
+      }
+      #heading .title .word {
+        display: block;
       }
 
       @media (max-width: 992px) {
@@ -41,7 +44,12 @@
     <layout-page>
       <part-jumbotron id="jumbotron">
         <div id="heading">
-          <h1 class="title">Computational Visual Design Lab</h1>
+          <h1 class="title">
+            <span class="word">Computational</span>
+            <span class="word">Visual</span>
+            <span class="word">Design</span>
+            <span class="word">Lab</span>
+          </h1>
         </div>
       </part-jumbotron>
     </layout-page>
