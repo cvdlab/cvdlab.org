@@ -20,31 +20,20 @@
     </style>
 
     <div class="deck">
-      <template is="repeat" items="{{projects}}" item="project">
-        <div class="card">
-          <h4 class="title">{{project.title}}</h4>
-          <div class="description">{{project.description}}</div>
-        </div>
-      </template>
+      <template-repeat items="{{projects}}" item="project">
+        <template>
+          <div class="card">
+            <h4 class="title">{{project.title}}</h4>
+            <div class="description">{{project.description}}</div>
+          </div>
+        </template>
+      </template-repeat>
     </div>
   </template>
 </template-element>
 
 <script>
-  class PartProjects extends Pantarei.Element {
-
-    static get is () { return 'part-projects' }
-
-    get props () {
-      return {
-        projects: {
-          type: Array,
-          value: []
-        }
-      }
-    }
-
-  }
+  class PartProjects extends Pantarei.Element {}
 
   document.registerElement('part-projects', PartProjects)
 </script>

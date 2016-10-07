@@ -30,9 +30,7 @@
 <script>
   class PageTheses extends Pantarei.Element {
 
-    static get is () { return 'page-theses' }
-
-    before_connect () {
+    after_connect () {
       this.action('fetch', 'theses')
     }
 

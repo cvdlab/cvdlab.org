@@ -76,7 +76,7 @@
 
     static get is () { return 'page-people' }
 
-    before_connect () {
+    after_connect () {
       this.action('fetch', 'alumni')
     }
 

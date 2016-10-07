@@ -33,46 +33,37 @@
     </style>
 
     <div class="deck">
-      <template is="repeat" items="{{theses}}" item="thesis">
-        <div class="card">
-          <h3 class="title">{{thesis.title}}</h3>
-          <div class="info">
-            <span>by </span>
-            <span class="author">{{thesis.author}}</span>
-            <span> in </span>
-            <span class="year">{{thesis.year}}</span>
+      <template-repeat items="{{theses}}" item="thesis">
+        <template>
+          <div class="card">
+            <h3 class="title">{{thesis.title}}</h3>
+            <div class="info">
+              <span>by </span>
+              <span class="author">{{thesis.author}}</span>
+              <span> in </span>
+              <span class="year">{{thesis.year}}</span>
+            </div>
+            <div class="notes">
+              <template is="repeat" items="{{thesis.notes}}" item="note">
+                <div>{{note}}</div>
+              </template>
+            </div>
+            <div class="tags">
+              <template-repeat items="{{thesis.tags}}" item="tag">
+                <template>
+                  <span class="tag">{{tag}}</span>
+                </template>
+              </template-repeat>
+            </div>
           </div>
-          <div class="notes">
-            <template is="repeat" items="{{thesis.notes}}" item="note">
-              <div>{{note}}</div>
-            </template>
-          </div>
-          <div class="tags">
-            <template is="repeat" items="{{thesis.tags}}" item="tag">
-              <span class="tag">{{tag}}</span>
-            </template>
-          </div>
-        </div>
-      </template>
+        </template>
+      </template-repeat>
     </div>
   </template>
 </template-element>
 
 <script>
-  class PartTheses extends Pantarei.Element {
-
-    static get is () { return 'part-theses' }
-
-    get props () {
-      return {
-        theses: {
-          type: Array,
-          value: []
-        }
-      }
-    }
-
-  }
+  class PartTheses extends Pantarei.Element {}
 
   document.registerElement('part-theses', PartTheses)
 </script>

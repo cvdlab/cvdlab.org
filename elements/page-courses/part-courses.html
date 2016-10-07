@@ -1,4 +1,4 @@
-<template-element id="deck-courses">
+<template-element id="part-courses">
   <template>
     <style>
       :host {
@@ -20,25 +20,25 @@
       }
     </style>
 
-    <div class="deck">
-      <template is="repeat" items="{{courses}}" item="course">
-        <div class="card course">
-          <h4 class="title"><a class="link" target="_blank" href="{{course.repository}}">{{course.title}}</a></h4>
-          <div class="description">
-            <div>{{course.description}}</div>
+    <div id="part-courses">
+      <template-repeat items="{{courses}}" item="course">
+        <template>
+          <div class="card course">
+            <h4 class="title"><a class="link" target="_blank" href="{{course.repository}}">{{course.title}}</a></h4>
+            <div class="description">
+              <div>{{course.description}}</div>
+            </div>
           </div>
-        </div>
-      </template>
+        </template>
+      </template-repeat>
     </div>
   </template>
 </template-element>
 
 <script>
-  class DeckCourses extends Pantarei.Element {
+  class PartCourses extends Pantarei.Element {
 
-    static get is () { return 'deck-courses' }
-
-    get properties () {
+    get props () {
       return {
         courses: {
           type: Array,
@@ -49,5 +49,5 @@
 
   }
 
-  document.registerElement('deck-courses', DeckCourses)
+  document.registerElement('part-courses', PartCourses)
 </script>
