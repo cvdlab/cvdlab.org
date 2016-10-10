@@ -12,8 +12,8 @@
       .card {
         @apply --box;
         position: relative;
-        width: 140px;
-        height: 140px;
+        width: 104px;
+        height: 104px;
         margin: 2px;
       }
 
@@ -44,15 +44,31 @@
         font-size: 14px;
       }
 
-      @media (max-width: 992px) {
-        .card .image img {
-          width: 120px;
+      @media (min-width: 544px) {
+        .card {
+          width: 125px;
+          height: 125px;
         }
       }
 
-      @media (max-width: 768px) {
-        .card .image img {
-          width: 100px;
+      @media (min-width: 768px) {
+        .card {
+          width: 134px;
+          height: 134px;
+        }
+      }
+
+      @media (min-width: 992px) {
+        .card {
+          width: 147px;
+          height: 147px;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .card {
+          width: 154px;
+          height: 154px;
         }
       }
 
