@@ -12,8 +12,8 @@
 
       #part-technologies .technology {
         display: block;
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         margin: 10px;
         background-repeat: no-repeat;
         background-position: center center;
@@ -39,23 +39,7 @@
 </template-element>
 
 <script>
-  class PartTechnologies extends Pantarei.Element {
-
-    static get is () { return 'part-technologies' }
-
-    before_update () {
-      debugger
-      if (this.technologies) {
-        this.technologies = this.technologies.map(function (technology) {
-          return {
-            name: technology,
-            style: `background-image: url('/images/${technology}.png');`
-          }
-        })
-      }
-    }
-
-  }
+  class PartTechnologies extends Pantarei.Element {}
 
   document.registerElement('part-technologies', PartTechnologies)
 </script>

@@ -16,8 +16,7 @@
         height: 60px;
         z-index: 100;
 
-        background-color: rgba(255, 255, 255, .5);
-        /*background-color: transparent;*/
+        background-color: rgba(255, 255, 255, 1);
         box-shadow: none;
       }
 
@@ -50,11 +49,19 @@
         transition-duration: .5s;
       }
 
+      #part-header .brand .link {
+        /*font-size: 11px;*/
+      }
+      #part-header .brand .link.toggle {
+        font-size: 40px;
+        padding-right: 0;
+      }
+
       #part-header .links .link:first-child {
         padding-left: 0;
       }
       #part-header .links .link:last-child {
-        padding-right: 0;
+        /*padding-right: 0;*/
       }
 
       #part-header .links.collapse .link {
@@ -85,41 +92,48 @@
         color: #333;
       }
 
-      #part-header .links .link.toggle {
+      #part-header .mobile.menu {
         display: none;
       }
-      #part-header .menu {
+      #part-header.open .mobile.menu {
+        display: flex;
+      }
+
+      #part-header .desktop {
+        display: flex;
+      }
+      #part-header .mobile {
         display: none;
       }
 
       @media (max-width: 768px) {
-        #part-header .links .link {
+        #part-header .desktop {
           display: none;
         }
-        #part-header .links .link.toggle {
-          display: flex;
-        }
-        #part-header.open .menu {
+        #part-header .mobile.brand {
           display: flex;
         }
       }
     </style>
 
     <div id="part-header" ref="header">
-      <div class="brand">
+      <div class="brand desktop">
         <a class="link" href="/">CVDLAB</a>
       </div>
+      <div class="brand mobile" on-click="on_click_toggle">
+        <a class="link toggle" href="./" >☰</a>
+        <a class="link" href="/">COMPUTATIONAL<br>VISUAL<br>DESIGN</a>
+      </div>
       <div class="space"></div>
-      <div class="links">
+      <div class="links desktop">
         <a class="link" href="/about">about</a>
         <a class="link" href="/people">people</a>
         <a class="link" href="/projects">projects</a>
         <a class="link" href="/theses">theses</a>
         <a class="link" href="/courses">courses</a>
         <a class="link" href="/contacts">contacts</a>
-        <a class="link toggle" href="./" on-click="on_click_toggle">☰</a>
       </div>
-      <div class="menu">
+      <div class="menu mobile">
         <a class="item" href="/about">about</a>
         <a class="item" href="/people">people</a>
         <a class="item" href="/projects">projects</a>

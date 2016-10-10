@@ -423,6 +423,32 @@
       }.bind(this))
     }
 
+    do_fetch_technologies () {
+      let name = 'technologies'
+      fetch(`data/${name}.json`, {
+        method: 'get',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(function (response) {
+        if (response.ok) {
+          return response.json()
+        }
+      })
+      .then(function (data) {
+        data = data.map(function (technology) {
+          return {
+            name: technology,
+            style: `background-image: url('/images/${technology}.png');`
+          }
+        })
+        this.page[name] = data
+        this.page.update()
+      }.bind(this))
+    }
+
   }
 
   document.registerElement('app-container', AppContainer)
