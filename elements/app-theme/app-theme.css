@@ -1,7 +1,11 @@
+@import 'https://fonts.googleapis.com/css?family=Lato:400,600,900';
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Lato', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
   color: #333;
 }
 

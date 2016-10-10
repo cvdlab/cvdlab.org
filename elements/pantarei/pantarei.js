@@ -249,11 +249,14 @@ var Pantarei
       return true
     }
 
+    before_update () {}
+
     update () {
       let pass = this.should_update()
       if (!pass) {
         return
       }
+      this.before_update()
       this.render()
     }
 

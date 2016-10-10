@@ -28,9 +28,11 @@
     </style>
 
     <div id="part-technologies">
-      <template is="repeat" items="{{technologies}}" item="technology">
-        <div class="technology" style="{{technology.style}}"></div>
-      </template>
+      <template-repeat items="{{technologies}}" item="technology">
+        <template>
+          <div class="technology" style="{{technology.style}}"></div>
+        </template>
+      </template-repeat>
     </div>
 
   </template>
@@ -42,6 +44,7 @@
     static get is () { return 'part-technologies' }
 
     before_update () {
+      debugger
       if (this.technologies) {
         this.technologies = this.technologies.map(function (technology) {
           return {

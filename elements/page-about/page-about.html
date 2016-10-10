@@ -19,21 +19,27 @@
         @apply --layout-fullbleed;
       }
 
+      .section .title,
+      .subsection .title {
+        font-weight: 600;
+      }
+
       .section.who .founders {
         font-size: 20px;
         margin-bottom: 30px;
       }
       .section.who .founders .founder {
-        font-weight: 900;
+        font-weight: 600;
       }
 
       .tagline {
-        font-size: 70px;
-        font-weight: 700;
+        font-size: 60px;
+        font-weight: 600;
+        line-height: 1em;
       }
 
       .section .subsection {
-        margin: 120px 0;
+        margin: 100px 0;
       }
     </style>
 
@@ -60,7 +66,7 @@
           </div>
 
           <div class="subsection">
-            <h2>How we work?</h2>
+            <h2 class="title">Our workflow</h2>
             <div class="principles">
               <p>Explore, Make, Share</p>
               <p>First do it, then do it right, then do it better</p>
@@ -70,10 +76,10 @@
           </div>
 
           <div class="subsection">
-            <h2>What we use?</h2>
+            <h2 class="title">Our work tools</h2>
             <p>Web Technologies, what else?</p>
             <div class="technologies">
-              <part-technologies technologies="{{technologies}}"></part-technologies>
+              <part-technologies ref="technologies" technologies="{{technologies}}"></part-technologies>
             </div>
           </div>
         </div>
@@ -81,22 +87,22 @@
         <div class="section who">
           <h1 class="title">Who we are</h1>
           <div class="people">
-            <h3>Founders</h3>
+            <h2 class="title">Founders</h2>
             <div class="founders">
               <span class="founder">Alberto Paoluzzi</span><span>,</span>
               <span class="founder">Enrico Marino</span><span> &amp; </span>
               <span class="founder">Federico Spini</span>
             </div>
             <div>
-              <a href="/people">meet the teem</a>
+              <a href="/people">Meet the teem</a>
             </div>
           </div>
         </div>
 
         <div class="section why">
           <h1 class="title">Why we do what we do</h1>
+          <h2>Love, Love, Love</h2>
           <div class="description">
-            <p>Love, Love, Love</p>
             <p>Love studying cutting-edge Web Technologies (that are going to be Web standards)</p>
             <p>Love experimenting and making Web stuff using what we have studied</p>
             <p>Love teaching what we have maked, sharing our know-how and our projects</p>
@@ -105,12 +111,13 @@
 
         <div class="section where">
           <h1 class="title">Where you can find us</h1>
+          <h2>We are in Rome</h2>
           <div class="description">
-            <p>We are in Rome, in the RomaTre University, in the Computer Engineering Department.</p>
+            <p>In the RomaTre University, in the Computer Engineering Department.</p>
             <p>If you're in the neighborhood, come to visit us, or <a href="/contacts">drop us a line</a>.</p>
           </div>
           <div>
-            <a href="/contacts">contact us</a>
+            <!-- <a href="/contacts">contact us</a> -->
           </div>
         </div>
 
