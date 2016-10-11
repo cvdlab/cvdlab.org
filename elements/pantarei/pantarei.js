@@ -341,21 +341,18 @@ var Pantarei
   class TemplateRepeat extends HTMLElement {
 
     createdCallback () {
-      let template = this.querySelector('template')
-      this._template = document.importNode(template, true)
-      this.stage = document.createDocumentFragment()
-    }
-
-    attachedCallback () {
       this._setup()
     }
 
     _setup () {
-      let template = this._template
-      let content = template.content
+      let template = this.querySelector('template')
+      this._template = document.importNode(template, true)
+
+      let stage = document.createDocumentFragment()
+      let content = this._template.content
       let node = content.children[0]
 
-      this.stage.appendChild(node)
+      stage.appendChild(node)
       this._node = node.cloneNode(true)
       content.appendChild(node)
 
@@ -364,6 +361,8 @@ var Pantarei
 
       this._items = []
       this._clones = []
+
+      this.style.display = 'none'
     }
 
     _create_clone (index) {
@@ -431,25 +430,23 @@ var Pantarei
   class TemplateIf extends HTMLElement {
 
     createdCallback () {
-      let template = this.querySelector('template')
-      this._template = document.importNode(template, true)
-      this.stage = document.createDocumentFragment()
-    }
-
-    attachedCallback () {
       this._setup()
     }
 
     _setup () {
-      let template = this._template
-      let content = template.content
+      let template = this.querySelector('template')
+      this._template = document.importNode(template, true)
+
+      let stage = document.createDocumentFragment()
+      let content = this._template.content
       let node = content.children[0]
 
-      this.stage.appendChild(node)
+      stage.appendChild(node)
       this._node = node.cloneNode(true)
       content.appendChild(node)
 
       this._clone = null;
+      this.style.display = 'none'
     }
 
     _create_clone () {
@@ -495,20 +492,20 @@ var Pantarei
   class TemplateText extends HTMLElement {
 
     createdCallback () {
-      this.style.display = 'none'
-    }
-
-    attachedCallback () {
       this._setup()
     }
 
     _setup () {
       this._node = document.createTextNode('')
-      this.parentNode.insertBefore(this._node, this)
       let directive = function (data) {
         this._node.textContent = this.text
       }
       this.directive = directive
+      this.style.display = 'none'
+    }
+
+    attachedCallback () {
+      this.parentNode.insertBefore(this._node, this)
     }
 
     render (data) {
