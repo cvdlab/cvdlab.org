@@ -10,122 +10,158 @@
         @apply --layout-block;
       }
 
-      .container {
+      #page-about .frame {
+        @apply --layout-horizontal;
+      }
+
+      #page-about .aside {
+        width: 120px;
+      }
+      #page-about .aside .fixed {
+        position: fixed;
+        width: 120px;
+        top: 20px;
+        bottom: 20px;
+        @apply --layout-horizontal;
+        @apply --layout-center;
+      }
+      #page-about .aside .fixed .links {
+        position: absolute;
+        transform: translateX(-120px) rotate(270deg);
+        @apply --layout-horizontal-reverse;
+      }
+      #page-about .aside .fixed .links .link {
+        @apply --layout-flex;
+        text-decoration: none;
+        color: #333;
+        text-transform: uppercase;
+        font-size: 12px;
+        padding-right: 40px;
+      }
+
+      #page-about .main {
+        @apply --layout-flex;
+      }
+
+      #page-about .container {
         @apply --container;
         padding-top: 60px;
       }
 
-      .section {
+      #page-about .section {
         @apply --layout-fullbleed;
       }
 
-      .section .title,
-      .subsection .title {
+      #page-about .section .title,
+      #page-about .subsection .title {
         font-weight: 600;
       }
 
-      .section.who .founders {
+      #page-about .section.who .founders {
         font-size: 20px;
         margin-bottom: 30px;
       }
-      .section.who .founders .founder {
+      #page-about .section.who .founders .founder {
         font-weight: 600;
       }
 
-      .tagline {
+      #page-about .tagline {
         font-size: 60px;
         font-weight: 600;
         line-height: 1em;
       }
 
-      .section .subsection {
+      #page-about .section .subsection {
         margin: 100px 0;
       }
     </style>
 
-    <layout-page>
-<!--
+    <layout-page id="page-about">
+      <div class="frame">
         <div class="aside">
-          <ul>
-            <li><a href="#what">what</a></li>
-            <li><a href="#who">who</a></li>
-            <li><a href="#why">why</a></li>
-            <li><a href="#where">where</a></li>
-            <li><a href="#when">when</a></li>
-          </ul>
-        </div>
- -->
-      <div class="container">
-
-        <div class="section what">
-          <h1 class="title">What we do</h1>
-
-          <div class="tagline">
-            <span>We make<span><br>
-            <span class="web">Web </span><span class="stuff" ref="stuff"></span>
-          </div>
-
-          <div class="subsection">
-            <h2 class="title">Our workflow</h2>
-            <div class="principles">
-              <p>Explore, Make, Share</p>
-              <p>First do it, then do it right, then do it better</p>
-              <p>Keep It Stupid Simple</p>
-              <p>Dividi et Impera</p>
-            </div>
-          </div>
-
-          <div class="subsection">
-            <h2 class="title">Our work tools</h2>
-            <p>Web Technologies, what else?</p>
-            <div class="technologies">
-              <part-technologies ref="technologies" technologies="{{technologies}}"></part-technologies>
+          <div class="fixed">
+            <div class="links">
+              <a class="link" href="#what">what</a>
+              <a class="link" href="#who">who</a>
+              <a class="link" href="#why">why</a>
+              <a class="link" href="#where">where</a>
+              <a class="link" href="#when">when</a>
             </div>
           </div>
         </div>
+        <div class="main">
+          <div class="container">
 
-        <div class="section who">
-          <h1 class="title">Who we are</h1>
-          <div class="people">
-            <h2 class="title">Founders</h2>
-            <div class="founders">
-              <span class="founder">Alberto Paoluzzi</span><span>,</span>
-              <span class="founder">Enrico Marino</span><span> &amp; </span>
-              <span class="founder">Federico Spini</span>
+            <div class="section what">
+              <h1 class="title">What we do</h1>
+
+              <div class="tagline">
+                <span>We make<span><br>
+                <span class="web">Web </span><span class="stuff" ref="stuff"></span>
+              </div>
+
+              <div class="subsection">
+                <h2 class="title">Our workflow</h2>
+                <div class="principles">
+                  <p>Explore, Make, Share</p>
+                  <p>First do it, then do it right, then do it better</p>
+                  <p>Keep It Stupid Simple</p>
+                  <p>Dividi et Impera</p>
+                </div>
+              </div>
+
+              <div class="subsection">
+                <h2 class="title">Our work tools</h2>
+                <p>Web Technologies, what else?</p>
+                <div class="technologies">
+                  <part-technologies ref="technologies" technologies="{{technologies}}"></part-technologies>
+                </div>
+              </div>
             </div>
-            <div>
-              <a href="/people">Meet the teem</a>
+
+            <div class="section who">
+              <h1 class="title">Who we are</h1>
+              <div class="people">
+                <h2 class="title">Founders</h2>
+                <div class="founders">
+                  <span class="founder">Alberto Paoluzzi</span><span>,</span>
+                  <span class="founder">Enrico Marino</span><span> &amp; </span>
+                  <span class="founder">Federico Spini</span>
+                </div>
+                <div>
+                  <a href="/people">Meet the teem</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="section why">
+              <h1 class="title">Why we do what we do</h1>
+              <h2>Love, Love, Love</h2>
+              <div class="description">
+                <p>Love studying cutting-edge Web Technologies (that are going to be Web standards)</p>
+                <p>Love experimenting and making Web stuff using what we have studied</p>
+                <p>Love teaching what we have maked, sharing our know-how and our projects</p>
+              </div>
+            </div>
+
+            <div class="section where">
+              <h1 class="title">Where you can find us</h1>
+              <h2>We are in Rome</h2>
+              <div class="description">
+                <p>In the RomaTre University, in the Computer Engineering Department.</p>
+                <p>If you're in the neighborhood, come to visit us, or <a href="/contacts">drop us a line</a>.</p>
+              </div>
+              <div>
+                <!-- <a href="/contacts">contact us</a> -->
+              </div>
+            </div>
+
+            <div class="section when">
+              <h1 class="title">When did it all start?</h1>
+              <div>CVDLAB was founded in 2010.</div>
             </div>
           </div>
         </div>
-
-        <div class="section why">
-          <h1 class="title">Why we do what we do</h1>
-          <h2>Love, Love, Love</h2>
-          <div class="description">
-            <p>Love studying cutting-edge Web Technologies (that are going to be Web standards)</p>
-            <p>Love experimenting and making Web stuff using what we have studied</p>
-            <p>Love teaching what we have maked, sharing our know-how and our projects</p>
-          </div>
-        </div>
-
-        <div class="section where">
-          <h1 class="title">Where you can find us</h1>
-          <h2>We are in Rome</h2>
-          <div class="description">
-            <p>In the RomaTre University, in the Computer Engineering Department.</p>
-            <p>If you're in the neighborhood, come to visit us, or <a href="/contacts">drop us a line</a>.</p>
-          </div>
-          <div>
-            <!-- <a href="/contacts">contact us</a> -->
-          </div>
-        </div>
-
-        <div class="section when">
-          <h1 class="title">When did it all start?</h1>
-          <div>CVDLAB was founded in 2010.</div>
-        </div>
-
       </div>
     </layout-page>
 
