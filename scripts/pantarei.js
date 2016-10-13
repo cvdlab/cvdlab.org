@@ -6,6 +6,8 @@ var Pantarei
 
   Pantarei.templates = {}
 
+  Pantarei.context = {}
+
   class PantareiElement extends HTMLElement {
 
     get ATTRIBUTE_EVENT_PREFIX () { return 'on-' }
@@ -217,6 +219,7 @@ var Pantarei
         return
       }
 
+
       let directives = node._directives
       if (directives) {
         for (let name in directives) {
@@ -228,6 +231,7 @@ var Pantarei
       this._render_node_children(node, data)
 
       if (node.render) {
+        node.context = Object.assign(node.context || {}, this.context)
         node.render()
         // node.render(data)
       }
@@ -289,18 +293,44 @@ var Pantarei
       this.shadowRoot.appendChild(node)
 
       this.set_props(this.props)
+
+      // this.context = Pantarei.context
+
       this.setup()
       this._cache_refs()
       this.after_create()
 
-      if (typeof ShadyCSS !== 'undefined') {
-        ShadyCSS.applyStyle(this, this.shadowRoot)
-      }
     }
 
+
     attachedCallback () {
+      this._prepare_style()
       this.update()
       this.after_connect()
+    }
+
+    _prepare_style () {
+      let stylesheets = this.shadowRoot.querySelectorAll('link[rel="stylesheet"]')
+      Array.from(stylesheets).forEach((stylesheet) => {
+        let href = stylesheet.getAttribute('href')
+        Pantarei.stylesheets[href].then((style) => {
+          let stylenode = document.importNode(style, true)
+          this.shadowRoot.insertBefore(stylenode, stylesheet)
+          ShadyCSS.applyStyle(this, this.shadowRoot)
+        })
+      })
+      ShadyCSS.applyStyle(this, this.shadowRoot)
+
+      // let nodes = this.shadowRoot.querySelectorAll('import-style[name]')
+      // Array.from(nodes).forEach((node) => {
+      //   let name = node.getAttribute('name')
+      //   Pantarei.styles[name].then((style) => {
+      //     let stylenode = document.importNode(style, true)
+      //     this.shadowRoot.insertBefore(stylenode, node)
+      //     ShadyCSS.applyStyle(this, this.shadowRoot)
+      //   })
+      // })
+
     }
 
     after_create () {}
@@ -319,6 +349,42 @@ var Pantarei
 
   Pantarei.Element = PantareiElement
 
+
+  Pantarei.stylesheets = {}
+
+  Pantarei.prepareTemplate = function (template, name) {
+    if (typeof ShadyCSS === 'undefined') {
+      return
+    }
+    ShadyCSS.prepareTemplate(template, name)
+
+    let stylesheets = template.content.querySelectorAll('link[rel="stylesheet"]')
+
+    Array.from(stylesheets).forEach((stylesheet) => {
+      let href = stylesheet.getAttribute('href')
+
+      Pantarei.stylesheets[href] = new Promise((resolve, reject) => {
+        fetch(href)
+          .then((response) => {
+            return response.text()
+          })
+          .then((text) => {
+            let template = document.createElement('template')
+            let stylenode = document.createElement('style')
+            template.content.appendChild(stylenode)
+            stylenode.textContent = text
+            ShadyCSS.prepareTemplate(template, name)
+            stylenode = template.content.querySelector('style')
+            resolve(stylenode)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+
+    })
+  }
+
   class TemplateElement extends HTMLElement {
 
     createdCallback () {
@@ -326,8 +392,11 @@ var Pantarei
       let template = this.querySelector('template')
       template = document.importNode(template, true)
       Pantarei.templates[name] = template
-      if (typeof ShadyCSS !== 'undefined') {
-        ShadyCSS.prepareTemplate(template, name)
+
+      Pantarei.prepareTemplate(template, name)
+
+      if (this.hasAttribute('selfy')) {
+        document.registerElement(name, class extends Pantarei.Element {})
       }
       console.log('created', name)
     }
@@ -457,7 +526,7 @@ var Pantarei
     }
 
     _render_clone () {
-      // render_node(this._clone, this)
+      // this._clone.render()
     }
 
     _remove_clone () {
@@ -518,5 +587,60 @@ var Pantarei
   document.registerElement('template-text', TemplateText)
 
   Pantarei.TemplateText = TemplateText
+
+  Pantarei.styles = {}
+
+  class ImportStyle extends HTMLElement {
+
+    createdCallback () {
+      // let name = this.getAttribute('name')
+      // let style = Pantarei.styles[name]
+      // if (!style) {
+      //   return
+      // }
+      // if (style._attached) {
+      //   return
+      // }
+      // let node = document.importNode(style, true)
+      // this.parentNode.insertBefore(node, this)
+      // style._attached = true
+      // this._style = style
+    }
+
+  }
+
+  document.registerElement('import-style', ImportStyle)
+
+  Pantarei.ImportStyle = ImportStyle
+
+  class TemplateStyle extends HTMLElement {
+
+    createdCallback () {
+      let name = this.id
+      Pantarei.styles[name] = new Promise((resolve, reject) => {
+        HTMLImports.whenReady(() => {
+          let template = this.querySelector('template')
+
+          if (typeof ShadyCSS !== 'undefined') {
+            ShadyCSS.prepareTemplate(template, name)
+          }
+
+          let style = template.content.querySelector('style')
+
+          if (!style) {
+            reject()
+            return
+          }
+
+          resolve(style)
+        })
+      })
+    }
+
+  }
+
+  document.registerElement('template-style', TemplateStyle)
+
+  Pantarei.TemplateStyle = TemplateStyle
 
 }())

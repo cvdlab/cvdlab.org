@@ -1,350 +1,8 @@
-<link rel="import" href="page-404.html">
-<link rel="import" href="page-about.html">
-<link rel="import" href="page-courses.html">
-<link rel="import" href="page-home.html">
-<link rel="import" href="page-people.html">
-<link rel="import" href="page-projects.html">
-<link rel="import" href="page-theses.html">
-<link rel="import" href="page-cookies.html">
-<link rel="import" href="page-contacts.html">
-<link rel="import" href="part-cookies.html">
-
 <template-element id="app-container">
   <template>
-    <style>
-      :host {
-        display: block;
-      }
-
-      :root {
-
-        --background-color: #2ea3f2;
-        --theme-color: #2ea3f2;
-
-        --layout: {
-          display: -ms-flexbox;
-          display: -webkit-flex;
-          display: flex;
-        };
-
-        --layout-inline: {
-          display: -ms-inline-flexbox;
-          display: -webkit-inline-flex;
-          display: inline-flex;
-        };
-
-        --layout-horizontal: {
-          @apply(--layout);
-          -ms-flex-direction: row;
-          -webkit-flex-direction: row;
-          flex-direction: row;
-        };
-
-        --layout-horizontal-reverse: {
-          @apply(--layout);
-          -ms-flex-direction: row-reverse;
-          -webkit-flex-direction: row-reverse;
-          flex-direction: row-reverse;
-        };
-
-        --layout-vertical: {
-          @apply(--layout);
-          -ms-flex-direction: column;
-          -webkit-flex-direction: column;
-          flex-direction: column;
-        };
-
-        --layout-vertical-reverse: {
-          @apply(--layout);
-          -ms-flex-direction: column-reverse;
-          -webkit-flex-direction: column-reverse;
-          flex-direction: column-reverse;
-        };
-
-        --layout-wrap: {
-          -ms-flex-wrap: wrap;
-          -webkit-flex-wrap: wrap;
-          flex-wrap: wrap;
-        };
-
-        --layout-no-wrap: {
-          -ms-flex-wrap: nowrap;
-          -webkit-flex-wrap: nowrap;
-          flex-wrap: nowrap;
-        };
-
-        --layout-wrap-reverse: {
-          -ms-flex-wrap: wrap-reverse;
-          -webkit-flex-wrap: wrap-reverse;
-          flex-wrap: wrap-reverse;
-        };
-
-        --layout-flex-auto: {
-          -ms-flex: 1 1 auto;
-          -webkit-flex: 1 1 auto;
-          flex: 1 1 auto;
-        };
-
-        --layout-flex-none: {
-          -ms-flex: none;
-          -webkit-flex: none;
-          flex: none;
-        };
-
-        --layout-flex: {
-          -ms-flex: 1 1 0.000000001px;
-          -webkit-flex: 1;
-          flex: 1;
-          -webkit-flex-basis: 0.000000001px;
-          flex-basis: 0.000000001px;
-        };
-
-        --layout-start: {
-          -ms-flex-align: start;
-          -webkit-align-items: flex-start;
-          align-items: flex-start;
-        };
-
-        --layout-center: {
-          -ms-flex-align: center;
-          -webkit-align-items: center;
-          align-items: center;
-        };
-
-        --layout-end: {
-          -ms-flex-align: end;
-          -webkit-align-items: flex-end;
-          align-items: flex-end;
-        };
-
-        --layout-baseline: {
-          -ms-flex-align: baseline;
-          -webkit-align-items: baseline;
-          align-items: baseline;
-        };
-
-        --layout-start-justified: {
-          -ms-flex-pack: start;
-          -webkit-justify-content: flex-start;
-          justify-content: flex-start;
-        };
-
-        --layout-center-justified: {
-          -ms-flex-pack: center;
-          -webkit-justify-content: center;
-          justify-content: center;
-        };
-
-        --layout-end-justified: {
-          -ms-flex-pack: end;
-          -webkit-justify-content: flex-end;
-          justify-content: flex-end;
-        };
-
-        --layout-around-justified: {
-          -ms-flex-pack: distribute;
-          -webkit-justify-content: space-around;
-          justify-content: space-around;
-        };
-
-        --layout-justified: {
-          -ms-flex-pack: justify;
-          -webkit-justify-content: space-between;
-          justify-content: space-between;
-        };
-
-        --layout-center-center: {
-          @apply(--layout-center);
-          @apply(--layout-center-justified);
-        };
-
-        --layout-self-start: {
-          -ms-align-self: flex-start;
-          -webkit-align-self: flex-start;
-          align-self: flex-start;
-        };
-
-        --layout-self-center: {
-          -ms-align-self: center;
-          -webkit-align-self: center;
-          align-self: center;
-        };
-
-        --layout-self-end: {
-          -ms-align-self: flex-end;
-          -webkit-align-self: flex-end;
-          align-self: flex-end;
-        };
-
-        --layout-self-stretch: {
-          -ms-align-self: stretch;
-          -webkit-align-self: stretch;
-          align-self: stretch;
-        };
-
-        --layout-self-baseline: {
-          -ms-align-self: baseline;
-          -webkit-align-self: baseline;
-          align-self: baseline;
-        };
-
-        --layout-start-aligned: {
-          -ms-flex-line-pack: start;
-          -ms-align-content: flex-start;
-          -webkit-align-content: flex-start;
-          align-content: flex-start;
-        };
-
-        --layout-end-aligned: {
-          -ms-flex-line-pack: end;
-          -ms-align-content: flex-end;
-          -webkit-align-content: flex-end;
-          align-content: flex-end;
-        };
-
-        --layout-center-aligned: {
-          -ms-flex-line-pack: center;
-          -ms-align-content: center;
-          -webkit-align-content: center;
-          align-content: center;
-        };
-
-        --layout-between-aligned: {
-          -ms-flex-line-pack: justify;
-          -ms-align-content: space-between;
-          -webkit-align-content: space-between;
-          align-content: space-between;
-        };
-
-        --layout-around-aligned: {
-          -ms-flex-line-pack: distribute;
-          -ms-align-content: space-around;
-          -webkit-align-content: space-around;
-          align-content: space-around;
-        };
-
-        --layout-block: {
-          display: block;
-        };
-
-        --layout-invisible: {
-          visibility: hidden !important;
-        };
-
-        --layout-relative: {
-          position: relative;
-
-        };
-
-        --layout-fit: {
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-        };
-
-        --layout-scroll: {
-          -webkit-overflow-scrolling: touch;
-          overflow: auto;
-        };
-
-        --layout-fullbleed: {
-          margin: 0;
-          min-height: 100vh;
-        };
-
-        --layout-fixed-top: {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-        };
-
-        --layout-fixed-right: {
-          position: fixed;
-          top: 0;
-          right: 0;
-          bottom: 0;
-        };
-
-        --layout-fixed-bottom: {
-          position: fixed;
-          right: 0;
-          bottom: 0;
-          left: 0;
-        };
-
-        --layout-fixed-left: {
-          position: fixed;
-          top: 0;
-          bottom: 0;
-          left: 0;
-        };
-
-        --layout-over: {
-          z-index: 100;
-        };
-
-        --box: {
-          box-sizing: border-box;
-        };
-
-        --container: {
-          @apply --box;
-          width: 100%;
-          max-width: var(--container-max-width);
-          margin-left: auto;
-          margin-right: auto;
-          padding-left: 0.9375rem;
-          padding-right: 0.9375rem;
-        };
-
-        --row: {
-          @apply --layout-flex;
-          @apply --layout-wrap;
-          margin-left: -0.9375rem;
-          margin-right: -0.9375rem;
-        };
-
-        --text-antialiased: {
-          -webkit-font-smoothing: antialiased;
-        };
-
-        --text: {
-          /*font-size: 14px;*/
-          line-height: 2;
-        };
-
-      }
-
-      @media (min-width: 544px) {
-        :root {
-          --container-max-width: 576px;
-        }
-      }
-
-      @media (min-width: 768px) {
-        :root {
-          --container-max-width: 720px;
-        }
-      }
-
-      @media (min-width: 992px) {
-        :root {
-          --container-max-width: 940px;
-        }
-      }
-
-      @media (min-width: 1200px) {
-        :root {
-          --container-max-width: 1140px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="/styles/style-layout.css">
 
     <div ref="container" on-action="on_action"></div>
-    <part-cookies></part-cookies>
 
   </template>
 </template-element>
@@ -353,33 +11,104 @@
   class AppContainer extends Pantarei.Element {
 
     get routes () {
+      return [
+        '/',
+        '/404',
+        '/about',
+        '/contacts',
+        '/cookies',
+        '/courses',
+        '/home',
+        '/people',
+        '/projects',
+        '/theses'
+      ]
+    }
+
+    get context () {
       return {
-        '/404': 'page-404',
-        '/about': 'page-about',
-        '/courses': 'page-courses',
-        '/home': 'page-home',
-        '/people': 'page-people',
-        '/projects': 'page-projects',
-        '/theses': 'page-theses',
-        '/cookies': 'page-cookies',
-        '/contacts': 'page-contacts',
-        '*': 'page-home'
+        title: "CVDLAB",
+        menu: {
+          principale: [
+            { label: 'about', href: '/about' },
+            { label: 'storia', href: '/storia' },
+            { label: 'missione', href: '/missione' },
+            { label: 'articoli', href: '/articoli' },
+            { label: 'notizie', href: '/notizie' },
+            { label: 'contatti', href: '/contatti' }
+          ],
+          about: [
+            { label: 'what', href: '#what' },
+            { label: 'who', href: '#who' },
+            { label: 'why', href: '#why' },
+            { label: 'when', href: '#when' },
+            { label: 'where', href: '#where' }
+          ]
+        }
       }
     }
 
     after_create () {
-      this.init_routes()
+      this.imported = {}
+
+      page('*', this.handle_route.bind(this))
+
+      let pathname = location.pathname || '/'
+
+      page()
+      page(pathname)
     }
 
-    init_routes () {
-      let routes = this.routes
-      for (let route in routes) {
-        let page_name = routes[route]
-        page(route, function (context) {
-          this.open_page(page_name)
-        }.bind(this))
+    handle_route (route) {
+      let pathname = route.pathname
+
+      if (!this.routes.includes(pathname)) {
+        page.redirect('/404')
+        return
       }
-      page()
+
+      if (pathname === '/') {
+        pathname = '/home'
+      }
+
+      pathname = pathname.slice(1)
+      let pagename = `page-${pathname}`
+      let href = `/elements/${pagename}.html`
+
+      this.import_page(href)
+        .then(() => {
+          let page = this.open_page(pagename)
+          page.route = route
+          localStorage.location = pathname
+        })
+        .catch(() => {
+          page('/404')
+        })
+    }
+
+    import_page (href) {
+      return new Promise((resolve, reject) => {
+        let links = this.imported
+        let link = links[href]
+        if (link) {
+          resolve(link)
+          return
+        }
+
+        link = document.createElement('link')
+        link.rel = 'import'
+        link.href = href
+
+        link.onload = function (event) {
+          links[href] = link
+          resolve(link)
+        }
+        link.onerror = function () {
+          reject(link)
+        }
+
+        document.head.appendChild(link)
+      })
     }
 
     open_page (page_name) {
@@ -388,10 +117,11 @@
         container.firstChild.remove()
       }
       let page = document.createElement(page_name)
-      page.classList.add('page')
-      container.appendChild(page)
+      page.context = this.context
       this.page = page
       window.ga && ga('send', 'pageview', '/' + page_name)
+      container.appendChild(page)
+      return page
     }
 
     on_action (event, action) {
