@@ -1,0 +1,46 @@
+<link rel="import" href="layout-page.html">
+<link rel="import" href="part-theses.html">
+
+<template-element id="page-blog">
+  <template>
+    <style>
+      :host {
+        @apply --layout-block;
+      }
+
+      .container {
+        @apply --container;
+        padding-top: 60px;
+      }
+    </style>
+
+    <layout-page>
+      <div class="container">
+        <h1 class="title">Blog</h1>
+        <div class="articles">
+          <template-repeat items="{{articles}}" item="article">
+            <template>
+              <div class="article">
+                <h2>{{article.name}}</h2>
+                <div>{{article.content}}</div>
+              </div>
+            </template>
+          </template-repeat>
+        </div>
+      </div>
+    </layout-page>
+
+  </template>
+</template-element>
+
+<script>
+  class PageBlog extends Pantarei.Element {
+
+    after_connect () {
+      this.action('blog')
+    }
+
+  }
+
+  document.registerElement('page-blog', PageBlog)
+</script>

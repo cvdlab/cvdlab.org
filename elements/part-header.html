@@ -118,28 +118,26 @@
 
     <div id="part-header" ref="header">
       <div class="brand desktop">
-        <a class="link" href="/">CVDLAB</a>
+        <a class="link" href="/">{{context.title}}</a>
       </div>
       <div class="brand mobile" on-click="on_click_toggle">
         <a class="link toggle" href="./" >☰</a>
-        <a class="link" href="/">COMPUTATIONAL<br>VISUAL<br>DESIGN</a>
+        <a class="link" href="/">{{context.title}}</a>
       </div>
       <div class="space"></div>
       <div class="links desktop">
-        <a class="link" href="/about">about</a>
-        <a class="link" href="/people">people</a>
-        <a class="link" href="/projects">projects</a>
-        <a class="link" href="/theses">theses</a>
-        <a class="link" href="/courses">courses</a>
-        <a class="link" href="/contacts">contacts</a>
+        <template-repeat items="{{context.menu.main}}" item="link">
+          <template>
+            <a class="link" href="{{link.href}}">{{link.label}}</a>
+          </template>
+        </template-repeat>
       </div>
       <div class="menu mobile">
-        <a class="item" href="/about">about</a>
-        <a class="item" href="/people">people</a>
-        <a class="item" href="/projects">projects</a>
-        <a class="item" href="/theses">theses</a>
-        <a class="item" href="/courses">courses</a>
-        <a class="item" href="/courses">contacts</a>
+        <template-repeat items="{{context.menu.main}}" item="link">
+          <template>
+            <a class="item" href="{{link.href}}">{{link.label}}</a>
+          </template>
+        </template-repeat>
       </div>
     </div>
 

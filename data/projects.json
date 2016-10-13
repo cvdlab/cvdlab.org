@@ -9,7 +9,7 @@
   {
     "title": "TourBox",
     "repository": "http://github.com/cvdlab/tourbox",
-    "description": "Web BIM platform to support surveyors creating 2D floorplans and 3D building models",
+    "description": "Web Platform to build interactive VR indoor mapping and real-time IoT monitoring",
     "year": 2016,
     "tags": []
   },

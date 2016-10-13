@@ -15,6 +15,7 @@
         '/',
         '/404',
         '/about',
+        '/blog',
         '/contacts',
         '/cookies',
         '/courses',
@@ -29,13 +30,14 @@
       return {
         title: "CVDLAB",
         menu: {
-          principale: [
+          main: [
             { label: 'about', href: '/about' },
-            { label: 'storia', href: '/storia' },
-            { label: 'missione', href: '/missione' },
-            { label: 'articoli', href: '/articoli' },
-            { label: 'notizie', href: '/notizie' },
-            { label: 'contatti', href: '/contatti' }
+            { label: 'people', href: '/people' },
+            { label: 'projects', href: '/projects' },
+            { label: 'theses', href: '/theses' },
+            { label: 'courses', href: '/courses' },
+            { label: 'blog', href: '/blog' },
+            { label: 'contacts', href: '/contacts' }
           ],
           about: [
             { label: 'what', href: '#what' },
@@ -181,6 +183,32 @@
         this.page[name] = data
         this.page.update()
       })
+    }
+
+    do_blog () {
+      var url = 'https://api.github.com/repos/cvdlab/cvdlab.org/contents/articles';
+      fetch(url, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/vnd.github.v3.raw+json',
+            'Content-Type': 'application/vnd.github.v3.raw+json'
+          }
+        })
+        .then((response) => response.json())
+        .then((articles) => {
+          this.page.articles = articles
+          articles.forEach((article) => {
+            fetch(article.download_url)
+              .then((response) => response.text())
+              .then((text) => {
+                article.content = text
+                this.page.update()
+              })
+          })
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
 
   }
