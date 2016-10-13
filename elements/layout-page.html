@@ -1,7 +1,7 @@
 <link rel="import" href="part-footer.html">
 <link rel="import" href="part-header.html">
 
-<template-element id="layout-page">
+<template-element id="layout-page" selfy>
   <template>
     <style>
       :host {
@@ -49,18 +49,6 @@
           <content select="*"></content>
         </div>
       </div>
-      <!-- <div id="space"></div> -->
-      <!-- <part-footer id="footer"></part-footer> -->
     </div>
   </template>
 </template-element>
-
-<script>
-  class LayoutPage extends Pantarei.Element {
-
-    static get is() { return 'layout-page' }
-
-  }
-
-  document.registerElement('layout-page', LayoutPage)
-</script>

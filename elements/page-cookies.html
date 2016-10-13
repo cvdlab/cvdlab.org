@@ -1,18 +1,8 @@
 <link rel="import" href="layout-page.html">
-<link rel="import" href="part-jumbotron.html">
 
-<template-element id="page-cookies">
+<template-element id="page-cookies" selfy>
   <template>
     <style>
-      :host {
-        @apply --layout-block;
-      }
-
-      #jumbotron {
-        @apply --layout-block;
-        height: 200px;
-      }
-
       .container {
         @apply --container;
         @apply --text;
@@ -20,13 +10,9 @@
     </style>
 
     <layout-page>
-      <part-jumbotron id="jumbotron">
-        <div class="container">
-          <h1 class="title">Cookie policy</h1>
-        </div>
-      </part-jumbotron>
       <div class="container">
 
+        <h1 class="title">Cookie policy</h1>
         <h3>Cookie policy</h3>
 
         <p>In common with most other websites, we use cookies and similar technologies to help us understand how people use CVDLAB.org website. We have created this Cookies Policy to provide you with clear and explicit information about the technologies that we use.</p>
@@ -85,9 +71,3 @@
 
   </template>
 </template-element>
-
-<script>
-  class PageCookies extends Pantarei.Element {}
-
-  document.registerElement('page-cookies', PageCookies)
-</script>

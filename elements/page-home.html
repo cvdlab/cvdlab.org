@@ -1,7 +1,7 @@
 <link rel="import" href="layout-page.html">
 <link rel="import" href="part-jumbotron.html">
 
-<template-element id="page-home">
+<template-element id="page-home" selfy>
   <template>
     <style>
       :host {
@@ -55,13 +55,3 @@
     </layout-page>
   </template>
 </template-element>
-
-<script>
-  class PageHome extends Pantarei.Element {
-
-    static get is () { return 'page-home' }
-
-  }
-
-  document.registerElement('page-home', PageHome)
-</script>
