@@ -53,10 +53,11 @@
 
       page('*', this.handle_route.bind(this))
 
-      let redirect = sessionStorage.redirect
-      let pathname = location.pathname || redirect || '/'
+      let pathname = location.pathname || '/'
 
+      let redirect = sessionStorage.redirect
       if (redirect) {
+        pathname = redirect
         sessionStorage.removeItem('redirect')
       }
 
