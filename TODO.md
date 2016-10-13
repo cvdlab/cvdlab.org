@@ -1,30 +1,29 @@
-# generale
+# general
 
-- (e) [10] test mobile
-- (e) [10] stile / feedback ema
-- (e) [1] multilingua
-- (e) [5] footer con link cookie policy
+- [5] mobile
+- [5] footer
+- [1] multi-lang
 
 # `page-home`
 
 # `page-about`
 
-- (e) [10] aggiungere know-how: web, 3d, blockchain
+- [5] add know-how: Web Design, 3D, Blockchain
 
 # `page-alumni`
 
 # `page-projects`
 
-- (*) [10] rivedere descrizione progetti
-- (*) [10] riportare joint: sogei, geoweb, policlinico
+- [5] check descriptions
+- [5] add friends: sogei, geoweb, policlinico
 
 # `page-thesis`
 
-- (*) [7] aggiungere markdown parsing alle note
+- [5] run markdown
 
 # `page-courses`
 
-- (*) [5] verificare repo github
+- [5] check links
 
 # `page-contacts`
 
