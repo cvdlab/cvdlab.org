@@ -349,7 +349,6 @@ var Pantarei
 
   Pantarei.Element = PantareiElement
 
-
   Pantarei.stylesheets = {}
 
   Pantarei.prepareTemplate = function (template, name) {
@@ -587,60 +586,5 @@ var Pantarei
   document.registerElement('template-text', TemplateText)
 
   Pantarei.TemplateText = TemplateText
-
-  Pantarei.styles = {}
-
-  class ImportStyle extends HTMLElement {
-
-    createdCallback () {
-      // let name = this.getAttribute('name')
-      // let style = Pantarei.styles[name]
-      // if (!style) {
-      //   return
-      // }
-      // if (style._attached) {
-      //   return
-      // }
-      // let node = document.importNode(style, true)
-      // this.parentNode.insertBefore(node, this)
-      // style._attached = true
-      // this._style = style
-    }
-
-  }
-
-  document.registerElement('import-style', ImportStyle)
-
-  Pantarei.ImportStyle = ImportStyle
-
-  class TemplateStyle extends HTMLElement {
-
-    createdCallback () {
-      let name = this.id
-      Pantarei.styles[name] = new Promise((resolve, reject) => {
-        HTMLImports.whenReady(() => {
-          let template = this.querySelector('template')
-
-          if (typeof ShadyCSS !== 'undefined') {
-            ShadyCSS.prepareTemplate(template, name)
-          }
-
-          let style = template.content.querySelector('style')
-
-          if (!style) {
-            reject()
-            return
-          }
-
-          resolve(style)
-        })
-      })
-    }
-
-  }
-
-  document.registerElement('template-style', TemplateStyle)
-
-  Pantarei.TemplateStyle = TemplateStyle
 
 }())

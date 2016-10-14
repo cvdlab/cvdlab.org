@@ -24,6 +24,12 @@
         @apply --layout-flex;
       }
 
+      #part-header .logo {
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+      }
+
       #part-header .brand,
       #part-header .links {
         @apply --box;
@@ -48,12 +54,14 @@
         transition-property: color;
         transition-duration: .5s;
       }
-
       #part-header .brand .link {
-        /*font-size: 11px;*/
+        padding: 0;
       }
+
+
       #part-header .brand .link.toggle {
         font-size: 40px;
+        padding-left: 20px;
         padding-right: 0;
       }
 
@@ -118,11 +126,11 @@
 
     <div id="part-header" ref="header">
       <div class="brand desktop">
-        <a class="link" href="/">{{context.title}}</a>
+        <a class="link" href="/"><img class="logo" src="/images/cvdlab-logo.png"></a>
       </div>
       <div class="brand mobile" on-click="on_click_toggle">
         <a class="link toggle" href="./" >☰</a>
-        <a class="link" href="/">{{context.title}}</a>
+        <a class="link" href="/"><img class="logo" src="/images/cvdlab-logo.png"></a>
       </div>
       <div class="space"></div>
       <div class="links desktop">
