@@ -5,31 +5,40 @@
         display: block;
       }
 
-      .title {
-        margin: 0;
-      }
-
-      .author {
-        font-weight: 600;
-      }
-
-      .tag {
-        margin-right: 10px;
-        padding-right: 16px;
-        font-style: italic;
-        /*font-family: monospace;*/
-        /*border-radius: 12px;*/
-        /*background-color: #c3c3c3;*/
-        /*color: white;*/
-      }
-
-      .tag::before {
-        content: '#'
+      .deck {
+        @apply --layout-horizontal;
+        @apply --layout-wrap;
+        margin: 0 -25px;
       }
 
       .card {
-        margin-bottom: 60px;
+        @apply --box;
+        width: 25%;
+        padding: 25px;
+        margin-bottom: 25px;
         @apply --text;
+      }
+
+      .card .title {
+        margin: 0;
+      }
+
+      .card .author {
+        font-weight: 600;
+      }
+
+      .card .tags {
+        @apply --layout-horizontal;
+        @apply --layout-wrap;
+      }
+
+      .card .tag {
+        margin-right: 10px;
+        padding-right: 16px;
+        font-style: italic;
+      }
+      .card .tag::before {
+        content: '#'
       }
     </style>
 
@@ -37,7 +46,7 @@
       <template-repeat items="{{theses}}" item="thesis">
         <template>
           <div class="card">
-            <h3 class="title">{{thesis.title}}</h3>
+            <div class="title">{{thesis.title}}</div>
             <div class="info">
               <span>by </span>
               <span class="author">{{thesis.author}}</span>
@@ -49,6 +58,7 @@
                 <div>{{note}}</div>
               </template>
             </div>
+<!--
             <div class="tags">
               <template-repeat items="{{thesis.tags}}" item="tag">
                 <template>
@@ -56,6 +66,7 @@
                 </template>
               </template-repeat>
             </div>
+ -->
           </div>
         </template>
       </template-repeat>

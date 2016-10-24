@@ -9,9 +9,18 @@
         @apply --layout-block;
       }
 
-      #jumbotron {
-        @apply --layout-block;
-        height: 200px;
+      .deck {
+        @apply --layout-horizontal;
+        @apply --layout-wrap;
+        margin: 0 -25px;
+      }
+
+      .card {
+        @apply --box;
+        width: 25%;
+        padding: 25px;
+        margin-bottom: 25px;
+        @apply --text;
       }
 
       .container {
@@ -30,34 +39,27 @@
 
         <div class="section team">
           <h2>Meet the team</h2>
-          <div class="people">
-            <h4>Enrico Marino</h4>
-            <h4>Federico Spini</h4>
-            <h4>Christian Vadalà</h4>
-            <h4>Danilo Salvati</h4>
-            <h4>Giulia Clementi</h4>
-            <h4>Alessio Carrafa</h4>
-            <h4>Cesare Catavitiello</h4>
-            <h4>Stefano Perrone</h4>
+          <div class="deck people">
+            <template-repeat items="{{team}}" item="member">
+              <template>
+                <div class="card">
+                  <h4>{{member}}</h4>
+                </div>
+              </template>
+            </template-repeat>
           </div>
         </div>
 
         <div class="section collaborations">
           <h2>Proud to have worked with</h2>
-          <div class="people">
-            <h4>Michele D'Antimi</h4>
-            <h4>Edoardo Carra</h4>
-            <h4>Jit Baljinder</h4>
-            <h4>Alessando Rastelli</h4>
-            <h4>Andrea D'Amelio</h4>
-            <h4>Tiziano Sperati</h4>
-            <h4>Marco Sportillo</h4>
-            <h4>Marco Virgadamo</h4>
-            <h4>Francesco Furiani</h4>
-            <h4>Vittorio Cecchetto</h4>
-            <h4>Matteo Pisani</h4>
-            <h4>Lapo Breschi</h4>
-            <h4>Miroslav Jiřík</h4>
+          <div class="deck people">
+            <template-repeat items="{{collaborators}}" item="collaborator">
+              <template>
+                <div class="card">
+                  <h4>{{collaborator}}</h4>
+                </div>
+              </template>
+            </template-repeat>
           </div>
         </div>
 
@@ -73,6 +75,35 @@
 
 <script>
   class PagePeople extends Pantarei.Element {
+
+    after_create () {
+      this.team = [
+        'Enrico Marino',
+        'Federico Spini',
+        'Christian Vadalà',
+        'Danilo Salvati',
+        'Giulia Clementi',
+        'Alessio Carrafa',
+        'Cesare Catavitiello',
+        'Stefano Perrone'
+      ]
+
+      this.collaborators = [
+        'Michele D\'Antimi',
+        'Edoardo Carra',
+        'Jit Baljinder',
+        'Alessando Rastelli',
+        'Andrea D\'Amelio',
+        'Tiziano Sperati',
+        'Marco Sportillo',
+        'Marco Virgadamo',
+        'Francesco Furiani',
+        'Vittorio Cecchetto',
+        'Matteo Pisani',
+        'Lapo Breschi',
+        'Miroslav Jiřík'
+      ]
+    }
 
     after_connect () {
       this.action('fetch', 'alumni')

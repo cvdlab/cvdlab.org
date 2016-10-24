@@ -5,22 +5,31 @@
         display: block;
       }
 
-      .card.course {
-        margin-bottom: 60px;
+      .deck {
+        @apply --layout-horizontal;
+        @apply --layout-wrap;
+        margin: 0 -25px;
+      }
+
+      .card {
+        @apply --box;
+        width: 25%;
+        padding: 25px;
+        margin-bottom: 25px;
         @apply --text;
       }
 
-      .card.course .title {
+      .card .title {
         margin: 0;
       }
 
-      .card.course .link {
+      .card .link {
         text-decoration: none;
         color: inherit;
       }
     </style>
 
-    <div id="part-courses">
+    <div class="deck" >
       <template-repeat items="{{courses}}" item="course">
         <template>
           <div class="card course">

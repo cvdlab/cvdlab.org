@@ -6,11 +6,17 @@
       }
 
       .deck {
-        @apply --text;
+        @apply --layout-horizontal;
+        @apply --layout-wrap;
+        margin: 0 -25px;
       }
 
       .card {
-        margin-bottom: 60px;
+        @apply --box;
+        width: 25%;
+        padding: 25px;
+        margin-bottom: 25px;
+        @apply --text;
       }
 
       .card .title {
