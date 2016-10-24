@@ -77,19 +77,19 @@
       }
 
       #part-header .menu {
-        @apply --box;
         position: absolute;
         top: 60px;
-        left: 0;
-        width: 100%;
-      }
-      #part-header .menu {
-        @apply --layout-vertical;
+        left: 0px;
+        @apply --box;
         padding: 0 3%;
+        width: 100%;
+        height: calc(100vh - 90px);
+
+        @apply --layout-vertical;
         background-color: white;
       }
       #part-header .menu .item {
-        @apply --layout-flex;
+        /*@apply --layout-flex;*/
         font-size: 12px;
         font-weight: 600;
         -webkit-font-smoothing: antialiased;
@@ -142,11 +142,13 @@
       </div>
       <div class="space"></div>
       <div class="menu mobile">
+        <a class="item" href="/">home</a>
         <template-repeat items="{{context.menu.main}}" item="link">
           <template>
             <a class="item" href="{{link.href}}">{{link.label}}</a>
           </template>
         </template-repeat>
+        <div class="item space"></div>
       </div>
     </div>
 
