@@ -27,8 +27,12 @@
       }
       #page-about .aside .fixed .links {
         position: absolute;
-        transform: translateX(-120px) rotate(270deg);
+        width: 100%;
+        height: 58px;
+        transform: rotate(270deg);
+        transform-origin: 0px 0px;
         @apply --layout-horizontal-reverse;
+        @apply --layout-center;
       }
       #page-about .aside .fixed .links .link {
         @apply --layout-flex;
@@ -36,7 +40,8 @@
         color: #333;
         text-transform: uppercase;
         font-size: 12px;
-        padding-right: 40px;
+        font-weight: 600;
+        padding-right: 30px;
       }
 
       #page-about .main {
