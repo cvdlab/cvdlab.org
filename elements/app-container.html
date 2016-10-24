@@ -68,26 +68,27 @@
     }
 
     handle_route (route) {
-      let pathname = route.pathname
+      let path = route.path
+      let hash = route.hash
 
-      if (!this.routes.includes(pathname)) {
+      if (!this.routes.includes(path)) {
         page.redirect('/404')
         return
       }
 
-      if (pathname === '/') {
-        pathname = '/home'
+      if (path === '/') {
+        path = '/home'
       }
 
-      pathname = pathname.slice(1)
-      let pagename = `page-${pathname}`
+      path = path.slice(1)
+      let pagename = `page-${path}`
       let href = `/elements/${pagename}.html`
 
       this.import_page(href)
         .then(() => {
           let page = this.open_page(pagename)
           page.route = route
-          localStorage.location = pathname
+          localStorage.location = route.pathname
         })
         .catch(() => {
           page('/404')
