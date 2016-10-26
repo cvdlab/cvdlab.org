@@ -1,12 +1,33 @@
 <link rel="import" href="layout-page.html">
 <link rel="import" href="part-jumbotron.html">
 <link rel="import" href="part-alumni.html">
+<link rel="import" href="part-menu.html">
 
 <template-element id="page-people">
   <template>
     <style>
       :host {
         @apply --layout-block;
+      }
+
+      .frame {
+        @apply --layout-horizontal;
+      }
+
+      .aside {
+        width: 120px;
+      }
+      .aside .fixed {
+        position: fixed;
+        width: 120px;
+        top: 20px;
+        bottom: 20px;
+        @apply --layout-horizontal;
+        @apply --layout-center;
+      }
+
+      .main {
+        @apply --layout-flex;
       }
 
       .deck {
@@ -32,40 +53,55 @@
         @apply --layout-fullbleed;
       }
 
+      @media (max-width: 768px) {
+        .aside {
+          display: none;
+        }
+      }
+
     </style>
 
     <layout-page>
-      <div class="container">
-
-        <div class="section team">
-          <h2>Meet the team</h2>
-          <div class="deck people">
-            <template-repeat items="{{team}}" item="member">
-              <template>
-                <div class="card">
-                  <h4>{{member}}</h4>
-                </div>
-              </template>
-            </template-repeat>
+      <div class="frame">
+        <div class="aside">
+          <div class="fixed">
+            <part-menu links="{{context.menu.people}}"></part-menu>
           </div>
         </div>
+        <div class="main">
+          <div class="container">
 
-        <div class="section collaborations">
-          <h2>Proud to have worked with</h2>
-          <div class="deck people">
-            <template-repeat items="{{collaborators}}" item="collaborator">
-              <template>
-                <div class="card">
-                  <h4>{{collaborator}}</h4>
-                </div>
-              </template>
-            </template-repeat>
+            <div class="section team">
+              <h2>Meet the team</h2>
+              <div class="deck people">
+                <template-repeat items="{{team}}" item="member">
+                  <template>
+                    <div class="card">
+                      <h4>{{member}}</h4>
+                    </div>
+                  </template>
+                </template-repeat>
+              </div>
+            </div>
+
+            <div class="section collaborations">
+              <h2>Proud to have worked with</h2>
+              <div class="deck people">
+                <template-repeat items="{{collaborators}}" item="collaborator">
+                  <template>
+                    <div class="card">
+                      <h4>{{collaborator}}</h4>
+                    </div>
+                  </template>
+                </template-repeat>
+              </div>
+            </div>
+
+            <div class="section alumni">
+              <h2 class="title">Our students are the secret ingredient</h2>
+              <part-alumni alumni="{{alumni}}"></part-alumni>
+            </div>
           </div>
-        </div>
-
-        <div class="section alumni">
-          <h2 class="title">Our students are the secret ingredient</h2>
-          <part-alumni alumni="{{alumni}}"></part-alumni>
         </div>
       </div>
     </layout-page>
