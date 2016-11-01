@@ -30,9 +30,24 @@
 
       #layout #main {
         @apply --layout-fit;
+        @apply --layout-horizontal;
         overflow-y: scroll;
         padding-top: 60px;
       }
+
+      #layout #content {
+        @apply --container;
+      }
+
+      #layout .aside .fixed {
+        position: fixed;
+        top: 20px;
+        bottom: 20px;
+        right: 40px;
+        @apply --layout-horizontal;
+        @apply --layout-center;
+      }
+
 
       #layout #space {
         @apply --layout-flex;
@@ -41,13 +56,27 @@
       #layout #footer {
         @apply --layout-block;
       }
+
+
+      @media (max-width: 768px) {
+        #layout .aside {
+          display: none;
+        }
+      }
     </style>
 
     <div id="layout">
       <div id="frame">
         <part-header id="header"></part-header>
         <div id="main">
-          <content select="*"></content>
+          <div id="content">
+            <content select=".content"></content>
+          </div>
+          <div class="aside">
+            <div class="fixed">
+              <content select=".menu"></content>
+            </div>
+          </div>
         </div>
       </div>
     </div>

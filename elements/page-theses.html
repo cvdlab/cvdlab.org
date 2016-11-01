@@ -1,5 +1,4 @@
 <link rel="import" href="layout-page.html">
-<link rel="import" href="part-jumbotron.html">
 <link rel="import" href="part-theses.html">
 
 <template-element id="page-theses">
@@ -8,15 +7,10 @@
       :host {
         @apply --layout-block;
       }
-
-      .container {
-        @apply --container;
-        padding-top: 60px;
-      }
     </style>
 
     <layout-page>
-      <div class="container">
+      <div class="content">
         <div class="section">
           <h1 class="title">Theses</h1>
           <part-theses theses="{{theses}}"></part-theses>

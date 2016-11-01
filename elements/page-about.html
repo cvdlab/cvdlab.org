@@ -1,7 +1,4 @@
 <link rel="import" href="layout-page.html">
-<link rel="import" href="part-jumbotron.html">
-<link rel="import" href="part-map.html">
-<link rel="import" href="part-menu.html">
 <link rel="import" href="part-technologies.html">
 
 <template-element id="page-about">
@@ -9,31 +6,6 @@
     <style>
       :host {
         @apply --layout-block;
-      }
-
-      #page-about .frame {
-        @apply --layout-horizontal;
-      }
-
-      #page-about .aside {
-        width: 120px;
-      }
-      #page-about .aside .fixed {
-        position: fixed;
-        width: 120px;
-        top: 20px;
-        bottom: 20px;
-        @apply --layout-horizontal;
-        @apply --layout-center;
-      }
-
-      #page-about .main {
-        @apply --layout-flex;
-      }
-
-      #page-about .container {
-        @apply --container;
-        padding-top: 60px;
       }
 
       #page-about .section {
@@ -65,10 +37,6 @@
       }
 
       @media (max-width: 768px) {
-        #page-about .aside {
-          display: none;
-        }
-
         #page-about .tagline {
           font-size: 30px;
         }
@@ -77,90 +45,81 @@
     </style>
 
     <layout-page id="page-about">
-      <div class="frame">
-        <div class="aside">
-          <div class="fixed">
-            <part-menu links="{{context.menu.about}}"></part-menu>
+      <part-menu class="menu" links="{{context.menu.about}}"></part-menu>
+      <div class="content">
+        <div class="section what">
+          <h1 class="title">What we do</h1>
+
+          <div class="tagline">
+            <span>We make<span><br>
+            <span class="web">Web </span><span class="stuff" ref="stuff"></span>
+          </div>
+
+          <div class="subsection">
+            <h2 class="title">Our workflow</h2>
+            <div class="principles">
+              <p>Explore, Make, Share</p>
+            </div>
+          </div>
+
+          <div class="subsection">
+            <h2 class="title">Our principles</h2>
+            <div class="principles">
+              <p>First do it, then do it right, then do it better</p>
+              <p>Dividi et Impera, componetizing all the things</p>
+              <p>Keep It Stupid Simple</p>
+            </div>
+          </div>
+
+          <div class="subsection">
+            <h2 class="title">Our work tools</h2>
+            <p>Web Technologies, what else?</p>
+            <div class="technologies">
+              <part-technologies ref="technologies" technologies="{{technologies}}"></part-technologies>
+            </div>
           </div>
         </div>
-        <div class="main">
-          <div class="container">
 
-            <div class="section what">
-              <h1 class="title">What we do</h1>
-
-              <div class="tagline">
-                <span>We make<span><br>
-                <span class="web">Web </span><span class="stuff" ref="stuff"></span>
-              </div>
-
-              <div class="subsection">
-                <h2 class="title">Our workflow</h2>
-                <div class="principles">
-                  <p>Explore, Make, Share</p>
-                </div>
-              </div>
-
-              <div class="subsection">
-                <h2 class="title">Our principles</h2>
-                <div class="principles">
-                  <p>First do it, then do it right, then do it better</p>
-                  <p>Dividi et Impera, componetizing all the things</p>
-                  <p>Keep It Stupid Simple</p>
-                </div>
-              </div>
-
-              <div class="subsection">
-                <h2 class="title">Our work tools</h2>
-                <p>Web Technologies, what else?</p>
-                <div class="technologies">
-                  <part-technologies ref="technologies" technologies="{{technologies}}"></part-technologies>
-                </div>
-              </div>
+        <div class="section who">
+          <h1 class="title">Who we are</h1>
+          <div class="people">
+            <h2 class="title">Founders</h2>
+            <div class="founders">
+              <span class="founder">Alberto Paoluzzi</span><span>,</span>
+              <span class="founder">Enrico Marino</span><span> &amp; </span>
+              <span class="founder">Federico Spini</span>
             </div>
-
-            <div class="section who">
-              <h1 class="title">Who we are</h1>
-              <div class="people">
-                <h2 class="title">Founders</h2>
-                <div class="founders">
-                  <span class="founder">Alberto Paoluzzi</span><span>,</span>
-                  <span class="founder">Enrico Marino</span><span> &amp; </span>
-                  <span class="founder">Federico Spini</span>
-                </div>
-                <div>
-                  <a href="/people">Meet the teem</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="section why">
-              <h1 class="title">Why we do what we do</h1>
-              <h2>Love, Love, Love</h2>
-              <div class="description">
-                <p>Love studying cutting-edge Web Technologies (that are going to be Web standards)</p>
-                <p>Love experimenting and making Web stuff using what we have studied</p>
-                <p>Love teaching what we have maked, sharing our know-how and our projects</p>
-              </div>
-            </div>
-
-            <div class="section where">
-              <h1 class="title">Where you can find us</h1>
-              <h2>We are in Rome</h2>
-              <div class="description">
-                <p>In the RomaTre University, in the Computer Engineering Department.</p>
-                <p>If you're in the neighborhood, come to visit us, or <a href="/contacts">drop us a line</a>.</p>
-              </div>
-              <div>
-                <!-- <a href="/contacts">contact us</a> -->
-              </div>
-            </div>
-
-            <div class="section when">
-              <h1 class="title">When did it all start?</h1>
-              <div>CVDLAB was founded in 2010.</div>
+            <div>
+              <a href="/people">Meet the teem</a>
             </div>
           </div>
+        </div>
+
+        <div class="section why">
+          <h1 class="title">Why we do what we do</h1>
+          <h2>Love, Love, Love</h2>
+          <div class="description">
+            <p>Love studying next gen Web Technologies (that are going to be Web standards)</p>
+            <p>Love experimenting and making Web stuff using what we have studied</p>
+            <p>Love teaching what we have maked, sharing our know-how and our projects</p>
+          </div>
+        </div>
+
+        <div class="section where">
+          <h1 class="title">Where you can find us</h1>
+          <h2>We are in Rome</h2>
+          <div class="description">
+            <p>In the RomaTre University, in the Computer Engineering Department.</p>
+            <p>If you're in the neighborhood, come to visit us, or <a href="/contacts">drop us a line</a>.</p>
+          </div>
+          <div>
+            <!-- <a href="/contacts">contact us</a> -->
+          </div>
+        </div>
+
+        <div class="section when">
+          <h1 class="title">When did it all start?</h1>
+          <div>CVDLAB was founded in 2010.</div>
         </div>
       </div>
     </layout-page>

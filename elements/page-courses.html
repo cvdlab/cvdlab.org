@@ -1,5 +1,4 @@
 <link rel="import" href="layout-page.html">
-<link rel="import" href="part-jumbotron.html">
 <link rel="import" href="part-courses.html">
 
 <template-element id="page-courses">
@@ -8,29 +7,15 @@
       :host {
         @apply --layout-block;
       }
-
-      .jumbotron {
-        @apply --layout-block;
-        height: 200px;
-      }
-
-      .container {
-        @apply --container;
-        padding-top: 60px;
-      }
-
-      .section {
-        /*@apply --layout-fullbleed;*/
-      }
     </style>
 
     <layout-page>
-      <div class="section coursed">
-        <div class="container">
+      <div class="content">
+        <div class="section">
           <h1 class="title">Courses</h1>
           <part-courses courses="{{courses}}"></part-courses>
         </div>
-        <div class="container">
+        <div class="section">
           <h1 class="title">Learning by doing</h1>
           <part-courses courses="{{crumbs}}"></part-courses>
         </div>
