@@ -1,4 +1,4 @@
-<template-element id="part-alumni" selfy>
+<template-element id="part-alumni">
   <template>
     <style>
       .deck {
@@ -73,15 +73,12 @@
 
     </style>
 
-    <div class="deck layout horizontal wrap center-justified">
-      <template-repeat items="{{alumni}}" item="alumnus">
+    <div class="deck">
+      <template-repeat items="{{data.alumni}}" item="alumnus">
         <template>
           <div class="card">
-            <div class="image">
-              <img src="{{alumnus.picture}}">
-            </div>
             <div class="caption">
-              <h4>{{alumnus.first_name}}</h4>
+              <h4>{{alumnus.fullname}}</h4>
             </div>
           </div>
         </template>
@@ -89,3 +86,13 @@
     </div>
   </template>
 </template-element>
+
+<script>
+  class PartAlumni extends Pantarei.Element {
+
+    static get is () { return 'part-alumni' }
+
+  }
+
+  window.customElements.define('part-alumni', PartAlumni)
+</script>

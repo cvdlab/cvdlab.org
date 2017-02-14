@@ -1,84 +1,138 @@
 <link rel="import" href="part-footer.html">
 <link rel="import" href="part-header.html">
+<link rel="import" href="part-jumbotron.html">
+<!-- <link rel="import" href="part-nav.html"> -->
+<link rel="import" href="part-up.html">
 
-<template-element id="layout-page" selfy>
+<template-element id="layout-page">
   <template>
     <style>
-      :host {
-        display: block;
-      }
-
       #layout {
         @apply --layout-vertical;
         @apply --layout-fullbleed;
-        @apply --box;
-        border: 20px solid #efefef;
-        border-bottom: 0;
-        position: relative;
       }
 
-      #layout #frame {
-        @apply --layout-fit;
-      }
-
-      #layout #header {
-        position: absolute;
-        width: 100%;
-        @apply --layout-block;
+      #header {
         @apply --layout-over;
       }
 
-      #layout #main {
-        @apply --layout-fit;
+      #jumbotron {
+        margin-top: 70px;
+        --jumbotron-height: 70px;
+        --jumbotron-justify-content: center;
+      }
+
+      #heading {
+        @apply --layout-container;
+        color: #333;
+      }
+      #heading #title {
+        font-weight: 100;
+        display: inline-block;
+        margin: 0;
+        line-height: 1;
+      }
+
+      #container {
+        @apply --layout-container;
+      }
+
+      #main {
         @apply --layout-horizontal;
-        overflow-y: scroll;
-        padding-top: 60px;
       }
 
-      #layout #content {
-        @apply --container;
+      #aside {
+        padding-left: 30px;
+        padding-top: 44px;
+        width: 240px;
       }
 
-      #layout .aside .fixed {
-        position: fixed;
-        top: 20px;
-        bottom: 20px;
-        right: 40px;
-        @apply --layout-horizontal;
-        @apply --layout-center;
+      #content {
+        padding-top: 20px;
+        padding-right: 30px;
+        padding-bottom: 70px;
+        @apply --layout-flex;
+        @apply --text;
       }
 
 
-      #layout #space {
+      #content ::slotted(*) {
+        font-weight: 400;
+      }
+
+      #layout.fullwidth #aside {
+        display: none;
+      }
+
+      #space {
         @apply --layout-flex;
       }
 
-      #layout #footer {
+      #upper {
+        position: fixed;
+        bottom: 60px;
+        right: 0px;
+      }
+
+      #footer {
         @apply --layout-block;
       }
 
-
-      @media (max-width: 768px) {
-        #layout .aside {
-          display: none;
+      @media (max-width: 767px) {
+        #main {
+          @apply --layout-vertical;
         }
+
+        #aside {
+          /*display: none;*/
+          padding-left: 0;
+          width: 100%;
+        }
+
       }
+
+
     </style>
 
-    <div id="layout">
-      <div id="frame">
-        <part-header id="header"></part-header>
+    <div id="layout" class="fullwidth">
+      <part-header id="header" brand="{{data.brand}}" links="{{data.links}}" selected="{{data.selected_menu}}"></part-header>
+      <part-jumbotron id="jumbotron">
+        <div id="heading">
+          <h1 id="title">{{data.title}}</h1>
+        </div>
+      </part-jumbotron>
+      <div id="container">
         <div id="main">
           <div id="content">
-            <content select=".content"></content>
+            <slot></slot>
           </div>
-          <div class="aside">
-            <div class="fixed">
-              <content select=".menu"></content>
-            </div>
+          <div id="aside">
+            <part-nav id="nav" links="{{data.menu}}" selected="{{data.selected}}"></part-nav>
           </div>
         </div>
       </div>
+      <div id="space"></div>
+      <part-up id="upper"></part-up>
+      <part-footer id="footer"></part-footer>
     </div>
   </template>
 </template-element>
+
+<script>
+  class LayoutPage extends Pantarei.Element {
+
+    static get is () {
+      return 'layout-page'
+    }
+
+    render () {
+      super.render()
+      if (this.data.menu) {
+        this.refs.layout.classList.remove('fullwidth')
+      }
+    }
+
+  }
+
+  customElements.define('layout-page', LayoutPage)
+</script>

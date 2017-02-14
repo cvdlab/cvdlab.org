@@ -1,8 +1,15 @@
-[
+Pantarei.data.projects = [
   {
     "title": "Metior",
     "repository": "http://github.com/cvdlab/metior",
-    "description": "Web BIM platform to support surveyors creating 2D floorplans and 3D building models",
+    "description": "Web BIM platform to create 2D floorplans and 3D building models",
+    "year": 2016,
+    "tags": []
+  },
+  {
+    "title": "LAR",
+    "repository": "http://github.com/cvdlab/lar.jl",
+    "description": "Geometric and topological modeling with chain complexes based on Linear Algebra Representation in Julia",
     "year": 2016,
     "tags": []
   },

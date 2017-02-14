@@ -1,0 +1,41 @@
+<link rel="import" href="layout-page.html">
+<link rel="import" href="part-jumbotron.html">
+
+<template-element id="page-0000">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      .jumbotron {
+        height: 300px;
+      }
+
+      .container {
+        @apply --container;
+      }
+    </style>
+
+    <layout-page data="{{data}}">
+      <div slot="content">
+        <part-jumbotron class="jumbotron">
+          <div class="container">
+            <h1 class="title">404</h1>
+          </div>
+        </part-jumbotron>
+      </div>
+    </layout-page>
+
+  </template>
+</template-element>
+
+<script>
+  class Page0000 extends Pantarei.Element {
+
+    static get is () { return 'page-0000' }
+
+  }
+
+  window.customElements.define('page-0000', Page0000)
+</script>

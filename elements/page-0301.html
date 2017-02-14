@@ -1,0 +1,41 @@
+<link rel="import" href="layout-page.html">
+
+<template-element id="page-0301">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      .item .title {
+        margin-bottom: 0;
+      }
+    </style>
+
+    <layout-page data="{{data}}">
+      <div class="content">
+        <div class="list">
+          <x-repeat items="{{data.projects}}" item="project">
+            <template>
+              <div class="item">
+                <h4 class="title">{{project.title}}</h4>
+                <div class="description">{{project.description}}</div>
+              </div>
+            </template>
+          </x-repeat>
+        </div>
+      </div>
+    </layput-page>
+
+  </template>
+</layout-page>
+
+<script>
+  class Page0301 extends Pantarei.Element {
+
+    static get is () { return 'page-0301' }
+
+  }
+
+  window.customElements.define('page-0301', Page0301)
+</script>

@@ -1,0 +1,27 @@
+<script>
+  class AppLink extends HTMLElement {
+
+    static get is () {
+      return 'app-link'
+    }
+
+    constructor () {
+      super()
+      this.on_click = this.on_click.bind(this)
+      this.addEventListener('click', this.on_click)
+    }
+
+    on_click (event) {
+      let target = event.target
+      if (target.nodeName !== 'A') {
+        return
+      }
+      event.preventDefault()
+      let href = target.getAttribute('href')
+      page(href)
+    }
+
+  }
+
+  customElements.define('app-link', AppLink)
+</script>

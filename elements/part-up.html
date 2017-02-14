@@ -1,0 +1,81 @@
+<template-element id="part-up">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      #button {
+        display: none;
+        width: 20px;
+        height: 20px;
+        padding: 10px;
+        text-align: center;
+        background-color: #333;
+
+        opacity: 0;
+        transition-property: opacity;
+        transition-timing-function: ease-in;
+        transition-duration: .5s;
+      }
+
+      .fa {
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: 16px;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color: white;
+      }
+      .fa.up:before {
+        content: "\f077";
+      }
+
+      #button.visible {
+        display: block;
+        opacity: 1;
+      }
+
+      #button:hover {
+        cursor: pointer;
+      }
+    </style>
+
+    <div id="button" on-click="on_click"><span class="fa up"></span></div>
+
+  </template>
+</template-element>
+
+<script>
+  class PartUp extends Pantarei.Element {
+
+    static get is () {
+      return 'part-up'
+    }
+
+    constructor () {
+      super()
+      this.on_scroll = this.on_scroll.bind(this)
+      this.on_click = this.on_click.bind(this)
+     }
+
+    ready () {
+      this.refs.button.addEventListener('click', this.on_click)
+      window.addEventListener('scroll', this.on_scroll, { passive: true })
+    }
+
+    on_click (event) {
+      event.stopPropagation()
+      window.scrollTo(0, 0)
+    }
+
+    on_scroll (event) {
+      let visible = window.scrollY > 60
+      this.refs.button.classList.toggle('visible', visible)
+    }
+
+  }
+
+  customElements.define('part-up', PartUp)
+</script>

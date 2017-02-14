@@ -1,43 +1,44 @@
-<template-element id="part-jumbotron" selfy>
+<template-element id="part-jumbotron">
   <template>
     <style>
       :host {
         display: block;
       }
 
-      #part-jumbotron {
-        @apply --layout-block;
-
-        position: relative;
+      .jumbotron {
+        display: block;
         box-sizing: border-box;
-        height: 100%;
         background-size: cover;
         background-position: center center;
-        /*background-image: url('/images/b1.jpg');*/
-        /*background-color: var(--background-color);*/
+        background-color: var(--jumbotron-background-image, #efefef);
       }
 
-      #part-jumbotron .overlay {
-        @apply --layout-fit;
-
-        background-color: rgba(25, 25, 25, .0);
-      }
-
-      #part-jumbotron .main {
-        @apply --layout-fit;
-        @apply --layout-horizontal;
-        @apply --layout-center;
-
-        /*color: white;*/
+      .jumbotron .main {
+        min-height: var(--jumbotron-height, 60px);
+        display: flex;
+        flex-direction: column;
+        justify-content: var(--jumbotron-justify-content, center);
+        align-items: flex-start;
       }
     </style>
 
-    <div id="part-jumbotron">
-      <div class="overlay"></div>
+    <div class="jumbotron">
       <div class="main">
-        <content select="*"></content>
+        <slot></slot>
       </div>
     </div>
 
   </template>
 </template-element>
+
+<script>
+  class PartJumbotron extends Pantarei.Element {
+
+    static get is () {
+      return 'part-jumbotron'
+    }
+
+  }
+
+  customElements.define('part-jumbotron', PartJumbotron)
+</script>

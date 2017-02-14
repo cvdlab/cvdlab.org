@@ -30,7 +30,7 @@
     </style>
 
     <div class="deck" >
-      <template-repeat items="{{courses}}" item="course">
+      <!-- <x-repeat items="{{data.courses}}" item="course"> -->
         <template>
           <div class="card course">
             <h4 class="title"><a class="link" target="_blank" href="{{course.repository}}">{{course.title}}</a></h4>
@@ -39,7 +39,7 @@
             </div>
           </div>
         </template>
-      </template-repeat>
+      <!-- </x-repeat> -->
     </div>
   </template>
 </template-element>
@@ -58,5 +58,5 @@
 
   }
 
-  document.registerElement('part-courses', PartCourses)
+  window.customElements.define('part-courses', PartCourses)
 </script>

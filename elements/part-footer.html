@@ -1,50 +1,65 @@
-<template-element id="part-footer" selfy>
+<template-element id="part-footer">
   <template>
     <style>
       :host {
         display: block;
       }
 
+      #part-footer {
+        height: 60px;
+        background-color: #333;
+        color: white;
+        font-size: 12px;
+      }
+
       #part-footer .container {
-        @apply --container;
+        height: 100%;
+        @apply --layout-box;
+        @apply --layout-container;
         @apply --layout-horizontal;
-        @apply --text;
+        @apply --layout-center;
       }
 
       #part-footer .space {
         @apply --layout-flex;
       }
 
-      #part-footer {
-        padding-top: 16px;
-        padding-bottom: 8px;
-        background-color: #3d3d3d;
-        color: #d3d3d3;
-        font-size: 14px;
+      #part-footer #copyright {
+        margin-right: 20px;
       }
 
-      #part-footer a {
-        color: #d3d3d3;
+      #part-footer #links .link {
+        color: white;
         text-decoration: none;
+        margin: 0 10px;
       }
-
-      #part-footer .love {
-        color: coral;
-      }
-
-      #part-footer .entry {
-        margin-right: 16px;
+      #part-footer #links .link:hover {
+        color: rgb(180, 50, 50);
       }
     </style>
 
     <div id="part-footer">
       <div class="container">
-        <a class="entry" href="/cookies">Cookies policy</a>
-        <a class="entry" href="/contacts">Contacts</a>
+        <div id="copyright">CVDLAB &copy; 2017</div>
+        <div id="links">
+          <a class="link" href="/cookie_policy">cookie policy</a>
+        </div>
         <div class="space"></div>
-        <div class="made">made with <span class="love">&hearts;</span> in Rome</div>
+        <div id="made"><span>made with </span><span id="love">&hearts;</span><span> in Rome</span></div>
       </div>
     </div>
 
   </template>
 </template-element>
+
+<script>
+  class PartFooter extends Pantarei.Element {
+
+    static get is () {
+      return 'part-footer'
+    }
+
+  }
+
+  customElements.define('part-footer', PartFooter)
+</script>

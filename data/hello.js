@@ -1,4 +1,4 @@
-[
+Pantarei.data.hello = [
   "If you want to say ciao",
   "If you like Web Components",
   "If you like pizza",
@@ -13,9 +13,9 @@
   "If you remembered why you're here",
   "If you're not famous",
   "If you're just curious",
-  "If you are a superhero at night"
-  "If you're a loser"
-  "If you read all those messages"
-  "If you secretly love us"
+  "If you are a superhero at night",
+  "If you're a loser",
+  "If you read all those messages",
+  "If you secretly love us",
   "If you are waiting for this to end"
 ]

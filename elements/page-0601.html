@@ -1,11 +1,10 @@
 <link rel="import" href="layout-page.html">
-<link rel="import" href="part-jumbotron.html">
 
-<template-element id="page-contacts">
+<template-element id="page-0601">
   <template>
     <style>
       :host {
-        @apply --layout-block;
+        display: block;
       }
 
       .contacts {
@@ -13,7 +12,7 @@
         @apply --text;
       }
 
-      .contacts h1 {
+      .contacts h3 {
         line-height: 1.5;
         margin-bottom: 60px;
       }
@@ -32,13 +31,13 @@
       }
     </style>
 
-    <layout-page>
+    <layout-page data="{{data}}">
       <div class="content">
         <div class="contacts">
-          <h1>
-            <span ref="condition"></span>,<br>
+          <h3>
+            <span id="condition"></span>,<br>
             <span>drop us a line</span>
-          </h1>
+          </h3>
 
           <div class="contact mail">
             <a class="link value"href="mailto:ciao@cvdlab.org">ciao@cvdlab.org</a><br>
@@ -47,7 +46,8 @@
 
           <div class="contact address">
             <a class="link" href="http://www.uniroma3.it/" target="_blank">RomaTre University</a><br>
-            <a class="link" href="http://www.ingegneria.uniroma3.it/" target="_blank">Computer Engineering department</a><br>
+            <a class="link" href="http://www.ingegneria.uniroma3.it/" target="_blank">Department of Computer Engineering</a><br>
+            <a class="link" href="http://www.matfis.uniroma3.it/" target="_blank">Department of Mathematics and Physics</a><br>
           </div>
           <div class="contact address">
             <span>Via della Vasca navale 79</span><br>
@@ -61,43 +61,25 @@
 </template-element>
 
 <script>
-  class PageContacts extends Pantarei.Element {
+  class Page0601 extends Pantarei.Element {
 
-    after_connect () {
-      let conditions = [
-        "If you want to say ciao",
-        "If you like Web Components",
-        "If you like pizza",
-        "If you like animals",
-        "If the cat is on the table",
-        "If you don't know why you're here",
-        // "If you don't know why the cat is on the table",
-        "If you know why 42",
-        "If you're aware",
-        "If you run for president",
-        "If you stalk people on facebook",
-        "If you remembered why you're here",
-        "If you're not famous",
-        "If you're just curious",
-        "If you are a superhero at night",
-        "If you're a loser",
-        "If you read all those messages",
-        "If you secretly love us",
-        "If you are waiting for this to end"
-      ]
+    static get is () { return 'page-0601' }
 
+    ready () {
+      let texts = this.data.hello
       let node = this.refs.condition
-      let n = conditions.length
+      let n = texts.length
       let i = 0
 
       function fill () {
-        node.innerText = conditions[i++ % n]
+        node.innerText = texts[i++ % n]
       }
+
       fill()
       window.setInterval(fill, 2500)
     }
 
   }
 
-  document.registerElement('page-contacts', PageContacts)
+  window.customElements.define('page-0601', Page0601)
 </script>

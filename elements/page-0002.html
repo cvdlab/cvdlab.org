@@ -1,6 +1,6 @@
 <link rel="import" href="layout-page.html">
 
-<template-element id="page-cookies" selfy>
+<template-element id="page-0002">
   <template>
     <style>
       :host {
@@ -8,8 +8,8 @@
       }
     </style>
 
-    <layout-page>
-      <div class="content">
+    <layout-page data="{{data}}">
+      <div>
 
         <h1 class="title">Cookie policy</h1>
         <h3>Cookie policy</h3>
@@ -70,3 +70,13 @@
 
   </template>
 </template-element>
+
+<script>
+  class Page0002 extends Pantarei.Element {
+
+    static get is () { return 'page-0002' }
+
+  }
+
+  window.customElements.define('page-0002', Page0002)
+</script>

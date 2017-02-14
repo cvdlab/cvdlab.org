@@ -1,11 +1,11 @@
 <link rel="import" href="layout-page.html">
 <link rel="import" href="part-jumbotron.html">
 
-<template-element id="page-home" selfy>
+<template-element id="page-0001">
   <template>
     <style>
       :host {
-        @apply --layout-block;
+        display: block;
       }
 
       #jumbotron {
@@ -42,19 +42,25 @@
       }
     </style>
 
-    <layout-page>
-      <div class="content">
-        <part-jumbotron id="jumbotron">
-          <div id="heading">
-            <h1 class="title">
-              <span class="word">Computational</span>
-              <span class="word">Visual</span>
-              <span class="word">Design</span>
-              <span class="word">Lab</span>
-            </h1>
-          </div>
-        </part-jumbotron>
+    <layout-page data="{{data}}">
+      <div>
+        <h1 class="title">
+          <span class="word">Computational</span>
+          <span class="word">Visual</span>
+          <span class="word">Design</span>
+          <span class="word">Lab</span>
+        </h1>
       </div>
     </layout-page>
   </template>
 </template-element>
+
+<script>
+  class Page0001 extends Pantarei.Element {
+
+    static get is () { return 'page-0001' }
+
+  }
+
+  window.customElements.define('page-0001', Page0001)
+</script>

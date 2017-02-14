@@ -1,0 +1,69 @@
+<link rel="import" href="layout-page.html">
+<link rel="import" href="part-alumni.html">
+
+<template-element id="page-0201">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <layout-page data="{{data}}">
+      <div class="content">
+
+        <div class="section team">
+          <h3>Founders</h3>
+          <div class="list">
+            <x-repeat items="{{data.founders}}" item="founder">
+              <template>
+                <div class="item">{{founder.fullname}}</div>
+              </template>
+            </x-repeat>
+          </div>
+        </div>
+
+        <div class="section collaborations">
+          <h3>Collaborators</h3>
+          <div class="deck people">
+            <x-repeat items="{{data.collaborators}}" item="collaborator">
+              <template>
+                <div class="item">{{collaborator.fullname}}</div>
+              </template>
+            </x-repeat>
+          </div>
+        </div>
+<!--
+        <div class="section alumni">
+          <h3 class="title">Alumni</h3>
+          <x-repeat items="{{data.alumni}}" item="alumnus">
+            <template>
+              <div class="item">{{alumnus.fullname}}</div>
+            </template>
+          </x-repeat>
+        </div>
+ -->
+      </div>
+    </layout-page>
+
+  </template>
+</template-element>
+
+<script>
+  class Page0201 extends Pantarei.Element {
+
+    static get is () { return 'page-0201' }
+
+    static get props () {
+      return {
+        data: {
+          type: Object,
+          value: {}
+        }
+      }
+    }
+
+  }
+
+  window.customElements.define('page-0201', Page0201)
+</script>

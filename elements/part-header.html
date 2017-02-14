@@ -5,150 +5,233 @@
         display: block;
       }
 
-      #part-header {
-        @apply --box;
-        @apply --layout-horizontal;
-        @apply --layout-wrap;
-
-        position: absolute;
-
-        width: 100%;
-        height: 60px;
-        z-index: 100;
-
-        background-color: rgba(255, 255, 255, 1);
-        box-shadow: none;
+      .fa {
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        padding-left: 4px;
+        padding-right: 4px;
+        color: #333;
+      }
+      .fa.whatsapp:before {
+        content: "\f232";
+      }
+      .fa.email:before {
+        content: "\f003";
+      }
+      .fa.facebook:before {
+        content: "\f230";
+      }
+      .fa.instagram:before {
+        content: "\f16d";
+      }
+      .fa.linkedin:before {
+        content: "\f0e1";
       }
 
-      #part-header .space {
+      #header {
+        @apply --layout-box;
+        @apply --layout-vertical;
+        position: fixed;
+        width: 100%;
+        padding: 0;
+        z-index: 100;
+        box-shadow: 0 1px 1px #eee;
+        background-color: white;
+      }
+
+      #navbar {
+        @apply --layout-box;
+        @apply --layout-horizontal;
+        padding: 0 5%;
+        height: 70px;
+      }
+
+      #navbar .space {
         @apply --layout-flex;
       }
-
-      #part-header .logo {
-        width: 40px;
-        height: 40px;
-        padding: 4px;
+      #navbar #brand {
+        font-weight: 600;
       }
 
-      #part-header .brand,
-      #part-header .links {
-        @apply --box;
+      #navbar #brand,
+      #navbar #links {
         @apply --layout-horizontal;
         @apply --layout-no-wrap;
       }
 
-      #part-header .brand .link,
-      #part-header .links .link {
+      #navbar #brand .link,
+      #navbar #links .link {
         @apply --layout;
         @apply --layout-center;
-
+        padding: 0 20px;
         font-size: 12px;
-        font-weight: 600;
+        font-weight: 400;
         -webkit-font-smoothing: antialiased;
-        letter-spacing: .75px;
-        text-decoration: none;
+        letter-spacing: 1px;
         text-transform: uppercase;
-        padding: 0 15px;
+      }
+      #navbar #links {
+        margin-right: -20px;
+      }
 
+      #navbar #brand .link a,
+      #navbar #links .link a {
+        text-decoration: none;
         color: #333;
         transition-property: color;
         transition-duration: .5s;
       }
-      #part-header .brand .link {
-        padding: 0;
+      #navbar #brand .link a {
+        font-weight: 600;
+        /*color: rgb(180, 50, 50);*/
       }
 
-
-      #part-header .brand .link.toggle {
-        font-size: 40px;
-        padding-left: 20px;
+      #navbar #brand .link,
+      #navbar #links .link:first-child {
+        padding-left: 0;
+      }
+      #navbar #brand .link,
+      #navbar #links .link:last-child {
         padding-right: 0;
       }
 
-      #part-header .links .link:first-child {
-        padding-left: 0;
-      }
-      #part-header .links .link:last-child {
-        /*padding-right: 0;*/
-      }
-
-      #part-header .links.collapse .link {
+      #navbar #links.collapse .link {
         font-size: 28px;
       }
 
-      #part-header .menu {
-        position: absolute;
-        top: 60px;
-        left: 0px;
-        @apply --box;
-        padding: 0 3%;
-        width: 100%;
-        height: calc(100vh - 90px);
-
+      #navbar #menu {
+        @apply --layout-box;
         @apply --layout-vertical;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        padding: 0 5%;
         background-color: white;
       }
-      #part-header .menu .item {
-        /*@apply --layout-flex;*/
+      #navbar #menu .item a {
+        display: inline-block;
+        width: 100%;
         font-size: 12px;
         font-weight: 600;
         -webkit-font-smoothing: antialiased;
         letter-spacing: .75px;
-        text-decoration: none;
         text-transform: uppercase;
         padding: 20px 0px;
+      }
+      #navbar #menu .item.space {
+        @apply --layout-flex;
+      }
+
+      #navbar #links .link a,
+      #navbar #menu .item a,
+      #navbar #toggle {
+        text-decoration: none;
         color: #333;
       }
+      #navbar #links .link:hover a,
+      #navbar #menu .item:hover a {
+        color: rgb(180, 50, 50);
+      }
+      #navbar #links .link.selected a,
+      #navbar #links .item.selected a {
+        font-weight: 600;
+        color: rgb(180, 50, 50);
+      }
 
-      #part-header .mobile.menu {
+      #navbar #toggle {
+        position: absolute;
+        right: 0;
+        box-sizing: border-box;
+        width: 20%;
+        height: 60px;
+        text-align: right;
+        padding: 8px 20px;
+        font-size: 30px
+      }
+
+      #navbar #menu {
         display: none;
       }
-      #part-header.open .mobile.menu {
-        display: flex;
+      @media (max-width: 768px) {
+        #header.open #menu {
+          display: flex;
+        }
       }
 
-      #part-header .desktop {
-        display: flex;
-      }
-      #part-header .mobile {
+      #navbar #toggle {
         display: none;
+      }
+      @media (max-width: 768px) {
+        #navbar #brand .link {
+          font-weight: 600;
+        }
+        #navbar #links .link {
+          display: none;
+        }
+        #navbar #toggle {
+          display: block;
+        }
+        #topbar .contact .label {
+          display: none;
+        }
+      }
+
+      :host-context([transparent="true"]) #navbar {
+        background-color: transparent;
+        box-shadow: none;
+      }
+
+      :host-context([transparent="true"]) #navbar #brand .link a,
+      :host-context([transparent="true"]) #navbar #links .link a {
+        color: white;
+        font-weight: 600;
       }
 
       @media (max-width: 768px) {
-        #part-header .desktop {
-          display: none;
+        :host-context([transparent="true"]) #navbar {
+          background-color: white;
         }
-        #part-header .mobile.brand {
-          display: flex;
+        :host-context([transparent="true"]) #navbar #brand .link a,
+        :host-context([transparent="true"]) #navbar #links .link a {
+          color: #333;
         }
       }
     </style>
 
-    <div id="part-header" ref="header">
-      <div class="brand desktop">
-        <a class="link" href="/"><img class="logo" src="/images/cvdlab-logo.png"></a>
-      </div>
-      <div class="brand mobile" on-click="on_click_toggle">
-        <a class="link toggle" href="./" >☰</a>
-        <a class="link" href="/"><img class="logo" src="/images/cvdlab-logo.png"></a>
-      </div>
-      <div class="space"></div>
-      <div class="links desktop">
-        <template-repeat items="{{context.menu.main}}" item="link">
-          <template>
-            <a class="link" href="{{link.href}}">{{link.label}}</a>
-          </template>
-        </template-repeat>
-      </div>
-      <div class="space"></div>
-      <div class="menu mobile">
-        <a class="item" href="/">home</a>
-        <template-repeat items="{{context.menu.main}}" item="link">
-          <template>
-            <a class="item" href="{{link.href}}">{{link.label}}</a>
-          </template>
-        </template-repeat>
-        <div class="item space"></div>
+    <div id="header">
+      <div id="navbar">
+        <div id="brand">
+          <app-link class="link">
+            <a href="/">{{brand}}</a>
+          </app-link>
+        </div>
+        <div class="space"></div>
+        <div id="links">
+          <x-repeat id="repeat_links" items="{{links}}">
+            <template>
+              <app-link class="link">
+                <a href="{{item.link}}">{{item.label}}</a>
+              </app-link>
+            </template>
+          </x-repeat>
+          <a id="toggle" href="#">☰</a>
+        </div>
+        <div id="menu">
+          <x-repeat id="repeat_items" items="{{links}}">
+            <template>
+              <app-link class="item">
+                <a href="{{item.link}}">{{item.label}}</a>
+              </app-link>
+            </template>
+          </x-repeat>
+          <div class="item space"></div>
+        </div>
       </div>
     </div>
 
@@ -158,35 +241,64 @@
 <script>
   class PartHeader extends Pantarei.Element {
 
-    should_update () {
-      return false
+    static get is () {
+      return 'part-header'
     }
 
-    after_create () {
-      this.on_scroll = this.on_scroll.bind(this)
+    static get props () {
+      return {
+        brand: {
+          type: String,
+          value: ''
+        },
+        links: {
+          type: Array,
+          value: []
+        }
+      }
     }
 
-    after_connect () {
-      window.addEventListener('scroll', this.on_scroll)
-      this.on_scroll()
+    constructor () {
+      super()
+      this.on_render_link = this.on_render_link.bind(this)
+      this.on_click_toggle = this.on_click_toggle.bind(this)
+      this.on_click_menu = this.on_click_menu.bind(this)
     }
 
-    after_disconnect () {
-      window.removeEventListener('scroll', this.on_scroll)
+    ready () {
+      this.refs.toggle.addEventListener('click', this.on_click_toggle)
+      this.refs.menu.addEventListener('click', this.on_click_menu)
+      this.refs.repeat_items.addEventListener('render', this.on_render_link)
+      this.refs.repeat_links.addEventListener('render', this.on_render_link)
     }
 
-    on_scroll (event) {
-      let transparent = window.scrollY < 45
-      this.refs.header.classList.toggle('transparent', transparent)
+    toggle () {
+      this.refs.header.classList.toggle('open')
+    }
+
+    on_render_link (event) {
+      let detail = event.detail
+      let index = detail.index
+      let node = detail.node
+
+      node.classList.toggle('selected', index === this.selected)
     }
 
     on_click_toggle (event) {
       event.preventDefault()
       event.stopPropagation()
-      this.refs.header.classList.toggle('open')
+      this.toggle()
+    }
+
+    on_click_menu (event) {
+      let target = event.target
+      if (target.nodeName !== 'A') {
+        return
+      }
+      this.toggle()
     }
 
   }
 
-  document.registerElement('part-header', PartHeader)
+  customElements.define('part-header', PartHeader)
 </script>

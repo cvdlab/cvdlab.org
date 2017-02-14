@@ -1,590 +1,681 @@
-var Pantarei
-
-(function () {
-
-  Pantarei = {}
-
-  Pantarei.templates = {}
-
-  Pantarei.context = {}
-
-  class PantareiElement extends HTMLElement {
-
-    get ATTRIBUTE_EVENT_PREFIX () { return 'on-' }
-
-    get EXPRESSION_BEGIN () { return '{{' }
-
-    get EXPRESSION_END () { return '}}' }
-
-    get props () { return {} }
-
-    setup () {
-      this._parse()
-    }
-
-    _listener (event) {
-      let root = this.shadowRoot
-      let target = event.target
-
-      let event_type = event.type
-      let event_attr = this.ATTRIBUTE_EVENT_PREFIX + event_type
-
-      let bubble = true
-      let stop = event.stopPropagation
-
-      event.stopPropagation = function () {
-        stop.call(event)
-        bubble = false
-      }
-
-      while (bubble) {
-        let listener_name = target.getAttribute(event_attr)
-        if (listener_name) {
-          let listener = this[listener_name]
-          listener.call(this, event, event.detail)
-        }
-
-        if (!bubble) {
-          break
-        }
-
-        target = target.parentNode
-        if (!target) {
-          break
-        }
-        if (target === root) {
-          break
-        }
-      }
-    }
-
-    _is_expression (text) {
-      return text.startsWith(this.EXPRESSION_BEGIN) && text.endsWith(this.EXPRESSION_END)
-    }
-
-    _is_event (string) {
-      return string.startsWith(this.ATTRIBUTE_EVENT_PREFIX)
-    }
-
-    _parse_event (string) {
-      return string.slice(this.ATTRIBUTE_EVENT_PREFIX.length)
-    }
-
-    _parse () {
-      this._listeners = {}
-
-      let root = this.shadowRoot
-      let child = root.firstChild
-      while (child) {
-        this._parse_node(child)
-        child = child.nextSibling
-      }
-    }
-
-    _parse_node (node) {
-      node._container = this
-
-      let type = node.nodeType
-      if (type === node.TEXT_NODE) {
-        this._parse_node_text(node)
-        return
-      }
-      if (type === node.DOCUMENT_FRAGMENT_NODE) {
-        this._parse_node_fragment(node)
-        return
-      }
-      if (type === node.ELEMENT_NODE) {
-        this._parse_node_element(node)
-        return
-      }
-    }
-
-    _parse_node_text (node) {
-      let text = node.textContent.trim()
-      if (text === '') {
-        return
-      }
-      if (this._is_expression(text)) {
-        let template = document.createElement('template-text')
-        template._container = this
-        template.setAttribute('text', text)
-        this._parse_node(template)
-        node.parentNode.insertBefore(template, node)
-        node.remove()
-      }
-    }
-
-    _parse_node_fragment (node) {
-      let child = node.firstChild
-      while (child) {
-        this._parse_node(child)
-        child = child.nextSibling
-      }
-    }
-
-    _parse_node_element (node) {
-      node._directives = {}
-
-      this._parse_node_attributes(node)
-
-      let child = node.firstChild;
-      while (child) {
-        this._parse_node(child);
-        child = child.nextSibling;
-      }
-    }
-
-    _parse_node_attributes (node) {
-      let attributes = node.attributes
-      let n = attributes.length
-
-      for (let i = 0; i < n; i++) {
-        let attribute = attributes[i]
-
-        let name = attribute.name
-        let value = attribute.value
-
-        if (this._is_expression(value)) {
-          let getter = this._parse_expression(value)
-          let directive = function (data) {
-            this[name] = getter(data)
-          }
-          node._directives[name] = directive
-          continue
-        }
-
-        if (this._is_event(name)) {
-          let event_name = this._parse_event(name)
-          if (!this._listeners[event_name]) {
-            this._listeners[event_name] = true
-            this.shadowRoot.addEventListener(event_name, this._listener, false)
-          }
-        }
-      }
-    }
-
-    _parse_expression (expression) {
-      let length = expression.length
-      let first_char = this.EXPRESSION_BEGIN.length
-      let last_char = length - this.EXPRESSION_END.length
-      let path = expression.substring(first_char, last_char)
-
-      let parts = path.split('.')
-      let n = parts.length
-
-      if (n == 1) {
-        return function (value) {
-          return value[path]
-        }
-      }
-
-      return function (value) {
-        for (let i = 0; i < n && value; i++) {
-          let part = parts[i]
-          value = value[part]
-        }
-        return value
-      }
-    }
-
-    set_props (props) {
-      for (let name in props) {
-        let prop = props[name]
-        let value = prop.value
-        if (this.hasAttribute(name)) {
-          value = this.getAttribute(name)
-        }
-        if (value !== undefined) {
-          this[name] = value
-        }
-      }
-    }
-
-    render (data) {
-      this._render_node_children(this.shadowRoot, data)
-    }
-
-    _render_node_children (node, data) {
-      let child = node.firstElementChild
-      while (child) {
-        this._render_node(child, data)
-        child = child.nextElementSibling
-      }
-    }
-
-    _render_node (node, data) {
-      data = data || this
-
-      if (node.nodeType !== node.ELEMENT_NODE) {
-        return
-      }
-
-
-      let directives = node._directives
-      if (directives) {
-        for (let name in directives) {
-          let directive = directives[name]
-          directive.call(node, data)
-        }
-      }
-
-      this._render_node_children(node, data)
-
-      if (node.render) {
-        node.context = Object.assign(node.context || {}, this.context)
-        node.render()
-        // node.render(data)
-      }
-    }
-
-    _cache_refs () {
-      let refs = {}
-      let nodes = this.shadowRoot.querySelectorAll('[ref]')
-      for (let i = 0, n = nodes.length; i < n; i++) {
-        let node = nodes[i]
-        let ref = node.getAttribute('ref')
-        node.ref = ref
-        refs[ref] = node
-      }
-      this.refs = refs
-    }
-
-    should_update () {
-      return true
-    }
-
-    before_update () {}
-
-    update () {
-      let pass = this.should_update()
-      if (!pass) {
-        return
-      }
-      this.before_update()
-      this.render()
-    }
-
-    fire (type, detail) {
-      let config = { bubbles: true, cancelable: true, detail: detail }
-      let event = new CustomEvent(type, config)
-      this.dispatchEvent(event)
-      return this
-    }
-
-    action (name, data) {
-      this.fire('action', { name: name, data: data })
-      return this
-    }
-
-    async (f) {
-      requestAnimationFrame(f.bind(this))
-    }
-
-    createdCallback () {
-      this._listener = this._listener.bind(this)
-
-      this.createShadowRoot()
-
-      let name = this.localName
-      let template = Pantarei.templates[name]
-      let content = template.content
-
-      let node = document.importNode(content, true)
-      this.shadowRoot.appendChild(node)
-
-      this.set_props(this.props)
-
-      // this.context = Pantarei.context
-
-      this.setup()
-      this._cache_refs()
-      this.after_create()
-
-    }
-
-
-    attachedCallback () {
-      this._prepare_style()
-      this.update()
-      this.after_connect()
-    }
-
-    _prepare_style () {
-      let stylesheets = this.shadowRoot.querySelectorAll('link[rel="stylesheet"]')
-      Array.from(stylesheets).forEach((stylesheet) => {
-        let href = stylesheet.getAttribute('href')
-        Pantarei.stylesheets[href].then((style) => {
-          let stylenode = document.importNode(style, true)
-          this.shadowRoot.insertBefore(stylenode, stylesheet)
-          ShadyCSS.applyStyle(this, this.shadowRoot)
-        })
+const _templates = {}
+const _resolve = {}
+
+class TemplateElement extends HTMLElement {
+
+  static get _templates () {
+    return _templates
+  }
+
+  static _register_template (name) {
+    if (!_templates[name]) {
+      _templates[name] = new Promise((resolve, reject) => {
+        _resolve[name] = resolve
       })
-      ShadyCSS.applyStyle(this, this.shadowRoot)
+    }
+  }
 
-      // let nodes = this.shadowRoot.querySelectorAll('import-style[name]')
-      // Array.from(nodes).forEach((node) => {
-      //   let name = node.getAttribute('name')
-      //   Pantarei.styles[name].then((style) => {
-      //     let stylenode = document.importNode(style, true)
-      //     this.shadowRoot.insertBefore(stylenode, node)
-      //     ShadyCSS.applyStyle(this, this.shadowRoot)
-      //   })
-      // })
+  static get_template (name) {
+    this._register_template(name)
+    return _templates[name]
+  }
 
+  static set_template (name, template) {
+    this._register_template(name)
+    _resolve[name](template)
+  }
+
+  connectedCallback() {
+    this._register()
+  }
+
+  _register () {
+    if (this._registered) {
+      return
+    }
+    let name = this.id
+    let template = this.querySelector('template')
+
+    if (window.ShadyCSS) {
+      ShadyCSS.prepareTemplate(template, name)
     }
 
-    after_create () {}
+    this.constructor.set_template(name, template)
+    this._registered = true
 
-    after_connect () {}
+    if (this.hasAttribute('selfy')) {
+      this._define()
+    }
+  }
 
-    detachedCallback () {}
+  _define () {
+    customElements.define(this.id, class extends Pantarei.Element {})
+  }
 
-    connectedCallback () {}
+}
 
-    disconnectedCallback () {}
+customElements.define('template-element', TemplateElement)
 
-    attributeChangedCallback () {}
+class Element extends HTMLElement {
+
+  static get template () {
+    return TemplateElement.get_template(this.is)
+  }
+
+  static get props () {
+    return {
+      data: {
+        type: 'Object',
+        value: {}
+      }
+    }
+  }
+
+  constructor () {
+    super()
+    this._parse_node = this._parse_node.bind(this)
+    this._render_node = this._render_node.bind(this)
+    this._on_event = this._on_event.bind(this)
+    this.render = this.render.bind(this)
+    this._debounced_render = this.debounce(this.render, 16)
+    this._listeners = {}
+    this._init_props()
+    this._init_content()
+  }
+
+  connectedCallback () {
+    ShadyCSS.applyStyle(this)
+  }
+
+  disconnectedCallback () {
 
   }
 
-  Pantarei.Element = PantareiElement
-
-  Pantarei.stylesheets = {}
-
-  Pantarei.prepareTemplate = function (template, name) {
-    if (typeof ShadyCSS === 'undefined') {
-      return
-    }
-    ShadyCSS.prepareTemplate(template, name)
-
-    let stylesheets = template.content.querySelectorAll('link[rel="stylesheet"]')
-
-    Array.from(stylesheets).forEach((stylesheet) => {
-      let href = stylesheet.getAttribute('href')
-
-      Pantarei.stylesheets[href] = new Promise((resolve, reject) => {
-        fetch(href)
-          .then((response) => {
-            return response.text()
-          })
-          .then((text) => {
-            let template = document.createElement('template')
-            let stylenode = document.createElement('style')
-            template.content.appendChild(stylenode)
-            stylenode.textContent = text
-            ShadyCSS.prepareTemplate(template, name)
-            stylenode = template.content.querySelector('style')
-            resolve(stylenode)
-          })
-          .catch((err) => {
-            reject(err)
-          })
-      })
-
+  _init_props () {
+    this._props = {}
+    let props = this.constructor.props
+    Object.keys(props).forEach((name) => {
+      let descriptor = props[name]
+      this._init_prop(name, descriptor)
     })
   }
 
-  class TemplateElement extends HTMLElement {
-
-    createdCallback () {
-      let name = this.id
-      let template = this.querySelector('template')
-      template = document.importNode(template, true)
-      Pantarei.templates[name] = template
-
-      Pantarei.prepareTemplate(template, name)
-
-      if (this.hasAttribute('selfy')) {
-        document.registerElement(name, class extends Pantarei.Element {})
-      }
-      console.log('created', name)
+  _init_prop (name, descriptor) {
+    let value = descriptor.value
+    if (typeof value === 'function') {
+      value = value()
     }
+    this._props[name] = value || this[name]
 
+    Object.defineProperty(this, name, {
+      get: () => {
+        return this._props[name]
+      },
+      set: (value) => {
+        if (this._props[name] === value) {
+          return
+        }
+        this._props[name] = value
+        this._debounced_render()
+      }
+    })
   }
 
-  document.registerElement('template-element', TemplateElement)
-
-  Pantarei.TemplateElement = TemplateElement
-
-  class TemplateRepeat extends HTMLElement {
-
-    createdCallback () {
-      this._setup()
-    }
-
-    _setup () {
-      let template = this.querySelector('template')
-      this._template = document.importNode(template, true)
-
-      let stage = document.createDocumentFragment()
-      let content = this._template.content
-      let node = content.children[0]
-
-      stage.appendChild(node)
-      this._node = node.cloneNode(true)
-      content.appendChild(node)
-
-      this._item_name = this.getAttribute('item') || 'item'
-      this._index_name = this.getAttribute('index') || 'index'
-
-      this._items = []
-      this._clones = []
-
-      this.style.display = 'none'
-    }
-
-    _create_clone (index) {
-      let clone = this._node.cloneNode(true)
-      this.parentNode.insertBefore(clone, this)
-      this._container._parse_node(clone)
-      this._clones[index] = clone
-    }
-
-    _render_clone (index, data) {
-      let clone = this._clones[index]
-      let clone_data = Object.assign({}, data)
-      let item = this.items[index]
-      clone_data[this._item_name] = item
-      clone_data[this._index_name] = index
-      this._container._render_node(clone, clone_data)
-    }
-
-    _remove_clone (index) {
-      let clone = this._clones[index]
-      clone.remove()
-      this._clones[index] = null
-    }
-
-    render (data) {
-      let old_items = this._items || []
-      let new_items = this.items
-
-      if (!Array.isArray(new_items)) {
-        new_items = []
-      }
-
-      this.items = new_items.slice()
-
-      let old_items_count = old_items.length
-      let new_items_count = new_items.length
-
-      if (new_items_count < old_items_count) {
-        for (let index = 0; index < new_items_count; index++) {
-          this._render_clone(index, data)
-        }
-        for (let index = new_items_count; index < old_items_count; index++) {
-          this._remove_clone(index)
-        }
-      }
-      else {
-        for (let index = 0; index < old_items_count; index++) {
-          this._render_clone(index, data)
-        }
-        for (let index = old_items_count; index < new_items_count; index++) {
-          this._create_clone(index)
-          this._render_clone(index, data)
-        }
-      }
-
-      this._items = this.items
-    }
-
+  _init_content () {
+    let name = this.localName
+    this.attachShadow({ mode: 'open' })
+    this.constructor.template.then((template) => {
+      let content = template.content
+      let node = document.importNode(content, true)
+      this.shadowRoot.appendChild(node)
+      this._init_refs()
+      this._parse(this.shadowRoot)
+      this.ready()
+      this.render()
+    }).catch((err) => {
+      console.warn(err)
+    })
   }
 
-  document.registerElement('template-repeat', TemplateRepeat)
-
-  Pantarei.TemplateRepeat = TemplateRepeat
-
-  class TemplateIf extends HTMLElement {
-
-    createdCallback () {
-      this._setup()
-    }
-
-    _setup () {
-      let template = this.querySelector('template')
-      this._template = document.importNode(template, true)
-
-      let stage = document.createDocumentFragment()
-      let content = this._template.content
-      let node = content.children[0]
-
-      stage.appendChild(node)
-      this._node = node.cloneNode(true)
-      content.appendChild(node)
-
-      this._clone = null;
-      this.style.display = 'none'
-    }
-
-    _create_clone () {
-      let clone = this._node.cloneNode(true)
-      this._container.parse_node(clone)
-      this.parentNode.insertBefore(clone, this)
-      this._clone = clone
-    }
-
-    _render_clone () {
-      // this._clone.render()
-    }
-
-    _remove_clone () {
-      this._clone.remove();
-      this._clone = null
-    }
-
-    render () {
-      let old_test = this._test
-      let new_test = this.test
-
-      if (new_test) {
-        if (old_test) {
-          this._render_clone()
-        } else {
-          this._create_clone()
-          this._render_clone()
-        }
-      } else {
-        if (old_test) {
-          this._remove_clone()
-        }
-      }
-    }
-
+  _init_refs () {
+    this.refs = {}
+    let nodes = this.shadowRoot.querySelectorAll('[id]')
+    Array.from(nodes).forEach((node) => {
+      this.refs[node.id] = node
+    })
   }
 
-  document.registerElement('template-if', TemplateIf)
+  _parse (node) {
+    this._traverse(node, this._parse_node)
+  }
 
-  Pantarei.TemplateIf = TemplateIf
-
-  class TemplateText extends HTMLElement {
-
-    createdCallback () {
-      this._setup()
+  _traverse (element, handler) {
+    let pass = handler(element)
+    if (!pass) {
+      return
     }
+    let child = element.firstElementChild
+    while (child) {
+      this._traverse(child, handler)
+      child = child.nextElementSibling
+    }
+  }
 
-    _setup () {
-      this._node = document.createTextNode('')
+  _parse_node (node) {
+    if (node.nodeType !== node.ELEMENT_NODE) {
+      return true
+    }
+    node._dirs = []
+    this._parse_node_attributes(node)
+    this._parse_node_text(node)
+    return true
+  }
+
+  _parse_node_attributes (node) {
+    let attributes = Array.from(node.attributes)
+    attributes.forEach((attribute) => {
+      this._parse_node_attribute(node, attribute)
+    })
+  }
+
+  _parse_node_attribute (node, attribute) {
+    let name = attribute.name
+    let value = attribute.value || ''
+
+    if (this._is_expression(value)) {
+      let path = this._extract_value(value)
+      let getter = this._generate_getter(path)
       let directive = function (data) {
-        this._node.textContent = this.text
+        this[name] = getter(data)
       }
-      this.directive = directive
-      this.style.display = 'none'
+      node._dirs.push(directive)
     }
 
-    attachedCallback () {
-      this.parentNode.insertBefore(this._node, this)
+    if (this._is_event_name(name)) {
+      let event_name = this._parse_event_name(name)
+      if (!this._listeners[event_name]) {
+        this._listeners[event_name] = true
+        this.shadowRoot.addEventListener(event_name, this._on_event, false)
+      }
+    }
+  }
+
+  _parse_node_text (node) {
+    let child = node.firstChild
+    while (child) {
+      if (child.nodeType === child.TEXT_NODE) {
+        let text = child.nodeValue || ''
+        if (this._is_expression(text)) {
+          let path = this._extract_value(text)
+          let getter = this._generate_getter(path)
+          let name = node._dirs
+          let placeholder = document.createElement('x-text')
+          placeholder.setAttribute('text', text)
+          let directive = function (data) {
+            this.text = getter(data)
+          }
+          placeholder._dirs = []
+          placeholder._dirs.push(directive)
+          node.insertBefore(placeholder, child)
+          child.remove()
+        }
+      }
+      child = child.nextSibling
+    }
+  }
+
+  static get EXPRESSION_BEGIN () { return '{{' }
+
+  static get EXPRESSION_END () { return '}}' }
+
+  static get ATTRIBUTE_EVENT_PREFIX () { return 'on-' }
+
+  _is_expression (text) {
+    let start = text.startsWith(this.constructor.EXPRESSION_BEGIN)
+    let end = text.endsWith(this.constructor.EXPRESSION_END)
+    let test = start && end
+    return test
+  }
+
+  _is_event_name (string) {
+    return string.startsWith(this.constructor.ATTRIBUTE_EVENT_PREFIX)
+  }
+
+  _parse_event_name (string) {
+    return string.slice(this.constructor.ATTRIBUTE_EVENT_PREFIX.length)
+  }
+
+  _extract_value (expression) {
+    let length = expression.length
+    let first_char = this.constructor.EXPRESSION_BEGIN.length
+    let last_char = length - this.constructor.EXPRESSION_END.length
+    let value = expression.substring(first_char, last_char)
+    return value
+  }
+
+  _generate_getter (path) {
+    let parts = path.split('.')
+    let n = parts.length
+
+    if (n == 1) {
+      return function (value) {
+        return value[path]
+      }
     }
 
-    render (data) {
-      if (!this.directive) return
-      this.directive.call(this, data)
+    return function (value) {
+      for (let i = 0; i < n && value; i++) {
+        let part = parts[i]
+        value = value[part]
+      }
+      return value
     }
+  }
+
+  ready () {}
+
+  render () {
+    this._traverse(this.shadowRoot, this._render_node)
+  }
+
+  _render (node, data) {
+    this._traverse(node, (node) => {
+      return this._render_node(node, data)
+    })
+  }
+
+  _render_node (node, data) {
+    if (node !== this.shadowRoot) {
+      if (node.nodeType !== node.ELEMENT_NODE) {
+        return false
+      }
+    }
+    data = data || this
+    let _dirs = node._dirs || []
+    _dirs.forEach((directive) => {
+      directive.call(node, data)
+    })
+    return true
+  }
+
+  static get EVENT_PREFIX () {
+    return 'on-'
+  }
+
+  _on_event (event) {
+    let root = this.shadowRoot
+    let target = event.target
+
+    let event_type = event.type
+    let event_attr = this.constructor.EVENT_PREFIX + event_type
+
+    let bubble = true
+    let stop = event.stopPropagation
+
+    event.stopPropagation = function () {
+      stop.call(event)
+      bubble = false
+    }
+
+    while (bubble) {
+      let listener_name = target.getAttribute(event_attr)
+      if (listener_name) {
+        let listener = this[listener_name]
+        if (listener) {
+          listener.call(this, event, event.detail)
+        }
+      }
+
+      if (!bubble) {
+        break
+      }
+
+      target = target.parentNode
+      if (!target) {
+        break
+      }
+      if (target === root) {
+        break
+      }
+    }
+  }
+
+  fire (type, detail) {
+    let config = { bubbles: true, cancelable: true, detail: detail }
+    let event = new CustomEvent(type, config)
+    this.dispatchEvent(event)
+    return this
+  }
+
+  action (name, data) {
+    this.fire('action', { name: name, data: data })
+    return this
+  }
+
+  async (func) {
+    requestAnimationFrame(func.bind(this))
+  }
+
+  debounce (func, wait) {
+    wait = wait || 0
+
+    let waiting = false
+    let self = this
+
+    function invoked () {
+      waiting = false
+      func.call(self)
+    }
+
+    function debounced () {
+      if (waiting) {
+        return
+      }
+      waiting = true
+      setTimeout(invoked, wait)
+    }
+
+    return debounced
+  }
+
+}
+
+class TemplateToggle extends HTMLElement {
+
+  connectedCallback () {
+    this._setup()
+  }
+
+  _setup () {
+    let template = this.querySelector('template')
+    this._template = document.importNode(template, true)
+
+    let stage = document.createDocumentFragment()
+    let content = this._template.content
+    let node = content.children[0]
+
+    stage.appendChild(node)
+    this._node = node.cloneNode(true)
+    content.appendChild(node)
+
+    this._clone = null;
+    this.style.display = 'none'
+  }
+
+  _create_clone () {
+    let clone = this._node.cloneNode(true)
+    this._container.parse_node(clone)
+    this.parentNode.insertBefore(clone, this)
+    this._clone = clone
+  }
+
+  _render_clone () {
 
   }
 
-  document.registerElement('template-text', TemplateText)
+  _remove_clone () {
+    this._clone.remove();
+    this._clone = null
+  }
 
-  Pantarei.TemplateText = TemplateText
+  render () {
+    let old_test = this._test
+    let new_test = this.test
 
-}())
+    if (new_test) {
+      if (old_test) {
+        this._render_clone()
+      } else {
+        this._create_clone()
+        this._render_clone()
+      }
+    } else {
+      if (old_test) {
+        this._remove_clone()
+      }
+    }
+  }
+
+}
+
+customElements.define('x-toggle', TemplateToggle)
+
+class TemplateRepeat extends HTMLElement {
+
+  constructor () {
+    super()
+    this.render = this.render.bind(this)
+    this._debounced_render = this.debounce(this.render, 16)
+    this._init_props()
+  }
+
+  _init_props () {
+    this._props = {}
+    this._init_prop('items')
+
+    this.items = []
+    this._items = []
+    this._nodes = []
+  }
+
+  _init_prop (prop) {
+    Object.defineProperty(this, prop, {
+      get: () => {
+        return this._props[prop]
+      },
+      set: (value) => {
+        // if (this._props[prop] === value) {
+        //   return
+        // }
+        this._props[prop] = value
+        this._debounced_render()
+      }
+    })
+  }
+
+  connectedCallback () {
+    // requestAnimationFrame(() => {
+      this._setup()
+    // })
+  }
+
+  _setup () {
+    this.style.display = 'none'
+
+    this._root = this.getRootNode()
+    this._host = this._root.host
+
+    this._item_name = this.getAttribute('item') || 'item'
+    this._index_name = this.getAttribute('index') || 'index'
+
+
+    let template = this.querySelector('template')
+    this._template = template
+
+    let content = template.content
+    let node = content.children[0]
+    let stage = document.createDocumentFragment()
+    stage.appendChild(node)
+    this._node = node.cloneNode(true)
+    content.appendChild(node)
+  }
+
+  _create_clone (index) {
+    let clone = this._node.cloneNode(true)
+    this._nodes[index] = clone
+    this._host._parse(clone)
+    return clone
+  }
+
+  _render_clone (index, data) {
+    let clone = this._nodes[index]
+    let clone_data = Object.assign({}, data)
+    let item = this.items[index]
+    clone_data[this._item_name] = item
+    clone_data[this._index_name] = index
+    this._host._render(clone, clone_data)
+    let detail = { index: index, data: clone_data, node: clone }
+    let config = { bubbles: true, cancelable: true, detail: detail }
+    let event = new CustomEvent('render', config)
+    this.dispatchEvent(event)
+  }
+
+  _remove_clone (index) {
+    let clone = this._nodes[index]
+    clone.remove()
+    this._nodes[index] = null
+  }
+
+  render (data) {
+    let old_items = this._items || []
+    let new_items = this.items || []
+
+    if (!Array.isArray(new_items)) {
+      new_items = []
+    }
+
+    let old_items_count = old_items.length
+    let new_items_count = new_items.length
+
+    if (new_items_count < old_items_count) {
+      for (let index = 0; index < new_items_count; index++) {
+        this._render_clone(index, data)
+      }
+      for (let index = new_items_count; index < old_items_count; index++) {
+        this._remove_clone(index)
+      }
+    }
+    else {
+      for (let index = 0; index < old_items_count; index++) {
+        this._render_clone(index, data)
+      }
+      let fragment = document.createDocumentFragment()
+      for (let index = old_items_count; index < new_items_count; index++) {
+        let clone = this._create_clone(index)
+        fragment.appendChild(clone)
+        this._render_clone(index, data)
+      }
+      this.parentNode.insertBefore(fragment, this)
+    }
+
+    this._items = new_items.slice()
+  }
+
+  debounce (func, wait) {
+    wait = wait || 0
+
+    let waiting = false
+    let self = this
+
+    function invoked () {
+      waiting = false
+      func.call(self)
+    }
+
+    function debounced () {
+      if (waiting) {
+        return
+      }
+      waiting = true
+      setTimeout(invoked, wait)
+    }
+
+    return debounced
+  }
+
+}
+
+customElements.define('x-repeat', TemplateRepeat)
+
+class TemplateText extends HTMLElement {
+
+  constructor () {
+    super()
+    this._init_props()
+    this._init_content()
+  }
+
+  _init_props () {
+    this._props = {}
+    this._props['text'] = ''
+    Object.defineProperty(this, 'text', {
+      get: () => {
+        return this._props[name]
+      },
+      set: (value) => {
+        if (this._props[name] === value) {
+          return
+        }
+        this._props[name] = value
+        requestAnimationFrame(() => {
+          this.render()
+        })
+      }
+    })
+  }
+
+  _init_content () {
+    this._node = document.createTextNode('')
+  }
+
+  connectedCallback () {
+    this._setup()
+  }
+
+  _setup () {
+    this.style.display = 'none'
+    this.parentNode.insertBefore(this._node, this)
+  }
+
+  render () {
+    this._node.textContent = this.text
+  }
+
+}
+
+customElements.define('x-text', TemplateText)
+
+class TemplateStyle extends HTMLElement {
+
+  connectedCallback () {
+    this._setup()
+  }
+
+  _setup () {
+    let href = this.getAttribute('href')
+    let root = this.getRootNode()
+    let host = root.host
+    let name = host.localName
+
+    fetch(href)
+      .then((response) => {
+        return response.text()
+      })
+      .then((text) => {
+        let stylenode = document.createElement('style')
+        stylenode.textContent = text
+
+        if (window.ShadyCSS) {
+          let template = document.createElement('template')
+          template.content.appendChild(stylenode)
+          ShadyCSS.prepareTemplate(template, name)
+          ShadyCSS.applyStyle(host, root)
+        }
+      })
+      .catch((err) => {
+        console.warn(err)
+      })
+  }
+
+}
+
+customElements.define('x-style', TemplateStyle)
+
+window['Pantarei'] = {
+  Element,
+  TemplateElement,
+  TemplateToggle,
+  TemplateRepeat,
+  TemplateText,
+  TemplateStyle
+}

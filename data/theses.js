@@ -1,4 +1,4 @@
-[
+Pantarei.data.theses = [
   {
     "title": "ES7 async/await paradigm study and experimentation to realize a Node.js REST APIs framework",
     "original_title": "Studio e sperimentazione del paradigma async/await di ES7 per la realizzazione di un REST API framework in NodeJS",

@@ -1,4 +1,4 @@
-[
+Pantarei.data.courses = [
   {
     "title": "GGPL",
     "description": "Geometric and Graphics Programming Laboratory",
