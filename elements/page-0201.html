@@ -7,13 +7,19 @@
       :host {
         display: block;
       }
+
+      .section {
+        padding-bottom: 40px;
+      }
     </style>
 
     <layout-page data="{{data}}">
-      <div class="content">
+      <div>
 
-        <div class="section team">
-          <h3>Founders</h3>
+        <h1>Founders</h1>
+
+        <div class="section">
+          <!-- <h3>Founders</h3> -->
           <div class="list">
             <x-repeat items="{{data.founders}}" item="founder">
               <template>
@@ -23,8 +29,10 @@
           </div>
         </div>
 
-        <div class="section collaborations">
-          <h3>Collaborators</h3>
+        <h1>Collaborators</h1>
+
+        <div class="section">
+          <!-- <h3>Collaborators</h3> -->
           <div class="deck people">
             <x-repeat items="{{data.collaborators}}" item="collaborator">
               <template>
@@ -53,15 +61,6 @@
   class Page0201 extends Pantarei.Element {
 
     static get is () { return 'page-0201' }
-
-    static get props () {
-      return {
-        data: {
-          type: Object,
-          value: {}
-        }
-      }
-    }
 
   }
 

@@ -1,5 +1,4 @@
 <link rel="import" href="layout-page.html">
-<link rel="import" href="part-jumbotron.html">
 
 <template-element id="page-0001">
   <template>
@@ -8,35 +7,26 @@
         display: block;
       }
 
-      #jumbotron {
-        @apply --layout-block;
-        @apply --layout-fit;
-      }
-
-      #heading {
-        @apply --container;
-      }
-
-      #heading .title {
-        margin-top: 0;
+      #title {
+        width: 100px;
         font-size: 60px;
         line-height: 1em;
-        text-transform: uppercase;
         text-align: left;
       }
 
-      #heading .title .word {
+      #title .word {
         display: block;
+        text-transform: uppercase;
       }
 
       @media (max-width: 992px) {
-        #heading .title {
+        #title {
           font-size: 50px;
         }
       }
 
       @media (max-width: 768px) {
-        #heading .title {
+        #title {
           font-size: 30px;
         }
       }
@@ -44,7 +34,7 @@
 
     <layout-page data="{{data}}">
       <div>
-        <h1 class="title">
+        <h1 id="title">
           <span class="word">Computational</span>
           <span class="word">Visual</span>
           <span class="word">Design</span>

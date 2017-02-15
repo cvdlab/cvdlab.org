@@ -5,47 +5,47 @@
         display: block;
       }
 
-      #part-footer {
-        height: 60px;
-        background-color: #333;
-        color: white;
+      #footer {
         font-size: 12px;
+        color: #777;
       }
 
-      #part-footer .container {
-        height: 100%;
-        @apply --layout-box;
-        @apply --layout-container;
+      #footer .container {
+        box-sizing: border-box;
         @apply --layout-horizontal;
         @apply --layout-center;
       }
 
-      #part-footer .space {
+      #footer .col {
         @apply --layout-flex;
       }
 
-      #part-footer #copyright {
-        margin-right: 20px;
+      #footer .link {
+        color: inherit;
+        text-decoration: none;
+        margin: 0 20px;
+      }
+      #footer .link:hover {
+        color: rgb(180, 50, 50);
       }
 
-      #part-footer #links .link {
-        color: white;
-        text-decoration: none;
-        margin: 0 10px;
-      }
-      #part-footer #links .link:hover {
-        color: rgb(180, 50, 50);
+      #footer #made {
+        text-align: center;
       }
     </style>
 
-    <div id="part-footer">
+    <div id="footer">
       <div class="container">
-        <div id="copyright">CVDLAB &copy; 2017</div>
-        <div id="links">
+        <div class="col">
+          <span id="copyright">CVDLAB &copy; 2017</span>
           <a class="link" href="/cookie_policy">cookie policy</a>
         </div>
-        <div class="space"></div>
-        <div id="made"><span>made with </span><span id="love">&hearts;</span><span> in Rome</span></div>
+        <div class="col">
+          <div id="made">
+            <span>made with </span><span id="love">&hearts;</span><span> in Rome</span>
+          </div>
+        </div>
+        <div class="col"></div>
       </div>
     </div>
 

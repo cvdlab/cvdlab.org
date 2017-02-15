@@ -5,59 +5,26 @@
         display: block;
       }
 
-      .fa {
-        display: inline-block;
-        font: normal normal normal 14px/1 FontAwesome;
-        font-size: inherit;
-        text-rendering: auto;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        padding-left: 4px;
-        padding-right: 4px;
-        color: #333;
-      }
-      .fa.whatsapp:before {
-        content: "\f232";
-      }
-      .fa.email:before {
-        content: "\f003";
-      }
-      .fa.facebook:before {
-        content: "\f230";
-      }
-      .fa.instagram:before {
-        content: "\f16d";
-      }
-      .fa.linkedin:before {
-        content: "\f0e1";
-      }
-
       #header {
-        @apply --layout-box;
-        @apply --layout-vertical;
-        position: fixed;
         width: 100%;
-        padding: 0;
-        z-index: 100;
-        box-shadow: 0 1px 1px #eee;
-        background-color: white;
+        height: 70px;
+        box-sizing: border-box;
       }
 
       #navbar {
-        @apply --layout-box;
+        box-sizing: border-box;
         @apply --layout-horizontal;
-        padding: 0 5%;
-        height: 70px;
       }
 
       #navbar .space {
         @apply --layout-flex;
       }
-      #navbar #brand {
+
+      #brand {
         font-weight: 600;
       }
 
-      #navbar #brand,
+      #brand,
       #navbar #links {
         @apply --layout-horizontal;
         @apply --layout-no-wrap;
@@ -69,7 +36,7 @@
         @apply --layout-center;
         padding: 0 20px;
         font-size: 12px;
-        font-weight: 400;
+        font-weight: 600;
         -webkit-font-smoothing: antialiased;
         letter-spacing: 1px;
         text-transform: uppercase;

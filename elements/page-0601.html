@@ -7,52 +7,45 @@
         display: block;
       }
 
-      .contacts {
-        padding-top: 60px;
-        @apply --text;
-      }
-
-      .contacts h3 {
+      .message {
         line-height: 1.5;
-        margin-bottom: 60px;
       }
 
-      .contacts .contact {
-        margin-bottom: 30px;
-      }
-
-      .contacts .contact .link {
-        text-decoration: none;
+      .link {
         color: #333;
-        font-weight: bolder;
+        text-decoration: none;
       }
-      .contacts .contact .label {
-        margin-right: 10px;
+
+      .contact {
+        font-weight: 600;
+        padding-bottom: 30px;
       }
     </style>
 
     <layout-page data="{{data}}">
-      <div class="content">
-        <div class="contacts">
-          <h3>
-            <span id="condition"></span>,<br>
-            <span>drop us a line</span>
-          </h3>
+      <div id="contacts">
 
-          <div class="contact mail">
-            <a class="link value"href="mailto:ciao@cvdlab.org">ciao@cvdlab.org</a><br>
-            <!-- <span class="label">phone</span><span class="value">+39 06 5733 3217</span> -->
-          </div>
+        <h1>Contacts</h1>
 
-          <div class="contact address">
-            <a class="link" href="http://www.uniroma3.it/" target="_blank">RomaTre University</a><br>
-            <a class="link" href="http://www.ingegneria.uniroma3.it/" target="_blank">Department of Computer Engineering</a><br>
-            <a class="link" href="http://www.matfis.uniroma3.it/" target="_blank">Department of Mathematics and Physics</a><br>
-          </div>
-          <div class="contact address">
-            <span>Via della Vasca navale 79</span><br>
-            <span>00146 - Rome, ITALY</span>
-          </div>
+        <h2 class="message">
+          <span id="condition"></span>,<br>
+          <span>drop us a line</span>
+        </h3>
+
+        <div class="contact">
+          <a class="link mail" href="mailto:ciao@cvdlab.org">ciao@cvdlab.org</a>
+        </div>
+
+        <h2 class="message">
+          <span>If you are in the neighborhood,</span><br>
+          <span>come to visit us</span>
+        </h2>
+
+        <div class="contact">
+          <a class="link" href="http://www.uniroma3.it/" target="_blank">RomaTre University</a><br>
+          <a class="link" href="http://www.ingegneria.uniroma3.it/" target="_blank">Department of Computer Engineering</a><br>
+          <span class="link">Via della Vasca navale 79</span><br>
+          <span class="link">00146 - Rome, ITALY</span>
         </div>
       </div>
     </layout-page>
