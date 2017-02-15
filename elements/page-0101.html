@@ -2,13 +2,36 @@
 
 <template-element id="page-0101">
   <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      .section {
+        width: 50%;
+      }
+
+      @media (max-width: 767px) {
+
+        .section {
+          width: 50%;
+        }
+
+      }
+    </style>
 
     <layout-page data="{{data}}">
       <div>
 
         <h1>About us</h1>
 
-        <p>The Computational Visual Design Lab is focused on investigating Web oriented cutting-edge technologies applied in scientific areas, such as Computer Graphics and Bioinformatics.</p>
+        <div class="section">
+          <p>The Computational Visual Design Lab is a laboratory in <strong>RomaTre University</strong>,
+          related to the Department of <strong>Computer Engineering</strong>
+          and the Department of <strong>Mathematics and Physics</strong>,
+          focused on investigating and using Web-driven cutting-edge Technologies in scientific areas,
+          such as <strong>Computer Graphics</strong> and <strong>Bioinformatics</strong>.</p>
+        </div>
 <!--
         <h3>Who we are</h3>
         <p>Professor Alberto Paoluzzi, researchers Enrico Marino and Federico Spini.</p>
