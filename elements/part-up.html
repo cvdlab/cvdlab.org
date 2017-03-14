@@ -11,25 +11,11 @@
         height: 20px;
         padding: 10px;
         text-align: center;
-        background-color: #333;
 
         opacity: 0;
         transition-property: opacity;
         transition-timing-function: ease-in;
         transition-duration: .5s;
-      }
-
-      .fa {
-        display: inline-block;
-        font: normal normal normal 14px/1 FontAwesome;
-        font-size: 16px;
-        text-rendering: auto;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        color: white;
-      }
-      .fa.up:before {
-        content: "\f077";
       }
 
       #button.visible {
@@ -42,7 +28,7 @@
       }
     </style>
 
-    <div id="button" on-click="on_click"><span class="fa up"></span></div>
+    <div id="button" on-click="on_click">top</div>
 
   </template>
 </template-element>

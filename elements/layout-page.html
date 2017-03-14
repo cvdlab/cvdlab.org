@@ -1,118 +1,58 @@
-<link rel="import" href="part-footer.html">
 <link rel="import" href="part-header.html">
-<link rel="import" href="part-up.html">
 
 <template-element id="layout-page">
   <template>
     <style>
       :host {
         display: block;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100vh;
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 0;
       }
 
       #layout {
-        box-sizing: border-box;
-        background-color: white;
-        padding: 40px 40px 20px 40px;
-        height: 100%;
-        min-height: calc(100vh - 20px);
-        @apply --layout-vertical;
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        background-color: #fff;
       }
 
       #header {
-        @apply --layout-over;
-      }
-
-      #jumbotron {
-        margin-top: 70px;
-        --jumbotron-height: 70px;
-        --jumbotron-justify-content: center;
-      }
-
-      #heading {
-        @apply --layout-container;
-        color: #333;
-      }
-      #heading #title {
-        font-weight: 100;
-        display: inline-block;
-        margin: 0;
-        line-height: 1;
-      }
-
-      #container {
-        @apply --layout-container;
+        display: block;
+        z-index: 100;
       }
 
       #main {
-        @apply --layout-horizontal;
+        display: block;
+        flex: 1;
       }
 
-      #aside {
-        padding-left: 30px;
-        padding-top: 44px;
-        width: 240px;
+      .container {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: var(--container-max-width);
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0.9375rem;
+        padding-right: 0.9375rem;
       }
 
-      #content {
-        padding-top: 20px;
-        padding-right: 30px;
-        padding-bottom: 70px;
-        @apply --layout-flex;
-        @apply --text;
-      }
-
-
-      #content ::slotted(*) {
-        font-weight: 400;
-      }
-
-      #layout.fullwidth #aside {
-        display: none;
-      }
-
-      #space {
-        @apply --layout-flex;
-      }
-
-      #upper {
-        position: fixed;
-        bottom: 60px;
-        right: 0px;
-      }
-
-      #footer {
-        @apply --layout-block;
-      }
-
-      @media (max-width: 767px) {
-        #main {
-          @apply --layout-vertical;
+      @media (max-width: 768px) {
+        :host {
+          padding: 0;
         }
-
-        #aside {
-          /*display: none;*/
-          padding-left: 0;
-          width: 100%;
-        }
-
       }
     </style>
 
-    <div id="layout" class="fullwidth">
-      <part-header id="header" brand="{{data.brand}}" links="{{data.links}}" selected="{{data.selected_menu}}"></part-header>
-      <div id="container">
-        <div id="main">
-          <div id="content">
-            <slot></slot>
-          </div>
-          <div id="aside">
-            <part-nav id="nav" links="{{data.menu}}" selected="{{data.selected}}"></part-nav>
-          </div>
-        </div>
+    <div id="layout">
+      <part-header id="header" menu="{{data.menu}}"></part-header>
+      <div id="main" class="container">
+        <slot></slot>
       </div>
-      <div id="space"></div>
-      <part-up id="upper"></part-up>
-      <part-footer id="footer"></part-footer>
     </div>
   </template>
 </template-element>
@@ -124,10 +64,12 @@
       return 'layout-page'
     }
 
-    render () {
-      super.render()
-      if (this.data.menu) {
-        this.refs.layout.classList.remove('fullwidth')
+    static get props () {
+      return {
+        data: {
+          type: Object,
+          value: {}
+        }
       }
     }
 

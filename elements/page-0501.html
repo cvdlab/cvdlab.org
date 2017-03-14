@@ -1,5 +1,4 @@
 <link rel="import" href="layout-page.html">
-<link rel="import" href="part-courses.html">
 
 <template-element id="page-0501">
   <template>
@@ -8,7 +7,7 @@
         display: block;
       }
 
-      .section {
+      .list {
         padding-bottom: 40px;
       }
 
@@ -21,34 +20,28 @@
       <div class="content">
         <h1>Courses</h1>
 
-        <div class="section">
-          <!-- <h2 class="title">Courses</h2> -->
-          <div class="list">
-            <x-repeat items="{{data.courses}}" item="project">
-              <template>
-                <div class="item">
-                  <h4 class="title">{{project.title}}</h4>
-                  <div class="description">{{project.description}}</div>
-                </div>
-              </template>
-            </x-repeat>
-          </div>
+        <div class="list">
+          <x-repeat items="{{data.courses}}" item="project">
+            <template>
+              <div class="item">
+                <h4 class="title">{{project.title}}</h4>
+                <div class="description">{{project.description}}</div>
+              </div>
+            </template>
+          </x-repeat>
         </div>
 
         <h1>Workshops</h1>
 
-        <div class="section">
-          <!-- <h2 class="title">Workshops</h2> -->
-          <div class="list">
-            <x-repeat items="{{data.crumbs}}" item="project">
-              <template>
-                <div class="item">
-                  <h4 class="title">{{project.title}}</h4>
-                  <div class="description">{{project.description}}</div>
-                </div>
-              </template>
-            </x-repeat>
-          </div>
+        <div class="list">
+          <x-repeat items="{{data.crumbs}}" item="project">
+            <template>
+              <div class="item">
+                <h4 class="title">{{project.title}}</h4>
+                <div class="description">{{project.description}}</div>
+              </div>
+            </template>
+          </x-repeat>
         </div>
       </div>
     </layout-page>

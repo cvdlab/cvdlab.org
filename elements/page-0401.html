@@ -10,15 +10,6 @@
       .item .title {
         margin-bottom: 0;
       }
-
-      .item .tag {
-        margin-right: 10px;
-        padding-right: 10px;
-        font-style: italic;
-      }
-      .item .tag::before {
-        content: '#'
-      }
     </style>
 
     <layout-page data="{{data}}">
@@ -34,27 +25,17 @@
                 <div class="info">
                   <span>by </span>
                   <span class="author">{{thesis.author}}</span>
-                  <!-- <span> in </span> -->
-                  <!-- <span class="year">{{thesis.year}}</span> -->
                 </div>
                 <div class="notes">
                   <template is="repeat" items="{{thesis.notes}}" item="note">
                     <div>{{note}}</div>
                   </template>
                 </div>
-<!--
-                <div class="tags">
-                  <x-repeat items="{{thesis.tags}}" item="tag">
-                    <template>
-                      <span class="tag">{{tag}}</span>
-                    </template>
-                  </x-repeat>
-                </div>
- -->
               </div>
             </template>
           </x-repeat>
         </div>
+
       </div>
     </layout-page>
 
