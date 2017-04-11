@@ -176,7 +176,7 @@
           resolve(link)
         }
         link.onerror = (event) => {
-          reject(link)
+          reject(event)
         }
 
         document.head.appendChild(link)

@@ -34,11 +34,15 @@
 </layout-page>
 
 <script>
-  class Page0301 extends Pantarei.Element {
+(function () {
+
+  class Page extends Pantarei.Element {
 
     static get is () { return 'page-0301' }
 
   }
 
-  window.customElements.define('page-0301', Page0301)
+  window.customElements.define(Page.is, Page)
+
+})()
 </script>

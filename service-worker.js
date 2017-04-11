@@ -1,6 +1,9 @@
 const CACHE_NAME = 'cvdlab-cache-0.0.2'
 
 const files = [
+  'https://unpkg.com/pantarei/dist/webcomponents',
+  'https://unpkg.com/pantarei/dist/pantarei',
+
   '/data/alumni.js',
   '/data/collaborators.js',
   '/data/courses.js',

@@ -46,11 +46,15 @@
 </template-element>
 
 <script>
-  class Page0001 extends Pantarei.Element {
+(function () {
+
+  class Page extends Pantarei.Element {
 
     static get is () { return 'page-0001' }
 
   }
 
-  window.customElements.define('page-0001', Page0001)
+  window.customElements.define(Page.is, Page)
+
+})()
 </script>

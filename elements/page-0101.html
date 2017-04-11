@@ -37,11 +37,15 @@
 </template-element>
 
 <script>
-  class Page0101 extends Pantarei.Element {
+(function () {
+
+  class Page extends Pantarei.Element {
 
     static get is () { return 'page-0101' }
 
   }
 
-  window.customElements.define('page-0101', Page0101)
+  window.customElements.define(Page.is, Page)
+
+})()
 </script>
