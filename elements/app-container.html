@@ -50,10 +50,157 @@
 </template-element>
 
 <script>
-  class AppContainer extends Pantarei.Router {
+  class AppContainer extends Pantarei.Element {
 
-    static get is () {
-      return 'app-container'
+    static get is () { return 'app-container' }
+
+    get container () {
+      return this.refs.container
+    }
+
+    constructor () {
+      super()
+      this.router = page
+
+      this.config = {}
+      this.config.pages = {}
+      this.config.menus = {}
+      this.config.redirect_url = location.pathname || '/'
+
+      this.cache = {}
+      this.cache.pages = {}
+      this.cache.elements = {}
+
+      this.state = {}
+      this.state.page = null
+
+      this.register_pages(Pantarei.pages || [])
+      this.register_menus(Pantarei.menus || [])
+    }
+
+    ready () {
+      this.redirect()
+    }
+
+    page_url (page_name) {
+      return `/elements/${page_name}.html`
+    }
+
+    register_pages (pages) {
+      pages.forEach(this.register_page, this)
+    }
+
+    register_page (page) {
+      this.config.pages[page.name] = page
+      this.router(page.permalink, (route) => {
+        this.open_page(page.name)
+      })
+    }
+
+    register_menus (menus) {
+      menus.forEach(this.register_menu, this)
+    }
+
+    register_menu (menu) {
+      this.config.menus[menu.name] = menu
+
+      let page = this.config.pages[menu.page]
+      if (page) {
+        menu.link = page.link
+      } else {
+        menu.link = '/'
+      }
+
+      menu.items.forEach((item) => {
+        let page = this.config.pages[item.page]
+        item.link = page.permalink
+      })
+    }
+
+    redirect () {
+      let redirect_url = sessionStorage.getItem('redirect_url')
+      if (redirect_url) {
+        this.config.redirect_url = redirect_url
+        sessionStorage.removeItem('redirect_url')
+        this.router(this.config.redirect_url)
+      }
+      this.router()
+    }
+
+    open_page (page_name) {
+      let element = this.cache.elements[page_name]
+      if (element) {
+        this.container.firstChild && this.container.firstChild.remove()
+        this.container.appendChild(element)
+        element.data = Pantarei.data
+        element.data.menu = this.config.menus.main
+
+        window.ga && window.ga('send', 'pageview', window.location.href)
+        window.scrollTo(0, 0)
+        return
+      }
+
+      let page_url = this.page_url(page_name)
+      this.import_html(page_url)
+        .then(() => {
+          let element = document.createElement(page_name)
+
+          this.container.firstChild && this.container.firstChild.remove()
+          this.container.appendChild(element)
+          element.data = Pantarei.data
+          element.data.menu = this.config.menus.main
+
+          this.cache.elements[page_name] = element
+          window.ga && window.ga('send', 'pageview', window.location.href)
+          window.scrollTo(0, 0)
+        })
+        .catch((err) => {
+          console.warn(err)
+          this.router('/')
+        })
+    }
+
+    import_html (href) {
+      let link = this.cache.pages[href]
+      if (link) {
+        return link
+      }
+
+      return new Promise((resolve, reject) => {
+        let link = document.createElement('link')
+        link.rel = 'import'
+        link.href = href
+
+        link.onload = (event) => {
+          this.cache.pages[href] = Promise.resolve(link)
+          resolve(link)
+        }
+        link.onerror = (event) => {
+          reject(link)
+        }
+
+        document.head.appendChild(link)
+      })
+    }
+
+    import_content (href) {
+      return new Promise((resolve, reject) => {
+        fetch(href)
+          .then((res) => {
+            return res.text()
+          })
+          .then((html) => {
+            let div = document.createElement('div')
+            div.innerHTML = html
+            let template = div.firstChild
+            let content = template.content
+            resolve(content)
+          })
+          .catch((err) => {
+            console.log(err)
+            reject(err)
+          })
+      })
     }
 
   }

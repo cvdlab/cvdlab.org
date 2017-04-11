@@ -1,6 +1,6 @@
-var cacheName = 'cvdlab'
+const CACHE = 'cvdlab-cache-0.0.1'
 
-var filesToCache = [
+const files = [
   '/data/alumni.js',
   '/data/collaborators.js',
   '/data/courses.js',
@@ -29,47 +29,57 @@ var filesToCache = [
   '/elements/part-header.html',
   '/elements/part-up.html',
 
-  '/scripts/fetch.js',
   '/scripts/ga.js',
   '/scripts/page.js',
-  '/scripts/router.js',
   '/scripts/tawk.js'
 ]
 
 self.addEventListener('install', function (event) {
   console.log('[ServiceWorker] Install')
-
-  let caching = caches.open(cacheName).then((cache) => {
-    console.log('[ServiceWorker] Caching app shell')
-    return cache.addAll(filesToCache)
-  })
-
-  event.waitUntil(caching)
+  event.waitUntil(precache())
 })
 
 self.addEventListener('activate', function (event) {
   console.log('[ServiceWorker] Activate')
+  event.waitUntil(clear_caches())
+  return self.clients.claim()
+})
 
-  let caching = caches.keys().then((keyList) => {
-    return Promise.all(keyList.map((key) => {
-      if (key !== cacheName) {
+self.addEventListener('fetch', function (event) {
+  console.log('[ServiceWorker] Fetch', event.request.url)
+  event.respondWith(from_cache(event.request))
+  event.waitUntil(update(event.request))
+})
+
+function precache () {
+  return caches.open(CACHE).then(function (cache) {
+    return cache.addAll(files)
+  })
+}
+
+function clear_caches () {
+  return caches.keys().then((keys) => {
+    return Promise.all(keys.map((key) => {
+      if (key !== CACHE) {
         console.log('[ServiceWorker] Removing old cache', key)
         return caches.delete(key)
       }
     }))
   })
+}
 
-  event.waitUntil(caching)
-
-  return self.clients.claim();
-})
-
-self.addEventListener('fetch', function (event) {
-  console.log('[ServiceWorker] Fetch', event.request.url)
-
-  let caching = caches.match(event.request).then((response) => {
-    return response || fetch(event.request)
+function from_cache (request) {
+  return caches.open(CACHE).then(function (cache) {
+    return fetch(request).then(function (response) {
+      return cache.put(request, response);
+    })
   })
+}
 
-  event.respondWith(caching)
-})
+function update (request) {
+  return caches.open(CACHE).then(function (cache) {
+    return fetch(request).then(function (response) {
+      return cache.put(request, response)
+    })
+  })
+}
