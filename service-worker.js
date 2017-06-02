@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cvdlab-cache-0.0.2'
+const CACHE_NAME = 'cvdlab-cache-0.0.3'
 
 const files = [
   'https://unpkg.com/pantarei/dist/webcomponents',
